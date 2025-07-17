@@ -1,2 +1,472 @@
 2025-07-14 02:49:34 [INFO]: Server running on port 3001
 2025-07-14 02:49:34 [INFO]: Environment: development
+2025-07-14 03:18:02 [INFO]: Client connected: jvHK9puYHFIgm_v7AAAB
+2025-07-14 03:18:02 [INFO]: Client connected: HIU5qeZWtrs4gnD9AAAD
+2025-07-14 03:18:09 [INFO]: Client disconnected: jvHK9puYHFIgm_v7AAAB
+2025-07-14 03:18:09 [INFO]: Client disconnected: HIU5qeZWtrs4gnD9AAAD
+2025-07-14 03:20:15 [INFO]: Client connected: IEk4GfgQ821o3h7DAAAG
+2025-07-14 03:20:15 [INFO]: Client connected: CfhoULf75Jnu7RzHAAAH
+2025-07-14 03:20:30 [INFO]: Client disconnected: IEk4GfgQ821o3h7DAAAG
+2025-07-14 03:20:30 [INFO]: Client disconnected: CfhoULf75Jnu7RzHAAAH
+2025-07-14 06:06:03 [INFO]: Client connected: LiPicuFKcUBHgqeHAAAJ
+2025-07-14 06:06:03 [INFO]: Client connected: bu6MYr4PfvPMI0oKAAAL
+2025-07-14 06:30:34 [INFO]: Client disconnected: bu6MYr4PfvPMI0oKAAAL
+2025-07-14 06:30:34 [INFO]: Client disconnected: LiPicuFKcUBHgqeHAAAJ
+2025-07-14 06:31:04 [INFO]: Client connected: 1gUUaAhwVzvTOOyKAAAN
+2025-07-14 06:31:04 [INFO]: Client connected: r0S-uW7qDmpnnTdPAAAP
+2025-07-14 06:32:13 [INFO]: Client disconnected: 1gUUaAhwVzvTOOyKAAAN
+2025-07-14 06:32:13 [INFO]: Client disconnected: r0S-uW7qDmpnnTdPAAAP
+2025-07-14 07:45:23 [INFO]: Client connected: VLCAKow9qd1i0CqKAAAS
+2025-07-14 07:47:00 [INFO]: Client disconnected: VLCAKow9qd1i0CqKAAAS
+2025-07-14 07:47:00 [INFO]: Client connected: E-vhmTe-SSn50oXQAAAU
+2025-07-14 07:47:35 [INFO]: Paired files uploaded successfully
+2025-07-14 07:48:24 [INFO]: Paired files uploaded successfully
+2025-07-14 07:48:26 [INFO]: Client E-vhmTe-SSn50oXQAAAU joined analysis room: trim_1752450506801
+2025-07-14 07:48:26 [INFO]: Starting trim analysis: trim_1752450506801
+2025-07-14 07:48:27 [ERROR]: Error: Script execution failed with code 1: 
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:162:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-07-14 07:50:18 [INFO]: Paired files uploaded successfully
+2025-07-14 07:50:22 [INFO]: Client E-vhmTe-SSn50oXQAAAU joined analysis room: trim_1752450622617
+2025-07-14 07:50:22 [INFO]: Starting trim analysis: trim_1752450622616
+2025-07-14 07:50:22 [ERROR]: Error: Script execution failed with code 1: 
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:162:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Socket.<anonymous> (node:internal/child_process:457:11)
+    at Socket.emit (node:events:513:28)
+    at Pipe.<anonymous> (node:net:351:12)
+2025-07-14 07:53:03 [INFO]: Paired files uploaded successfully
+2025-07-14 07:53:11 [INFO]: Starting trim analysis: trim_1752450791011
+2025-07-14 07:53:11 [INFO]: Client E-vhmTe-SSn50oXQAAAU joined analysis room: trim_1752450791011
+2025-07-14 07:53:11 [ERROR]: Error: Script execution failed with code 1: 
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:162:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Socket.<anonymous> (node:internal/child_process:457:11)
+    at Socket.emit (node:events:513:28)
+    at Pipe.<anonymous> (node:net:351:12)
+2025-07-14 08:10:10 [INFO]: Paired files uploaded successfully
+2025-07-14 08:29:50 [INFO]: Paired files uploaded successfully
+2025-07-14 08:32:00 [INFO]: Paired files uploaded successfully
+2025-07-14 08:32:02 [INFO]: Client E-vhmTe-SSn50oXQAAAU joined analysis room: trim_1752453122914
+2025-07-14 08:32:02 [INFO]: Starting trim analysis: trim_1752453122913
+2025-07-14 08:32:03 [ERROR]: Error: Script execution failed with code 1: 
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:162:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-07-14 08:34:50 [INFO]: Paired files uploaded successfully
+2025-07-14 08:34:53 [INFO]: Starting trim analysis: trim_1752453293021
+2025-07-14 08:34:53 [INFO]: Client E-vhmTe-SSn50oXQAAAU joined analysis room: trim_1752453293021
+2025-07-14 08:34:53 [ERROR]: Error: Script execution failed with code 1: 
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:162:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Socket.<anonymous> (node:internal/child_process:457:11)
+    at Socket.emit (node:events:513:28)
+    at Pipe.<anonymous> (node:net:351:12)
+2025-07-14 08:38:00 [INFO]: Server running on port 3001
+2025-07-14 08:38:00 [INFO]: Environment: development
+2025-07-14 08:38:03 [INFO]: Client connected: eQsEwN_RC6bpghlqAAAB
+2025-07-14 08:50:26 [INFO]: Paired files uploaded successfully
+2025-07-14 08:51:53 [INFO]: Paired files uploaded successfully
+2025-07-14 08:52:01 [INFO]: Client eQsEwN_RC6bpghlqAAAB joined analysis room: trim_1752454321412
+2025-07-14 08:52:01 [INFO]: Starting trim analysis: trim_1752454321411
+2025-07-14 08:52:01 [ERROR]: Error: Script execution failed with code 1: 
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:162:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-07-14 08:59:08 [INFO]: Client disconnected: eQsEwN_RC6bpghlqAAAB
+2025-07-14 08:59:09 [INFO]: Client connected: nizYeiUQfhqWUSgEAAAE
+2025-07-14 08:59:50 [INFO]: Paired files uploaded successfully
+2025-07-14 08:59:58 [INFO]: Starting rename analysis: rename_1752454798620
+2025-07-14 08:59:58 [INFO]: Client nizYeiUQfhqWUSgEAAAE joined analysis room: rename_1752454798625
+2025-07-14 09:00:01 [ERROR]: Error: Script execution failed with code 1: Traceback (most recent call last):
+  File "/Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/python_scripts/1-rename.py", line 13, in <module>
+    with open(outfile_name, 'w') as outfile:
+         ^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'uploads/e1342733-ffdd-4d37-b4e4-4521bf792f79_MS23323-pool_000000000-L79NH_L1_R1.rename.fq'
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:162:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Socket.<anonymous> (node:internal/child_process:457:11)
+    at Socket.emit (node:events:513:28)
+    at Pipe.<anonymous> (node:net:351:12)
+2025-07-14 09:07:04 [INFO]: Server running on port 3001
+2025-07-14 09:07:04 [INFO]: Environment: development
+2025-07-14 09:07:06 [INFO]: Server running on port 3001
+2025-07-14 09:07:06 [INFO]: Environment: development
+2025-07-14 09:07:06 [INFO]: Client connected: 0l1e5lEoiBueaaXKAAAB
+2025-07-14 09:07:25 [INFO]: Client disconnected: 0l1e5lEoiBueaaXKAAAB
+2025-07-14 09:07:25 [INFO]: Client connected: Yn6zUTE3o79Rtw4RAAAE
+2025-07-14 09:07:54 [INFO]: Paired files uploaded successfully
+2025-07-14 09:08:00 [INFO]: Client Yn6zUTE3o79Rtw4RAAAE joined analysis room: rename_1752455280590
+2025-07-14 09:08:00 [INFO]: Starting rename analysis: rename_1752455280590
+2025-07-14 09:08:04 [INFO]: Rename analysis completed: rename_1752455280590
+2025-07-14 09:15:43 [INFO]: Paired files uploaded successfully
+2025-07-14 09:15:45 [INFO]: Client Yn6zUTE3o79Rtw4RAAAE joined analysis room: trim_1752455745318
+2025-07-14 09:15:45 [INFO]: Starting trim analysis: trim_1752455745317
+2025-07-14 09:15:49 [INFO]: Trim analysis completed: trim_1752455745317
+2025-07-14 09:37:30 [INFO]: Paired files uploaded successfully
+2025-07-14 09:37:38 [INFO]: Starting rename analysis: rename_1752457058092
+2025-07-14 09:37:38 [INFO]: Client Yn6zUTE3o79Rtw4RAAAE joined analysis room: rename_1752457058093
+2025-07-14 09:37:41 [INFO]: Rename analysis completed: rename_1752457058092
+2025-07-14 09:59:38 [INFO]: Server running on port 3001
+2025-07-14 09:59:38 [INFO]: Environment: development
+2025-07-14 09:59:43 [INFO]: Client connected: PgDu5kpxhaVzlOtCAAAB
+2025-07-14 10:00:18 [INFO]: Server running on port 3001
+2025-07-14 10:00:18 [INFO]: Environment: development
+2025-07-14 10:00:19 [INFO]: Client connected: yo6gujqN-QDeoIUpAAAB
+2025-07-14 10:00:41 [INFO]: Server running on port 3001
+2025-07-14 10:00:41 [INFO]: Environment: development
+2025-07-14 10:00:41 [INFO]: Client connected: psJqxOy_Mp3CaA9FAAAB
+2025-07-14 10:03:06 [INFO]: Client disconnected: psJqxOy_Mp3CaA9FAAAB
+2025-07-14 10:04:11 [INFO]: Client connected: 0uDrdDw6xX71jJSyAAAE
+2025-07-14 10:04:14 [INFO]: Client disconnected: 0uDrdDw6xX71jJSyAAAE
+2025-07-14 10:04:14 [INFO]: Client connected: U4-dt8EkZ4gSxBW9AAAH
+2025-07-14 10:04:40 [INFO]: Paired files uploaded successfully
+2025-07-14 10:04:46 [INFO]: Starting integrated pipeline: pipeline_1752458686935
+2025-07-14 10:04:46 [INFO]: Client U4-dt8EkZ4gSxBW9AAAH joined analysis room: pipeline_1752458686936
+2025-07-14 10:04:47 [ERROR]: Error: Script execution failed with code 2: /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/python_scripts/integrated_pipeline.py': [Errno 2] No such file or directory
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:216:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Socket.<anonymous> (node:internal/child_process:457:11)
+    at Socket.emit (node:events:513:28)
+    at Pipe.<anonymous> (node:net:351:12)
+2025-07-14 10:05:48 [INFO]: Server running on port 3001
+2025-07-14 10:05:48 [INFO]: Environment: development
+2025-07-14 10:05:49 [INFO]: Client connected: LeGDFgTqeTZwQomxAAAB
+2025-07-14 10:06:38 [INFO]: Client disconnected: LeGDFgTqeTZwQomxAAAB
+2025-07-14 10:06:38 [INFO]: Client connected: QwwJ5lvbBi76msGlAAAE
+2025-07-14 10:06:58 [INFO]: Paired files uploaded successfully
+2025-07-14 10:07:03 [INFO]: Starting integrated pipeline: pipeline_1752458823596
+2025-07-14 10:07:03 [INFO]: Client QwwJ5lvbBi76msGlAAAE joined analysis room: pipeline_1752458823596
+2025-07-14 10:08:47 [INFO]: Client disconnected: QwwJ5lvbBi76msGlAAAE
+2025-07-14 10:08:47 [INFO]: Client connected: eKilZ01MAV6QWP3rAAAH
+2025-07-14 10:09:57 [INFO]: Paired files uploaded successfully
+2025-07-14 10:09:58 [INFO]: Starting integrated pipeline: pipeline_1752458998402
+2025-07-14 10:09:58 [INFO]: Client eKilZ01MAV6QWP3rAAAH joined analysis room: pipeline_1752458998402
+2025-07-14 10:12:53 [INFO]: Client disconnected: eKilZ01MAV6QWP3rAAAH
+2025-07-14 10:12:54 [INFO]: Client connected: oP_ab-mjkNVVJtN0AAAK
+2025-07-14 10:15:03 [INFO]: Paired files uploaded successfully
+2025-07-14 10:15:06 [INFO]: Starting integrated pipeline: pipeline_1752459306546
+2025-07-14 10:15:06 [INFO]: Client oP_ab-mjkNVVJtN0AAAK joined analysis room: pipeline_1752459306546
+2025-07-14 10:15:06 [INFO]: Integrated pipeline completed: pipeline_1752459306546
+2025-07-14 10:18:03 [INFO]: Paired files uploaded successfully
+2025-07-14 10:18:05 [INFO]: Starting integrated pipeline: pipeline_1752459485668
+2025-07-14 10:18:05 [INFO]: Client oP_ab-mjkNVVJtN0AAAK joined analysis room: pipeline_1752459485669
+2025-07-14 10:22:38 [INFO]: Integrated pipeline completed: pipeline_1752458823596
+2025-07-14 10:25:37 [INFO]: Integrated pipeline completed: pipeline_1752458998402
+2025-07-14 10:31:54 [INFO]: Paired files uploaded successfully
+2025-07-14 10:31:59 [INFO]: Starting integrated pipeline: pipeline_1752460319384
+2025-07-14 10:31:59 [INFO]: Client oP_ab-mjkNVVJtN0AAAK joined analysis room: pipeline_1752460319384
+2025-07-14 10:33:53 [ERROR]: Error: ENOENT: no such file or directory, scandir '/Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs/pipeline/pipeline_1752459485668'
+2025-07-14 10:33:53 [INFO]: Integrated pipeline completed: pipeline_1752459485668
+2025-07-14 10:35:41 [INFO]: Server running on port 3001
+2025-07-14 10:35:41 [INFO]: Environment: development
+2025-07-14 10:35:43 [INFO]: Client connected: JDudfhdkIPPb43xAAAAB
+2025-07-14 10:36:19 [INFO]: Client disconnected: JDudfhdkIPPb43xAAAAB
+2025-07-14 10:36:20 [INFO]: Client connected: aI0j8ACk-aeFGX2wAAAE
+2025-07-14 10:36:34 [INFO]: Paired files uploaded successfully
+2025-07-14 10:36:42 [INFO]: Client aI0j8ACk-aeFGX2wAAAE joined analysis room: pipeline_1752460602184
+2025-07-14 10:36:42 [INFO]: Starting integrated pipeline: pipeline_1752460602184
+2025-07-14 10:36:42 [ERROR]: Error: Script execution failed with code 1:   File "/Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/python_scripts/integrated_pipeline.py", line 442
+    main():
+          ^
+SyntaxError: invalid syntax
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:224:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-07-14 10:41:09 [INFO]: Client disconnected: aI0j8ACk-aeFGX2wAAAE
+2025-07-14 10:41:09 [INFO]: Client connected: NDHxaz30WrE5U_auAAAH
+2025-07-14 10:41:22 [INFO]: Paired files uploaded successfully
+2025-07-14 10:41:25 [INFO]: Starting integrated pipeline: pipeline_1752460885124
+2025-07-14 10:41:25 [INFO]: Client NDHxaz30WrE5U_auAAAH joined analysis room: pipeline_1752460885125
+2025-07-14 10:41:25 [ERROR]: Error: Script execution failed with code 1:   File "/Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/python_scripts/integrated_pipeline.py", line 442
+    main():
+          ^
+SyntaxError: invalid syntax
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:224:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Socket.<anonymous> (node:internal/child_process:457:11)
+    at Socket.emit (node:events:513:28)
+    at Pipe.<anonymous> (node:net:351:12)
+2025-07-14 10:43:16 [INFO]: Client disconnected: NDHxaz30WrE5U_auAAAH
+2025-07-14 10:43:17 [INFO]: Client connected: vbCG8mbeXQS5sdEQAAAK
+2025-07-14 10:43:34 [INFO]: Paired files uploaded successfully
+2025-07-14 10:43:35 [INFO]: Starting integrated pipeline: pipeline_1752461015841
+2025-07-14 10:43:35 [INFO]: Client vbCG8mbeXQS5sdEQAAAK joined analysis room: pipeline_1752461015841
+2025-07-14 10:43:36 [ERROR]: Error: Script execution failed with code 1:   File "/Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/python_scripts/integrated_pipeline.py", line 442
+    main():
+          ^
+SyntaxError: invalid syntax
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:224:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Socket.<anonymous> (node:internal/child_process:457:11)
+    at Socket.emit (node:events:513:28)
+    at Pipe.<anonymous> (node:net:351:12)
+2025-07-14 10:43:55 [INFO]: Client disconnected: vbCG8mbeXQS5sdEQAAAK
+2025-07-14 10:43:55 [INFO]: Client connected: C210E6Xu1rglnLsUAAAN
+2025-07-14 10:44:08 [INFO]: Paired files uploaded successfully
+2025-07-14 10:44:11 [INFO]: Starting integrated pipeline: pipeline_1752461051207
+2025-07-14 10:44:11 [INFO]: Client C210E6Xu1rglnLsUAAAN joined analysis room: pipeline_1752461051207
+2025-07-14 10:53:19 [INFO]: Client disconnected: C210E6Xu1rglnLsUAAAN
+2025-07-14 10:53:19 [INFO]: Client connected: Ykk5jKyS4ZdpGAW8AAAQ
+2025-07-14 10:54:58 [INFO]: Paired files uploaded successfully
+2025-07-14 10:55:05 [INFO]: Client Ykk5jKyS4ZdpGAW8AAAQ joined analysis room: pipeline_1752461705854
+2025-07-14 10:55:05 [INFO]: Starting integrated pipeline: pipeline_1752461705854
+2025-07-14 10:55:06 [ERROR]: Error: Script execution failed with code 1: 
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:224:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-07-14 10:56:21 [INFO]: Client disconnected: Ykk5jKyS4ZdpGAW8AAAQ
+2025-07-14 10:56:22 [INFO]: Client connected: GX-sLpKQSS1nFa0KAAAT
+2025-07-14 10:56:43 [INFO]: Paired files uploaded successfully
+2025-07-14 10:56:46 [INFO]: Client GX-sLpKQSS1nFa0KAAAT joined analysis room: pipeline_1752461806120
+2025-07-14 10:56:46 [INFO]: Starting integrated pipeline: pipeline_1752461806120
+2025-07-14 10:56:46 [ERROR]: Error: Script execution failed with code 1: 
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:224:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-07-14 10:58:54 [INFO]: Paired files uploaded successfully
+2025-07-14 10:59:15 [ERROR]: Error: Script execution failed with code 1: 
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:224:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Socket.<anonymous> (node:internal/child_process:457:11)
+    at Socket.emit (node:events:513:28)
+    at Pipe.<anonymous> (node:net:351:12)
+2025-07-14 11:01:20 [INFO]: Client disconnected: GX-sLpKQSS1nFa0KAAAT
+2025-07-14 11:01:21 [INFO]: Client connected: ucDxf1rMLsSxVYYvAAAW
+2025-07-14 11:02:26 [INFO]: Paired files uploaded successfully
+2025-07-14 11:02:30 [INFO]: Starting integrated pipeline: pipeline_1752462150687
+2025-07-14 11:02:30 [INFO]: Client ucDxf1rMLsSxVYYvAAAW joined analysis room: pipeline_1752462150687
+2025-07-14 11:02:30 [ERROR]: Error: Script execution failed with code 1: 
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:224:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-07-14 11:03:29 [INFO]: Paired files uploaded successfully
+2025-07-14 11:03:31 [INFO]: Starting integrated pipeline: pipeline_1752462211869
+2025-07-14 11:03:31 [INFO]: Client ucDxf1rMLsSxVYYvAAAW joined analysis room: pipeline_1752462211869
+2025-07-14 11:07:12 [INFO]: Client disconnected: ucDxf1rMLsSxVYYvAAAW
+2025-07-14 11:07:12 [INFO]: Client connected: El9JkHVf79o26uaSAAAZ
+2025-07-14 11:18:40 [ERROR]: Error: Script execution failed with code 1: 
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:224:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-07-14 11:40:45 [INFO]: Client disconnected: El9JkHVf79o26uaSAAAZ
+2025-07-14 11:40:46 [INFO]: Client connected: pj38yl1YChR4itacAAAc
+2025-07-14 21:22:19 [INFO]: Client disconnected: pj38yl1YChR4itacAAAc
+2025-07-14 21:22:20 [INFO]: Client connected: QZd2045oraNgCCH6AAAf
+2025-07-14 23:33:28 [INFO]: Client disconnected: QZd2045oraNgCCH6AAAf
+2025-07-14 23:33:29 [INFO]: Client connected: y4e8g6juKtN4Wx61AAAh
+2025-07-14 23:33:33 [INFO]: Client disconnected: y4e8g6juKtN4Wx61AAAh
+2025-07-14 23:33:33 [INFO]: Client connected: -zQ1YERqzKdyQgQ4AAAk
+2025-07-15 01:31:39 [INFO]: Client disconnected: -zQ1YERqzKdyQgQ4AAAk
+2025-07-15 01:31:40 [INFO]: Client connected: rbV3AUK5e9PVZjYyAAAn
+2025-07-15 16:20:37 [INFO]: Client disconnected: rbV3AUK5e9PVZjYyAAAn
+2025-07-15 16:20:38 [INFO]: Client connected: BjvaiKRPmwvngZChAAAq
+2025-07-15 18:11:27 [INFO]: Client disconnected: BjvaiKRPmwvngZChAAAq
+2025-07-15 18:11:28 [INFO]: Client connected: O1RImcOjv2vJXAXFAAAt
+2025-07-15 18:12:27 [INFO]: Client disconnected: O1RImcOjv2vJXAXFAAAt
+2025-07-15 18:12:27 [INFO]: Client connected: L2LVgTI6yqIb8LzyAAAw
+2025-07-15 18:28:53 [INFO]: Paired files uploaded successfully
+2025-07-15 18:28:56 [INFO]: Starting integrated pipeline: pipeline_1752575336132
+2025-07-15 18:28:56 [INFO]: Client L2LVgTI6yqIb8LzyAAAw joined analysis room: pipeline_1752575336133
+2025-07-15 18:31:40 [INFO]: Client disconnected: L2LVgTI6yqIb8LzyAAAw
+2025-07-15 18:31:41 [INFO]: Client connected: ZhW2uO8F9qjNCIzXAAAz
+2025-07-15 18:42:02 [INFO]: Client disconnected: ZhW2uO8F9qjNCIzXAAAz
+2025-07-15 18:42:03 [INFO]: Client connected: t8GLWF8B4X4FwiC9AAA2
+2025-07-15 19:05:34 [INFO]: Client disconnected: t8GLWF8B4X4FwiC9AAA2
+2025-07-15 19:05:34 [INFO]: Client connected: YDLm10m4UvcBAj_1AAA5
+2025-07-15 19:11:45 [INFO]: Client disconnected: YDLm10m4UvcBAj_1AAA5
+2025-07-15 19:11:45 [INFO]: Client connected: pMW4in9Ynq6_Iu9bAAA8
+2025-07-15 19:35:15 [ERROR]: Error: Script execution failed with code 1: 
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:224:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Socket.<anonymous> (node:internal/child_process:457:11)
+    at Socket.emit (node:events:513:28)
+    at Pipe.<anonymous> (node:net:351:12)
+2025-07-16 00:28:02 [INFO]: Client disconnected: pMW4in9Ynq6_Iu9bAAA8
+2025-07-16 00:28:02 [INFO]: Client connected: i4QQWEqgBCQuTzPIAAA_
+2025-07-16 00:49:27 [INFO]: Client disconnected: i4QQWEqgBCQuTzPIAAA_
+2025-07-16 00:49:27 [INFO]: Client connected: RZGepYyQjpfFI3OfAABC
+2025-07-16 01:35:14 [INFO]: Client disconnected: RZGepYyQjpfFI3OfAABC
+2025-07-16 01:35:15 [INFO]: Client connected: UjsGy9jinmkoRRmIAABF
+2025-07-16 10:08:25 [INFO]: Client disconnected: UjsGy9jinmkoRRmIAABF
+2025-07-16 10:08:25 [INFO]: Client connected: hSoqYNEkoTtIT2sbAABI
+2025-07-16 21:52:21 [INFO]: Client disconnected: hSoqYNEkoTtIT2sbAABI
+2025-07-16 21:52:22 [INFO]: Client connected: zChNvnpxw09aEuIAAABL
+2025-07-17 01:53:52 [INFO]: Paired files uploaded successfully
+2025-07-17 03:44:56 [INFO]: Client disconnected: zChNvnpxw09aEuIAAABL
+2025-07-17 03:44:57 [INFO]: Client connected: ualO5OKx6qSwSDe-AABO
+2025-07-17 09:54:20 [INFO]: Client disconnected: ualO5OKx6qSwSDe-AABO
+2025-07-17 09:54:23 [INFO]: Client connected: TFNoU42fctBGcqbNAABR
+2025-07-17 10:25:39 [INFO]: Client disconnected: TFNoU42fctBGcqbNAABR
+2025-07-17 10:25:40 [INFO]: Client connected: FBrBooie1f14FQUhAABU
+2025-07-17 11:46:50 [INFO]: Server running on port 3001
+2025-07-17 11:46:50 [INFO]: Environment: development
+2025-07-17 11:46:51 [INFO]: Client connected: 5sBqIAwPcT_NR4TjAAAB
+2025-07-17 11:47:04 [INFO]: Server running on port 3001
+2025-07-17 11:47:04 [INFO]: Environment: development
+2025-07-17 11:47:04 [INFO]: Client connected: qs79jlW3kAp-6O3IAAAB
+2025-07-17 11:47:18 [INFO]: Server running on port 3001
+2025-07-17 11:47:18 [INFO]: Environment: development
+2025-07-17 11:47:19 [INFO]: Client connected: mgO0ZkJ8Q1f_61VHAAAB
+2025-07-17 11:47:58 [INFO]: Server running on port 3001
+2025-07-17 11:47:58 [INFO]: Environment: development
+2025-07-17 11:47:58 [INFO]: Client connected: 9mZ31mAaJ5ojqO4uAAAB
+2025-07-17 11:48:03 [INFO]: Server running on port 3001
+2025-07-17 11:48:03 [INFO]: Environment: development
+2025-07-17 11:48:04 [INFO]: Client connected: OH8HQzjyhSF5qjUeAAAB
+2025-07-17 11:48:22 [INFO]: Server running on port 3001
+2025-07-17 11:48:22 [INFO]: Environment: development
+2025-07-17 11:48:23 [INFO]: Client connected: E1GPmOrkJf1c9i43AAAB
+2025-07-17 11:55:24 [INFO]: Server running on port 3001
+2025-07-17 11:55:24 [INFO]: Environment: development
+2025-07-17 11:55:25 [INFO]: Client connected: lgkPcZkrNxBlJ4GWAAAB
+2025-07-17 12:04:06 [INFO]: Client disconnected: lgkPcZkrNxBlJ4GWAAAB
+2025-07-17 12:04:06 [INFO]: Client connected: FmtgG6SuDYnLhrxZAAAE
+2025-07-17 12:09:00 [INFO]: Paired files uploaded successfully
+2025-07-17 12:09:56 [INFO]: Client disconnected: FmtgG6SuDYnLhrxZAAAE
+2025-07-17 12:09:56 [INFO]: Client connected: 3k3L6XFn2r0alpN7AAAH
+2025-07-17 12:14:29 [INFO]: Server running on port 3001
+2025-07-17 12:14:29 [INFO]: Environment: development
+2025-07-17 12:14:30 [INFO]: Client connected: y68zNC_w2Zi8flBPAAAB
+2025-07-17 12:15:21 [INFO]: Server running on port 3001
+2025-07-17 12:15:21 [INFO]: Environment: development
+2025-07-17 12:15:22 [INFO]: Client connected: KGhCBWep-1ltTG6HAAAB
+2025-07-17 12:36:12 [INFO]: Server running on port 3001
+2025-07-17 12:36:12 [INFO]: Environment: development
+2025-07-17 12:36:15 [INFO]: Client connected: 6rMec-R5XFkAqX_4AAAB
+2025-07-17 12:43:55 [INFO]: Client disconnected: 6rMec-R5XFkAqX_4AAAB
+2025-07-17 12:43:55 [INFO]: Client connected: uKbxbfT025PwUvH-AAAE
+2025-07-17 12:44:14 [INFO]: Paired files uploaded successfully
+2025-07-17 12:44:15 [INFO]: Starting integrated pipeline: pipeline_1752727455978
+2025-07-17 12:44:16 [INFO]: Client uKbxbfT025PwUvH-AAAE joined analysis room: pipeline_1752727456002
+2025-07-17 12:44:16 [INFO]: Starting integrated pipeline: pipeline_1752727456002
+2025-07-17 12:59:56 [ERROR]: Error: Script execution failed with code 1: 
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:224:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-07-17 12:59:56 [ERROR]: Error: Script execution failed with code 1: 
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:224:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Socket.<anonymous> (node:internal/child_process:457:11)
+    at Socket.emit (node:events:513:28)
+    at Pipe.<anonymous> (node:net:351:12)
+2025-07-17 13:21:25 [INFO]: Paired files uploaded successfully
+2025-07-17 13:21:28 [INFO]: Starting integrated pipeline: pipeline_1752729688356
+2025-07-17 13:21:28 [INFO]: Client uKbxbfT025PwUvH-AAAE joined analysis room: pipeline_1752729688369
+2025-07-17 13:21:28 [INFO]: Starting integrated pipeline: pipeline_1752729688369
+2025-07-17 13:21:47 [INFO]: Client disconnected: uKbxbfT025PwUvH-AAAE
+2025-07-17 13:21:47 [INFO]: Client connected: u2E4ESUQ9zXhgRJIAAAH
+2025-07-17 13:23:56 [INFO]: Client disconnected: u2E4ESUQ9zXhgRJIAAAH
+2025-07-17 13:23:57 [INFO]: Client connected: AXC5TBn-IGti3Si0AAAK
+2025-07-17 13:24:34 [INFO]: Paired files uploaded successfully
+2025-07-17 13:25:09 [INFO]: Starting integrated pipeline: pipeline_1752729909202
+2025-07-17 13:25:09 [INFO]: Starting integrated pipeline: pipeline_1752729909210
+2025-07-17 13:25:09 [INFO]: Client AXC5TBn-IGti3Si0AAAK joined analysis room: pipeline_1752729909210
+2025-07-17 13:27:24 [INFO]: Client disconnected: AXC5TBn-IGti3Si0AAAK
+2025-07-17 13:27:25 [INFO]: Client connected: aBeTh63FR3UdgPUlAAAN
+2025-07-17 13:37:56 [ERROR]: Error: Script execution failed with code 1: 
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:224:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Socket.<anonymous> (node:internal/child_process:457:11)
+    at Socket.emit (node:events:513:28)
+    at Pipe.<anonymous> (node:net:351:12)
+2025-07-17 13:37:56 [ERROR]: Error: Script execution failed with code 1: 
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:224:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Socket.<anonymous> (node:internal/child_process:457:11)
+    at Socket.emit (node:events:513:28)
+    at Pipe.<anonymous> (node:net:351:12)
+2025-07-17 13:40:54 [ERROR]: Error: Script execution failed with code 1: 
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:224:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Socket.<anonymous> (node:internal/child_process:457:11)
+    at Socket.emit (node:events:513:28)
+    at Pipe.<anonymous> (node:net:351:12)
+2025-07-17 13:40:54 [ERROR]: Error: Script execution failed with code 1: 
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:224:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Socket.<anonymous> (node:internal/child_process:457:11)
+    at Socket.emit (node:events:513:28)
+    at Pipe.<anonymous> (node:net:351:12)
+2025-07-17 14:56:03 [INFO]: Client disconnected: aBeTh63FR3UdgPUlAAAN
+2025-07-17 14:56:04 [INFO]: Client connected: MGjGCO4OslsvKb-ZAAAQ
+2025-07-17 14:59:48 [INFO]: Client disconnected: MGjGCO4OslsvKb-ZAAAQ
+2025-07-17 15:00:18 [INFO]: Paired files uploaded successfully
+2025-07-17 15:00:20 [INFO]: Starting integrated pipeline: pipeline_1752735620489
+2025-07-17 15:15:17 [ERROR]: Error: Script execution failed with code 1: 
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:224:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Socket.<anonymous> (node:internal/child_process:457:11)
+    at Socket.emit (node:events:513:28)
+    at Pipe.<anonymous> (node:net:351:12)
+2025-07-17 15:29:57 [INFO]: Paired files uploaded successfully
+2025-07-17 15:30:06 [INFO]: Starting integrated pipeline: pipeline_1752737406713
+2025-07-17 15:30:07 [ERROR]: Error: Script execution failed with code 1: 
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:224:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Socket.<anonymous> (node:internal/child_process:457:11)
+    at Socket.emit (node:events:513:28)
+    at Pipe.<anonymous> (node:net:351:12)
+2025-07-17 15:34:16 [INFO]: Server running on port 3001
+2025-07-17 15:34:16 [INFO]: Environment: development
+2025-07-17 15:35:31 [INFO]: Paired files uploaded successfully
+2025-07-17 15:35:35 [INFO]: Starting integrated pipeline: pipeline_1752737735613
+2025-07-17 15:35:35 [ERROR]: Error: Python腳本執行失敗 (退出碼: 1)
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:208:18)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-07-17 17:07:20 [INFO]: Server running on port 3001
+2025-07-17 17:07:20 [INFO]: Environment: development
+2025-07-17 17:11:54 [INFO]: Paired files uploaded successfully
+2025-07-17 17:11:58 [INFO]: Starting integrated pipeline: pipeline_1752743518403
+2025-07-17 17:11:58 [ERROR]: Error: Python腳本執行失敗 (退出碼: 1)
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:208:18)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-07-17 18:18:47 [INFO]: Starting integrated pipeline: pipeline_1752747527039
+2025-07-17 18:18:47 [INFO]: Integrated pipeline completed: pipeline_1752747527039
+2025-07-17 18:19:42 [INFO]: Starting integrated pipeline: pipeline_1752747582474
+2025-07-17 18:19:42 [INFO]: Integrated pipeline completed: pipeline_1752747582474
+2025-07-17 18:43:09 [INFO]: Starting integrated pipeline: pipeline_1752748989355
+2025-07-17 18:43:09 [INFO]: Integrated pipeline completed: pipeline_1752748989355
+2025-07-17 18:43:53 [INFO]: Starting integrated pipeline: pipeline_1752749033699
+2025-07-17 18:43:53 [INFO]: Integrated pipeline completed: pipeline_1752749033699
+2025-07-17 19:13:15 [INFO]: Starting integrated pipeline: pipeline_1752750795477
+2025-07-17 19:13:15 [ERROR]: Error: Python腳本執行失敗 (退出碼: 1)
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:208:18)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)

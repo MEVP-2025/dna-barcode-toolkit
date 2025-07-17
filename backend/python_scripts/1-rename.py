@@ -8,7 +8,7 @@ import sys, os
 
 infile_name = sys.argv[1]	# -- MS23323-R1.fq
 outfile_name = infile_name.split('.')[0] + '.rename.fq' 
-pair = infile_name.split('-')[1][0:2]
+pair = infile_name.split('_')[-1][0:2]
 
 with open(outfile_name, 'w') as outfile:
     read_counts = 0

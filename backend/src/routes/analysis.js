@@ -9,7 +9,14 @@ const pythonExecutor = new PythonExecutor();
 // Store active analyses
 const activeAnalyses = new Map();
 
-// Validation schemas
+// Validation schema for integrated pipeline
+const pipelineSchema = Joi.object({
+  r1File: Joi.string().required(),
+  r2File: Joi.string().required(),
+  barcodeFile: Joi.string().required(),
+});
+
+// Legacy schemas (kept for compatibility)
 const trimAnalysisSchema = Joi.object({
   r1File: Joi.string().required(),
   r2File: Joi.string().required(),
@@ -20,11 +27,11 @@ const renameAnalysisSchema = Joi.object({
   inputFile: Joi.string().required(),
 });
 
-// Start trim analysis
-router.post("/trim/start", async (req, res, next) => {
+// Start integrated pipeline (main endpoint)
+router.post("/pipeline/start", async (req, res, next) => {
   try {
     // Validate input
-    const { error, value } = trimAnalysisSchema.validate(req.body);
+    const { error, value } = pipelineSchema.validate(req.body);
     if (error) {
       return res.status(400).json({
         error: "Validation failed",
@@ -38,13 +45,13 @@ router.post("/trim/start", async (req, res, next) => {
     // Create progress callback
     const progressCallback = (progress) => {
       io.emit("analysis_progress", {
-        type: "trim",
+        type: "pipeline",
         ...progress,
       });
     };
 
-    // Start analysis in background
-    const analysisPromise = pythonExecutor.executeTrim(
+    // Start pipeline in background
+    const analysisPromise = pythonExecutor.executePipeline(
       {
         r1File,
         r2File,
@@ -54,9 +61,9 @@ router.post("/trim/start", async (req, res, next) => {
     );
 
     // Store the analysis promise
-    const analysisId = `trim_${Date.now()}`;
+    const analysisId = `pipeline_${Date.now()}`;
     activeAnalyses.set(analysisId, {
-      type: "trim",
+      type: "pipeline",
       status: "running",
       startTime: new Date(),
       promise: analysisPromise,
@@ -72,7 +79,7 @@ router.post("/trim/start", async (req, res, next) => {
           analysis.result = result;
 
           io.emit("analysis_complete", {
-            type: "trim",
+            type: "pipeline",
             analysisId,
             result,
           });
@@ -86,7 +93,7 @@ router.post("/trim/start", async (req, res, next) => {
           analysis.error = error.message;
 
           io.emit("analysis_error", {
-            type: "trim",
+            type: "pipeline",
             analysisId,
             error: error.message,
           });
@@ -94,7 +101,7 @@ router.post("/trim/start", async (req, res, next) => {
       });
 
     res.json({
-      message: "Trim analysis started",
+      message: "Integrated pipeline started",
       analysisId,
       status: "running",
     });
@@ -103,8 +110,8 @@ router.post("/trim/start", async (req, res, next) => {
   }
 });
 
-// Get trim analysis status
-router.get("/trim/status/:analysisId", (req, res) => {
+// Get pipeline analysis status
+router.get("/pipeline/status/:analysisId", (req, res) => {
   const { analysisId } = req.params;
   const analysis = activeAnalyses.get(analysisId);
 
@@ -137,8 +144,8 @@ router.get("/trim/status/:analysisId", (req, res) => {
   res.json(response);
 });
 
-// Get trim analysis results
-router.get("/trim/results/:analysisId", (req, res) => {
+// Get pipeline analysis results
+router.get("/pipeline/results/:analysisId", (req, res) => {
   const { analysisId } = req.params;
   const analysis = activeAnalyses.get(analysisId);
 
@@ -160,121 +167,6 @@ router.get("/trim/results/:analysisId", (req, res) => {
     result: analysis.result,
     completedAt: analysis.endTime,
   });
-});
-
-// Start rename analysis
-router.post("/rename/start", async (req, res, next) => {
-  try {
-    // Validate input
-    const { error, value } = renameAnalysisSchema.validate(req.body);
-    if (error) {
-      return res.status(400).json({
-        error: "Validation failed",
-        details: error.details,
-      });
-    }
-
-    const { inputFile } = value;
-    const io = req.app.get("io");
-
-    // Create progress callback
-    const progressCallback = (progress) => {
-      io.emit("analysis_progress", {
-        type: "rename",
-        ...progress,
-      });
-    };
-
-    // Start analysis in background
-    const analysisPromise = pythonExecutor.executeRename(
-      {
-        inputFile,
-      },
-      progressCallback
-    );
-
-    // Store the analysis promise
-    const analysisId = `rename_${Date.now()}`;
-    activeAnalyses.set(analysisId, {
-      type: "rename",
-      status: "running",
-      startTime: new Date(),
-      promise: analysisPromise,
-    });
-
-    // Handle completion
-    analysisPromise
-      .then((result) => {
-        const analysis = activeAnalyses.get(analysisId);
-        if (analysis) {
-          analysis.status = "completed";
-          analysis.endTime = new Date();
-          analysis.result = result;
-
-          io.emit("analysis_complete", {
-            type: "rename",
-            analysisId,
-            result,
-          });
-        }
-      })
-      .catch((error) => {
-        const analysis = activeAnalyses.get(analysisId);
-        if (analysis) {
-          analysis.status = "error";
-          analysis.endTime = new Date();
-          analysis.error = error.message;
-
-          io.emit("analysis_error", {
-            type: "rename",
-            analysisId,
-            error: error.message,
-          });
-        }
-      });
-
-    res.json({
-      message: "Rename analysis started",
-      analysisId,
-      status: "running",
-    });
-  } catch (error) {
-    next(error);
-  }
-});
-
-// Get rename analysis status
-router.get("/rename/status/:analysisId", (req, res) => {
-  const { analysisId } = req.params;
-  const analysis = activeAnalyses.get(analysisId);
-
-  if (!analysis) {
-    return res.status(404).json({
-      error: "Analysis not found",
-    });
-  }
-
-  const response = {
-    analysisId,
-    type: analysis.type,
-    status: analysis.status,
-    startTime: analysis.startTime,
-  };
-
-  if (analysis.endTime) {
-    response.endTime = analysis.endTime;
-    response.duration = analysis.endTime - analysis.startTime;
-  }
-
-  if (analysis.result) {
-    response.result = analysis.result;
-  }
-
-  if (analysis.error) {
-    response.error = analysis.error;
-  }
-
-  res.json(response);
 });
 
 // List all analyses

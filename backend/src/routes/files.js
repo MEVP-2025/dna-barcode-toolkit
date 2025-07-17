@@ -16,9 +16,9 @@ router.post("/upload/paired", uploadPairedFiles, async (req, res, next) => {
     const { R1, R2, barcode } = req.files;
 
     // Validate required files
-    if (!R1 || !R2) {
+    if (!R1 || !R2 || !barcode) {
       return res.status(400).json({
-        error: "Both R1 and R2 files are required",
+        error: "R1, R2, and barcode files are required",
       });
     }
 
@@ -39,24 +39,20 @@ router.post("/upload/paired", uploadPairedFiles, async (req, res, next) => {
         size: R2[0].size,
         uploadTime: new Date().toISOString(),
       },
-    };
-
-    // Add barcode file if provided
-    if (barcode && barcode[0]) {
-      uploadedFiles.barcode = {
+      barcode: {
         id: barcode[0].filename.split("_")[0],
         originalName: barcode[0].originalname,
         filename: barcode[0].filename,
         path: barcode[0].path,
         size: barcode[0].size,
         uploadTime: new Date().toISOString(),
-      };
-    }
+      },
+    };
 
     logger.info("Paired files uploaded successfully", {
       R1: uploadedFiles.R1.originalName,
       R2: uploadedFiles.R2.originalName,
-      barcode: uploadedFiles.barcode?.originalName || "none",
+      barcode: uploadedFiles.barcode.originalName,
     });
 
     res.json({

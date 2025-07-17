@@ -1,34 +1,63 @@
+// src/App.jsx
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import AnalysisPanel from './components/AnalysisPanel'
+import FileUpload from './components/FileUpload'
+import ResultsPanel from './components/ResultsPanel'
+import './styles/app.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [uploadedFiles, setUploadedFiles] = useState(null)
+  const [analysisResult, setAnalysisResult] = useState(null)
+  const [showResults, setShowResults] = useState(false)
+
+  const handleFilesUploaded = (files) => {
+    setUploadedFiles(files)
+    setAnalysisResult(null)
+    setShowResults(false)
+  }
+
+  const handleAnalysisComplete = (result) => {
+    setAnalysisResult(result)
+    setShowResults(true)
+  }
+
+  const resetApp = () => {
+    setUploadedFiles(null)
+    setAnalysisResult(null)
+    setShowResults(false)
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="app">
+      <header className="app-header">
+        <h1>🧬 DNA Barcode Analysis Tool</h1>
+        <p>Upload FASTQ files and run rename/trim analysis</p>
+      </header>
+
+      <main className="app-main">
+        {/* Step 1: File Upload */}
+        {!uploadedFiles && (
+          <FileUpload onFilesUploaded={handleFilesUploaded} />
+        )}
+
+        {/* Step 2: Analysis Panel (包含進度監控) */}
+        {uploadedFiles && !showResults && (
+          <AnalysisPanel
+            uploadedFiles={uploadedFiles}
+            onAnalysisComplete={handleAnalysisComplete}
+            onReset={resetApp}
+          />
+        )}
+
+        {/* Step 3: Results */}
+        {showResults && analysisResult && (
+          <ResultsPanel
+            result={analysisResult}
+            onReset={resetApp}
+          />
+        )}
+      </main>
+    </div>
   )
 }
 
