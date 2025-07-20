@@ -4,9 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import helmet from "helmet";
-import { createServer } from "http";
 import path from "path";
-import { Server as SocketServer } from "socket.io";
 import { fileURLToPath } from "url";
 
 // Import routes
@@ -26,27 +24,39 @@ const __dirname = path.dirname(__filename);
 dotenv.config();
 
 const app = express();
-const server = createServer(app);
-const io = new SocketServer(server, {
-  cors: {
-    origin: process.env.FRONTEND_URL || "http://localhost:5173",
-    methods: ["GET", "POST"],
-  },
-});
 
 // Middleware
-app.use(helmet());
+app.use(
+  helmet({
+    // Disable some restrictions for SSE to work properly
+    crossOriginEmbedderPolicy: false,
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'"],
+        connectSrc: ["'self'", "'unsafe-inline'"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+      },
+    },
+  })
+);
+
 app.use(compression());
+
 app.use(
   cors({
     origin: process.env.FRONTEND_URL || "http://localhost:5173",
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "Cache-Control"],
   })
 );
+
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
-// Static file serving for outputs
+// Static file serving for uploads and outputs
+app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 app.use("/outputs", express.static(path.join(__dirname, "../outputs")));
 
 // Routes
@@ -54,35 +64,50 @@ app.use("/api", indexRoutes);
 app.use("/api/files", fileRoutes);
 app.use("/api/analysis", analysisRoutes);
 
-// WebSocket handling
-io.on("connection", (socket) => {
-  logger.info(`Client connected: ${socket.id}`);
-
-  socket.on("disconnect", () => {
-    logger.info(`Client disconnected: ${socket.id}`);
-  });
-
-  // Join analysis room for progress updates
-  socket.on("join_analysis", (analysisId) => {
-    socket.join(`analysis_${analysisId}`);
-    logger.info(`Client ${socket.id} joined analysis room: ${analysisId}`);
+// Health check endpoint
+app.get("/health", (req, res) => {
+  res.json({
+    status: "healthy",
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    memory: process.memoryUsage(),
   });
 });
-
-// Make io available to routes
-app.set("io", io);
 
 // Error handling
 app.use(errorHandler);
 
 // 404 handler
 app.use("*", (req, res) => {
-  res.status(404).json({ error: "Route not found" });
+  res.status(404).json({
+    error: "Route not found",
+    path: req.originalUrl,
+    method: req.method,
+  });
 });
 
 const PORT = process.env.PORT || 3001;
 
-server.listen(PORT, () => {
+app.listen(PORT, () => {
   logger.info(`Server running on port ${PORT}`);
   logger.info(`Environment: ${process.env.NODE_ENV || "development"}`);
+  logger.info(
+    `Frontend URL: ${process.env.FRONTEND_URL || "http://localhost:5173"}`
+  );
+  logger.info(`Serving static files from:`);
+  logger.info(`  - Uploads: ${path.join(__dirname, "../uploads")}`);
+  logger.info(`  - Outputs: ${path.join(__dirname, "../outputs")}`);
 });
+
+// Graceful shutdown handling
+process.on("SIGTERM", () => {
+  logger.info("SIGTERM received, shutting down gracefully");
+  process.exit(0);
+});
+
+process.on("SIGINT", () => {
+  logger.info("SIGINT received, shutting down gracefully");
+  process.exit(0);
+});
+
+export default app;

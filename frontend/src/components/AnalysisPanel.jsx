@@ -6,7 +6,6 @@ import { api } from '../services/api'
 const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
   const [logs, setLogs] = useState([])
   const [showLogs, setShowLogs] = useState(false)
-  const [currentAnalysisId, setCurrentAnalysisId] = useState(null)
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   
   const eventSourceRef = useRef(null)
@@ -19,7 +18,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
     return Math.round(bytes / Math.pow(1024, i) * 100) / 100 + ' ' + sizes[i]
   }
 
-  // 添加日誌條目
+  // Add log entry
   const addLog = (message, type = 'info') => {
     const logEntry = {
       id: Date.now() + Math.random(),
@@ -30,7 +29,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
     
     setLogs(prev => [...prev, logEntry])
     
-    // 自動滾動到底部
+    // Auto scroll to bottom
     setTimeout(() => {
       if (logContainerRef.current) {
         logContainerRef.current.scrollTop = logContainerRef.current.scrollHeight
@@ -39,7 +38,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
   }
 
   const startPipeline = async () => {
-    // 檢查檔案是否完整
+    // Check if files are complete
     if (!uploadedFiles.R1 || !uploadedFiles.R2 || !uploadedFiles.barcode) {
       alert('Please upload R1, R2, and barcode files to start the pipeline.')
       return
@@ -56,93 +55,139 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
         barcodeFile: `uploads/${uploadedFiles.barcode.filename}`
       }
 
-      addLog('🚀 正在啟動DNA分析流水線...', 'info')
+      addLog('Starting DNA analysis pipeline...', 'info')
 
-      // 直接呼叫API啟動分析
+      // Call API to start analysis (no analysisId returned)
       const response = await api.analysis.pipeline.start(params)
-      const analysisId = response.data.analysisId
+      
+      addLog('Analysis task started successfully', 'success')
 
-      addLog(`📋 分析任務已建立: ${analysisId}`, 'success')
-      setCurrentAnalysisId(analysisId)
-
-      // 同時呼叫原有的callback（如果需要的話）
+      // Call original callback if needed
       if (onAnalysisStart) {
         onAnalysisStart('pipeline', params)
       }
 
-      // 開始SSE監聽
-      startSSEMonitoring(analysisId)
+      // Start SSE monitoring (no analysisId needed)
+      startSSEMonitoring()
 
     } catch (error) {
-      console.error('啟動分析失敗:', error)
-      addLog(`❌ 啟動失敗: ${error.response?.data?.error || error.message}`, 'error')
+      console.error('Failed to start analysis:', error)
+      addLog(`Startup failed: ${error.response?.data?.error || error.message}`, 'error')
       setIsAnalyzing(false)
-      
-      // 測試：嘗試手動訪問SSE端點
-      addLog(`🔍 測試SSE端點: ${api.analysis.pipeline.getSSEUrl?.(analysisId) || 'URL未定義'}`, 'warning')
     }
   }
 
-  const startSSEMonitoring = (analysisId) => {
-    addLog('🔗 開始建立SSE連線...', 'info')
+  const startSSEMonitoring = () => {
+    addLog('Starting SSE connection...', 'info')
     
-    // 先測試SSE端點是否可訪問
-    testSSEEndpoint(analysisId)
+    // Test if SSE endpoint is accessible first
+    testSSEEndpoint()
     
-    eventSourceRef.current = api.analysis.pipeline.watchProgress(analysisId, {
+    // Connect to simplified SSE endpoint (no analysisId in URL)
+    eventSourceRef.current = api.analysis.pipeline.watchProgress({
       onConnect: () => {
-        addLog('✅ SSE連線已建立', 'success')
+        addLog('SSE connection established', 'success')
       },
 
       onStart: (data) => {
-        addLog(data.message || '開始監聽分析進度...', 'info')
+        addLog(data.message || 'Started monitoring analysis progress...', 'info')
       },
 
       onProgress: (data) => {
-        addLog(data.message || '分析進行中...', 'info')
+        addLog(data.message || 'Analysis in progress...', 'info')
       },
 
       onComplete: (data) => {
-        addLog(data.message || '✅ 分析完成！', 'success')
+        addLog(data.message || 'Analysis completed!', 'success')
         setIsAnalyzing(false)
+        
+        // Optionally fetch results here
+        fetchAnalysisResults()
       },
 
       onError: (data) => {
-        addLog(`❌ SSE錯誤: ${data.message || data.error || '未知錯誤'}`, 'error')
+        addLog(`Analysis error: ${data.message || data.error || 'Unknown error'}`, 'error')
+        setIsAnalyzing(false)
+      },
+
+      onSSEError: (error) => {
+        addLog(`SSE connection error: ${error.message}`, 'error')
         setIsAnalyzing(false)
       }
     })
   }
 
-  // 測試SSE端點
-  const testSSEEndpoint = async (analysisId) => {
+  // Test SSE endpoint (simplified URL)
+  const testSSEEndpoint = async () => {
     try {
-      const testUrl = `${import.meta.env.VITE_API_URL || 'http://localhost:3001/api'}/analysis/pipeline/status/${analysisId}`
-      addLog(`🧪 測試後端連線: ${testUrl}`, 'info')
+      const testUrl = `${import.meta.env.VITE_API_URL || 'http://localhost:3001/api'}/analysis/pipeline/status`
+      addLog(`Testing backend connection: ${testUrl}`, 'info')
       
       const response = await fetch(testUrl)
       if (response.ok) {
         const data = await response.json()
-        addLog(`✅ 後端回應正常: 狀態=${data.status}`, 'success')
+        addLog(`Backend response OK: status=${data.status}`, 'success')
       } else {
-        addLog(`⚠️ 後端回應異常: ${response.status} ${response.statusText}`, 'warning')
+        addLog(`Backend response error: ${response.status} ${response.statusText}`, 'warning')
       }
     } catch (error) {
-      addLog(`❌ 無法連接後端: ${error.message}`, 'error')
+      addLog(`Unable to connect to backend: ${error.message}`, 'error')
     }
   }
 
-  // 停止分析
+  // Fetch analysis results when completed
+  const fetchAnalysisResults = async () => {
+    try {
+      const response = await api.analysis.pipeline.getResults()
+      if (response.data) {
+        addLog(`Results ready: ${JSON.stringify(response.data.result, null, 2)}`, 'success')
+      }
+    } catch (error) {
+      addLog(`Failed to fetch results: ${error.message}`, 'warning')
+    }
+  }
+
+  // Stop analysis
   const stopAnalysis = () => {
     if (eventSourceRef.current) {
       eventSourceRef.current.close()
       eventSourceRef.current = null
     }
     setIsAnalyzing(false)
-    addLog('🛑 分析已停止', 'warning')
+    addLog('Analysis stopped by user', 'warning')
   }
 
-  // 組件卸載時關閉SSE
+  // Check for existing analysis on component mount
+  useEffect(() => {
+    const checkExistingAnalysis = async () => {
+      try {
+        const response = await api.analysis.pipeline.getCurrent()
+        if (response.data.hasAnalysis) {
+          const status = response.data.status
+          addLog(`Found existing analysis: ${status}`, 'info')
+          
+          if (status === 'running') {
+            setIsAnalyzing(true)
+            setShowLogs(true)
+            addLog('Reconnecting to existing analysis...', 'info')
+            startSSEMonitoring()
+          } else if (status === 'completed') {
+            addLog('Previous analysis completed', 'success')
+            fetchAnalysisResults()
+          } else if (status === 'error') {
+            addLog('Previous analysis failed', 'error')
+          }
+        }
+      } catch (error) {
+        // No existing analysis or error - this is normal
+        console.log('No existing analysis found')
+      }
+    }
+
+    checkExistingAnalysis()
+  }, [])
+
+  // Close SSE when component unmounts
   useEffect(() => {
     return () => {
       if (eventSourceRef.current) {
@@ -218,21 +263,21 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
         )}
       </div>
 
-      {/* Debug資訊 */}
-      <div className="debug-info">
-        <p><strong>當前分析ID:</strong> {currentAnalysisId || '未啟動'}</p>
-        <p><strong>分析狀態:</strong> {isAnalyzing ? '進行中' : '閒置'}</p>
-        <p><strong>SSE連線:</strong> {eventSourceRef.current ? '已連接' : '未連接'}</p>
-      </div>
+      {/* Analysis Status */}
+      {isAnalyzing && (
+        <div className="analysis-status">
+          <div className="status-indicator">
+            <div className="spinner"></div>
+            <span>Analysis in progress...</span>
+          </div>
+        </div>
+      )}
 
-      {/* Python輸出日誌 */}
+      {/* Python Output Logs */}
       {showLogs && logs.length > 0 && (
         <div className="analysis-logs">
           <div className="logs-header">
-            <h3>🔍 Debug Logs & Python Output</h3>
-            {currentAnalysisId && (
-              <span className="analysis-id">ID: {currentAnalysisId}</span>
-            )}
+            <h3>Debug Logs & Python Output</h3>
           </div>
           
           <div 
@@ -252,7 +297,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
       {/* Requirements Notice */}
       {(!uploadedFiles.R1 || !uploadedFiles.R2 || !uploadedFiles.barcode) && (
         <div className="requirements-notice">
-          <h4>⚠️ Required Files</h4>
+          <h4>Required Files</h4>
           <p>All three files (R1, R2, and barcode CSV) are required to start the analysis pipeline.</p>
         </div>
       )}

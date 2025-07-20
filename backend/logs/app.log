@@ -470,3 +470,273 @@ SyntaxError: invalid syntax
     at ChildProcess.emit (node:events:513:28)
     at maybeClose (node:internal/child_process:1101:16)
     at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-07-17 22:56:04 [INFO]: Server running on port 3001
+2025-07-17 22:56:04 [INFO]: Environment: development
+2025-07-17 23:01:28 [INFO]: Server running on port 3001
+2025-07-17 23:01:28 [INFO]: Environment: development
+2025-07-17 23:11:23 [INFO]: Server running on port 3001
+2025-07-17 23:11:23 [INFO]: Environment: development
+2025-07-17 23:42:04 [INFO]: Server running on port 3001
+2025-07-17 23:42:04 [INFO]: Environment: development
+2025-07-18 00:09:06 [INFO]: Server running on port 3001
+2025-07-18 00:09:06 [INFO]: Environment: development
+2025-07-18 00:09:13 [INFO]: Server running on port 3001
+2025-07-18 00:09:13 [INFO]: Environment: development
+2025-07-18 00:10:36 [INFO]: Paired files uploaded successfully
+2025-07-18 00:10:41 [INFO]: Starting integrated pipeline: pipeline_1752768641397
+2025-07-18 00:10:41 [ERROR]: Error: Python腳本執行失敗 (退出碼: 1)
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:206:18)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-07-18 13:15:21 [INFO]: Server running on port 3001
+2025-07-18 13:15:21 [INFO]: Environment: development
+2025-07-18 13:15:22 [INFO]: Server running on port 3001
+2025-07-18 13:15:22 [INFO]: Environment: development
+2025-07-18 13:15:34 [INFO]: Server running on port 3001
+2025-07-18 13:15:34 [INFO]: Environment: development
+2025-07-18 13:15:37 [INFO]: Server running on port 3001
+2025-07-18 13:15:37 [INFO]: Environment: development
+2025-07-18 13:15:40 [INFO]: Server running on port 3001
+2025-07-18 13:15:40 [INFO]: Environment: development
+2025-07-18 13:15:49 [INFO]: Server running on port 3001
+2025-07-18 13:15:49 [INFO]: Environment: development
+2025-07-18 13:15:52 [INFO]: Server running on port 3001
+2025-07-18 13:15:52 [INFO]: Environment: development
+2025-07-18 13:16:44 [INFO]: Paired files uploaded successfully
+2025-07-18 13:17:01 [INFO]: Starting integrated pipeline: pipeline_1752815821573
+2025-07-18 13:17:01 [ERROR]: Error: Python腳本執行失敗 (退出碼: 1)
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:206:18)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Socket.<anonymous> (node:internal/child_process:457:11)
+    at Socket.emit (node:events:513:28)
+    at Pipe.<anonymous> (node:net:351:12)
+2025-07-18 13:18:41 [INFO]: Starting integrated pipeline: pipeline_1752815921687
+2025-07-18 13:18:41 [ERROR]: Error: Python腳本執行失敗 (退出碼: 1)
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:206:18)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Socket.<anonymous> (node:internal/child_process:457:11)
+    at Socket.emit (node:events:513:28)
+    at Pipe.<anonymous> (node:net:351:12)
+2025-07-18 13:20:42 [INFO]: Starting integrated pipeline: pipeline_1752816042046
+2025-07-18 13:20:42 [ERROR]: Error: Python腳本執行失敗 (退出碼: 1)
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:206:18)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Socket.<anonymous> (node:internal/child_process:457:11)
+    at Socket.emit (node:events:513:28)
+    at Pipe.<anonymous> (node:net:351:12)
+2025-07-18 13:22:24 [INFO]: Server running on port 3001
+2025-07-18 13:22:24 [INFO]: Environment: development
+2025-07-18 13:22:38 [INFO]: Server running on port 3001
+2025-07-18 13:22:38 [INFO]: Environment: development
+2025-07-18 13:22:40 [INFO]: Server running on port 3001
+2025-07-18 13:22:40 [INFO]: Environment: development
+2025-07-18 13:22:47 [INFO]: Server running on port 3001
+2025-07-18 13:22:47 [INFO]: Environment: development
+2025-07-18 13:22:51 [INFO]: Server running on port 3001
+2025-07-18 13:22:51 [INFO]: Environment: development
+2025-07-18 13:22:56 [INFO]: Server running on port 3001
+2025-07-18 13:22:56 [INFO]: Environment: development
+2025-07-18 13:22:59 [INFO]: Server running on port 3001
+2025-07-18 13:22:59 [INFO]: Environment: development
+2025-07-18 13:23:04 [INFO]: Server running on port 3001
+2025-07-18 13:23:04 [INFO]: Environment: development
+2025-07-18 13:23:06 [INFO]: Server running on port 3001
+2025-07-18 13:23:06 [INFO]: Environment: development
+2025-07-18 13:23:14 [INFO]: Server running on port 3001
+2025-07-18 13:23:14 [INFO]: Environment: development
+2025-07-18 13:23:15 [INFO]: Starting integrated pipeline: pipeline_1752816195466
+2025-07-18 13:23:15 [ERROR]: Error: Python script execution failed (exit code: 1)
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:206:18)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Socket.<anonymous> (node:internal/child_process:457:11)
+    at Socket.emit (node:events:513:28)
+    at Pipe.<anonymous> (node:net:351:12)
+2025-07-18 13:31:31 [INFO]: Paired files uploaded successfully
+2025-07-18 13:35:27 [INFO]: Starting integrated pipeline: pipeline_1752816927824
+2025-07-18 13:35:28 [ERROR]: Error: Python script execution failed (exit code: 1)
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:206:18)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Socket.<anonymous> (node:internal/child_process:457:11)
+    at Socket.emit (node:events:513:28)
+    at Pipe.<anonymous> (node:net:351:12)
+2025-07-21 03:55:57 [INFO]: Server running on port 3001
+2025-07-21 03:55:57 [INFO]: Environment: development
+2025-07-21 03:56:08 [INFO]: Server running on port 3001
+2025-07-21 03:56:08 [INFO]: Environment: development
+2025-07-21 04:01:59 [INFO]: Server running on port 3001
+2025-07-21 04:01:59 [INFO]: Environment: development
+2025-07-21 04:02:36 [INFO]: Server running on port 3001
+2025-07-21 04:02:36 [INFO]: Environment: development
+2025-07-21 04:02:45 [INFO]: Server running on port 3001
+2025-07-21 04:02:45 [INFO]: Environment: development
+2025-07-21 04:10:31 [INFO]: Server running on port 3001
+2025-07-21 04:10:31 [INFO]: Environment: development
+2025-07-21 04:10:31 [INFO]: Frontend URL: http://localhost:5173
+2025-07-21 04:10:31 [INFO]: Serving static files from:
+2025-07-21 04:10:31 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-07-21 04:10:31 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-07-21 04:11:27 [INFO]: Paired files uploaded successfully
+2025-07-21 04:11:29 [INFO]: Output directories cleared successfully
+2025-07-21 04:11:29 [INFO]: Starting integrated pipeline
+2025-07-21 04:11:30 [INFO]: Integrated pipeline completed
+2025-07-21 04:12:35 [INFO]: Output directories cleared successfully
+2025-07-21 04:12:35 [INFO]: Starting integrated pipeline
+2025-07-21 04:12:35 [INFO]: Integrated pipeline completed
+2025-07-21 04:14:43 [INFO]: Output directories cleared successfully
+2025-07-21 04:14:43 [INFO]: Starting integrated pipeline
+2025-07-21 04:14:44 [INFO]: Integrated pipeline completed
+2025-07-21 04:17:18 [INFO]: Output directories cleared successfully
+2025-07-21 04:17:18 [INFO]: Starting integrated pipeline
+2025-07-21 04:17:19 [INFO]: Integrated pipeline completed
+2025-07-21 04:19:20 [INFO]: Paired files uploaded successfully
+2025-07-21 04:19:28 [INFO]: Output directories cleared successfully
+2025-07-21 04:19:28 [INFO]: Starting integrated pipeline
+2025-07-21 04:34:27 [INFO]: Integrated pipeline completed
+2025-07-21 04:47:12 [INFO]: Server running on port 3001
+2025-07-21 04:47:12 [INFO]: Environment: development
+2025-07-21 04:47:12 [INFO]: Frontend URL: http://localhost:5173
+2025-07-21 04:47:12 [INFO]: Serving static files from:
+2025-07-21 04:47:12 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-07-21 04:47:12 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-07-21 04:47:32 [INFO]: Server running on port 3001
+2025-07-21 04:47:32 [INFO]: Environment: development
+2025-07-21 04:47:32 [INFO]: Frontend URL: http://localhost:5173
+2025-07-21 04:47:32 [INFO]: Serving static files from:
+2025-07-21 04:47:32 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-07-21 04:47:32 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-07-21 04:48:04 [INFO]: Server running on port 3001
+2025-07-21 04:48:04 [INFO]: Environment: development
+2025-07-21 04:48:04 [INFO]: Frontend URL: http://localhost:5173
+2025-07-21 04:48:04 [INFO]: Serving static files from:
+2025-07-21 04:48:04 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-07-21 04:48:04 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-07-21 04:48:21 [INFO]: Server running on port 3001
+2025-07-21 04:48:21 [INFO]: Environment: development
+2025-07-21 04:48:21 [INFO]: Frontend URL: http://localhost:5173
+2025-07-21 04:48:21 [INFO]: Serving static files from:
+2025-07-21 04:48:21 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-07-21 04:48:21 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-07-21 04:50:34 [INFO]: Server running on port 3001
+2025-07-21 04:50:34 [INFO]: Environment: development
+2025-07-21 04:50:34 [INFO]: Frontend URL: http://localhost:5173
+2025-07-21 04:50:34 [INFO]: Serving static files from:
+2025-07-21 04:50:34 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-07-21 04:50:34 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-07-21 04:51:01 [INFO]: Output directories cleared successfully
+2025-07-21 04:51:01 [INFO]: Starting integrated pipeline
+2025-07-21 04:51:01 [ERROR]: ReferenceError: Cannot access 'process' before initialization
+    at file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:148:14
+    at new Promise (<anonymous>)
+    at PythonExecutor._executeScriptWithSSE (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:135:12)
+    at PythonExecutor.executePipeline (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:84:33)
+2025-07-21 04:52:24 [INFO]: Paired files uploaded successfully
+2025-07-21 04:52:26 [INFO]: Output directories cleared successfully
+2025-07-21 04:52:26 [INFO]: Starting integrated pipeline
+2025-07-21 04:52:26 [ERROR]: ReferenceError: Cannot access 'process' before initialization
+    at file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:148:14
+    at new Promise (<anonymous>)
+    at PythonExecutor._executeScriptWithSSE (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:135:12)
+    at PythonExecutor.executePipeline (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:84:33)
+2025-07-21 04:53:33 [INFO]: Server running on port 3001
+2025-07-21 04:53:33 [INFO]: Environment: development
+2025-07-21 04:53:33 [INFO]: Frontend URL: http://localhost:5173
+2025-07-21 04:53:33 [INFO]: Serving static files from:
+2025-07-21 04:53:33 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-07-21 04:53:33 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-07-21 04:53:38 [INFO]: Output directories cleared successfully
+2025-07-21 04:53:38 [INFO]: Starting integrated pipeline
+2025-07-21 04:53:38 [INFO]: Integrated pipeline completed
+2025-07-21 04:54:32 [INFO]: Paired files uploaded successfully
+2025-07-21 04:54:34 [INFO]: Output directories cleared successfully
+2025-07-21 04:54:34 [INFO]: Starting integrated pipeline
+2025-07-21 05:10:03 [INFO]: Integrated pipeline completed
+2025-07-21 05:12:27 [INFO]: Server running on port 3001
+2025-07-21 05:12:27 [INFO]: Environment: development
+2025-07-21 05:12:27 [INFO]: Frontend URL: http://localhost:5173
+2025-07-21 05:12:27 [INFO]: Serving static files from:
+2025-07-21 05:12:27 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-07-21 05:12:27 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-07-21 05:13:03 [INFO]: Server running on port 3001
+2025-07-21 05:13:03 [INFO]: Environment: development
+2025-07-21 05:13:03 [INFO]: Frontend URL: http://localhost:5173
+2025-07-21 05:13:03 [INFO]: Serving static files from:
+2025-07-21 05:13:03 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-07-21 05:13:03 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-07-21 05:13:07 [INFO]: Server running on port 3001
+2025-07-21 05:13:07 [INFO]: Environment: development
+2025-07-21 05:13:07 [INFO]: Frontend URL: http://localhost:5173
+2025-07-21 05:13:07 [INFO]: Serving static files from:
+2025-07-21 05:13:07 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-07-21 05:13:07 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-07-21 05:13:30 [INFO]: Paired files uploaded successfully
+2025-07-21 05:13:34 [INFO]: Output directories cleared successfully
+2025-07-21 05:13:34 [INFO]: Starting integrated pipeline
+2025-07-21 05:13:34 [INFO]: Integrated pipeline completed
+2025-07-21 05:14:00 [INFO]: Output directories cleared successfully
+2025-07-21 05:14:00 [INFO]: Starting integrated pipeline
+2025-07-21 05:14:01 [INFO]: Integrated pipeline completed
+2025-07-21 05:14:03 [INFO]: Output directories cleared successfully
+2025-07-21 05:14:03 [INFO]: Starting integrated pipeline
+2025-07-21 05:14:03 [INFO]: Integrated pipeline completed
+2025-07-21 05:14:22 [INFO]: Paired files uploaded successfully
+2025-07-21 05:14:24 [INFO]: Output directories cleared successfully
+2025-07-21 05:14:24 [INFO]: Starting integrated pipeline
+2025-07-21 05:16:25 [INFO]: Paired files uploaded successfully
+2025-07-21 05:16:48 [INFO]: SIGINT received, shutting down gracefully
+2025-07-21 05:16:53 [INFO]: Server running on port 3001
+2025-07-21 05:16:53 [INFO]: Environment: development
+2025-07-21 05:16:53 [INFO]: Frontend URL: http://localhost:5173
+2025-07-21 05:16:53 [INFO]: Serving static files from:
+2025-07-21 05:16:53 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-07-21 05:16:53 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-07-21 05:17:12 [INFO]: Paired files uploaded successfully
+2025-07-21 05:24:12 [INFO]: Server running on port 3001
+2025-07-21 05:24:12 [INFO]: Environment: development
+2025-07-21 05:24:12 [INFO]: Frontend URL: http://localhost:5173
+2025-07-21 05:24:12 [INFO]: Serving static files from:
+2025-07-21 05:24:12 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-07-21 05:24:12 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-07-21 05:24:23 [INFO]: Server running on port 3001
+2025-07-21 05:24:23 [INFO]: Environment: development
+2025-07-21 05:24:23 [INFO]: Frontend URL: http://localhost:5173
+2025-07-21 05:24:23 [INFO]: Serving static files from:
+2025-07-21 05:24:23 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-07-21 05:24:23 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-07-21 05:24:52 [INFO]: Upload directory cleared before new upload
+2025-07-21 05:24:52 [INFO]: Paired files uploaded successfully
+2025-07-21 05:25:00 [INFO]: Output directories cleared successfully
+2025-07-21 05:25:00 [INFO]: Starting integrated pipeline
+2025-07-21 05:25:00 [ERROR]: Error: Python script execution failed (exit code: 1)
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:224:18)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-07-21 05:26:51 [INFO]: Server running on port 3001
+2025-07-21 05:26:51 [INFO]: Environment: development
+2025-07-21 05:26:51 [INFO]: Frontend URL: http://localhost:5173
+2025-07-21 05:26:51 [INFO]: Serving static files from:
+2025-07-21 05:26:51 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-07-21 05:26:51 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-07-21 05:27:05 [INFO]: Server running on port 3001
+2025-07-21 05:27:05 [INFO]: Environment: development
+2025-07-21 05:27:05 [INFO]: Frontend URL: http://localhost:5173
+2025-07-21 05:27:05 [INFO]: Serving static files from:
+2025-07-21 05:27:05 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-07-21 05:27:05 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-07-21 05:27:26 [INFO]: Paired files uploaded successfully
+2025-07-21 05:27:45 [INFO]: Paired files uploaded successfully
+2025-07-21 05:27:49 [INFO]: Output directories cleared successfully
+2025-07-21 05:27:49 [INFO]: Starting integrated pipeline
+2025-07-21 05:28:26 [INFO]: SIGINT received, shutting down gracefully
+2025-07-21 05:28:31 [INFO]: Server running on port 3001
+2025-07-21 05:28:31 [INFO]: Environment: development
+2025-07-21 05:28:31 [INFO]: Frontend URL: http://localhost:5173
+2025-07-21 05:28:31 [INFO]: Serving static files from:
+2025-07-21 05:28:31 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-07-21 05:28:31 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs

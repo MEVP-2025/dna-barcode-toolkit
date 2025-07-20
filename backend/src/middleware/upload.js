@@ -3,7 +3,6 @@ import fs from "fs";
 import multer from "multer";
 import path from "path";
 import { fileURLToPath } from "url";
-import { v4 as uuidv4 } from "uuid";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,11 +19,8 @@ const storage = multer.diskStorage({
     cb(null, uploadDir);
   },
   filename: (req, file, cb) => {
-    // Generate unique filename while preserving extension
-    const uniqueId = uuidv4();
-    const ext = path.extname(file.originalname);
-    const basename = path.basename(file.originalname, ext);
-    cb(null, `${uniqueId}_${basename}${ext}`);
+    // 直接使用原始檔名
+    cb(null, file.originalname);
   },
 });
 
@@ -54,6 +50,19 @@ const upload = multer({
     files: 5, // Maximum 5 files at once
   },
 });
+
+// 清空資料夾的 middleware
+export const clearUploadsDir = async (req, res, next) => {
+  try {
+    await fs.promises.rmdir(uploadDir, { recursive: true });
+    await fs.promises.mkdir(uploadDir, { recursive: true });
+    console.log("Upload directory cleared before upload");
+    next();
+  } catch (error) {
+    console.error("Error clearing upload directory:", error);
+    next(error);
+  }
+};
 
 // Middleware for paired-end file upload
 export const uploadPairedFiles = upload.fields([

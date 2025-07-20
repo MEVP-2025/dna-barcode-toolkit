@@ -17,6 +17,27 @@ export class PythonExecutor {
   }
 
   /**
+   * Clear all output directories before starting new analysis
+   */
+  async clearOutputDirectories() {
+    try {
+      const renameDir = path.join(this.outputsDir, "rename");
+      const trimDir = path.join(this.outputsDir, "trim");
+
+      // Remove and recreate directories
+      await fs.remove(renameDir);
+      await fs.remove(trimDir);
+      await fs.ensureDir(renameDir);
+      await fs.ensureDir(trimDir);
+
+      logger.info("Output directories cleared successfully");
+    } catch (error) {
+      logger.error("Failed to clear output directories:", error);
+      throw error;
+    }
+  }
+
+  /**
    * Execute integrated pipeline (rename + trim) with SSE support
    * @param {Object} params - Pipeline parameters
    * @param {string} params.r1File - R1 FASTQ file path
@@ -27,81 +48,76 @@ export class PythonExecutor {
    */
   async executePipeline(params, progressCallback = null) {
     const { r1File, r2File, barcodeFile } = params;
-    const analysisId = `pipeline_${Date.now()}`;
 
     try {
-      // Create main pipeline output directory
-      const outputDir = path.join(this.outputsDir, "pipeline", analysisId);
-      await fs.ensureDir(outputDir);
+      // Clear output directories first
+      await this.clearOutputDirectories();
 
-      // Create subdirectories for each step
-      const renameOutputDir = path.join(this.outputsDir, "rename", analysisId);
-      const trimOutputDir = path.join(this.outputsDir, "trim", analysisId);
+      // Create output directories
+      const renameOutputDir = path.join(this.outputsDir, "rename");
+      const trimOutputDir = path.join(this.outputsDir, "trim");
+
+      // Ensure directories exist (should already exist from clearOutputDirectories)
       await fs.ensureDir(renameOutputDir);
       await fs.ensureDir(trimOutputDir);
 
       // Prepare command arguments for integrated pipeline
       const scriptPath = path.join(this.scriptsDir, "integrated_pipeline.py");
-      const args = [scriptPath, r1File, r2File, barcodeFile, analysisId];
+      const args = [scriptPath, r1File, r2File, barcodeFile];
+      console.log("args:", args);
 
-      logger.info(`Starting integrated pipeline: ${analysisId}`, {
+      logger.info("Starting integrated pipeline", {
         r1File,
         r2File,
         barcodeFile,
       });
-      analysisLogger.info(`Pipeline started: ${analysisId}`, { args });
+      analysisLogger.info("Pipeline started", { args });
 
       // Send initial progress
       if (progressCallback) {
         progressCallback({
           type: "start",
-          message: `🚀 開始DNA分析流水線... (ID: ${analysisId})`,
-          analysisId,
+          message: "Starting DNA analysis pipeline...",
         });
       }
 
       const result = await this._executeScriptWithSSE(scriptPath, args, {
         cwd: this.backendRootDir,
-        analysisId,
         progressCallback,
       });
 
-      // Parse and return results from trim output directory
+      // Parse and return results from output directories
       const analysisResults = await this._parsePipelineResults(
         renameOutputDir,
         trimOutputDir
       );
 
-      logger.info(`Integrated pipeline completed: ${analysisId}`);
+      logger.info("Integrated pipeline completed");
 
       // Send completion message
       if (progressCallback) {
         progressCallback({
           type: "complete",
-          message: "✅ 分析完成！",
+          message: "Analysis completed!",
           result: analysisResults,
-          analysisId,
         });
       }
 
       return {
-        analysisId,
         status: "completed",
-        outputDir,
         renameOutputDir,
         trimOutputDir,
         results: analysisResults,
       };
     } catch (error) {
-      logger.error(`Integrated pipeline failed: ${analysisId}`, error);
+      logger.error("Integrated pipeline failed", error);
 
       // Send error message
       if (progressCallback) {
         progressCallback({
           type: "error",
-          message: `❌ 分析失敗: ${error.message}`,
+          message: `Analysis failed: ${error.message}`,
           error: error.message,
-          analysisId,
         });
       }
 
@@ -114,94 +130,94 @@ export class PythonExecutor {
    * @private
    */
   async _executeScriptWithSSE(scriptPath, args, options = {}) {
-    const { cwd, analysisId, progressCallback } = options;
+    const { cwd, progressCallback } = options;
 
     return new Promise((resolve, reject) => {
       // Send start message
       if (progressCallback) {
         progressCallback({
           type: "progress",
-          message: `🐍 啟動Python腳本: ${path.basename(scriptPath)}`,
-          analysisId,
+          message: `Starting Python script: ${path.basename(scriptPath)}`,
         });
       }
 
-      const process = spawn(this.pythonPath, args, {
+      // 重新命名避免與全域 process 物件衝突
+      const pythonProcess = spawn(this.pythonPath, args, {
         cwd: cwd || this.backendRootDir,
         stdio: ["pipe", "pipe", "pipe"],
+        env: {
+          ...process.env, // 這裡使用全域 process 物件
+          PYTHONUNBUFFERED: "1",
+          PYTHONIOENCODING: "utf-8",
+        },
       });
 
       let output = "";
       let errorOutput = "";
 
-      // Handle stdout - 即時發送給SSE
-      process.stdout.on("data", (data) => {
+      // 設置編碼
+      pythonProcess.stdout.setEncoding("utf8");
+      pythonProcess.stderr.setEncoding("utf8");
+
+      // Handle stdout
+      pythonProcess.stdout.on("data", (data) => {
         const chunk = data.toString();
         output += chunk;
 
-        // Log output
-        analysisLogger.info(`[${analysisId}] ${chunk.trim()}`);
+        // 立即記錄
+        analysisLogger.info(chunk.trim());
 
-        // 即時發送每一行輸出到SSE
-        const lines = chunk.split("\n");
+        // 立即逐行發送到 SSE
+        const lines = chunk.split(/\r?\n/);
         lines.forEach((line) => {
           if (line.trim()) {
             if (progressCallback) {
               progressCallback({
                 type: "progress",
                 message: line.trim(),
-                analysisId,
               });
             }
           }
         });
-
-        // Parse structured progress if available
-        this._parseStructuredProgress(chunk, progressCallback, analysisId);
       });
 
-      // Handle stderr - 也發送到SSE
-      process.stderr.on("data", (data) => {
+      // Handle stderr
+      pythonProcess.stderr.on("data", (data) => {
         const chunk = data.toString();
         errorOutput += chunk;
-        analysisLogger.error(`[${analysisId}] ERROR: ${chunk.trim()}`);
+        analysisLogger.error(`ERROR: ${chunk.trim()}`);
 
-        // 發送錯誤訊息到SSE
         if (progressCallback) {
           progressCallback({
             type: "error",
-            message: `🔴 Python錯誤: ${chunk.trim()}`,
-            analysisId,
+            message: `Python error: ${chunk.trim()}`,
           });
         }
       });
 
       // Handle process completion
-      process.on("close", (code) => {
+      pythonProcess.on("close", (code) => {
         if (code === 0) {
           if (progressCallback) {
             progressCallback({
               type: "progress",
-              message: `✅ Python腳本執行完成 (退出碼: ${code})`,
-              analysisId,
+              message: `Python script execution completed (exit code: ${code})`,
             });
           }
 
           resolve({
             success: true,
             output,
-            analysisId,
           });
         } else {
-          const errorMsg = `Python腳本執行失敗 (退出碼: ${code})${
+          const errorMsg = `Python script execution failed (exit code: ${code})${
             errorOutput ? ": " + errorOutput : ""
           }`;
 
           if (progressCallback) {
             progressCallback({
               type: "error",
-              message: `❌ ${errorMsg}`,
-              analysisId,
+              message: errorMsg,
             });
           }
 
@@ -210,150 +226,19 @@ export class PythonExecutor {
       });
 
       // Handle process error
-      process.on("error", (error) => {
-        const errorMsg = `無法啟動Python腳本: ${error.message}`;
+      pythonProcess.on("error", (error) => {
+        const errorMsg = `Unable to start Python script: ${error.message}`;
 
         if (progressCallback) {
           progressCallback({
             type: "error",
-            message: `❌ ${errorMsg}`,
-            analysisId,
+            message: errorMsg,
           });
         }
 
         reject(new Error(errorMsg));
       });
     });
-  }
-
-  /**
-   * Parse structured progress from script output
-   * @private
-   */
-  _parseStructuredProgress(output, progressCallback, analysisId) {
-    if (!progressCallback) return;
-
-    const lines = output.split("\n");
-
-    for (const line of lines) {
-      // Look for pipeline steps
-      if (line.includes("=== Step 1: Renaming R1 reads ===")) {
-        progressCallback({
-          type: "progress",
-          step: "rename_r1",
-          percentage: 20,
-          message: "📝 重新命名R1序列...",
-          analysisId,
-        });
-      } else if (line.includes("=== Step 2: Renaming R2 reads ===")) {
-        progressCallback({
-          type: "progress",
-          step: "rename_r2",
-          percentage: 40,
-          message: "📝 重新命名R2序列...",
-          analysisId,
-        });
-      } else if (line.includes("=== Step 3: Barcode trimming ===")) {
-        progressCallback({
-          type: "progress",
-          step: "trim",
-          percentage: 60,
-          message: "✂️ 開始條碼修剪...",
-          analysisId,
-        });
-      } else if (line.includes("Loading barcode file:")) {
-        progressCallback({
-          type: "progress",
-          message: "📋 載入條碼檔案...",
-          analysisId,
-        });
-      } else if (line.includes("Loading R1 reads...")) {
-        progressCallback({
-          type: "progress",
-          message: "📖 載入R1序列...",
-          analysisId,
-        });
-      } else if (line.includes("Loading R2 reads...")) {
-        progressCallback({
-          type: "progress",
-          message: "📖 載入R2序列...",
-          analysisId,
-        });
-      } else if (
-        line.includes("Processing reads for barcode/primer matching...")
-      ) {
-        progressCallback({
-          type: "progress",
-          percentage: 70,
-          message: "🔍 進行條碼/引子匹配...",
-          analysisId,
-        });
-      } else if (line.includes("Writing trimmed reads to output files...")) {
-        progressCallback({
-          type: "progress",
-          percentage: 90,
-          message: "💾 寫入修剪後的序列...",
-          analysisId,
-        });
-      }
-
-      // Look for "Processed X/Y reads" pattern
-      const progressMatch = line.match(/Processed (\d+)\/(\d+) reads/);
-      if (progressMatch) {
-        const [, current, total] = progressMatch;
-        const percentage =
-          70 + Math.round((parseInt(current) / parseInt(total)) * 20); // 70-90%
-        progressCallback({
-          type: "progress",
-          current: parseInt(current),
-          total: parseInt(total),
-          percentage,
-          message: `🔄 處理序列: ${current}/${total}`,
-          analysisId,
-        });
-      }
-
-      // Look for completion messages
-      if (line.includes("Integrated pipeline completed successfully")) {
-        progressCallback({
-          type: "progress",
-          percentage: 100,
-          message: "🎉 整合流水線成功完成！",
-          analysisId,
-        });
-      }
-    }
-  }
-
-  // 保留原有的方法以維持兼容性
-  async _executeScript(scriptPath, args, options = {}) {
-    return this._executeScriptWithSSE(scriptPath, args, options);
-  }
-
-  _parseProgress(output, progressCallback) {
-    // 為了兼容性保留，但使用新的方法
-    this._parseStructuredProgress(output, progressCallback, "legacy");
-  }
-
-  // 其他方法保持不變...
-  async _moveOutputFiles(analysisId, outputDir) {
-    try {
-      const sourceDir = path.join(this.scriptsDir, "output_files");
-
-      if (await fs.pathExists(sourceDir)) {
-        const files = await fs.readdir(sourceDir);
-
-        for (const file of files) {
-          const sourcePath = path.join(sourceDir, file);
-          const targetPath = path.join(outputDir, file);
-          await fs.move(sourcePath, targetPath);
-        }
-
-        await fs.remove(sourceDir);
-      }
-    } catch (error) {
-      logger.warn(`Failed to move output files for ${analysisId}:`, error);
-    }
   }
 
   async _parsePipelineResults(renameOutputDir, trimOutputDir) {

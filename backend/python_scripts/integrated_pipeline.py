@@ -20,6 +20,9 @@ from pathlib import Path
 from collections import defaultdict
 from typing import Dict, List, Tuple, Optional, TextIO
 
+sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 1)  # 行緩衝
+sys.stderr = os.fdopen(sys.stderr.fileno(), 'w', 1)  # 行緩衝
+
 
 def rename_fastq_file(input_file: str, output_file: str) -> None:
     """
@@ -56,7 +59,7 @@ def rename_fastq_file(input_file: str, output_file: str) -> None:
                     outfile.write(line)
                     outfile.write("\n")
     
-    print(f"Renamed {read_counts} reads. Output: {output_file}")
+    print(f"Renamed {read_counts} reads. Output: {output_file}", flush=True)
 
 
 class FastqRecord:
@@ -200,9 +203,9 @@ class SequenceMatcher:
 class OutputManager:
     """Manages output files for different species."""
     
-    def __init__(self, output_dir: str = "outputs"):
+    def __init__(self, output_dir: str = "outputs/trim"):
         self.output_dir = Path(output_dir)
-        self.output_dir.mkdir(exist_ok=True)
+        self.output_dir.mkdir(parents=True, exist_ok=True)
         self.file_handles = {}
         
         # Quality standards for different species
@@ -287,9 +290,14 @@ class IntegratedPipeline:
         self.results = {}
 
     def _get_renamed_filename(self, original_file: str) -> str:
-        """Generate renamed filename based on original file name."""
+        """Generate renamed filename in outputs/rename directory."""
         file_path = Path(original_file)
-        return str(file_path.with_suffix('.rename.fq'))
+        filename = file_path.stem
+        
+        rename_dir = Path("outputs/rename")
+        rename_dir.mkdir(parents=True, exist_ok=True)
+        
+        return str(rename_dir / f"{filename}.rename.fq")
     
     def run(self) -> None:
         """Run the complete integrated pipeline."""
@@ -316,9 +324,6 @@ class IntegratedPipeline:
         except Exception as e:
             print(f"Pipeline failed: {str(e)}")
             raise
-        #finally:
-            # Clean up temporary files
-            #self._cleanup_temp_files()
     
     def _run_trim_analysis(self) -> None:
         """Run the trim analysis on renamed files."""
@@ -351,7 +356,7 @@ class IntegratedPipeline:
         total_reads = len(self.fastq_processor.paired_reads)
         
         for i, (read_index, (r1_record, r2_record)) in enumerate(self.fastq_processor.paired_reads.items()):
-            if i % 1000 == 0:
+            if i % 100 == 0:
                 print(f"Processed {i}/{total_reads} reads")
             
             best_match = self._find_best_barcode_match(r1_record, r2_record)
@@ -412,20 +417,6 @@ class IntegratedPipeline:
                 written_count += 1
         
         print(f"Successfully wrote {written_count} trimmed read pairs")
-    
-    # def _cleanup_temp_files(self) -> None:
-    #     """Clean up temporary renamed files."""
-    #     try:
-    #         if os.path.exists(self.r1_renamed):
-    #             os.remove(self.r1_renamed)
-    #             print(f"Cleaned up temporary file: {self.r1_renamed}")
-            
-    #         if os.path.exists(self.r2_renamed):
-    #             os.remove(self.r2_renamed)
-    #             print(f"Cleaned up temporary file: {self.r2_renamed}")
-                
-    #     except Exception as e:
-    #         print(f"Warning: Failed to cleanup temporary files: {e}")
 
 
 def main():

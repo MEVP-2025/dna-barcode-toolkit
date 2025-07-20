@@ -10,8 +10,20 @@ const ResultsPanel = ({ result, onReset }) => {
   }
 
   const downloadFile = (filePath, fileName) => {
-    // Create download link - this would need to be implemented on backend
-    const downloadUrl = `http://localhost:3001/outputs/${filePath.replace(/.*outputs\//, '')}`
+    // 簡化的下載邏輯 - 根據新的資料夾結構
+    let downloadUrl
+    
+    if (filePath.includes('/rename/')) {
+      // rename 檔案
+      downloadUrl = `http://localhost:3001/outputs/rename/${fileName}`
+    } else if (filePath.includes('/trim/')) {
+      // trim 檔案
+      downloadUrl = `http://localhost:3001/outputs/trim/${fileName}`
+    } else {
+      // 直接使用檔名
+      downloadUrl = `http://localhost:3001/outputs/trim/${fileName}`
+    }
+    
     const link = document.createElement('a')
     link.href = downloadUrl
     link.download = fileName
@@ -22,7 +34,6 @@ const ResultsPanel = ({ result, onReset }) => {
 
   const previewFile = async (fileName) => {
     try {
-      // This would call the file preview API
       alert(`Preview functionality for ${fileName} - to be implemented`)
     } catch (error) {
       alert('Preview failed: ' + error.message)
@@ -38,16 +49,16 @@ const ResultsPanel = ({ result, onReset }) => {
       <div className="analysis-summary">
         <h3>Pipeline Summary:</h3>
         <div className="summary-item">
-          <span className="label">Analysis ID:</span>
-          <span className="value">{result.analysisId}</span>
-        </div>
-        <div className="summary-item">
           <span className="label">Status:</span>
           <span className="value success">Completed</span>
         </div>
         <div className="summary-item">
           <span className="label">Pipeline Steps:</span>
           <span className="value">Rename → Trim → Species Classification</span>
+        </div>
+        <div className="summary-item">
+          <span className="label">Output Location:</span>
+          <span className="value">outputs/rename/ & outputs/trim/</span>
         </div>
       </div>
 
@@ -78,7 +89,7 @@ const ResultsPanel = ({ result, onReset }) => {
                     </button>
                     <button
                       className="btn btn-sm"
-                      onClick={() => downloadFile(`rename/${result.analysisId}/${file}`, file)}
+                      onClick={() => downloadFile(`rename/${file}`, file)}
                     >
                       <Download size={16} />
                       Download
@@ -165,7 +176,8 @@ const ResultsPanel = ({ result, onReset }) => {
             <h3>Analysis Result:</h3>
             <div className="simple-result">
               <p>✅ Pipeline analysis completed successfully</p>
-              <p><strong>Analysis ID:</strong> {result.analysisId}</p>
+              <p><strong>Status:</strong> {result.status}</p>
+              <p>Check the outputs/rename/ and outputs/trim/ directories for your results.</p>
             </div>
           </div>
         )}

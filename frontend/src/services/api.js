@@ -21,24 +21,34 @@ export const api = {
     },
   },
 
-  // Analysis
+  // Analysis (簡化版 - 移除 analysisId)
   analysis: {
     pipeline: {
+      // 開始分析 (不返回 analysisId)
       start: (params) => apiClient.post("/analysis/pipeline/start", params),
-      status: (analysisId) =>
-        apiClient.get(`/analysis/pipeline/status/${analysisId}`),
-      results: (analysisId) =>
-        apiClient.get(`/analysis/pipeline/results/${analysisId}`),
 
-      // 🆕 SSE監聽進度的方法
-      watchProgress: (analysisId, callbacks) => {
+      // 取得當前分析狀態 (不需要 analysisId)
+      getStatus: () => apiClient.get("/analysis/pipeline/status"),
+
+      // 取得分析結果 (不需要 analysisId)
+      getResults: () => apiClient.get("/analysis/pipeline/results"),
+
+      // 檢查當前分析
+      getCurrent: () => apiClient.get("/analysis/current"),
+
+      // 清除當前分析
+      clear: () => apiClient.delete("/analysis/clear"),
+
+      // 🆕 SSE監聽進度的方法 (簡化版 - 不需要 analysisId)
+      watchProgress: (callbacks) => {
         const eventSource = new EventSource(
-          `${API_BASE_URL}/analysis/pipeline/progress/${analysisId}`
+          `${API_BASE_URL}/analysis/pipeline/progress`
         );
 
         eventSource.onmessage = (event) => {
           try {
             const data = JSON.parse(event.data);
+            console.log("SSE message received:", data);
 
             // 根據訊息類型呼叫對應的回調
             switch (data.type) {
@@ -61,7 +71,7 @@ export const api = {
             }
           } catch (error) {
             console.error("解析SSE資料失敗:", error);
-            callbacks.onError?.({
+            callbacks.onSSEError?.({
               message: "資料格式錯誤",
               error: error.message,
             });
@@ -70,7 +80,7 @@ export const api = {
 
         eventSource.onerror = (error) => {
           console.error("SSE連線錯誤:", error);
-          callbacks.onError?.({
+          callbacks.onSSEError?.({
             message: "連線中斷，正在重新連線...",
             error: "Connection lost",
           });
@@ -84,6 +94,9 @@ export const api = {
         // 返回EventSource實例，讓呼叫者可以手動關閉
         return eventSource;
       },
+
+      // 🆕 便利方法：取得 SSE URL (用於除錯)
+      getSSEUrl: () => `${API_BASE_URL}/analysis/pipeline/progress`,
     },
   },
 };

@@ -40,7 +40,7 @@ const App = () => {
           <FileUpload onFilesUploaded={handleFilesUploaded} />
         )}
 
-        {/* Step 2: Analysis Panel (包含進度監控) */}
+        {/* Step 2: Analysis Panel */}
         {uploadedFiles && !showResults && (
           <AnalysisPanel
             uploadedFiles={uploadedFiles}

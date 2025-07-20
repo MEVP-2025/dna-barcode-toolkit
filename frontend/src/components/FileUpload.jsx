@@ -15,22 +15,20 @@ const FileUpload = ({ onFilesUploaded }) => {
   const [error, setError] = useState(null)
 
   const onDrop = useCallback((acceptedFiles) => {
-    const file = acceptedFiles[0]
-    if (!file) return
-
-    // Simple auto-detection based on filename
-    let fileType = 'R1'
-    if (file.name.includes('R2') || file.name.includes('_2') || file.name.includes('r2')) {
-      fileType = 'R2'
-    } else if (file.name.endsWith('.csv')) {
-      fileType = 'barcode'
-    }
-
-    setFiles(prev => ({
-      ...prev,
-      [fileType]: file
-    }))
-  }, [])
+    acceptedFiles.forEach(file => {
+        let fileType = 'R1'
+        if (file.name.includes('R2') || file.name.includes('_2')) {
+        fileType = 'R2'
+        } else if (file.name.endsWith('.csv')) {
+        fileType = 'barcode'
+        }
+        
+        setFiles(prev => ({
+        ...prev,
+        [fileType]: file
+        }))
+    })
+    }, [])
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -38,7 +36,7 @@ const FileUpload = ({ onFilesUploaded }) => {
       'text/plain': ['.fq', '.fastq'],
       'text/csv': ['.csv']
     },
-    multiple: false
+    multiple: true
   })
 
   const removeFile = (type) => {
