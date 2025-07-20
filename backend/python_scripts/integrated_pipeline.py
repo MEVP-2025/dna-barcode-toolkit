@@ -28,7 +28,7 @@ def rename_fastq_file(input_file: str, output_file: str) -> None:
     """
     Rename reads in a FASTQ file by file name using read counts.
     """
-    print(f"Renaming reads in: {input_file}")
+    print(f"Renaming reads in: {input_file}", flush=True)
     
     # Ensure output directory exists
     output_dir = os.path.dirname(output_file)
@@ -94,7 +94,7 @@ class BarcodeDatabase:
     
     def _load_tags(self, tagfile: str) -> None:
         """Load barcode and primer sequences from CSV file."""
-        print(f"Loading barcode file: {tagfile}")
+        print(f"Loading barcode file: {tagfile}", flush=True)
         
         with open(tagfile, 'r', encoding='utf-8') as f:
             for line in f:
@@ -112,7 +112,7 @@ class BarcodeDatabase:
                     species_prefix = location.split('_')[0] if '_' in location else location
                     self.species_prefixes.add(species_prefix)
         
-        print(f"Loaded {len(self.tags)} barcode entries for species: {self.species_prefixes}")
+        print(f"Loaded {len(self.tags)} barcode entries for species: {self.species_prefixes}", flush=True)
     
     def get_combined_tags(self, location: str) -> Tuple[str, str]:
         """Get combined forward and reverse tags for a location."""
@@ -130,10 +130,10 @@ class FastqProcessor:
     
     def load_reads(self) -> None:
         """Load paired-end reads into memory."""
-        print("Loading R1 reads...")
+        print("Loading R1 reads...", flush=True)
         r1_reads = self._load_fastq_file(self.r1_file)
         
-        print("Loading R2 reads...")
+        print("Loading R2 reads...", flush=True)
         r2_reads = self._load_fastq_file(self.r2_file)
         
         # Combine R1 and R2 reads
@@ -141,7 +141,7 @@ class FastqProcessor:
             if index in r2_reads:
                 self.paired_reads[index] = (r1_reads[index], r2_reads[index])
         
-        print(f"Loaded {len(self.paired_reads)} paired reads")
+        print(f"Loaded {len(self.paired_reads)} paired reads", flush=True)
     
     def _load_fastq_file(self, filename: str) -> Dict[str, FastqRecord]:
         """Load FASTQ file and return dictionary of reads indexed by read index."""
@@ -301,28 +301,28 @@ class IntegratedPipeline:
     
     def run(self) -> None:
         """Run the complete integrated pipeline."""
-        print("Starting integrated DNA analysis pipeline...")
-        print(f"Input files: {self.r1_file}, {self.r2_file}")
-        print(f"Barcode file: {self.barcode_file}")
+        print("Starting integrated DNA analysis pipeline...", flush=True)
+        print(f"Input files: {self.r1_file}, {self.r2_file}", flush=True)
+        print(f"Barcode file: {self.barcode_file}", flush=True)
         
         try:
             # Step 1: Rename R1 reads
-            print("\n=== Step 1: Renaming R1 reads ===")
+            print("\n=== Step 1: Renaming R1 reads ===", flush=True)
             rename_fastq_file(self.r1_file, self.r1_renamed)
             
             # Step 2: Rename R2 reads
-            print("\n=== Step 2: Renaming R2 reads ===")
+            print("\n=== Step 2: Renaming R2 reads ===", flush=True)
             rename_fastq_file(self.r2_file, self.r2_renamed)
             
             # Step 3: Trim using renamed files
-            print("\n=== Step 3: Barcode trimming ===")
+            print("\n=== Step 3: Barcode trimming ===", flush=True)
             self._run_trim_analysis()
             
-            print("\nIntegrated pipeline completed successfully!")
-            print("Output files in: outputs/")
+            print("\nIntegrated pipeline completed successfully!", flush=True)
+            print("Output files in: outputs/", flush=True)
             
         except Exception as e:
-            print(f"Pipeline failed: {str(e)}")
+            print(f"Pipeline failed: {str(e)}", flush=True)
             raise
     
     def _run_trim_analysis(self) -> None:
@@ -351,13 +351,13 @@ class IntegratedPipeline:
     
     def _process_all_reads(self) -> None:
         """Process all paired reads for barcode/primer matching."""
-        print("Processing reads for barcode/primer matching...")
+        print("Processing reads for barcode/primer matching...", flush=True)
         
         total_reads = len(self.fastq_processor.paired_reads)
         
         for i, (read_index, (r1_record, r2_record)) in enumerate(self.fastq_processor.paired_reads.items()):
             if i % 100 == 0:
-                print(f"Processed {i}/{total_reads} reads")
+                print(f"Processed {i}/{total_reads} reads", flush=True)
             
             best_match = self._find_best_barcode_match(r1_record, r2_record)
             
@@ -396,7 +396,7 @@ class IntegratedPipeline:
     
     def _write_trimmed_results(self) -> None:
         """Write trimmed reads to output files."""
-        print("Writing trimmed reads to output files...")
+        print("Writing trimmed reads to output files...", flush=True)
         
         written_count = 0
         for read_index, result in self.results.items():
@@ -416,14 +416,14 @@ class IntegratedPipeline:
                 )
                 written_count += 1
         
-        print(f"Successfully wrote {written_count} trimmed read pairs")
+        print(f"Successfully wrote {written_count} trimmed read pairs", flush=True)
 
 
 def main():
     """Main function to run the integrated pipeline."""
     if len(sys.argv) != 4:
-        print("Usage: python integrated_pipeline.py <R1_fastq> <R2_fastq> <barcode_csv>")
-        print("Example: python integrated_pipeline.py sample_R1.fastq sample_R2.fastq barcodes.csv")
+        print("Usage: python integrated_pipeline.py <R1_fastq> <R2_fastq> <barcode_csv>", flush=True)
+        print("Example: python integrated_pipeline.py sample_R1.fastq sample_R2.fastq barcodes.csv", flush=True)
         sys.exit(1)
     
     r1_file = sys.argv[1]
@@ -432,7 +432,7 @@ def main():
     
     for file_path in [r1_file, r2_file, barcode_file]:
         if not os.path.exists(file_path):
-            print(f"Error: File {file_path} not found")
+            print(f"Error: File {file_path} not found", flush=True)
             sys.exit(1)
     
     pipeline = IntegratedPipeline(r1_file, r2_file, barcode_file)
