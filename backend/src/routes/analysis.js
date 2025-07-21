@@ -8,6 +8,7 @@ const pythonExecutor = new PythonExecutor();
 
 // Store current analysis state (single analysis only)
 let currentAnalysis = null;
+let currentPythonProcess = null;
 
 // Validation schema for integrated pipeline
 const pipelineSchema = Joi.object({
@@ -53,7 +54,10 @@ router.post("/pipeline/start", async (req, res, next) => {
         r2File,
         barcodeFile,
       },
-      progressCallback
+      progressCallback,
+      (pythonProcess) => {
+        currentPythonProcess = pythonProcess;
+      }
     );
 
     // Store the current analysis
@@ -67,6 +71,7 @@ router.post("/pipeline/start", async (req, res, next) => {
     // Handle completion
     analysisPromise
       .then((result) => {
+        currentPythonProcess = null;
         if (currentAnalysis) {
           currentAnalysis.status = "completed";
           currentAnalysis.endTime = new Date();
@@ -85,6 +90,7 @@ router.post("/pipeline/start", async (req, res, next) => {
         }
       })
       .catch((error) => {
+        currentPythonProcess = null;
         if (currentAnalysis) {
           currentAnalysis.status = "error";
           currentAnalysis.endTime = new Date();
@@ -109,6 +115,59 @@ router.post("/pipeline/start", async (req, res, next) => {
     });
   } catch (error) {
     next(error);
+  }
+});
+
+router.post("/pipeline/stop", (req, res) => {
+  try {
+    if (!currentAnalysis || currentAnalysis.status !== "running") {
+      return res.status(400).json({
+        error: "No running analysis to stop",
+        status: currentAnalysis?.status || "none",
+      });
+    }
+
+    // 殺死 Python 程序
+    if (currentPythonProcess) {
+      console.log("Terminating Python process...");
+      currentPythonProcess.kill("SIGTERM"); // 優雅停止
+
+      // 如果 3 秒後還沒停止，強制殺死
+      setTimeout(() => {
+        if (currentPythonProcess && !currentPythonProcess.killed) {
+          console.log("Force killing Python process...");
+          currentPythonProcess.kill("SIGKILL");
+        }
+      }, 3000);
+    }
+
+    // 更新分析狀態
+    currentAnalysis.status = "stopped";
+    currentAnalysis.endTime = new Date();
+    currentAnalysis.error = "Analysis stopped by user";
+
+    // 廣播停止訊息
+    broadcastToSSEClients({
+      type: "error",
+      error: "Analysis stopped by user",
+      message: "Analysis has been stopped by user request",
+    });
+
+    // 關閉 SSE 連線
+    setTimeout(() => {
+      closeSSEConnections();
+    }, 1000);
+
+    res.json({
+      message: "Analysis stopped successfully",
+      status: "stopped",
+    });
+  } catch (error) {
+    console.error("Failed to stop analysis:", error);
+    res.status(500).json({
+      error: "Failed to stop analysis",
+      details: error.message,
+    });
   }
 });
 

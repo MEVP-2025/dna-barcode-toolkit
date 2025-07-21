@@ -3,7 +3,8 @@ import { useState } from 'react'
 import AnalysisPanel from './components/AnalysisPanel'
 import FileUpload from './components/FileUpload'
 import ResultsPanel from './components/ResultsPanel'
-import './styles/app.css'
+import './styles/components.css'
+import './styles/globals.css'
 
 const App = () => {
   const [uploadedFiles, setUploadedFiles] = useState(null)

@@ -3,6 +3,7 @@ import { File, Upload, X } from 'lucide-react'
 import { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import api from '../services/api'
+import '../styles/components/FileUpload.css'
 
 const FileUpload = ({ onFilesUploaded }) => {
   const [files, setFiles] = useState({
@@ -28,7 +29,7 @@ const FileUpload = ({ onFilesUploaded }) => {
         [fileType]: file
         }))
     })
-    }, [])
+  }, [])
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,

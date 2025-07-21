@@ -1,0 +1,243 @@
+/* ========================================
+   ANALYSIS SECTION
+   ======================================== */
+
+.analysis-section {
+  margin-bottom: 30px;
+}
+
+/* Files Summary */
+.files-summary {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.files-summary h3 {
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
+.files-list .file-item {
+  background: white;
+  border: 1px solid #e9ecef;
+}
+
+/* Analysis Options */
+.analysis-options {
+  margin-bottom: 30px;
+}
+
+.analysis-options h3 {
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.analysis-types {
+  display: grid;
+  gap: 15px;
+}
+
+.analysis-option {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.analysis-option:hover {
+  border-color: #3498db;
+  background: #f8f9fa;
+}
+
+.analysis-option input[type="radio"] {
+  margin: 0;
+}
+
+.analysis-option input[type="radio"]:checked + .option-content {
+  color: #3498db;
+}
+
+.option-content h4 {
+  margin-bottom: 5px;
+  color: inherit;
+}
+
+.option-content p {
+  margin: 0;
+  color: #7f8c8d;
+  font-size: 0.95em;
+}
+
+.option-content .warning {
+  display: block;
+  color: #f39c12;
+  font-style: italic;
+  margin-top: 5px;
+}
+
+/* Analysis Actions */
+.analysis-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+/* Analysis Status */
+.analysis-status {
+  text-align: center;
+  padding: 30px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  font-size: 1.1em;
+  font-weight: 500;
+  color: #3498db;
+}
+
+/* Analysis Logs */
+.analysis-logs {
+  background: #1e1e1e;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.logs-header {
+  background: #2c3e50;
+  padding: 10px 20px;
+  border-bottom: 1px solid #34495e;
+}
+
+.logs-header h3 {
+  color: #ecf0f1;
+  margin: 0;
+  font-size: 1.1em;
+}
+
+.logs-container {
+  max-height: 400px;
+  overflow-y: auto;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.log-entry {
+  display: flex;
+  gap: 15px;
+  padding: 6px 20px;
+  border-bottom: 1px solid #2c3e50;
+  color: #ecf0f1;
+}
+
+.log-entry:last-child {
+  border-bottom: none;
+}
+
+.log-timestamp {
+  color: #95a5a6;
+  font-size: 12px;
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+.log-message {
+  flex: 1;
+  word-break: break-word;
+}
+
+/* Log Types */
+.log-info .log-message {
+  color: #ecf0f1;
+}
+
+.log-success .log-message {
+  color: #2ecc71;
+}
+
+.log-warning .log-message {
+  color: #f1c40f;
+}
+
+.log-error .log-message {
+  color: #e74c3c;
+}
+
+/* Requirements Notice */
+.requirements-notice {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.requirements-notice h4 {
+  color: #856404;
+  margin-bottom: 10px;
+}
+
+.requirements-notice p {
+  color: #856404;
+  margin: 0;
+}
+
+/* Progress Panel */
+.progress-panel {
+  text-align: center;
+  padding: 60px 40px;
+}
+
+.progress-panel .progress-bar {
+  max-width: 400px;
+  margin: 30px auto;
+}
+
+.progress-panel p {
+  font-size: 1.1em;
+  font-weight: 500;
+  color: #7f8c8d;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 768px) {
+  .analysis-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .analysis-actions .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .logs-container {
+    max-height: 300px;
+  }
+  
+  .log-entry {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .log-timestamp {
+    min-width: auto;
+  }
+}

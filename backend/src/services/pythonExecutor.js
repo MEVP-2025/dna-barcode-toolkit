@@ -46,7 +46,11 @@ export class PythonExecutor {
    * @param {Function} progressCallback - Progress callback function for SSE
    * @returns {Promise<Object>} Pipeline results
    */
-  async executePipeline(params, progressCallback = null) {
+  async executePipeline(
+    params,
+    progressCallback = null,
+    processCallback = null
+  ) {
     const { r1File, r2File, barcodeFile } = params;
 
     try {
@@ -84,6 +88,7 @@ export class PythonExecutor {
       const result = await this._executeScriptWithSSE(scriptPath, args, {
         cwd: this.backendRootDir,
         progressCallback,
+        processCallback, // 傳遞程序回調
       });
 
       // Parse and return results from output directories
@@ -130,7 +135,7 @@ export class PythonExecutor {
    * @private
    */
   async _executeScriptWithSSE(scriptPath, args, options = {}) {
-    const { cwd, progressCallback } = options;
+    const { cwd, progressCallback, processCallback } = options;
 
     return new Promise((resolve, reject) => {
       // Send start message
@@ -151,6 +156,10 @@ export class PythonExecutor {
           PYTHONIOENCODING: "utf-8",
         },
       });
+
+      if (processCallback) {
+        processCallback(pythonProcess);
+      }
 
       let output = "";
       let errorOutput = "";
@@ -195,32 +204,41 @@ export class PythonExecutor {
         }
       });
 
-      // Handle process completion
-      pythonProcess.on("close", (code) => {
-        if (code === 0) {
-          if (progressCallback) {
-            progressCallback({
-              type: "progress",
-              message: `Python script execution completed (exit code: ${code})`,
-            });
-          }
-
-          resolve({
-            success: true,
-            output,
-          });
-        } else {
-          const errorMsg = `Python script execution failed (exit code: ${code})${
-            errorOutput ? ": " + errorOutput : ""
-          }`;
-
+      // Handle process termination (包括被殺死的情況)
+      pythonProcess.on("close", (code, signal) => {
+        if (signal === "SIGTERM" || signal === "SIGKILL") {
+          // 程序被終止
+          const errorMsg = `Python process was terminated (signal: ${signal})`;
           if (progressCallback) {
             progressCallback({
               type: "error",
               message: errorMsg,
             });
           }
-
+          reject(new Error(errorMsg));
+        } else if (code === 0) {
+          // 正常完成
+          if (progressCallback) {
+            progressCallback({
+              type: "progress",
+              message: `Python script execution completed (exit code: ${code})`,
+            });
+          }
+          resolve({
+            success: true,
+            output,
+          });
+        } else {
+          // 錯誤退出
+          const errorMsg = `Python script execution failed (exit code: ${code})${
+            errorOutput ? ": " + errorOutput : ""
+          }`;
+          if (progressCallback) {
+            progressCallback({
+              type: "error",
+              message: errorMsg,
+            });
+          }
           reject(new Error(errorMsg));
         }
       });

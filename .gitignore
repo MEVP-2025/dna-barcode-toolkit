@@ -1,0 +1,12 @@
+# sequence file
+*.fq
+*.fa
+*.fasta
+*.fastq
+
+# compression file
+*.gz
+*.cpgz
+*.zip
+*.rar
+*.7z

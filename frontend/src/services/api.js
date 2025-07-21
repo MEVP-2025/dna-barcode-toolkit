@@ -39,6 +39,8 @@ export const api = {
       // 清除當前分析
       clear: () => apiClient.delete("/analysis/clear"),
 
+      stop: () => apiClient.post("/analysis/pipeline/stop"),
+
       // 🆕 SSE監聽進度的方法 (簡化版 - 不需要 analysisId)
       watchProgress: (callbacks) => {
         const eventSource = new EventSource(

@@ -2,6 +2,7 @@
 import { Play, RotateCcw, Terminal } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { api } from '../services/api'
+import '../styles/components/AnalysisPanel.css'
 
 const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
   const [logs, setLogs] = useState([])
@@ -148,13 +149,33 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
   }
 
   // Stop analysis
-  const stopAnalysis = () => {
-    if (eventSourceRef.current) {
-      eventSourceRef.current.close()
-      eventSourceRef.current = null
+  const stopAnalysis = async () => {
+    try {
+      addLog('Stopping analysis...', 'warning')
+      
+      // 呼叫後端停止 API
+      const response = await api.analysis.pipeline.stop()
+      addLog(`Analysis stopped: ${response.data.message}`, 'warning')
+      
+      // 關閉前端 SSE 連線
+      if (eventSourceRef.current) {
+        eventSourceRef.current.close()
+        eventSourceRef.current = null
+      }
+      
+      setIsAnalyzing(false)
+      
+    } catch (error) {
+      console.error('Failed to stop analysis:', error)
+      addLog(`Failed to stop analysis: ${error.response?.data?.error || error.message}`, 'error')
+      
+      // 即使後端停止失敗，也關閉前端連線
+      if (eventSourceRef.current) {
+        eventSourceRef.current.close()
+        eventSourceRef.current = null
+      }
+      setIsAnalyzing(false)
     }
-    setIsAnalyzing(false)
-    addLog('Analysis stopped by user', 'warning')
   }
 
   // Check for existing analysis on component mount
