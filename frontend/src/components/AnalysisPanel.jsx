@@ -253,7 +253,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
             disabled={!uploadedFiles.R1 || !uploadedFiles.R2 || !uploadedFiles.barcode}
           >
             <Play size={20} />
-            Start DNA Analysis Pipeline
+            Start DNA Analysis
           </button>
         ) : (
           <button

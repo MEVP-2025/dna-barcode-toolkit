@@ -41,7 +41,7 @@ export const api = {
 
       stop: () => apiClient.post("/analysis/pipeline/stop"),
 
-      // 🆕 SSE監聽進度的方法 (簡化版 - 不需要 analysisId)
+      // SSE監聽進度的方法 (簡化版 - 不需要 analysisId)
       watchProgress: (callbacks) => {
         const eventSource = new EventSource(
           `${API_BASE_URL}/analysis/pipeline/progress`
@@ -72,24 +72,24 @@ export const api = {
                 callbacks.onMessage?.(data);
             }
           } catch (error) {
-            console.error("解析SSE資料失敗:", error);
+            console.error("Failed to parse SSE data: ", error);
             callbacks.onSSEError?.({
-              message: "資料格式錯誤",
+              message: "Data format error",
               error: error.message,
             });
           }
         };
 
         eventSource.onerror = (error) => {
-          console.error("SSE連線錯誤:", error);
+          console.error("SSE connection error: ", error);
           callbacks.onSSEError?.({
-            message: "連線中斷，正在重新連線...",
+            message: "Connection lost, reconnecting...",
             error: "Connection lost",
           });
         };
 
         eventSource.onopen = () => {
-          console.log("SSE連線已建立");
+          console.log("SSE connection established");
           callbacks.onConnect?.();
         };
 
@@ -97,7 +97,7 @@ export const api = {
         return eventSource;
       },
 
-      // 🆕 便利方法：取得 SSE URL (用於除錯)
+      // 便利方法：取得 SSE URL (用於除錯)
       getSSEUrl: () => `${API_BASE_URL}/analysis/pipeline/progress`,
     },
   },

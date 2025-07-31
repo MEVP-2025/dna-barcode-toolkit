@@ -17,17 +17,17 @@ const FileUpload = ({ onFilesUploaded }) => {
 
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.forEach(file => {
-        let fileType = 'R1'
-        if (file.name.includes('R2') || file.name.includes('_2')) {
-        fileType = 'R2'
-        } else if (file.name.endsWith('.csv')) {
-        fileType = 'barcode'
-        }
-        
-        setFiles(prev => ({
-        ...prev,
-        [fileType]: file
-        }))
+      let fileType = 'R1'
+      if (file.name.includes('R2') || file.name.includes('_2')) {
+      fileType = 'R2'
+      } else if (file.name.endsWith('.csv')) {
+      fileType = 'barcode'
+      }
+      
+      setFiles(prev => ({
+      ...prev,
+      [fileType]: file
+      }))
     })
   }, [])
 
@@ -61,9 +61,7 @@ const FileUpload = ({ onFilesUploaded }) => {
       const formData = new FormData()
       formData.append('R1', files.R1)
       formData.append('R2', files.R2)
-      if (files.barcode) {
-        formData.append('barcode', files.barcode)
-      }
+      formData.append('barcode', files.barcode)
 
       const response = await api.files.uploadPaired(formData, (progressEvent) => {
         const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total)
@@ -90,7 +88,7 @@ const FileUpload = ({ onFilesUploaded }) => {
   return (
     <div className="upload-section">
       <h2>Upload Files</h2>
-      <p>Upload R1, R2 FASTQ files and optional barcode CSV file</p>
+      <p>Upload R1, R2 FASTQ files and barcode CSV file</p>
 
       {error && (
         <div className="alert error">
@@ -150,14 +148,6 @@ const FileUpload = ({ onFilesUploaded }) => {
 
       {/* Upload Button */}
       <div className="upload-actions">
-        <button
-          className="btn btn-primary"
-          onClick={uploadFiles}
-          disabled={!files.R1 || !files.R2 || !files.barcode || uploading}
-        >
-          {uploading ? 'Uploading...' : 'Upload Files'}
-        </button>
-        
         <div className="file-status">
           <span className={files.R1 ? 'ready' : 'missing'}>
             R1: {files.R1 ? '✓' : '✗'}
@@ -169,6 +159,14 @@ const FileUpload = ({ onFilesUploaded }) => {
             Barcode: {files.barcode ? '✓' : '✗'}
           </span>
         </div>
+
+        <button
+          className="btn btn-primary"
+          onClick={uploadFiles}
+          disabled={!files.R1 || !files.R2 || !files.barcode || uploading}
+        >
+          {uploading ? 'Uploading...' : 'Upload Files'}
+        </button>
       </div>
     </div>
   )

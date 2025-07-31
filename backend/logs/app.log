@@ -906,3 +906,35 @@ SyntaxError: invalid syntax
 2025-07-21 11:06:17 [INFO]: Output directories cleared successfully
 2025-07-21 11:06:17 [INFO]: Starting integrated pipeline
 2025-07-21 11:21:37 [INFO]: Integrated pipeline completed
+2025-07-21 22:02:38 [INFO]: Server running on port 3001
+2025-07-21 22:02:38 [INFO]: Environment: development
+2025-07-21 22:02:38 [INFO]: Frontend URL: http://localhost:5173
+2025-07-21 22:02:38 [INFO]: Serving static files from:
+2025-07-21 22:02:38 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-07-21 22:02:38 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-07-21 22:02:43 [INFO]: SIGTERM received, shutting down gracefully
+2025-07-21 22:09:11 [INFO]: Server running on port 3001
+2025-07-21 22:09:11 [INFO]: Environment: development
+2025-07-21 22:09:11 [INFO]: Frontend URL: http://localhost:5173
+2025-07-21 22:09:11 [INFO]: Serving static files from:
+2025-07-21 22:09:11 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-07-21 22:09:11 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-07-21 22:28:33 [INFO]: Paired files uploaded successfully
+2025-07-22 00:50:44 [INFO]: Paired files uploaded successfully
+2025-07-22 16:17:17 [INFO]: Server running on port 3001
+2025-07-22 16:17:17 [INFO]: Environment: development
+2025-07-22 16:17:17 [INFO]: Frontend URL: http://localhost:5173
+2025-07-22 16:17:17 [INFO]: Serving static files from:
+2025-07-22 16:17:17 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-07-22 16:17:17 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-07-22 17:26:01 [INFO]: Server running on port 3001
+2025-07-22 17:26:01 [INFO]: Environment: development
+2025-07-22 17:26:01 [INFO]: Frontend URL: http://localhost:5173
+2025-07-22 17:26:01 [INFO]: Serving static files from:
+2025-07-22 17:26:01 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-07-22 17:26:01 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-07-22 17:26:19 [INFO]: Paired files uploaded successfully
+2025-07-22 17:26:23 [INFO]: Output directories cleared successfully
+2025-07-22 17:26:23 [INFO]: Starting integrated pipeline
+2025-07-22 17:26:23 [INFO]: Integrated pipeline completed
+2025-07-23 00:40:46 [INFO]: SIGINT received, shutting down gracefully

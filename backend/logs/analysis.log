@@ -44787,3 +44787,28 @@ Processed 0/1429571 reads
 2025-07-21 11:21:37 [INFO]: Successfully wrote 1429571 trimmed read pairs
 2025-07-21 11:21:37 [INFO]: Integrated pipeline completed successfully!
 Output files in: outputs/
+2025-07-22 17:26:23 [INFO]: Pipeline started
+2025-07-22 17:26:23 [INFO]: Starting integrated DNA analysis pipeline...
+Input files: uploads/test1000-R1.fq, uploads/test1000-R2.fq
+Barcode file: uploads/all-tags.csv
+
+=== Step 1: Renaming R1 reads ===
+Renaming reads in: uploads/test1000-R1.fq
+2025-07-22 17:26:23 [INFO]: Renamed 250 reads. Output: outputs/rename/test1000-R1.rename.fq
+
+=== Step 2: Renaming R2 reads ===
+2025-07-22 17:26:23 [INFO]: Renaming reads in: uploads/test1000-R2.fq
+2025-07-22 17:26:23 [INFO]: Renamed 250 reads. Output: outputs/rename/test1000-R2.rename.fq
+
+=== Step 3: Barcode trimming ===
+Loading barcode file: uploads/all-tags.csv
+2025-07-22 17:26:23 [INFO]: Loaded 90 barcode entries for species: {'CypDL', 'ZpDL', 'xworm'}
+2025-07-22 17:26:23 [INFO]: Loading R1 reads...
+2025-07-22 17:26:23 [INFO]: Loading R2 reads...
+2025-07-22 17:26:23 [INFO]: Loaded 250 paired reads
+2025-07-22 17:26:23 [INFO]: Processing reads for barcode/primer matching...
+2025-07-22 17:26:23 [INFO]: Processed 0/250 reads
+2025-07-22 17:26:23 [INFO]: Writing trimmed reads to output files...
+2025-07-22 17:26:23 [INFO]: Successfully wrote 250 trimmed read pairs
+2025-07-22 17:26:23 [INFO]: Integrated pipeline completed successfully!
+Output files in: outputs/

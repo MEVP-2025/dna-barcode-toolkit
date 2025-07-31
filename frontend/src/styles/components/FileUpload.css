@@ -14,7 +14,7 @@
   text-align: center;
   cursor: pointer;
   transition: all 0.3s;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .file-drop-zone:hover {
@@ -50,7 +50,7 @@
 
 /* Selected Files */
 .selected-files {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .selected-files .file-item {

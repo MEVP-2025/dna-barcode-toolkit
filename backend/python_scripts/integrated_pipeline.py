@@ -1,3 +1,4 @@
+# /python_scripts/integrated_pipeline.py
 #!/usr/bin/env python3
 
 """
@@ -11,7 +12,6 @@ Flow:
 2. Rename R2 reads → temp files
 3. Trim paired reads using barcode file → outputs/
 4. Output species-specific files
-5. Clean up temp files
 """
 
 import sys
