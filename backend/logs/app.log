@@ -938,3 +938,62 @@ SyntaxError: invalid syntax
 2025-07-22 17:26:23 [INFO]: Starting integrated pipeline
 2025-07-22 17:26:23 [INFO]: Integrated pipeline completed
 2025-07-23 00:40:46 [INFO]: SIGINT received, shutting down gracefully
+2025-08-02 21:32:59 [INFO]: Server running on port 3001
+2025-08-02 21:32:59 [INFO]: Environment: production
+2025-08-02 21:32:59 [INFO]: Frontend URL: http://localhost:5173
+2025-08-02 21:32:59 [INFO]: Serving static files from:
+2025-08-02 21:32:59 [INFO]:   - Uploads: /app/backend/uploads
+2025-08-02 21:32:59 [INFO]:   - Outputs: /app/backend/outputs
+2025-08-02 21:41:40 [INFO]: SIGINT received, shutting down gracefully
+2025-08-02 23:58:11 [INFO]: Server running on port 3001
+2025-08-02 23:58:11 [INFO]: Environment: production
+2025-08-02 23:58:11 [INFO]: Frontend URL: http://localhost:5173
+2025-08-02 23:58:11 [INFO]: Serving static files from:
+2025-08-02 23:58:11 [INFO]:   - Uploads: /app/backend/uploads
+2025-08-02 23:58:11 [INFO]:   - Outputs: /app/backend/outputs
+2025-08-03 00:06:16 [INFO]: SIGTERM received, shutting down gracefully
+2025-08-03 00:06:26 [INFO]: Server running on port 3001
+2025-08-03 00:06:26 [INFO]: Environment: production
+2025-08-03 00:06:26 [INFO]: Frontend URL: http://localhost:5173
+2025-08-03 00:06:26 [INFO]: Serving static files from:
+2025-08-03 00:06:26 [INFO]:   - Uploads: /app/backend/uploads
+2025-08-03 00:06:26 [INFO]:   - Outputs: /app/backend/outputs
+2025-08-03 00:07:28 [INFO]: SIGINT received, shutting down gracefully
+2025-08-03 00:07:36 [INFO]: Server running on port 3001
+2025-08-03 00:07:36 [INFO]: Environment: production
+2025-08-03 00:07:36 [INFO]: Frontend URL: http://localhost:5173
+2025-08-03 00:07:36 [INFO]: Serving static files from:
+2025-08-03 00:07:36 [INFO]:   - Uploads: /app/backend/uploads
+2025-08-03 00:07:36 [INFO]:   - Outputs: /app/backend/outputs
+2025-08-03 00:15:32 [INFO]: SIGINT received, shutting down gracefully
+2025-08-04 00:31:00 [INFO]: Server running on port 3001
+2025-08-04 00:31:00 [INFO]: Environment: development
+2025-08-04 00:31:00 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 00:31:00 [INFO]: Serving static files from:
+2025-08-04 00:31:00 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 00:31:00 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 00:31:20 [INFO]: SIGINT received, shutting down gracefully
+2025-08-04 00:31:49 [INFO]: Server running on port 3001
+2025-08-04 00:31:49 [INFO]: Environment: development
+2025-08-04 00:31:49 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 00:31:49 [INFO]: Serving static files from:
+2025-08-04 00:31:49 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 00:31:49 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 00:44:31 [INFO]: SIGINT received, shutting down gracefully
+2025-08-04 00:44:50 [INFO]: Server running on port 3001
+2025-08-04 00:44:50 [INFO]: Environment: development
+2025-08-04 00:44:50 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 00:44:50 [INFO]: Serving static files from:
+2025-08-04 00:44:50 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 00:44:50 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 00:44:52 [INFO]: SIGINT received, shutting down gracefully
+2025-08-04 00:44:55 [INFO]: Server running on port 3001
+2025-08-04 00:44:55 [INFO]: Environment: development
+2025-08-04 00:44:55 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 00:44:55 [INFO]: Serving static files from:
+2025-08-04 00:44:55 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 00:44:55 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 00:49:50 [INFO]: Paired files uploaded successfully
+2025-08-04 00:49:52 [INFO]: Output directories cleared successfully
+2025-08-04 00:49:52 [INFO]: Starting integrated pipeline
+2025-08-04 01:05:12 [INFO]: Integrated pipeline completed
