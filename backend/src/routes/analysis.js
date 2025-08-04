@@ -1,6 +1,9 @@
 // src/routes/analysis.js
 import express from "express";
+import fs from "fs-extra"; // 如果需要的話
 import Joi from "joi";
+import path from "path";
+import { logger } from "../utils/logger.js";
 // import { DockerService } from "../services/dockerService.js";
 import { PythonExecutor } from "../services/pythonExecutor.js";
 
@@ -53,7 +56,23 @@ router.post("/pipeline/detect-species", async (req, res) => {
     // 解析 Python 腳本的 JSON 輸出
     let speciesData;
     try {
-      speciesData = JSON.parse(result.output.trim());
+      const output = result.output.trim();
+
+      // 尋找特殊標記之間的內容
+      const startMarker = "=== SPECIES_DETECTION_RESULT ===";
+      const endMarker = "=== END_RESULT ===";
+
+      const startIndex = output.indexOf(startMarker);
+      const endIndex = output.indexOf(endMarker);
+
+      if (startIndex === -1 || endIndex === -1) {
+        throw new Error("Species detection markers not found");
+      }
+
+      const jsonPart = output
+        .substring(startIndex + startMarker.length, endIndex)
+        .trim();
+      speciesData = JSON.parse(jsonPart);
     } catch (parseError) {
       logger.error("Failed to parse species detection output:", result.output);
       return res.status(500).json({

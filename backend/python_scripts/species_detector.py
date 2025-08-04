@@ -57,6 +57,7 @@ def detect_species(barcode_file: str) -> dict:
         return {'error': f'Failed to parse barcode file: {str(e)}'}
 
 def main():
+    """主函數"""
     if len(sys.argv) != 2:
         print(json.dumps({
             'error': 'Invalid arguments',
@@ -77,7 +78,10 @@ def main():
     species_info = detect_species(barcode_file)
     
     # 輸出 JSON 格式給 Node.js 處理
+    # 使用特殊標記來標識 JSON 開始，避免與容器啟動訊息混淆
+    print("=== SPECIES_DETECTION_RESULT ===", flush=True)
     print(json.dumps(species_info, indent=2), flush=True)
+    print("=== END_RESULT ===", flush=True)
 
 if __name__ == "__main__":
     main()

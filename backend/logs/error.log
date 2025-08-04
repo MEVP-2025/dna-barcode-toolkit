@@ -279,3 +279,5 @@ SyntaxError: invalid syntax
     at ChildProcess.emit (node:events:513:28)
     at maybeClose (node:internal/child_process:1101:16)
     at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-04 23:34:32 [ERROR]: Failed to parse species detection output:
+2025-08-04 23:35:07 [ERROR]: Failed to parse species detection output:

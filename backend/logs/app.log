@@ -1523,3 +1523,139 @@ SyntaxError: invalid syntax
 2025-08-04 21:32:20 [INFO]: Serving static files from:
 2025-08-04 21:32:20 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
 2025-08-04 21:32:20 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 22:29:18 [INFO]: Server running on port 3001
+2025-08-04 22:29:18 [INFO]: Environment: development
+2025-08-04 22:29:18 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 22:29:18 [INFO]: Serving static files from:
+2025-08-04 22:29:18 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 22:29:18 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 22:29:36 [INFO]: Paired files uploaded successfully
+2025-08-04 23:33:12 [INFO]: Server running on port 3001
+2025-08-04 23:33:12 [INFO]: Environment: development
+2025-08-04 23:33:12 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 23:33:12 [INFO]: Serving static files from:
+2025-08-04 23:33:12 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 23:33:12 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 23:33:31 [INFO]: Server running on port 3001
+2025-08-04 23:33:31 [INFO]: Environment: development
+2025-08-04 23:33:31 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 23:33:31 [INFO]: Serving static files from:
+2025-08-04 23:33:31 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 23:33:31 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 23:33:56 [INFO]: Server running on port 3001
+2025-08-04 23:33:56 [INFO]: Environment: development
+2025-08-04 23:33:56 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 23:33:56 [INFO]: Serving static files from:
+2025-08-04 23:33:56 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 23:33:56 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 23:33:58 [INFO]: Server running on port 3001
+2025-08-04 23:33:58 [INFO]: Environment: development
+2025-08-04 23:33:58 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 23:33:58 [INFO]: Serving static files from:
+2025-08-04 23:33:58 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 23:33:58 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 23:34:14 [INFO]: Server running on port 3001
+2025-08-04 23:34:14 [INFO]: Environment: development
+2025-08-04 23:34:14 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 23:34:14 [INFO]: Serving static files from:
+2025-08-04 23:34:14 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 23:34:14 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 23:34:26 [INFO]: Starting species detection for: uploads/all-tags.csv
+2025-08-04 23:34:26 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/species_detector.py /app/data/uploads/all-tags.csv
+2025-08-04 23:34:32 [INFO]: Species detection output: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-04 23:34:32 [INFO]: Species detection output: Python: Python 3.13.0
+2025-08-04 23:34:32 [INFO]: Species detection output: BLAST: blastn: 2.12.0+
+2025-08-04 23:34:32 [INFO]: Species detection output: MAFFT: v7.505 (2022/Apr/10)
+2025-08-04 23:34:32 [INFO]: Species detection output: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-04 23:34:32 [INFO]: Species detection output: Architecture: aarch64
+2025-08-04 23:34:32 [INFO]: Species detection output: Operating System: Linux
+
+Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-04 23:34:32 [INFO]: Species detection output: {
+  "species": [
+    "CypDL",
+    "ZpDL",
+    "xworm"
+  ]
+}
+2025-08-04 23:34:32 [ERROR]: Failed to parse species detection output:
+2025-08-04 23:34:54 [INFO]: SIGINT received, shutting down gracefully
+2025-08-04 23:35:04 [INFO]: Server running on port 3001
+2025-08-04 23:35:04 [INFO]: Environment: development
+2025-08-04 23:35:04 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 23:35:04 [INFO]: Serving static files from:
+2025-08-04 23:35:04 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 23:35:04 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 23:35:07 [INFO]: Starting species detection for: uploads/all-tags.csv
+2025-08-04 23:35:07 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/species_detector.py /app/data/uploads/all-tags.csv
+2025-08-04 23:35:07 [INFO]: Species detection output: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-04 23:35:07 [INFO]: Species detection output: Python: Python 3.13.0
+2025-08-04 23:35:07 [INFO]: Species detection output: BLAST: blastn: 2.12.0+
+2025-08-04 23:35:07 [INFO]: Species detection output: MAFFT: v7.505 (2022/Apr/10)
+2025-08-04 23:35:07 [INFO]: Species detection output: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-04 23:35:07 [INFO]: Species detection output: Architecture: aarch64
+2025-08-04 23:35:07 [INFO]: Species detection output: Operating System: Linux
+
+Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-04 23:35:07 [INFO]: Species detection output: {
+  "species": [
+    "CypDL",
+    "ZpDL",
+    "xworm"
+  ]
+}
+2025-08-04 23:35:07 [ERROR]: Failed to parse species detection output:
+2025-08-04 23:37:33 [INFO]: Server running on port 3001
+2025-08-04 23:37:33 [INFO]: Environment: development
+2025-08-04 23:37:33 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 23:37:33 [INFO]: Serving static files from:
+2025-08-04 23:37:33 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 23:37:33 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 23:37:36 [INFO]: Server running on port 3001
+2025-08-04 23:37:36 [INFO]: Environment: development
+2025-08-04 23:37:36 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 23:37:36 [INFO]: Serving static files from:
+2025-08-04 23:37:36 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 23:37:36 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 23:37:38 [INFO]: Starting species detection for: uploads/all-tags.csv
+2025-08-04 23:37:38 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/species_detector.py /app/data/uploads/all-tags.csv
+2025-08-04 23:37:38 [INFO]: Species detection output: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-04 23:37:38 [INFO]: Species detection output: Python: Python 3.13.0
+2025-08-04 23:37:38 [INFO]: Species detection output: BLAST: blastn: 2.12.0+
+2025-08-04 23:37:38 [INFO]: Species detection output: MAFFT: v7.505 (2022/Apr/10)
+2025-08-04 23:37:38 [INFO]: Species detection output: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-04 23:37:38 [INFO]: Species detection output: Architecture: aarch64
+2025-08-04 23:37:38 [INFO]: Species detection output: Operating System: Linux
+
+Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-04 23:37:38 [INFO]: Species detection output: === SPECIES_DETECTION_RESULT ===
+{
+  "species": [
+    "CypDL",
+    "ZpDL",
+    "xworm"
+  ]
+}
+=== END_RESULT ===
+2025-08-04 23:37:38 [INFO]: Species detection completed. Found 3 species

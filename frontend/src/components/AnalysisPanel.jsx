@@ -1,5 +1,5 @@
 // src/components/AnalysisPanel.jsx
-import { Play, RotateCcw, Terminal } from 'lucide-react'
+import { Play, RotateCcw, Settings, Terminal } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { api } from '../services/api'
 import '../styles/components/AnalysisPanel.css'
@@ -8,6 +8,11 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
   const [logs, setLogs] = useState([])
   const [showLogs, setShowLogs] = useState(false)
   const [isAnalyzing, setIsAnalyzing] = useState(false)
+  
+  // 新增狀態：物種檢測和品質設定
+  const [analysisStep, setAnalysisStep] = useState('ready') // 'ready', 'detecting', 'configuring', 'running'
+  const [detectedSpecies, setDetectedSpecies] = useState([])
+  const [qualityConfig, setQualityConfig] = useState({})
   
   const eventSourceRef = useRef(null)
   const logContainerRef = useRef(null)
@@ -38,6 +43,50 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
     }, 100)
   }
 
+  // 步驟 1: 物種檢測
+  const detectSpecies = async () => {
+    if (!uploadedFiles.barcode) {
+      alert('Please upload barcode file first.')
+      return
+    }
+
+    try {
+      setAnalysisStep('detecting')
+      setLogs([])
+      setShowLogs(true)
+      
+      addLog('Starting species detection...', 'info')
+
+      const response = await api.analysis.pipeline.detectSpecies({
+        barcodeFile: `uploads/${uploadedFiles.barcode.filename}`
+      })
+
+      if (response.data.success) {
+        const species = response.data.data.species
+        setDetectedSpecies(species)
+        
+        // 初始化品質配置（預設值）
+        const defaultConfig = {}
+        species.forEach(sp => {
+          defaultConfig[sp] = 0 // 預設最大錯配數為 0
+        })
+        setQualityConfig(defaultConfig)
+        
+        addLog(`Species detection completed. Found ${species.length} species: ${species.join(', ')}`, 'success')
+        setAnalysisStep('configuring')
+      } else {
+        addLog('Species detection failed', 'error')
+        setAnalysisStep('ready')
+      }
+
+    } catch (error) {
+      console.error('Failed to detect species:', error)
+      addLog(`Species detection failed: ${error.response?.data?.error || error.message}`, 'error')
+      setAnalysisStep('ready')
+    }
+  }
+
+  // 步驟 2: 開始分析（帶品質配置）
   const startPipeline = async () => {
     // Check if files are complete
     if (!uploadedFiles.R1 || !uploadedFiles.R2 || !uploadedFiles.barcode) {
@@ -47,18 +96,20 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
 
     try {
       setIsAnalyzing(true)
-      setLogs([])
+      setAnalysisStep('running')
       setShowLogs(true)
       
       const params = {
         r1File: `uploads/${uploadedFiles.R1.filename}`,
         r2File: `uploads/${uploadedFiles.R2.filename}`,
-        barcodeFile: `uploads/${uploadedFiles.barcode.filename}`
+        barcodeFile: `uploads/${uploadedFiles.barcode.filename}`,
+        qualityConfig: qualityConfig // 傳送品質配置
       }
 
-      addLog('Starting DNA analysis pipeline...', 'info')
+      addLog('Starting DNA analysis pipeline with quality configuration...', 'info')
+      addLog(`Quality settings: ${JSON.stringify(qualityConfig)}`, 'info')
 
-      // Call API to start analysis (no analysisId returned)
+      // Call API to start analysis
       const response = await api.analysis.pipeline.start(params)
       
       addLog('Analysis task started successfully', 'success')
@@ -68,14 +119,32 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
         onAnalysisStart('pipeline', params)
       }
 
-      // Start SSE monitoring (no analysisId needed)
+      // Start SSE monitoring
       startSSEMonitoring()
 
     } catch (error) {
       console.error('Failed to start analysis:', error)
       addLog(`Startup failed: ${error.response?.data?.error || error.message}`, 'error')
       setIsAnalyzing(false)
+      setAnalysisStep('configuring')
     }
+  }
+
+  // 處理品質參數變更
+  const handleQualityChange = (species, value) => {
+    setQualityConfig(prev => ({
+      ...prev,
+      [species]: parseInt(value) || 0
+    }))
+  }
+
+  // 重設到初始狀態
+  const resetToStart = () => {
+    setAnalysisStep('ready')
+    setDetectedSpecies([])
+    setQualityConfig({})
+    setLogs([])
+    setShowLogs(false)
   }
 
   const startSSEMonitoring = () => {
@@ -84,7 +153,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
     // Test if SSE endpoint is accessible first
     testSSEEndpoint()
     
-    // Connect to simplified SSE endpoint (no analysisId in URL)
+    // Connect to simplified SSE endpoint
     eventSourceRef.current = api.analysis.pipeline.watchProgress({
       onConnect: () => {
         addLog('SSE connection established', 'success')
@@ -101,6 +170,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
       onComplete: (data) => {
         addLog(data.message || 'Analysis completed!', 'success')
         setIsAnalyzing(false)
+        setAnalysisStep('ready')
         
         // Optionally fetch results here
         fetchAnalysisResults()
@@ -109,16 +179,18 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
       onError: (data) => {
         addLog(`Analysis error: ${data.message || data.error || 'Unknown error'}`, 'error')
         setIsAnalyzing(false)
+        setAnalysisStep('configuring')
       },
 
       onSSEError: (error) => {
         addLog(`SSE connection error: ${error.message}`, 'error')
         setIsAnalyzing(false)
+        setAnalysisStep('configuring')
       }
     })
   }
 
-  // Test SSE endpoint (simplified URL)
+  // Test SSE endpoint
   const testSSEEndpoint = async () => {
     try {
       const testUrl = `${import.meta.env.VITE_API_URL || 'http://localhost:3001/api'}/analysis/pipeline/status`
@@ -153,28 +225,27 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
     try {
       addLog('Stopping analysis...', 'warning')
       
-      // 呼叫後端停止 API
       const response = await api.analysis.pipeline.stop()
       addLog(`Analysis stopped: ${response.data.message}`, 'warning')
       
-      // 關閉前端 SSE 連線
       if (eventSourceRef.current) {
         eventSourceRef.current.close()
         eventSourceRef.current = null
       }
       
       setIsAnalyzing(false)
+      setAnalysisStep('configuring')
       
     } catch (error) {
       console.error('Failed to stop analysis:', error)
       addLog(`Failed to stop analysis: ${error.response?.data?.error || error.message}`, 'error')
       
-      // 即使後端停止失敗，也關閉前端連線
       if (eventSourceRef.current) {
         eventSourceRef.current.close()
         eventSourceRef.current = null
       }
       setIsAnalyzing(false)
+      setAnalysisStep('configuring')
     }
   }
 
@@ -189,6 +260,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
           
           if (status === 'running') {
             setIsAnalyzing(true)
+            setAnalysisStep('running')
             setShowLogs(true)
             addLog('Reconnecting to existing analysis...', 'info')
             startSSEMonitoring()
@@ -200,7 +272,6 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
           }
         }
       } catch (error) {
-        // No existing analysis or error - this is normal
         console.log('No existing analysis found')
       }
     }
@@ -220,9 +291,24 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
   return (
     <div className="analysis-section">
       <h2>DNA Analysis Pipeline</h2>
-      <p>Ready to start the integrated rename and trim analysis pipeline.</p>
+      
+      {/* 步驟指示器 */}
+      <div className="analysis-steps">
+        <div className={`step ${analysisStep === 'ready' ? 'active' : analysisStep === 'detecting' || analysisStep === 'configuring' || analysisStep === 'running' ? 'completed' : ''}`}>
+          1. Prepare Files
+        </div>
+        <div className={`step ${analysisStep === 'detecting' ? 'active' : analysisStep === 'configuring' || analysisStep === 'running' ? 'completed' : ''}`}>
+          2. Detect Species
+        </div>
+        <div className={`step ${analysisStep === 'configuring' ? 'active' : analysisStep === 'running' ? 'completed' : ''}`}>
+          3. Configure Quality
+        </div>
+        <div className={`step ${analysisStep === 'running' ? 'active' : ''}`}>
+          4. Run Analysis
+        </div>
+      </div>
 
-      {/* Uploaded Files Summary */}
+      {/* 檔案摘要 */}
       <div className="files-summary">
         <h3>Uploaded Files:</h3>
         <div className="files-list">
@@ -244,18 +330,67 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
         </div>
       </div>
 
-      {/* Action Buttons */}
+      {/* 物種檢測結果和品質配置 */}
+      {analysisStep === 'configuring' && detectedSpecies.length > 0 && (
+        <div className="quality-configuration">
+          <h3>Quality Configuration</h3>
+          <p>Set maximum allowed mismatches for each species:</p>
+          
+          <div className="species-config-list">
+            {detectedSpecies.map(species => (
+              <div key={species} className="species-config-item">
+                <label htmlFor={`quality-${species}`}>
+                  <strong>{species}</strong>:
+                </label>
+                <input
+                  id={`quality-${species}`}
+                  type="number"
+                  min="0"
+                  max="20"
+                  value={qualityConfig[species] || 0}
+                  onChange={(e) => handleQualityChange(species, e.target.value)}
+                  className="quality-input"
+                />
+                <span className="input-help">max mismatches</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* 動作按鈕 */}
       <div className="analysis-actions">
-        {!isAnalyzing ? (
+        {analysisStep === 'ready' && (
           <button
             className="btn btn-primary"
-            onClick={startPipeline}
-            disabled={!uploadedFiles.R1 || !uploadedFiles.R2 || !uploadedFiles.barcode}
+            onClick={detectSpecies}
+            disabled={!uploadedFiles.barcode}
           >
-            <Play size={20} />
-            Start DNA Analysis
+            <Settings size={20} />
+            Detect Species & Configure
           </button>
-        ) : (
+        )}
+
+        {analysisStep === 'configuring' && (
+          <>
+            <button
+              className="btn btn-primary"
+              onClick={startPipeline}
+              disabled={!uploadedFiles.R1 || !uploadedFiles.R2 || !uploadedFiles.barcode}
+            >
+              <Play size={20} />
+              Start DNA Analysis
+            </button>
+            <button
+              className="btn btn-secondary"
+              onClick={resetToStart}
+            >
+              Back to File Selection
+            </button>
+          </>
+        )}
+
+        {analysisStep === 'running' && (
           <button
             className="btn btn-danger"
             onClick={stopAnalysis}
@@ -284,7 +419,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
         )}
       </div>
 
-      {/* Analysis Status */}
+      {/* 分析狀態 */}
       {isAnalyzing && (
         <div className="analysis-status">
           <div className="status-indicator">
@@ -294,7 +429,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
         </div>
       )}
 
-      {/* Python Output Logs */}
+      {/* Python 輸出日誌 */}
       {showLogs && logs.length > 0 && (
         <div className="analysis-logs">
           <div className="logs-header">
@@ -315,8 +450,8 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
         </div>
       )}
 
-      {/* Requirements Notice */}
-      {(!uploadedFiles.R1 || !uploadedFiles.R2 || !uploadedFiles.barcode) && (
+      {/* 需求提示 */}
+      {analysisStep === 'ready' && (!uploadedFiles.R1 || !uploadedFiles.R2 || !uploadedFiles.barcode) && (
         <div className="requirements-notice">
           <h4>Required Files</h4>
           <p>All three files (R1, R2, and barcode CSV) are required to start the analysis pipeline.</p>
