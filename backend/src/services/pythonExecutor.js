@@ -1,19 +1,42 @@
-// src/services/pythonExecutor.js
-import { spawn } from "child_process";
 import fs from "fs-extra";
 import path from "path";
 import { fileURLToPath } from "url";
 import { analysisLogger, logger } from "../utils/logger.js";
+import { DockerService } from "./dockerService.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export class PythonExecutor {
   constructor() {
-    this.pythonPath = process.env.PYTHON_PATH || "python3";
-    this.scriptsDir = path.join(__dirname, "../../python_scripts");
+    // Docker 配置 - 移除本地執行相關配置
+    this.dockerService = new DockerService();
+
+    // 路徑配置
     this.outputsDir = path.join(__dirname, "../../outputs");
     this.backendRootDir = path.join(__dirname, "../../");
+    this.uploadsDir = path.join(__dirname, "../../uploads");
+  }
+
+  /**
+   * Check Docker environment, throw error if not available
+   */
+  async checkEnvironment() {
+    try {
+      const dockerCheck = await this.dockerService.checkEnvironment();
+      if (dockerCheck.success) {
+        logger.info("Docker environment verified successfully");
+        return { ready: true, dockerInfo: dockerCheck };
+      } else {
+        const errorMsg = `Docker environment is required but not available: ${dockerCheck.message}`;
+        logger.error(errorMsg);
+        throw new Error(errorMsg);
+      }
+    } catch (error) {
+      const errorMsg = `Docker environment check failed: ${error.message}`;
+      logger.error(errorMsg);
+      throw new Error(errorMsg);
+    }
   }
 
   /**
@@ -38,13 +61,7 @@ export class PythonExecutor {
   }
 
   /**
-   * Execute integrated pipeline (rename + trim) with SSE support
-   * @param {Object} params - Pipeline parameters
-   * @param {string} params.r1File - R1 FASTQ file path
-   * @param {string} params.r2File - R2 FASTQ file path
-   * @param {string} params.barcodeFile - Barcode CSV file path
-   * @param {Function} progressCallback - Progress callback function for SSE
-   * @returns {Promise<Object>} Pipeline results
+   * Execute integrated pipeline with Docker only
    */
   async executePipeline(
     params,
@@ -54,52 +71,47 @@ export class PythonExecutor {
     const { r1File, r2File, barcodeFile } = params;
 
     try {
-      // Clear output directories first
+      // 檢查 Docker 環境 - 如果不可用直接拋出錯誤
+      const envCheck = await this.checkEnvironment();
+
+      // 清理輸出目錄
       await this.clearOutputDirectories();
 
-      // Create output directories
+      // 創建輸出目錄
       const renameOutputDir = path.join(this.outputsDir, "rename");
       const trimOutputDir = path.join(this.outputsDir, "trim");
-
-      // Ensure directories exist (should already exist from clearOutputDirectories)
       await fs.ensureDir(renameOutputDir);
       await fs.ensureDir(trimOutputDir);
 
-      // Prepare command arguments for integrated pipeline
-      const scriptPath = path.join(this.scriptsDir, "integrated_pipeline.py");
-      const args = [scriptPath, r1File, r2File, barcodeFile];
-      console.log("args:", args);
-
-      logger.info("Starting integrated pipeline", {
+      logger.info("Starting integrated pipeline with Docker", {
         r1File,
         r2File,
         barcodeFile,
       });
-      analysisLogger.info("Pipeline started", { args });
 
-      // Send initial progress
+      // 發送初始進度
       if (progressCallback) {
         progressCallback({
           type: "start",
-          message: "Starting DNA analysis pipeline...",
+          message: "Starting DNA analysis pipeline with Docker...",
         });
       }
 
-      const result = await this._executeScriptWithSSE(scriptPath, args, {
-        cwd: this.backendRootDir,
+      // 只使用 Docker 執行
+      const result = await this._executeWithDocker(params, {
         progressCallback,
-        processCallback, // 傳遞程序回調
+        processCallback,
       });
 
-      // Parse and return results from output directories
+      // 解析結果
       const analysisResults = await this._parsePipelineResults(
         renameOutputDir,
         trimOutputDir
       );
 
-      logger.info("Integrated pipeline completed");
+      logger.info("Docker pipeline completed successfully");
 
-      // Send completion message
+      // 發送完成訊息
       if (progressCallback) {
         progressCallback({
           type: "complete",
@@ -113,11 +125,11 @@ export class PythonExecutor {
         renameOutputDir,
         trimOutputDir,
         results: analysisResults,
+        executionMode: "docker",
       };
     } catch (error) {
-      logger.error("Integrated pipeline failed", error);
+      logger.error("Docker pipeline failed", error);
 
-      // Send error message
       if (progressCallback) {
         progressCallback({
           type: "error",
@@ -131,134 +143,60 @@ export class PythonExecutor {
   }
 
   /**
-   * Execute Python script with SSE progress updates
+   * Execute pipeline using Docker
    * @private
    */
-  async _executeScriptWithSSE(scriptPath, args, options = {}) {
-    const { cwd, progressCallback, processCallback } = options;
+  async _executeWithDocker(params, options = {}) {
+    const { r1File, r2File, barcodeFile } = params;
+    const { progressCallback, processCallback } = options;
 
-    return new Promise((resolve, reject) => {
-      // Send start message
-      if (progressCallback) {
-        progressCallback({
-          type: "progress",
-          message: `Starting Python script: ${path.basename(scriptPath)}`,
-        });
-      }
+    const containerArgs = [
+      "/app/data/python_scripts/integrated_pipeline.py",
+      `/app/data/uploads/${path.basename(r1File)}`,
+      `/app/data/uploads/${path.basename(r2File)}`,
+      `/app/data/uploads/${path.basename(barcodeFile)}`,
+    ];
 
-      // 重新命名避免與全域 process 物件衝突
-      const pythonProcess = spawn(this.pythonPath, args, {
-        cwd: cwd || this.backendRootDir,
-        stdio: ["pipe", "pipe", "pipe"],
-        env: {
-          ...process.env, // 這裡使用全域 process 物件
-          PYTHONUNBUFFERED: "1",
-          PYTHONIOENCODING: "utf-8",
-        },
-      });
-
-      if (processCallback) {
-        processCallback(pythonProcess);
-      }
-
-      let output = "";
-      let errorOutput = "";
-
-      // 設置編碼
-      pythonProcess.stdout.setEncoding("utf8");
-      pythonProcess.stderr.setEncoding("utf8");
-
-      // Handle stdout
-      pythonProcess.stdout.on("data", (data) => {
-        const chunk = data.toString();
-        output += chunk;
-
-        // 立即記錄
-        analysisLogger.info(chunk.trim());
-
-        // 立即逐行發送到 SSE
-        const lines = chunk.split(/\r?\n/);
-        lines.forEach((line) => {
-          if (line.trim()) {
-            if (progressCallback) {
+    // 使用 DockerService 的標準方法
+    return this.dockerService.runContainer({
+      workDir: this.backendRootDir,
+      command: "python3",
+      args: containerArgs,
+      onStdout: (chunk) => {
+        analysisLogger.info(`Docker: ${chunk.trim()}`);
+        if (progressCallback) {
+          const lines = chunk.split(/\r?\n/);
+          lines.forEach((line) => {
+            if (line.trim()) {
               progressCallback({
                 type: "progress",
                 message: line.trim(),
               });
             }
-          }
-        });
-      });
-
-      // Handle stderr
-      pythonProcess.stderr.on("data", (data) => {
-        const chunk = data.toString();
-        errorOutput += chunk;
-        analysisLogger.error(`ERROR: ${chunk.trim()}`);
-
+          });
+        }
+      },
+      onStderr: (chunk) => {
+        analysisLogger.error(`Docker ERROR: ${chunk.trim()}`);
         if (progressCallback) {
           progressCallback({
             type: "error",
-            message: `Python error: ${chunk.trim()}`,
+            message: `Docker error: ${chunk.trim()}`,
           });
         }
-      });
-
-      // Handle process termination (包括被殺死的情況)
-      pythonProcess.on("close", (code, signal) => {
-        if (signal === "SIGTERM" || signal === "SIGKILL") {
-          // 程序被終止
-          const errorMsg = `Python process was terminated (signal: ${signal})`;
-          if (progressCallback) {
-            progressCallback({
-              type: "error",
-              message: errorMsg,
-            });
-          }
-          reject(new Error(errorMsg));
-        } else if (code === 0) {
-          // 正常完成
-          if (progressCallback) {
-            progressCallback({
-              type: "progress",
-              message: `Python script execution completed (exit code: ${code})`,
-            });
-          }
-          resolve({
-            success: true,
-            output,
-          });
-        } else {
-          // 錯誤退出
-          const errorMsg = `Python script execution failed (exit code: ${code})${
-            errorOutput ? ": " + errorOutput : ""
-          }`;
-          if (progressCallback) {
-            progressCallback({
-              type: "error",
-              message: errorMsg,
-            });
-          }
-          reject(new Error(errorMsg));
+      },
+      onExit: (code, signal) => {
+        if (processCallback) {
+          processCallback(null); // 清除 process reference
         }
-      });
-
-      // Handle process error
-      pythonProcess.on("error", (error) => {
-        const errorMsg = `Unable to start Python script: ${error.message}`;
-
-        if (progressCallback) {
-          progressCallback({
-            type: "error",
-            message: errorMsg,
-          });
-        }
-
-        reject(new Error(errorMsg));
-      });
+      },
     });
   }
 
+  /**
+   * Parse pipeline results from output directories
+   * @private
+   */
   async _parsePipelineResults(renameOutputDir, trimOutputDir) {
     try {
       const results = {

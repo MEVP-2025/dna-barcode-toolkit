@@ -6,7 +6,7 @@ const API_BASE_URL =
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 300000, // 5 minutes for large file uploads
+  timeout: 600000, // 10 minutes for large file uploads
 });
 
 // Simple API methods
@@ -21,19 +21,23 @@ export const api = {
     },
   },
 
-  // Analysis (簡化版 - 移除 analysisId)
+  // Analysis
   analysis: {
     pipeline: {
-      // 開始分析 (不返回 analysisId)
+      // 物種檢測 (新增)
+      detectSpecies: (params) =>
+        apiClient.post("/analysis/pipeline/detect-species", params),
+
+      // Start analysis
       start: (params) => apiClient.post("/analysis/pipeline/start", params),
 
-      // 取得當前分析狀態 (不需要 analysisId)
+      // Get analysis status
       getStatus: () => apiClient.get("/analysis/pipeline/status"),
 
-      // 取得分析結果 (不需要 analysisId)
+      // Get analysis results
       getResults: () => apiClient.get("/analysis/pipeline/results"),
 
-      // 檢查當前分析
+      // Check current analysis
       getCurrent: () => apiClient.get("/analysis/current"),
 
       // 清除當前分析
@@ -41,7 +45,10 @@ export const api = {
 
       stop: () => apiClient.post("/analysis/pipeline/stop"),
 
-      // SSE監聽進度的方法 (簡化版 - 不需要 analysisId)
+      // Docker environment check
+      // checkDooker: () => apiClient.get("/analysis/docker/check"),
+
+      // SSE listen
       watchProgress: (callbacks) => {
         const eventSource = new EventSource(
           `${API_BASE_URL}/analysis/pipeline/progress`

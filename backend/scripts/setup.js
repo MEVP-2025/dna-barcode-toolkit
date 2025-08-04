@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename);
 const rootDir = path.join(__dirname, "..");
 
 async function setup() {
-  console.log("🚀 Setting up Evolution Analysis Backend...\n");
+  console.log("Setting up Evolution Analysis Backend...\n");
 
   // Create necessary directories
   const directories = [

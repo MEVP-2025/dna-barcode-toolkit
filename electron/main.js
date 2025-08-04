@@ -34,7 +34,7 @@ function createWindow() {
     // 開發模式：載入 Vite 開發伺服器
     mainWindow.loadURL("http://localhost:5173");
     // 開啟開發者工具
-    // mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
   } else {
     // 生產模式：載入打包後的檔案
     mainWindow.loadFile(path.join(__dirname, "../frontend/dist/index.html"));

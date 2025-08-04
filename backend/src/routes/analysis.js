@@ -1,10 +1,93 @@
 // src/routes/analysis.js
 import express from "express";
 import Joi from "joi";
+// import { DockerService } from "../services/dockerService.js";
 import { PythonExecutor } from "../services/pythonExecutor.js";
 
 const router = express.Router();
 const pythonExecutor = new PythonExecutor();
+// const dockerService = new DockerService();
+
+// 物種檢測端點
+router.post("/pipeline/detect-species", async (req, res) => {
+  try {
+    // 驗證輸入
+    const { barcodeFile } = req.body;
+
+    if (!barcodeFile) {
+      return res.status(400).json({
+        error: "Barcode file is required",
+      });
+    }
+
+    // 檢查檔案是否存在
+    const barcodeFilePath = path.join(
+      pythonExecutor.uploadsDir,
+      path.basename(barcodeFile)
+    );
+    if (!(await fs.pathExists(barcodeFilePath))) {
+      return res.status(404).json({
+        error: "Barcode file not found",
+        file: barcodeFile,
+      });
+    }
+
+    logger.info(`Starting species detection for: ${barcodeFile}`);
+
+    // 使用 DockerService 執行物種檢測腳本
+    const result = await pythonExecutor.dockerService.runContainer({
+      workDir: pythonExecutor.backendRootDir,
+      command: "python3",
+      args: [
+        "/app/data/python_scripts/species_detector.py",
+        `/app/data/uploads/${path.basename(barcodeFile)}`,
+      ],
+      onStdout: (chunk) => {
+        logger.info(`Species detection output: ${chunk.trim()}`);
+      },
+      onStderr: (chunk) => {
+        logger.error(`Species detection error: ${chunk.trim()}`);
+      },
+    });
+
+    // 解析 Python 腳本的 JSON 輸出
+    let speciesData;
+    try {
+      speciesData = JSON.parse(result.output.trim());
+    } catch (parseError) {
+      logger.error("Failed to parse species detection output:", result.output);
+      return res.status(500).json({
+        error: "Failed to parse species detection result",
+        details: "Invalid JSON output from species detector",
+      });
+    }
+
+    // 檢查是否有錯誤
+    if (speciesData.error) {
+      return res.status(400).json({
+        error: "Species detection failed",
+        details: speciesData.error,
+      });
+    }
+
+    logger.info(
+      `Species detection completed. Found ${speciesData.species.length} species`
+    );
+
+    // 返回成功結果
+    res.json({
+      success: true,
+      data: speciesData,
+      message: `Successfully detected ${speciesData.species.length} species`,
+    });
+  } catch (error) {
+    logger.error("Species detection failed:", error);
+    res.status(500).json({
+      error: "Species detection failed",
+      details: error.message,
+    });
+  }
+});
 
 // Store current analysis state (single analysis only)
 let currentAnalysis = null;
@@ -268,13 +351,9 @@ function broadcastToSSEClients(data) {
   currentAnalysis.sseConnections.forEach((connection) => {
     try {
       connection.write(message);
-      // 強制刷新緩衝區 - 這是關鍵！
+      // 強制刷新緩衝區 - 這是關鍵！確保資料立即發送而不是被緩存
       if (connection.flush) {
         connection.flush();
-      }
-      // 或者使用 Node.js 的 flushHeaders
-      if (connection.flushHeaders) {
-        connection.flushHeaders();
       }
     } catch (error) {
       console.error("Failed to send SSE message:", error);
@@ -388,5 +467,19 @@ router.delete("/clear", (req, res) => {
     message: "Current analysis cleared",
   });
 });
+
+// Check Docker environment
+// router.get("/docker/check", async (req, res) => {
+//   try {
+//     const result = await dockerService.checkEnvironment();
+//     res.json(result);
+//   } catch (error) {
+//     res.status(500).json({
+//       success: false,
+//       message: "Failed to check Docker environment",
+//       error: error.message,
+//     });
+//   }
+// });
 
 export default router;

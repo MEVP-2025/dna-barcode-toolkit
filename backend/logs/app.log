@@ -997,3 +997,529 @@ SyntaxError: invalid syntax
 2025-08-04 00:49:52 [INFO]: Output directories cleared successfully
 2025-08-04 00:49:52 [INFO]: Starting integrated pipeline
 2025-08-04 01:05:12 [INFO]: Integrated pipeline completed
+2025-08-04 09:39:07 [INFO]: Server running on port 3001
+2025-08-04 09:39:07 [INFO]: Environment: development
+2025-08-04 09:39:07 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 09:39:07 [INFO]: Serving static files from:
+2025-08-04 09:39:07 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 09:39:07 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 09:39:13 [INFO]: Server running on port 3001
+2025-08-04 09:39:13 [INFO]: Environment: development
+2025-08-04 09:39:13 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 09:39:13 [INFO]: Serving static files from:
+2025-08-04 09:39:13 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 09:39:13 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 09:45:03 [INFO]: Server running on port 3001
+2025-08-04 09:45:03 [INFO]: Environment: development
+2025-08-04 09:45:03 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 09:45:03 [INFO]: Serving static files from:
+2025-08-04 09:45:03 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 09:45:03 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 09:45:38 [INFO]: Server running on port 3001
+2025-08-04 09:45:38 [INFO]: Environment: development
+2025-08-04 09:45:38 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 09:45:38 [INFO]: Serving static files from:
+2025-08-04 09:45:38 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 09:45:38 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 09:47:37 [INFO]: SIGINT received, shutting down gracefully
+2025-08-04 09:47:39 [INFO]: Server running on port 3001
+2025-08-04 09:47:39 [INFO]: Environment: development
+2025-08-04 09:47:39 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 09:47:39 [INFO]: Serving static files from:
+2025-08-04 09:47:39 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 09:47:39 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 09:51:27 [INFO]: Server running on port 3001
+2025-08-04 09:51:27 [INFO]: Environment: development
+2025-08-04 09:51:27 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 09:51:27 [INFO]: Serving static files from:
+2025-08-04 09:51:27 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 09:51:27 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 09:51:49 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 09:51:52 [INFO]: Docker daemon is running
+2025-08-04 09:51:52 [INFO]: Image mevp:latest exists: true
+2025-08-04 09:51:52 [INFO]: Image mevp:latest already exists
+2025-08-04 09:53:26 [INFO]: Paired files uploaded successfully
+2025-08-04 09:53:37 [INFO]: Paired files uploaded successfully
+2025-08-04 09:53:38 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 09:53:39 [INFO]: Docker daemon is running
+2025-08-04 09:53:39 [INFO]: Image mevp:latest exists: true
+2025-08-04 09:53:39 [INFO]: Image mevp:latest already exists
+2025-08-04 09:53:39 [INFO]: Using Docker execution
+2025-08-04 09:53:39 [INFO]: Output directories cleared successfully
+2025-08-04 09:53:39 [INFO]: Starting integrated pipeline
+2025-08-04 09:53:46 [INFO]: Integrated pipeline completed
+2025-08-04 10:21:28 [INFO]: Paired files uploaded successfully
+2025-08-04 10:21:29 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 10:21:31 [INFO]: Docker daemon is running
+2025-08-04 10:21:31 [INFO]: Image mevp:latest exists: true
+2025-08-04 10:21:31 [INFO]: Image mevp:latest already exists
+2025-08-04 10:21:31 [INFO]: Using Docker execution
+2025-08-04 10:21:31 [INFO]: Output directories cleared successfully
+2025-08-04 10:21:31 [INFO]: Starting integrated pipeline
+2025-08-04 10:21:32 [INFO]: Integrated pipeline completed
+2025-08-04 10:21:40 [INFO]: SIGINT received, shutting down gracefully
+2025-08-04 10:21:52 [INFO]: Server running on port 3001
+2025-08-04 10:21:52 [INFO]: Environment: development
+2025-08-04 10:21:52 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 10:21:52 [INFO]: Serving static files from:
+2025-08-04 10:21:52 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 10:21:52 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 10:22:08 [INFO]: Paired files uploaded successfully
+2025-08-04 10:22:10 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 10:22:11 [INFO]: Docker daemon is running
+2025-08-04 10:22:11 [INFO]: Image mevp:latest exists: true
+2025-08-04 10:22:11 [INFO]: Image mevp:latest already exists
+2025-08-04 10:22:11 [INFO]: Using Docker execution
+2025-08-04 10:22:11 [INFO]: Output directories cleared successfully
+2025-08-04 10:22:11 [INFO]: Starting integrated pipeline
+2025-08-04 10:22:11 [INFO]: Integrated pipeline completed
+2025-08-04 10:32:44 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 10:32:44 [INFO]: Docker daemon is running
+2025-08-04 10:32:44 [INFO]: Image mevp:latest exists: true
+2025-08-04 10:32:44 [INFO]: Image mevp:latest already exists
+2025-08-04 10:32:44 [INFO]: Using Docker execution
+2025-08-04 10:32:44 [INFO]: Output directories cleared successfully
+2025-08-04 10:32:44 [INFO]: Starting integrated pipeline
+2025-08-04 10:32:46 [INFO]: Integrated pipeline completed
+2025-08-04 10:43:15 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 10:43:15 [INFO]: Docker daemon is running
+2025-08-04 10:43:15 [INFO]: Image mevp:latest exists: true
+2025-08-04 10:43:15 [INFO]: Image mevp:latest already exists
+2025-08-04 10:43:15 [INFO]: Using Docker execution
+2025-08-04 10:43:15 [INFO]: Output directories cleared successfully
+2025-08-04 10:43:15 [INFO]: Starting integrated pipeline
+2025-08-04 10:43:16 [INFO]: Integrated pipeline completed
+2025-08-04 10:44:35 [INFO]: Paired files uploaded successfully
+2025-08-04 10:44:45 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 10:44:45 [INFO]: Docker daemon is running
+2025-08-04 10:44:45 [INFO]: Image mevp:latest exists: true
+2025-08-04 10:44:45 [INFO]: Image mevp:latest already exists
+2025-08-04 10:44:45 [INFO]: Using Docker execution
+2025-08-04 10:44:45 [INFO]: Output directories cleared successfully
+2025-08-04 10:44:45 [INFO]: Starting integrated pipeline
+2025-08-04 10:47:05 [INFO]: SIGINT received, shutting down gracefully
+2025-08-04 10:47:16 [INFO]: Server running on port 3001
+2025-08-04 10:47:16 [INFO]: Environment: development
+2025-08-04 10:47:16 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 10:47:16 [INFO]: Serving static files from:
+2025-08-04 10:47:16 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 10:47:16 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 10:47:44 [INFO]: SIGINT received, shutting down gracefully
+2025-08-04 10:54:48 [INFO]: Server running on port 3001
+2025-08-04 10:54:48 [INFO]: Environment: development
+2025-08-04 10:54:48 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 10:54:48 [INFO]: Serving static files from:
+2025-08-04 10:54:48 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 10:54:48 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 10:54:50 [INFO]: Paired files uploaded successfully
+2025-08-04 10:54:59 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 10:55:00 [INFO]: Docker daemon is running
+2025-08-04 10:55:00 [INFO]: Image mevp:latest exists: true
+2025-08-04 10:55:00 [INFO]: Image mevp:latest already exists
+2025-08-04 10:55:00 [INFO]: Using Docker execution
+2025-08-04 10:55:00 [INFO]: Output directories cleared successfully
+2025-08-04 10:55:00 [INFO]: Starting integrated pipeline
+2025-08-04 10:55:04 [INFO]: Integrated pipeline completed
+2025-08-04 10:56:07 [INFO]: Server running on port 3001
+2025-08-04 10:56:07 [INFO]: Environment: development
+2025-08-04 10:56:07 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 10:56:07 [INFO]: Serving static files from:
+2025-08-04 10:56:07 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 10:56:07 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 10:59:15 [INFO]: Server running on port 3001
+2025-08-04 10:59:15 [INFO]: Environment: development
+2025-08-04 10:59:15 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 10:59:15 [INFO]: Serving static files from:
+2025-08-04 10:59:15 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 10:59:15 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 11:04:16 [INFO]: Paired files uploaded successfully
+2025-08-04 11:04:17 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 11:04:19 [INFO]: Docker daemon is running
+2025-08-04 11:04:19 [INFO]: Image mevp:latest exists: true
+2025-08-04 11:04:19 [INFO]: Image mevp:latest already exists
+2025-08-04 11:04:19 [INFO]: Using Docker execution
+2025-08-04 11:04:19 [INFO]: Output directories cleared successfully
+2025-08-04 11:04:19 [INFO]: Starting integrated pipeline
+2025-08-04 11:04:21 [INFO]: Integrated pipeline completed
+2025-08-04 11:38:48 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 11:38:51 [INFO]: Docker daemon is running
+2025-08-04 11:38:51 [INFO]: Image mevp:latest exists: true
+2025-08-04 11:38:51 [INFO]: Image mevp:latest already exists
+2025-08-04 11:38:51 [INFO]: Using Docker execution
+2025-08-04 11:38:51 [INFO]: Output directories cleared successfully
+2025-08-04 11:38:51 [INFO]: Starting integrated pipeline
+2025-08-04 11:38:53 [INFO]: Integrated pipeline completed
+2025-08-04 12:03:30 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 12:03:31 [INFO]: Docker daemon is running
+2025-08-04 12:03:31 [INFO]: Image mevp:latest exists: true
+2025-08-04 12:03:31 [INFO]: Image mevp:latest already exists
+2025-08-04 12:03:31 [INFO]: Using Docker execution
+2025-08-04 12:03:31 [INFO]: Output directories cleared successfully
+2025-08-04 12:03:31 [INFO]: Starting integrated pipeline
+2025-08-04 12:03:33 [INFO]: Integrated pipeline completed
+2025-08-04 12:05:15 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 12:05:16 [INFO]: Docker daemon is running
+2025-08-04 12:05:16 [INFO]: Image mevp:latest exists: true
+2025-08-04 12:05:16 [INFO]: Image mevp:latest already exists
+2025-08-04 12:05:16 [INFO]: Using Docker execution
+2025-08-04 12:05:16 [INFO]: Output directories cleared successfully
+2025-08-04 12:05:16 [INFO]: Starting integrated pipeline
+2025-08-04 12:05:17 [INFO]: Integrated pipeline completed
+2025-08-04 12:06:08 [INFO]: Paired files uploaded successfully
+2025-08-04 12:06:09 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 12:06:10 [INFO]: Docker daemon is running
+2025-08-04 12:06:10 [INFO]: Image mevp:latest exists: true
+2025-08-04 12:06:10 [INFO]: Image mevp:latest already exists
+2025-08-04 12:06:10 [INFO]: Using Docker execution
+2025-08-04 12:06:10 [INFO]: Output directories cleared successfully
+2025-08-04 12:06:10 [INFO]: Starting integrated pipeline
+2025-08-04 12:21:49 [INFO]: Integrated pipeline completed
+2025-08-04 12:21:56 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 12:21:57 [INFO]: Docker daemon is running
+2025-08-04 12:21:57 [INFO]: Image mevp:latest exists: true
+2025-08-04 12:21:57 [INFO]: Image mevp:latest already exists
+2025-08-04 12:21:57 [INFO]: Using Docker execution
+2025-08-04 12:21:57 [INFO]: Output directories cleared successfully
+2025-08-04 12:21:57 [INFO]: Starting integrated pipeline
+2025-08-04 12:38:42 [INFO]: Integrated pipeline completed
+2025-08-04 12:38:46 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 12:38:50 [INFO]: Docker daemon is running
+2025-08-04 12:38:50 [INFO]: Image mevp:latest exists: true
+2025-08-04 12:38:50 [INFO]: Image mevp:latest already exists
+2025-08-04 12:38:50 [INFO]: Using Docker execution
+2025-08-04 12:38:50 [INFO]: Output directories cleared successfully
+2025-08-04 12:38:50 [INFO]: Starting integrated pipeline
+2025-08-04 12:39:11 [INFO]: SIGINT received, shutting down gracefully
+2025-08-04 12:39:16 [INFO]: Server running on port 3001
+2025-08-04 12:39:16 [INFO]: Environment: development
+2025-08-04 12:39:16 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 12:39:16 [INFO]: Serving static files from:
+2025-08-04 12:39:16 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 12:39:16 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 12:39:19 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 12:39:20 [INFO]: Docker daemon is running
+2025-08-04 12:39:20 [INFO]: Image mevp:latest exists: true
+2025-08-04 12:39:20 [INFO]: Image mevp:latest already exists
+2025-08-04 12:39:20 [INFO]: Using Docker execution
+2025-08-04 12:39:20 [INFO]: Output directories cleared successfully
+2025-08-04 12:39:20 [INFO]: Starting integrated pipeline
+2025-08-04 12:55:32 [INFO]: Integrated pipeline completed
+2025-08-04 12:55:35 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 12:55:40 [INFO]: Docker daemon is running
+2025-08-04 12:55:40 [INFO]: Image mevp:latest exists: true
+2025-08-04 12:55:40 [INFO]: Image mevp:latest already exists
+2025-08-04 12:55:40 [INFO]: Using Docker execution
+2025-08-04 12:55:40 [INFO]: Output directories cleared successfully
+2025-08-04 12:55:40 [INFO]: Starting integrated pipeline
+2025-08-04 12:56:16 [INFO]: Paired files uploaded successfully
+2025-08-04 13:11:51 [INFO]: Integrated pipeline completed
+2025-08-04 13:32:11 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 13:32:16 [ERROR]: Docker daemon is not running:
+2025-08-04 13:32:16 [WARN]: Docker not available, falling back to local Python
+2025-08-04 13:32:16 [WARN]: Docker check failed: Docker daemon is not running
+2025-08-04 13:32:16 [INFO]: Output directories cleared successfully
+2025-08-04 13:32:16 [INFO]: Starting integrated pipeline
+2025-08-04 13:33:06 [ERROR]: Error: Python process was terminated (signal: SIGTERM)
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:408:18)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-04 13:35:33 [INFO]: Paired files uploaded successfully
+2025-08-04 13:35:45 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 13:35:45 [INFO]: Docker daemon is running
+2025-08-04 13:35:45 [INFO]: Image mevp:latest exists: true
+2025-08-04 13:35:45 [INFO]: Image mevp:latest already exists
+2025-08-04 13:35:45 [INFO]: Using Docker execution
+2025-08-04 13:35:46 [INFO]: Output directories cleared successfully
+2025-08-04 13:35:46 [INFO]: Starting integrated pipeline
+2025-08-04 13:51:44 [INFO]: Integrated pipeline completed
+2025-08-04 14:34:10 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 14:34:11 [INFO]: Docker daemon is running
+2025-08-04 14:34:17 [INFO]: Image mevp:latest exists: true
+2025-08-04 14:34:17 [INFO]: Image mevp:latest already exists
+2025-08-04 14:34:17 [INFO]: Using Docker execution
+2025-08-04 14:34:17 [INFO]: Output directories cleared successfully
+2025-08-04 14:34:17 [INFO]: Starting integrated pipeline
+2025-08-04 14:51:20 [INFO]: Integrated pipeline completed
+2025-08-04 14:51:34 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 14:51:34 [INFO]: Docker daemon is running
+2025-08-04 14:51:34 [INFO]: Image mevp:latest exists: true
+2025-08-04 14:51:34 [INFO]: Image mevp:latest already exists
+2025-08-04 14:51:34 [INFO]: Using Docker execution
+2025-08-04 14:51:34 [INFO]: Output directories cleared successfully
+2025-08-04 14:51:34 [INFO]: Starting integrated pipeline
+2025-08-04 15:02:22 [INFO]: SIGINT received, shutting down gracefully
+2025-08-04 15:02:25 [INFO]: Server running on port 3001
+2025-08-04 15:02:25 [INFO]: Environment: development
+2025-08-04 15:02:25 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 15:02:25 [INFO]: Serving static files from:
+2025-08-04 15:02:25 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 15:02:25 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 15:02:38 [INFO]: Paired files uploaded successfully
+2025-08-04 15:02:41 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 15:02:42 [INFO]: Docker daemon is running
+2025-08-04 15:02:42 [INFO]: Image mevp:latest exists: true
+2025-08-04 15:02:42 [INFO]: Image mevp:latest already exists
+2025-08-04 15:02:42 [INFO]: Using Docker execution
+2025-08-04 15:02:42 [INFO]: Output directories cleared successfully
+2025-08-04 15:02:42 [INFO]: Starting integrated pipeline
+2025-08-04 15:17:41 [INFO]: Integrated pipeline completed
+2025-08-04 15:58:35 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 15:58:37 [INFO]: Docker daemon is running
+2025-08-04 15:58:43 [INFO]: Image mevp:latest exists: true
+2025-08-04 15:58:43 [INFO]: Image mevp:latest already exists
+2025-08-04 15:58:43 [INFO]: Using Docker execution
+2025-08-04 15:58:43 [INFO]: Output directories cleared successfully
+2025-08-04 15:58:43 [INFO]: Starting integrated pipeline
+2025-08-04 16:13:01 [INFO]: SIGINT received, shutting down gracefully
+2025-08-04 16:13:05 [INFO]: Server running on port 3001
+2025-08-04 16:13:05 [INFO]: Environment: development
+2025-08-04 16:13:05 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 16:13:05 [INFO]: Serving static files from:
+2025-08-04 16:13:05 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 16:13:05 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 16:13:27 [INFO]: Paired files uploaded successfully
+2025-08-04 16:13:29 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 16:13:29 [INFO]: Docker daemon is running
+2025-08-04 16:13:29 [INFO]: Image mevp:latest exists: true
+2025-08-04 16:13:29 [INFO]: Image mevp:latest already exists
+2025-08-04 16:13:29 [INFO]: Using Docker execution
+2025-08-04 16:13:29 [INFO]: Output directories cleared successfully
+2025-08-04 16:13:29 [INFO]: Starting integrated pipeline
+2025-08-04 16:16:28 [INFO]: Paired files uploaded successfully
+2025-08-04 16:22:39 [INFO]: Server running on port 3001
+2025-08-04 16:22:39 [INFO]: Environment: development
+2025-08-04 16:22:39 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 16:22:39 [INFO]: Serving static files from:
+2025-08-04 16:22:39 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 16:22:39 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 16:23:01 [INFO]: Server running on port 3001
+2025-08-04 16:23:01 [INFO]: Environment: development
+2025-08-04 16:23:01 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 16:23:01 [INFO]: Serving static files from:
+2025-08-04 16:23:01 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 16:23:01 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 16:23:27 [INFO]: Server running on port 3001
+2025-08-04 16:23:27 [INFO]: Environment: development
+2025-08-04 16:23:27 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 16:23:27 [INFO]: Serving static files from:
+2025-08-04 16:23:27 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 16:23:27 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 16:24:43 [INFO]: Server running on port 3001
+2025-08-04 16:24:43 [INFO]: Environment: development
+2025-08-04 16:24:43 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 16:24:43 [INFO]: Serving static files from:
+2025-08-04 16:24:43 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 16:24:43 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 16:25:19 [INFO]: Server running on port 3001
+2025-08-04 16:25:19 [INFO]: Environment: development
+2025-08-04 16:25:19 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 16:25:19 [INFO]: Serving static files from:
+2025-08-04 16:25:19 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 16:25:19 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 16:25:55 [INFO]: Server running on port 3001
+2025-08-04 16:25:55 [INFO]: Environment: development
+2025-08-04 16:25:55 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 16:25:55 [INFO]: Serving static files from:
+2025-08-04 16:25:55 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 16:25:55 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 17:52:45 [INFO]: Server running on port 3001
+2025-08-04 17:52:45 [INFO]: Environment: development
+2025-08-04 17:52:45 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 17:52:45 [INFO]: Serving static files from:
+2025-08-04 17:52:45 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 17:52:45 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 17:55:10 [INFO]: Server running on port 3001
+2025-08-04 17:55:10 [INFO]: Environment: development
+2025-08-04 17:55:10 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 17:55:10 [INFO]: Serving static files from:
+2025-08-04 17:55:10 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 17:55:10 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 17:55:14 [INFO]: Server running on port 3001
+2025-08-04 17:55:14 [INFO]: Environment: development
+2025-08-04 17:55:14 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 17:55:14 [INFO]: Serving static files from:
+2025-08-04 17:55:14 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 17:55:14 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 17:55:26 [INFO]: Server running on port 3001
+2025-08-04 17:55:26 [INFO]: Environment: development
+2025-08-04 17:55:26 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 17:55:26 [INFO]: Serving static files from:
+2025-08-04 17:55:26 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 17:55:26 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 18:00:51 [INFO]: SIGINT received, shutting down gracefully
+2025-08-04 18:00:54 [INFO]: Server running on port 3001
+2025-08-04 18:00:54 [INFO]: Environment: development
+2025-08-04 18:00:54 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 18:00:54 [INFO]: Serving static files from:
+2025-08-04 18:00:54 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 18:00:54 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 18:01:17 [INFO]: Paired files uploaded successfully
+2025-08-04 18:01:19 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 18:01:30 [INFO]: Docker daemon is running
+2025-08-04 18:01:35 [INFO]: Image mevp:latest exists: true
+2025-08-04 18:01:35 [INFO]: Image mevp:latest already exists
+2025-08-04 18:01:35 [INFO]: Docker environment verified successfully
+2025-08-04 18:01:35 [INFO]: Output directories cleared successfully
+2025-08-04 18:01:35 [INFO]: Starting integrated pipeline with Docker
+2025-08-04 18:08:19 [INFO]: Server running on port 3001
+2025-08-04 18:08:19 [INFO]: Environment: development
+2025-08-04 18:08:19 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 18:08:19 [INFO]: Serving static files from:
+2025-08-04 18:08:19 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 18:08:19 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 18:08:36 [INFO]: SIGINT received, shutting down gracefully
+2025-08-04 18:08:38 [INFO]: Server running on port 3001
+2025-08-04 18:08:38 [INFO]: Environment: development
+2025-08-04 18:08:38 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 18:08:38 [INFO]: Serving static files from:
+2025-08-04 18:08:38 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 18:08:38 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 18:09:04 [INFO]: Paired files uploaded successfully
+2025-08-04 18:09:09 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 18:09:09 [INFO]: Docker daemon is running
+2025-08-04 18:09:09 [INFO]: Image mevp:latest exists: true
+2025-08-04 18:09:09 [INFO]: Image mevp:latest already exists
+2025-08-04 18:09:09 [INFO]: Docker environment verified successfully
+2025-08-04 18:09:09 [INFO]: Output directories cleared successfully
+2025-08-04 18:09:09 [INFO]: Starting integrated pipeline with Docker
+2025-08-04 18:09:10 [INFO]: Docker pipeline completed successfully
+2025-08-04 19:20:49 [INFO]: Paired files uploaded successfully
+2025-08-04 19:20:53 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 19:20:54 [INFO]: Docker daemon is running
+2025-08-04 19:20:59 [INFO]: Image mevp:latest exists: true
+2025-08-04 19:20:59 [INFO]: Image mevp:latest already exists
+2025-08-04 19:20:59 [INFO]: Docker environment verified successfully
+2025-08-04 19:20:59 [INFO]: Output directories cleared successfully
+2025-08-04 19:20:59 [INFO]: Starting integrated pipeline with Docker
+2025-08-04 19:21:00 [INFO]: Docker pipeline completed successfully
+2025-08-04 19:45:15 [INFO]: Server running on port 3001
+2025-08-04 19:45:15 [INFO]: Environment: development
+2025-08-04 19:45:15 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 19:45:15 [INFO]: Serving static files from:
+2025-08-04 19:45:15 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 19:45:15 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 19:49:44 [INFO]: Server running on port 3001
+2025-08-04 19:49:44 [INFO]: Environment: development
+2025-08-04 19:49:44 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 19:49:44 [INFO]: Serving static files from:
+2025-08-04 19:49:44 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 19:49:44 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 19:49:54 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 19:49:56 [INFO]: Docker daemon is running
+2025-08-04 19:50:06 [INFO]: Image mevp:latest exists: true
+2025-08-04 19:50:06 [INFO]: Image mevp:latest already exists
+2025-08-04 19:50:06 [INFO]: Docker environment verified successfully
+2025-08-04 19:50:06 [INFO]: Output directories cleared successfully
+2025-08-04 19:50:06 [INFO]: Starting integrated pipeline with Docker
+2025-08-04 19:50:07 [INFO]: Docker pipeline completed successfully
+2025-08-04 19:51:04 [INFO]: Server running on port 3001
+2025-08-04 19:51:04 [INFO]: Environment: development
+2025-08-04 19:51:04 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 19:51:04 [INFO]: Serving static files from:
+2025-08-04 19:51:04 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 19:51:04 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 20:11:19 [INFO]: Server running on port 3001
+2025-08-04 20:11:19 [INFO]: Environment: development
+2025-08-04 20:11:19 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 20:11:19 [INFO]: Serving static files from:
+2025-08-04 20:11:19 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 20:11:19 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 20:24:14 [INFO]: Server running on port 3001
+2025-08-04 20:24:14 [INFO]: Environment: development
+2025-08-04 20:24:14 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 20:24:14 [INFO]: Serving static files from:
+2025-08-04 20:24:14 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 20:24:14 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 20:24:18 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 20:24:20 [INFO]: Docker daemon is running
+2025-08-04 20:24:25 [INFO]: Image mevp:latest exists: true
+2025-08-04 20:24:25 [INFO]: Image mevp:latest already exists
+2025-08-04 20:24:25 [INFO]: Docker environment verified successfully
+2025-08-04 20:24:25 [INFO]: Output directories cleared successfully
+2025-08-04 20:24:25 [INFO]: Starting integrated pipeline with Docker
+2025-08-04 20:24:26 [INFO]: Docker pipeline completed successfully
+2025-08-04 20:32:42 [INFO]: Server running on port 3001
+2025-08-04 20:32:42 [INFO]: Environment: development
+2025-08-04 20:32:42 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 20:32:42 [INFO]: Serving static files from:
+2025-08-04 20:32:42 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 20:32:42 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 20:32:52 [INFO]: Server running on port 3001
+2025-08-04 20:32:52 [INFO]: Environment: development
+2025-08-04 20:32:52 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 20:32:52 [INFO]: Serving static files from:
+2025-08-04 20:32:52 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 20:32:52 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 20:33:54 [INFO]: Server running on port 3001
+2025-08-04 20:33:54 [INFO]: Environment: development
+2025-08-04 20:33:54 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 20:33:54 [INFO]: Serving static files from:
+2025-08-04 20:33:54 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 20:33:54 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 20:36:11 [INFO]: Server running on port 3001
+2025-08-04 20:36:11 [INFO]: Environment: development
+2025-08-04 20:36:11 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 20:36:11 [INFO]: Serving static files from:
+2025-08-04 20:36:11 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 20:36:11 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 20:36:22 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 20:36:22 [INFO]: Docker daemon is running
+2025-08-04 20:36:24 [INFO]: Image mevp:latest exists: true
+2025-08-04 20:36:24 [INFO]: Image mevp:latest already exists
+2025-08-04 20:36:24 [INFO]: Docker environment verified successfully
+2025-08-04 20:36:24 [INFO]: Output directories cleared successfully
+2025-08-04 20:36:24 [INFO]: Starting integrated pipeline with Docker
+2025-08-04 20:36:24 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/integrated_pipeline.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv
+2025-08-04 20:36:25 [INFO]: Docker pipeline completed successfully
+2025-08-04 20:39:35 [INFO]: Server running on port 3001
+2025-08-04 20:39:35 [INFO]: Environment: development
+2025-08-04 20:39:35 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 20:39:35 [INFO]: Serving static files from:
+2025-08-04 20:39:35 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 20:39:35 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 20:47:04 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-04 20:47:05 [INFO]: Docker daemon is running
+2025-08-04 20:47:07 [INFO]: Image mevp:latest exists: true
+2025-08-04 20:47:07 [INFO]: Image mevp:latest already exists
+2025-08-04 20:47:07 [INFO]: Docker environment verified successfully
+2025-08-04 20:47:07 [INFO]: Output directories cleared successfully
+2025-08-04 20:47:07 [INFO]: Starting integrated pipeline with Docker
+2025-08-04 20:47:07 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/integrated_pipeline.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv
+2025-08-04 20:47:08 [INFO]: Docker pipeline completed successfully
+2025-08-04 21:32:01 [INFO]: Server running on port 3001
+2025-08-04 21:32:01 [INFO]: Environment: development
+2025-08-04 21:32:01 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 21:32:01 [INFO]: Serving static files from:
+2025-08-04 21:32:01 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 21:32:01 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 21:32:02 [INFO]: Server running on port 3001
+2025-08-04 21:32:02 [INFO]: Environment: development
+2025-08-04 21:32:02 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 21:32:02 [INFO]: Serving static files from:
+2025-08-04 21:32:02 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 21:32:02 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 21:32:06 [INFO]: Server running on port 3001
+2025-08-04 21:32:06 [INFO]: Environment: development
+2025-08-04 21:32:06 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 21:32:06 [INFO]: Serving static files from:
+2025-08-04 21:32:06 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 21:32:06 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 21:32:10 [INFO]: Server running on port 3001
+2025-08-04 21:32:10 [INFO]: Environment: development
+2025-08-04 21:32:10 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 21:32:10 [INFO]: Serving static files from:
+2025-08-04 21:32:10 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 21:32:10 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 21:32:16 [INFO]: Server running on port 3001
+2025-08-04 21:32:16 [INFO]: Environment: development
+2025-08-04 21:32:16 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 21:32:16 [INFO]: Serving static files from:
+2025-08-04 21:32:16 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 21:32:16 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-04 21:32:20 [INFO]: Server running on port 3001
+2025-08-04 21:32:20 [INFO]: Environment: development
+2025-08-04 21:32:20 [INFO]: Frontend URL: http://localhost:5173
+2025-08-04 21:32:20 [INFO]: Serving static files from:
+2025-08-04 21:32:20 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-04 21:32:20 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs

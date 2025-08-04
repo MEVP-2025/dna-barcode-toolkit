@@ -203,7 +203,7 @@ class SequenceMatcher:
 class OutputManager:
     """Manages output files for different species."""
     
-    def __init__(self, output_dir: str = "outputs/trim"):
+    def __init__(self, output_dir: str = "/app/data/outputs/trim"):
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
         self.file_handles = {}
@@ -271,7 +271,7 @@ class OutputManager:
 class IntegratedPipeline:
     """Main pipeline that integrates rename and trim operations."""
     
-    def __init__(self, r1_file: str, r2_file: str, barcode_file: str):
+    def __init__(self, r1_file: str, r2_file: str, barcode_file: str, quality_config: dict):
         self.r1_file = r1_file
         self.r2_file = r2_file
         self.barcode_file = barcode_file
@@ -294,7 +294,7 @@ class IntegratedPipeline:
         file_path = Path(original_file)
         filename = file_path.stem
         
-        rename_dir = Path("outputs/rename")
+        rename_dir = Path("/app/data/outputs/rename")
         rename_dir.mkdir(parents=True, exist_ok=True)
         
         return str(rename_dir / f"{filename}.rename.fq")
@@ -429,13 +429,17 @@ def main():
     r1_file = sys.argv[1]
     r2_file = sys.argv[2]
     barcode_file = sys.argv[3]
+    quality_config_file. = sys.argv[4]
     
     for file_path in [r1_file, r2_file, barcode_file]:
         if not os.path.exists(file_path):
             print(f"Error: File {file_path} not found", flush=True)
             sys.exit(1)
+
+    with open(quality_config_file, 'r') as f:
+        quality_config = json.load(f)
     
-    pipeline = IntegratedPipeline(r1_file, r2_file, barcode_file)
+    pipeline = IntegratedPipeline(r1_file, r2_file, barcode_file, quality_config)
     pipeline.run()
 
 

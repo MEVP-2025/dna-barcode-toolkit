@@ -273,3 +273,9 @@ SyntaxError: invalid syntax
     at Socket.<anonymous> (node:internal/child_process:457:11)
     at Socket.emit (node:events:513:28)
     at Pipe.<anonymous> (node:net:351:12)
+2025-08-04 13:32:16 [ERROR]: Docker daemon is not running:
+2025-08-04 13:33:06 [ERROR]: Error: Python process was terminated (signal: SIGTERM)
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:408:18)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
