@@ -1,5 +1,5 @@
 // src/components/FileUpload.jsx
-import { File, Upload, X } from 'lucide-react'
+import { File, Settings, Upload, X } from 'lucide-react'
 import { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import api from '../services/api'
@@ -13,20 +13,21 @@ const FileUpload = ({ onFilesUploaded }) => {
   })
   const [uploading, setUploading] = useState(false)
   const [uploadProgress, setUploadProgress] = useState(0)
+  const [detectingSpecies, setDetectingSpecies] = useState(false)
   const [error, setError] = useState(null)
 
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.forEach(file => {
       let fileType = 'R1'
       if (file.name.includes('R2') || file.name.includes('_2')) {
-      fileType = 'R2'
+        fileType = 'R2'
       } else if (file.name.endsWith('.csv')) {
-      fileType = 'barcode'
+        fileType = 'barcode'
       }
       
       setFiles(prev => ({
-      ...prev,
-      [fileType]: file
+        ...prev,
+        [fileType]: file
       }))
     })
   }, [])
@@ -53,7 +54,13 @@ const FileUpload = ({ onFilesUploaded }) => {
       return
     }
 
+    if (!files.barcode) {
+      setError('Please select barcode CSV file')
+      return
+    }
+
     try {
+      // Step 1: Upload files
       setUploading(true)
       setUploadProgress(0)
       setError(null)
@@ -63,17 +70,49 @@ const FileUpload = ({ onFilesUploaded }) => {
       formData.append('R2', files.R2)
       formData.append('barcode', files.barcode)
 
-      const response = await api.files.uploadPaired(formData, (progressEvent) => {
+      const uploadResponse = await api.files.uploadPaired(formData, (progressEvent) => {
         const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total)
         setUploadProgress(progress)
       })
 
-      onFilesUploaded(response.data.files)
+      setUploading(false)
+
+      // Step 2: Detect species automatically
+      setDetectingSpecies(true)
+      
+      const detectionResponse = await api.analysis.pipeline.detectSpecies({
+        barcodeFile: `uploads/${uploadResponse.data.files.barcode.filename}`
+      })
+
+      if (detectionResponse.data.success) {
+        const species = detectionResponse.data.data.species
+        
+        // 初始化品質配置（預設值）
+        const defaultQualityConfig = {}
+        species.forEach(sp => {
+          defaultQualityConfig[sp] = 0 // 預設最大錯配數為 0
+        })
+
+        // 準備完整的檔案資訊，包含物種檢測結果
+        const filesWithSpecies = {
+          ...uploadResponse.data.files,
+          detectedSpecies: species,
+          defaultQualityConfig: defaultQualityConfig
+        }
+
+        onFilesUploaded(filesWithSpecies)
+      } else {
+        setError('Species detection failed. You can still proceed with manual configuration.')
+        // 即使物種檢測失敗，也傳遞檔案資訊
+        onFilesUploaded(uploadResponse.data.files)
+      }
 
     } catch (error) {
-      setError(error.response?.data?.error || 'Upload failed')
+      console.error('Upload or species detection failed:', error)
+      setError(error.response?.data?.error || 'Upload or species detection failed')
     } finally {
       setUploading(false)
+      setDetectingSpecies(false)
       setUploadProgress(0)
     }
   }
@@ -84,6 +123,8 @@ const FileUpload = ({ onFilesUploaded }) => {
     const i = Math.floor(Math.log(bytes) / Math.log(1024))
     return Math.round(bytes / Math.pow(1024, i) * 100) / 100 + ' ' + sizes[i]
   }
+
+  const isProcessing = uploading || detectingSpecies
 
   return (
     <div className="upload-section">
@@ -125,7 +166,11 @@ const FileUpload = ({ onFilesUploaded }) => {
                 <span className="file-size">({formatFileSize(file.size)})</span>
                 <span className="file-type">{type}</span>
               </div>
-              <button className="remove-btn" onClick={() => removeFile(type)}>
+              <button 
+                className="remove-btn" 
+                onClick={() => removeFile(type)}
+                disabled={isProcessing}
+              >
                 <X size={16} />
               </button>
             </div>
@@ -142,7 +187,20 @@ const FileUpload = ({ onFilesUploaded }) => {
               style={{ width: `${uploadProgress}%` }}
             />
           </div>
-          <span>{uploadProgress}%</span>
+          <span>Uploading... {uploadProgress}%</span>
+        </div>
+      )}
+
+      {/* Species Detection Progress */}
+      {detectingSpecies && (
+        <div className="upload-progress">
+          <div className="progress-bar">
+            <div className="progress-fill detecting" />
+          </div>
+          <span>
+            <Settings size={16} style={{ animation: 'spin 1s linear infinite' }} />
+            Detecting species...
+          </span>
         </div>
       )}
 
@@ -163,9 +221,11 @@ const FileUpload = ({ onFilesUploaded }) => {
         <button
           className="btn btn-primary"
           onClick={uploadFiles}
-          disabled={!files.R1 || !files.R2 || !files.barcode || uploading}
+          disabled={!files.R1 || !files.R2 || !files.barcode || isProcessing}
         >
-          {uploading ? 'Uploading...' : 'Upload Files'}
+          {uploading ? 'Uploading Files...' : 
+           detectingSpecies ? 'Detecting Species...' : 
+           'Upload & Detect Species'}
         </button>
       </div>
     </div>

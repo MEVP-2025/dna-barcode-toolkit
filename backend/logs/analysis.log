@@ -61931,3 +61931,125 @@ Processed 0/250 reads
 2025-08-11 10:10:21 [INFO]: Docker: Successfully wrote 250 trimmed read pairs
 2025-08-11 10:10:21 [INFO]: Docker: Integrated pipeline completed successfully!
 Output files in: outputs/
+2025-08-11 10:21:12 [INFO]: Docker: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-11 10:21:12 [INFO]: Docker: Python: Python 3.13.0
+2025-08-11 10:21:12 [INFO]: Docker: BLAST: blastn: 2.12.0+
+2025-08-11 10:21:12 [INFO]: Docker: MAFFT: v7.505 (2022/Apr/10)
+2025-08-11 10:21:12 [INFO]: Docker: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-11 10:21:12 [INFO]: Docker: Architecture: aarch64
+2025-08-11 10:21:12 [INFO]: Docker: Operating System: Linux
+
+Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-11 10:21:12 [INFO]: Docker: Loaded quality configuration: {'CypDL': 3, 'ZpDL': 3, 'xworm': 3}
+2025-08-11 10:21:12 [INFO]: Docker: Starting integrated DNA analysis pipeline...
+Input files: /app/data/uploads/test1000-R1.fq, /app/data/uploads/test1000-R2.fq
+Barcode file: /app/data/uploads/all-tags.csv
+Quality configuration: {'CypDL': 3, 'ZpDL': 3, 'xworm': 3}
+
+=== Step 1: Renaming R1 reads ===
+Renaming reads in: /app/data/uploads/test1000-R1.fq
+2025-08-11 10:21:12 [INFO]: Docker: Renamed 250 reads. Output: /app/data/outputs/rename/test1000-R1.rename.fq
+
+=== Step 2: Renaming R2 reads ===
+Renaming reads in: /app/data/uploads/test1000-R2.fq
+2025-08-11 10:21:12 [INFO]: Docker: Renamed 250 reads. Output: /app/data/outputs/rename/test1000-R2.rename.fq
+
+=== Step 3: Barcode trimming ===
+Loading barcode file: /app/data/uploads/all-tags.csv
+2025-08-11 10:21:12 [INFO]: Docker: Loaded 90 barcode entries for species: {'ZpDL', 'CypDL', 'xworm'}
+2025-08-11 10:21:12 [INFO]: Docker: Quality standards loaded: {'CypDL': 3, 'ZpDL': 3, 'xworm': 3}
+Loading R1 reads...
+2025-08-11 10:21:12 [INFO]: Docker: Loading R2 reads...
+2025-08-11 10:21:12 [INFO]: Docker: Loaded 250 paired reads
+2025-08-11 10:21:12 [INFO]: Docker: Processing reads for barcode/primer matching...
+Processed 0/250 reads
+2025-08-11 10:21:12 [INFO]: Docker: Writing trimmed reads to output files...
+2025-08-11 10:21:12 [INFO]: Docker: Successfully wrote 250 trimmed read pairs
+2025-08-11 10:21:12 [INFO]: Docker: Integrated pipeline completed successfully!
+Output files in: outputs/
+2025-08-11 10:22:38 [INFO]: Docker: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-11 10:22:38 [INFO]: Docker: Python: Python 3.13.0
+2025-08-11 10:22:38 [INFO]: Docker: BLAST: blastn: 2.12.0+
+2025-08-11 10:22:38 [INFO]: Docker: MAFFT: v7.505 (2022/Apr/10)
+2025-08-11 10:22:38 [INFO]: Docker: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-11 10:22:38 [INFO]: Docker: Architecture: aarch64
+2025-08-11 10:22:38 [INFO]: Docker: Operating System: Linux
+
+Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-11 10:22:38 [INFO]: Docker: Loaded quality configuration: {'CypDL': 3, 'ZpDL': 3, 'xworm': 4}
+2025-08-11 10:22:38 [INFO]: Docker: Starting integrated DNA analysis pipeline...
+Input files: /app/data/uploads/MS23323-pool_000000000-L79NH_L1_R1.fastq, /app/data/uploads/MS23323-pool_000000000-L79NH_L1_R2.fastq
+Barcode file: /app/data/uploads/all-tags.csv
+Quality configuration: {'CypDL': 3, 'ZpDL': 3, 'xworm': 4}
+
+=== Step 1: Renaming R1 reads ===
+Renaming reads in: /app/data/uploads/MS23323-pool_000000000-L79NH_L1_R1.fastq
+2025-08-11 10:22:48 [INFO]: Docker: Renamed 1429571 reads. Output: /app/data/outputs/rename/MS23323-pool_000000000-L79NH_L1_R1.rename.fq
+
+=== Step 2: Renaming R2 reads ===
+Renaming reads in: /app/data/uploads/MS23323-pool_000000000-L79NH_L1_R2.fastq
+2025-08-11 10:22:57 [INFO]: Docker: Renamed 1429571 reads. Output: /app/data/outputs/rename/MS23323-pool_000000000-L79NH_L1_R2.rename.fq
+
+=== Step 3: Barcode trimming ===
+Loading barcode file: /app/data/uploads/all-tags.csv
+Loaded 90 barcode entries for species: {'ZpDL', 'xworm', 'CypDL'}
+2025-08-11 10:22:57 [INFO]: Docker: Quality standards loaded: {'CypDL': 3, 'ZpDL': 3, 'xworm': 4}
+Loading R1 reads...
+2025-08-11 10:23:03 [INFO]: Docker: Loading R2 reads...
+2025-08-11 10:23:33 [INFO]: Docker: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-11 10:23:33 [INFO]: Docker: Python: Python 3.13.0
+2025-08-11 10:23:33 [INFO]: Docker: BLAST: blastn: 2.12.0+
+2025-08-11 10:23:33 [INFO]: Docker: MAFFT: v7.505 (2022/Apr/10)
+2025-08-11 10:23:33 [INFO]: Docker: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-11 10:23:33 [INFO]: Docker: Architecture: aarch64
+2025-08-11 10:23:33 [INFO]: Docker: Operating System: Linux
+
+Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-11 10:23:33 [INFO]: Docker: Loaded quality configuration: {'CypDL': 2, 'ZpDL': 2, 'xworm': 3}
+2025-08-11 10:23:33 [INFO]: Docker: Starting integrated DNA analysis pipeline...
+Input files: /app/data/uploads/test1000-R1.fq, /app/data/uploads/test1000-R2.fq
+Barcode file: /app/data/uploads/all-tags.csv
+Quality configuration: {'CypDL': 2, 'ZpDL': 2, 'xworm': 3}
+
+=== Step 1: Renaming R1 reads ===
+Renaming reads in: /app/data/uploads/test1000-R1.fq
+2025-08-11 10:23:33 [INFO]: Docker: Renamed 250 reads. Output: /app/data/outputs/rename/test1000-R1.rename.fq
+
+=== Step 2: Renaming R2 reads ===
+Renaming reads in: /app/data/uploads/test1000-R2.fq
+2025-08-11 10:23:33 [INFO]: Docker: Renamed 250 reads. Output: /app/data/outputs/rename/test1000-R2.rename.fq
+
+=== Step 3: Barcode trimming ===
+Loading barcode file: /app/data/uploads/all-tags.csv
+2025-08-11 10:23:33 [INFO]: Docker: Loaded 90 barcode entries for species: {'ZpDL', 'CypDL', 'xworm'}
+2025-08-11 10:23:33 [INFO]: Docker: Quality standards loaded: {'CypDL': 2, 'ZpDL': 2, 'xworm': 3}
+Loading R1 reads...
+2025-08-11 10:23:33 [INFO]: Docker: Loading R2 reads...
+2025-08-11 10:23:33 [INFO]: Docker: Loaded 250 paired reads
+2025-08-11 10:23:33 [INFO]: Docker: Processing reads for barcode/primer matching...
+Processed 0/250 reads
+2025-08-11 10:23:33 [INFO]: Docker: Writing trimmed reads to output files...
+2025-08-11 10:23:33 [INFO]: Docker: Successfully wrote 250 trimmed read pairs
+2025-08-11 10:23:33 [INFO]: Docker: Integrated pipeline completed successfully!
+Output files in: outputs/
