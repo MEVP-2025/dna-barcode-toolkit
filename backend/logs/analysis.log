@@ -61387,3 +61387,547 @@ Processed 0/250 reads
 2025-08-04 20:47:08 [INFO]: Docker: Successfully wrote 250 trimmed read pairs
 2025-08-04 20:47:08 [INFO]: Docker: Integrated pipeline completed successfully!
 Output files in: outputs/
+2025-08-07 09:59:23 [INFO]: Docker: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-07 09:59:23 [INFO]: Docker: Python: Python 3.13.0
+2025-08-07 10:05:50 [INFO]: Docker: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-07 10:05:50 [INFO]: Docker: Python: Python 3.13.0
+2025-08-07 10:48:41 [INFO]: Docker: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-07 10:48:41 [INFO]: Docker: Python: Python 3.13.0
+2025-08-07 10:48:41 [INFO]: Docker: BLAST: blastn: 2.12.0+
+2025-08-07 10:48:41 [INFO]: Docker: MAFFT: v7.505 (2022/Apr/10)
+2025-08-07 10:48:41 [INFO]: Docker: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-07 10:48:41 [INFO]: Docker: Architecture: aarch64
+2025-08-07 10:48:41 [INFO]: Docker: Operating System: Linux
+
+Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-11 01:19:14 [INFO]: Docker: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-11 01:19:14 [INFO]: Docker: Python: Python 3.13.0
+2025-08-11 01:19:14 [INFO]: Docker: BLAST: blastn: 2.12.0+
+2025-08-11 01:19:14 [INFO]: Docker: MAFFT: v7.505 (2022/Apr/10)
+2025-08-11 01:19:14 [INFO]: Docker: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-11 01:19:14 [INFO]: Docker: Architecture: aarch64
+2025-08-11 01:19:14 [INFO]: Docker: Operating System: Linux
+
+Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-11 02:50:45 [INFO]: Docker: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-11 02:50:45 [INFO]: Docker: Python: Python 3.13.0
+2025-08-11 02:50:45 [INFO]: Docker: BLAST: blastn: 2.12.0+
+2025-08-11 02:50:45 [INFO]: Docker: MAFFT: v7.505 (2022/Apr/10)
+2025-08-11 02:50:45 [INFO]: Docker: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-11 02:50:45 [INFO]: Docker: Architecture: aarch64
+2025-08-11 02:50:45 [INFO]: Docker: Operating System: Linux
+
+Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-11 02:50:45 [INFO]: Docker: Loaded quality configuration: {'CypDL': 3, 'ZpDL': 3, 'xworm': 3}
+2025-08-11 02:50:45 [INFO]: Docker: Starting integrated DNA analysis pipeline...
+Input files: /app/data/uploads/test1000-R1.fq, /app/data/uploads/test1000-R2.fq
+Barcode file: /app/data/uploads/all-tags.csv
+Quality configuration: {'CypDL': 3, 'ZpDL': 3, 'xworm': 3}
+
+=== Step 1: Renaming R1 reads ===
+Renaming reads in: /app/data/uploads/test1000-R1.fq
+2025-08-11 02:50:45 [INFO]: Docker: Renamed 250 reads. Output: /app/data/outputs/rename/test1000-R1.rename.fq
+
+=== Step 2: Renaming R2 reads ===
+Renaming reads in: /app/data/uploads/test1000-R2.fq
+2025-08-11 02:50:45 [INFO]: Docker: Renamed 250 reads. Output: /app/data/outputs/rename/test1000-R2.rename.fq
+
+=== Step 3: Barcode trimming ===
+Loading barcode file: /app/data/uploads/all-tags.csv
+2025-08-11 02:50:45 [INFO]: Docker: Loaded 90 barcode entries for species: {'ZpDL', 'xworm', 'CypDL'}
+2025-08-11 02:50:45 [INFO]: Docker: Quality standards loaded: {'CypDL': 3, 'ZpDL': 3, 'xworm': 3}
+Loading R1 reads...
+2025-08-11 02:50:45 [INFO]: Docker: Loading R2 reads...
+2025-08-11 02:50:45 [INFO]: Docker: Loaded 250 paired reads
+2025-08-11 02:50:45 [INFO]: Docker: Processing reads for barcode/primer matching...
+Processed 0/250 reads
+2025-08-11 02:50:45 [INFO]: Docker: Writing trimmed reads to output files...
+2025-08-11 02:50:45 [INFO]: Docker: Successfully wrote 250 trimmed read pairs
+2025-08-11 02:50:45 [INFO]: Docker: Integrated pipeline completed successfully!
+Output files in: outputs/
+2025-08-11 02:51:38 [INFO]: Docker: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-11 02:51:38 [INFO]: Docker: Python: Python 3.13.0
+2025-08-11 02:51:38 [INFO]: Docker: BLAST: blastn: 2.12.0+
+2025-08-11 02:51:38 [INFO]: Docker: MAFFT: v7.505 (2022/Apr/10)
+2025-08-11 02:51:38 [INFO]: Docker: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-11 02:51:38 [INFO]: Docker: Architecture: aarch64
+2025-08-11 02:51:38 [INFO]: Docker: Operating System: Linux
+
+Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-11 02:51:43 [INFO]: Docker: Loaded quality configuration: {'CypDL': 9, 'ZpDL': 0, 'xworm': 9}
+2025-08-11 02:51:43 [INFO]: Docker: Starting integrated DNA analysis pipeline...
+Input files: /app/data/uploads/MS23323-pool_000000000-L79NH_L1_R1.fastq, /app/data/uploads/MS23323-pool_000000000-L79NH_L1_R2.fastq
+Barcode file: /app/data/uploads/all-tags.csv
+Quality configuration: {'CypDL': 9, 'ZpDL': 0, 'xworm': 9}
+
+=== Step 1: Renaming R1 reads ===
+Renaming reads in: /app/data/uploads/MS23323-pool_000000000-L79NH_L1_R1.fastq
+2025-08-11 02:51:52 [INFO]: Docker: Renamed 1429571 reads. Output: /app/data/outputs/rename/MS23323-pool_000000000-L79NH_L1_R1.rename.fq
+
+=== Step 2: Renaming R2 reads ===
+Renaming reads in: /app/data/uploads/MS23323-pool_000000000-L79NH_L1_R2.fastq
+2025-08-11 02:52:02 [INFO]: Docker: Renamed 1429571 reads. Output: /app/data/outputs/rename/MS23323-pool_000000000-L79NH_L1_R2.rename.fq
+
+=== Step 3: Barcode trimming ===
+Loading barcode file: /app/data/uploads/all-tags.csv
+Loaded 90 barcode entries for species: {'xworm', 'ZpDL', 'CypDL'}
+2025-08-11 02:52:06 [INFO]: Docker: Quality standards loaded: {'CypDL': 9, 'ZpDL': 0, 'xworm': 9}
+Loading R1 reads...
+2025-08-11 02:52:12 [INFO]: Docker: Loading R2 reads...
+2025-08-11 02:52:34 [INFO]: Docker: Loaded 1429571 paired reads
+2025-08-11 02:52:34 [INFO]: Docker: Processing reads for barcode/primer matching...
+Processed 0/1429571 reads
+2025-08-11 02:52:35 [INFO]: Docker: Processed 1000/1429571 reads
+2025-08-11 02:52:36 [INFO]: Docker: Processed 2000/1429571 reads
+2025-08-11 02:52:36 [INFO]: Docker: Processed 3000/1429571 reads
+2025-08-11 02:52:37 [INFO]: Docker: Processed 4000/1429571 reads
+2025-08-11 02:52:37 [INFO]: Docker: Processed 5000/1429571 reads
+2025-08-11 02:52:38 [INFO]: Docker: Processed 6000/1429571 reads
+2025-08-11 02:52:38 [INFO]: Docker: Processed 7000/1429571 reads
+2025-08-11 02:52:39 [INFO]: Docker: Processed 8000/1429571 reads
+2025-08-11 02:52:40 [INFO]: Docker: Processed 9000/1429571 reads
+2025-08-11 02:52:40 [INFO]: Docker: Processed 10000/1429571 reads
+2025-08-11 02:52:41 [INFO]: Docker: Processed 11000/1429571 reads
+2025-08-11 02:52:42 [INFO]: Docker: Processed 12000/1429571 reads
+2025-08-11 02:52:42 [INFO]: Docker: Processed 13000/1429571 reads
+2025-08-11 02:52:43 [INFO]: Docker: Processed 14000/1429571 reads
+2025-08-11 02:52:43 [INFO]: Docker: Processed 15000/1429571 reads
+2025-08-11 02:52:44 [INFO]: Docker: Processed 16000/1429571 reads
+2025-08-11 02:52:44 [INFO]: Docker: Processed 17000/1429571 reads
+2025-08-11 02:52:45 [INFO]: Docker: Processed 18000/1429571 reads
+2025-08-11 02:52:45 [INFO]: Docker: Processed 19000/1429571 reads
+2025-08-11 02:52:46 [INFO]: Docker: Processed 20000/1429571 reads
+2025-08-11 02:52:47 [INFO]: Docker: Processed 21000/1429571 reads
+2025-08-11 02:52:47 [INFO]: Docker: Processed 22000/1429571 reads
+2025-08-11 02:52:48 [INFO]: Docker: Processed 23000/1429571 reads
+2025-08-11 02:52:48 [INFO]: Docker: Processed 24000/1429571 reads
+2025-08-11 02:52:49 [INFO]: Docker: Processed 25000/1429571 reads
+2025-08-11 02:52:49 [INFO]: Docker: Processed 26000/1429571 reads
+2025-08-11 02:52:50 [INFO]: Docker: Processed 27000/1429571 reads
+2025-08-11 02:52:50 [INFO]: Docker: Processed 28000/1429571 reads
+2025-08-11 02:52:51 [INFO]: Docker: Processed 29000/1429571 reads
+2025-08-11 02:52:52 [INFO]: Docker: Processed 30000/1429571 reads
+2025-08-11 02:52:53 [INFO]: Docker: Processed 31000/1429571 reads
+2025-08-11 02:52:53 [INFO]: Docker: Processed 32000/1429571 reads
+2025-08-11 02:52:54 [INFO]: Docker: Processed 33000/1429571 reads
+2025-08-11 02:52:55 [INFO]: Docker: Processed 34000/1429571 reads
+2025-08-11 02:52:55 [INFO]: Docker: Processed 35000/1429571 reads
+2025-08-11 02:52:56 [INFO]: Docker: Processed 36000/1429571 reads
+2025-08-11 02:52:56 [INFO]: Docker: Processed 37000/1429571 reads
+2025-08-11 02:52:57 [INFO]: Docker: Processed 38000/1429571 reads
+2025-08-11 02:52:58 [INFO]: Docker: Processed 39000/1429571 reads
+2025-08-11 02:52:58 [INFO]: Docker: Processed 40000/1429571 reads
+2025-08-11 02:52:59 [INFO]: Docker: Processed 41000/1429571 reads
+2025-08-11 02:52:59 [INFO]: Docker: Processed 42000/1429571 reads
+2025-08-11 02:53:00 [INFO]: Docker: Processed 43000/1429571 reads
+2025-08-11 02:53:01 [INFO]: Docker: Processed 44000/1429571 reads
+2025-08-11 02:53:02 [INFO]: Docker: Processed 45000/1429571 reads
+2025-08-11 02:53:02 [INFO]: Docker: Processed 46000/1429571 reads
+2025-08-11 02:53:03 [INFO]: Docker: Processed 47000/1429571 reads
+2025-08-11 02:53:03 [INFO]: Docker: Processed 48000/1429571 reads
+2025-08-11 02:53:04 [INFO]: Docker: Processed 49000/1429571 reads
+2025-08-11 02:53:05 [INFO]: Docker: Processed 50000/1429571 reads
+2025-08-11 02:53:05 [INFO]: Docker: Processed 51000/1429571 reads
+2025-08-11 02:53:06 [INFO]: Docker: Processed 52000/1429571 reads
+2025-08-11 02:53:07 [INFO]: Docker: Processed 53000/1429571 reads
+2025-08-11 02:53:07 [INFO]: Docker: Processed 54000/1429571 reads
+2025-08-11 02:53:08 [INFO]: Docker: Processed 55000/1429571 reads
+2025-08-11 02:53:08 [INFO]: Docker: Processed 56000/1429571 reads
+2025-08-11 02:53:09 [INFO]: Docker: Processed 57000/1429571 reads
+2025-08-11 02:53:09 [INFO]: Docker: Processed 58000/1429571 reads
+2025-08-11 02:53:10 [INFO]: Docker: Processed 59000/1429571 reads
+2025-08-11 02:53:10 [INFO]: Docker: Processed 60000/1429571 reads
+2025-08-11 02:53:11 [INFO]: Docker: Processed 61000/1429571 reads
+2025-08-11 02:53:11 [INFO]: Docker: Processed 62000/1429571 reads
+2025-08-11 02:53:12 [INFO]: Docker: Processed 63000/1429571 reads
+2025-08-11 02:53:13 [INFO]: Docker: Processed 64000/1429571 reads
+2025-08-11 02:53:13 [INFO]: Docker: Processed 65000/1429571 reads
+2025-08-11 02:53:14 [INFO]: Docker: Processed 66000/1429571 reads
+2025-08-11 02:53:14 [INFO]: Docker: Processed 67000/1429571 reads
+2025-08-11 02:53:15 [INFO]: Docker: Processed 68000/1429571 reads
+2025-08-11 02:53:15 [INFO]: Docker: Processed 69000/1429571 reads
+2025-08-11 02:53:16 [INFO]: Docker: Processed 70000/1429571 reads
+2025-08-11 02:53:16 [INFO]: Docker: Processed 71000/1429571 reads
+2025-08-11 02:53:17 [INFO]: Docker: Processed 72000/1429571 reads
+2025-08-11 02:53:17 [INFO]: Docker: Processed 73000/1429571 reads
+2025-08-11 02:53:18 [INFO]: Docker: Processed 74000/1429571 reads
+2025-08-11 02:53:19 [INFO]: Docker: Processed 75000/1429571 reads
+2025-08-11 02:53:19 [INFO]: Docker: Processed 76000/1429571 reads
+2025-08-11 02:53:20 [INFO]: Docker: Processed 77000/1429571 reads
+2025-08-11 02:53:20 [INFO]: Docker: Processed 78000/1429571 reads
+2025-08-11 02:53:21 [INFO]: Docker: Processed 79000/1429571 reads
+2025-08-11 02:53:21 [INFO]: Docker: Processed 80000/1429571 reads
+2025-08-11 02:53:22 [INFO]: Docker: Processed 81000/1429571 reads
+2025-08-11 02:53:22 [INFO]: Docker: Processed 82000/1429571 reads
+2025-08-11 02:53:23 [INFO]: Docker: Processed 83000/1429571 reads
+2025-08-11 02:53:23 [INFO]: Docker: Processed 84000/1429571 reads
+2025-08-11 02:53:24 [INFO]: Docker: Processed 85000/1429571 reads
+2025-08-11 02:53:25 [INFO]: Docker: Processed 86000/1429571 reads
+2025-08-11 02:53:25 [INFO]: Docker: Processed 87000/1429571 reads
+2025-08-11 02:53:26 [INFO]: Docker: Processed 88000/1429571 reads
+2025-08-11 02:53:26 [INFO]: Docker: Processed 89000/1429571 reads
+2025-08-11 02:53:27 [INFO]: Docker: Processed 90000/1429571 reads
+2025-08-11 02:53:27 [INFO]: Docker: Processed 91000/1429571 reads
+2025-08-11 02:53:28 [INFO]: Docker: Processed 92000/1429571 reads
+2025-08-11 02:53:28 [INFO]: Docker: Processed 93000/1429571 reads
+2025-08-11 02:53:29 [INFO]: Docker: Processed 94000/1429571 reads
+2025-08-11 02:53:29 [INFO]: Docker: Processed 95000/1429571 reads
+2025-08-11 02:53:30 [INFO]: Docker: Processed 96000/1429571 reads
+2025-08-11 02:53:31 [INFO]: Docker: Processed 97000/1429571 reads
+2025-08-11 02:53:31 [INFO]: Docker: Processed 98000/1429571 reads
+2025-08-11 02:53:32 [INFO]: Docker: Processed 99000/1429571 reads
+2025-08-11 02:53:32 [INFO]: Docker: Processed 100000/1429571 reads
+2025-08-11 02:53:33 [INFO]: Docker: Processed 101000/1429571 reads
+2025-08-11 02:53:33 [INFO]: Docker: Processed 102000/1429571 reads
+2025-08-11 02:53:34 [INFO]: Docker: Processed 103000/1429571 reads
+2025-08-11 02:53:35 [INFO]: Docker: Processed 104000/1429571 reads
+2025-08-11 02:53:35 [INFO]: Docker: Processed 105000/1429571 reads
+2025-08-11 02:53:36 [INFO]: Docker: Processed 106000/1429571 reads
+2025-08-11 02:53:36 [INFO]: Docker: Processed 107000/1429571 reads
+2025-08-11 02:53:37 [INFO]: Docker: Processed 108000/1429571 reads
+2025-08-11 02:53:37 [INFO]: Docker: Processed 109000/1429571 reads
+2025-08-11 02:53:38 [INFO]: Docker: Processed 110000/1429571 reads
+2025-08-11 02:53:38 [INFO]: Docker: Processed 111000/1429571 reads
+2025-08-11 02:53:39 [INFO]: Docker: Processed 112000/1429571 reads
+2025-08-11 02:53:39 [INFO]: Docker: Processed 113000/1429571 reads
+2025-08-11 02:53:40 [INFO]: Docker: Processed 114000/1429571 reads
+2025-08-11 02:53:41 [INFO]: Docker: Processed 115000/1429571 reads
+2025-08-11 02:53:41 [INFO]: Docker: Processed 116000/1429571 reads
+2025-08-11 02:53:42 [INFO]: Docker: Processed 117000/1429571 reads
+2025-08-11 02:53:42 [INFO]: Docker: Processed 118000/1429571 reads
+2025-08-11 02:53:43 [INFO]: Docker: Processed 119000/1429571 reads
+2025-08-11 02:53:43 [INFO]: Docker: Processed 120000/1429571 reads
+2025-08-11 02:53:44 [INFO]: Docker: Processed 121000/1429571 reads
+2025-08-11 02:53:44 [INFO]: Docker: Processed 122000/1429571 reads
+2025-08-11 02:53:45 [INFO]: Docker: Processed 123000/1429571 reads
+2025-08-11 02:53:45 [INFO]: Docker: Processed 124000/1429571 reads
+2025-08-11 02:53:46 [INFO]: Docker: Processed 125000/1429571 reads
+2025-08-11 02:53:47 [INFO]: Docker: Processed 126000/1429571 reads
+2025-08-11 02:53:47 [INFO]: Docker: Processed 127000/1429571 reads
+2025-08-11 02:53:48 [INFO]: Docker: Processed 128000/1429571 reads
+2025-08-11 02:53:48 [INFO]: Docker: Processed 129000/1429571 reads
+2025-08-11 02:53:49 [INFO]: Docker: Processed 130000/1429571 reads
+2025-08-11 02:53:49 [INFO]: Docker: Processed 131000/1429571 reads
+2025-08-11 02:53:50 [INFO]: Docker: Processed 132000/1429571 reads
+2025-08-11 02:53:50 [INFO]: Docker: Processed 133000/1429571 reads
+2025-08-11 02:53:51 [INFO]: Docker: Processed 134000/1429571 reads
+2025-08-11 02:53:51 [INFO]: Docker: Processed 135000/1429571 reads
+2025-08-11 02:53:52 [INFO]: Docker: Processed 136000/1429571 reads
+2025-08-11 02:53:53 [INFO]: Docker: Processed 137000/1429571 reads
+2025-08-11 02:53:53 [INFO]: Docker: Processed 138000/1429571 reads
+2025-08-11 02:53:54 [INFO]: Docker: Processed 139000/1429571 reads
+2025-08-11 02:53:54 [INFO]: Docker: Processed 140000/1429571 reads
+2025-08-11 02:53:55 [INFO]: Docker: Processed 141000/1429571 reads
+2025-08-11 02:53:55 [INFO]: Docker: Processed 142000/1429571 reads
+2025-08-11 02:53:56 [INFO]: Docker: Processed 143000/1429571 reads
+2025-08-11 02:53:56 [INFO]: Docker: Processed 144000/1429571 reads
+2025-08-11 02:53:57 [INFO]: Docker: Processed 145000/1429571 reads
+2025-08-11 02:53:58 [INFO]: Docker: Processed 146000/1429571 reads
+2025-08-11 02:53:58 [INFO]: Docker: Processed 147000/1429571 reads
+2025-08-11 02:53:59 [INFO]: Docker: Processed 148000/1429571 reads
+2025-08-11 02:53:59 [INFO]: Docker: Processed 149000/1429571 reads
+2025-08-11 02:54:00 [INFO]: Docker: Processed 150000/1429571 reads
+2025-08-11 02:54:00 [INFO]: Docker: Processed 151000/1429571 reads
+2025-08-11 02:54:01 [INFO]: Docker: Processed 152000/1429571 reads
+2025-08-11 02:54:01 [INFO]: Docker: Processed 153000/1429571 reads
+2025-08-11 02:54:02 [INFO]: Docker: Processed 154000/1429571 reads
+2025-08-11 02:54:02 [INFO]: Docker: Processed 155000/1429571 reads
+2025-08-11 02:54:03 [INFO]: Docker: Processed 156000/1429571 reads
+2025-08-11 02:54:04 [INFO]: Docker: Processed 157000/1429571 reads
+2025-08-11 02:54:04 [INFO]: Docker: Processed 158000/1429571 reads
+2025-08-11 02:54:05 [INFO]: Docker: Processed 159000/1429571 reads
+2025-08-11 02:54:05 [INFO]: Docker: Processed 160000/1429571 reads
+2025-08-11 02:54:06 [INFO]: Docker: Processed 161000/1429571 reads
+2025-08-11 02:54:06 [INFO]: Docker: Processed 162000/1429571 reads
+2025-08-11 02:54:07 [INFO]: Docker: Processed 163000/1429571 reads
+2025-08-11 02:54:08 [INFO]: Docker: Processed 164000/1429571 reads
+2025-08-11 02:54:08 [INFO]: Docker: Processed 165000/1429571 reads
+2025-08-11 02:54:09 [INFO]: Docker: Processed 166000/1429571 reads
+2025-08-11 02:54:09 [INFO]: Docker: Processed 167000/1429571 reads
+2025-08-11 02:54:10 [INFO]: Docker: Processed 168000/1429571 reads
+2025-08-11 02:54:10 [INFO]: Docker: Processed 169000/1429571 reads
+2025-08-11 02:54:11 [INFO]: Docker: Processed 170000/1429571 reads
+2025-08-11 02:54:11 [INFO]: Docker: Processed 171000/1429571 reads
+2025-08-11 02:54:12 [INFO]: Docker: Processed 172000/1429571 reads
+2025-08-11 02:54:12 [INFO]: Docker: Processed 173000/1429571 reads
+2025-08-11 02:54:13 [INFO]: Docker: Processed 174000/1429571 reads
+2025-08-11 02:54:13 [INFO]: Docker: Processed 175000/1429571 reads
+2025-08-11 02:54:14 [INFO]: Docker: Processed 176000/1429571 reads
+2025-08-11 02:54:15 [INFO]: Docker: Processed 177000/1429571 reads
+2025-08-11 02:54:15 [INFO]: Docker: Processed 178000/1429571 reads
+2025-08-11 02:54:16 [INFO]: Docker: Processed 179000/1429571 reads
+2025-08-11 02:54:16 [INFO]: Docker: Processed 180000/1429571 reads
+2025-08-11 02:54:17 [INFO]: Docker: Processed 181000/1429571 reads
+2025-08-11 02:54:17 [INFO]: Docker: Processed 182000/1429571 reads
+2025-08-11 02:54:18 [INFO]: Docker: Processed 183000/1429571 reads
+2025-08-11 02:54:18 [INFO]: Docker: Processed 184000/1429571 reads
+2025-08-11 02:54:19 [INFO]: Docker: Processed 185000/1429571 reads
+2025-08-11 02:54:19 [INFO]: Docker: Processed 186000/1429571 reads
+2025-08-11 02:54:20 [INFO]: Docker: Processed 187000/1429571 reads
+2025-08-11 02:54:21 [INFO]: Docker: Processed 188000/1429571 reads
+2025-08-11 02:54:21 [INFO]: Docker: Processed 189000/1429571 reads
+2025-08-11 02:54:22 [INFO]: Docker: Processed 190000/1429571 reads
+2025-08-11 02:54:22 [INFO]: Docker: Processed 191000/1429571 reads
+2025-08-11 02:54:23 [INFO]: Docker: Processed 192000/1429571 reads
+2025-08-11 02:54:23 [INFO]: Docker: Processed 193000/1429571 reads
+2025-08-11 02:54:24 [INFO]: Docker: Processed 194000/1429571 reads
+2025-08-11 02:54:24 [INFO]: Docker: Processed 195000/1429571 reads
+2025-08-11 02:54:25 [INFO]: Docker: Processed 196000/1429571 reads
+2025-08-11 02:54:25 [INFO]: Docker: Processed 197000/1429571 reads
+2025-08-11 02:54:26 [INFO]: Docker: Processed 198000/1429571 reads
+2025-08-11 02:54:27 [INFO]: Docker: Processed 199000/1429571 reads
+2025-08-11 02:54:27 [INFO]: Docker: Processed 200000/1429571 reads
+2025-08-11 02:54:28 [INFO]: Docker: Processed 201000/1429571 reads
+2025-08-11 02:54:28 [INFO]: Docker: Processed 202000/1429571 reads
+2025-08-11 02:54:29 [INFO]: Docker: Processed 203000/1429571 reads
+2025-08-11 02:54:29 [INFO]: Docker: Processed 204000/1429571 reads
+2025-08-11 02:54:30 [INFO]: Docker: Processed 205000/1429571 reads
+2025-08-11 02:54:30 [INFO]: Docker: Processed 206000/1429571 reads
+2025-08-11 02:54:31 [INFO]: Docker: Processed 207000/1429571 reads
+2025-08-11 02:54:32 [INFO]: Docker: Processed 208000/1429571 reads
+2025-08-11 02:54:32 [INFO]: Docker: Processed 209000/1429571 reads
+2025-08-11 02:54:33 [INFO]: Docker: Processed 210000/1429571 reads
+2025-08-11 02:54:33 [INFO]: Docker: Processed 211000/1429571 reads
+2025-08-11 02:54:34 [INFO]: Docker: Processed 212000/1429571 reads
+2025-08-11 02:54:34 [INFO]: Docker: Processed 213000/1429571 reads
+2025-08-11 02:54:35 [INFO]: Docker: Processed 214000/1429571 reads
+2025-08-11 02:54:35 [INFO]: Docker: Processed 215000/1429571 reads
+2025-08-11 02:54:36 [INFO]: Docker: Processed 216000/1429571 reads
+2025-08-11 02:54:36 [INFO]: Docker: Processed 217000/1429571 reads
+2025-08-11 02:54:37 [INFO]: Docker: Processed 218000/1429571 reads
+2025-08-11 02:54:38 [INFO]: Docker: Processed 219000/1429571 reads
+2025-08-11 02:54:38 [INFO]: Docker: Processed 220000/1429571 reads
+2025-08-11 02:54:39 [INFO]: Docker: Processed 221000/1429571 reads
+2025-08-11 02:54:39 [INFO]: Docker: Processed 222000/1429571 reads
+2025-08-11 02:54:40 [INFO]: Docker: Processed 223000/1429571 reads
+2025-08-11 02:54:40 [INFO]: Docker: Processed 224000/1429571 reads
+2025-08-11 02:54:41 [INFO]: Docker: Processed 225000/1429571 reads
+2025-08-11 02:54:41 [INFO]: Docker: Processed 226000/1429571 reads
+2025-08-11 02:54:42 [INFO]: Docker: Processed 227000/1429571 reads
+2025-08-11 02:54:42 [INFO]: Docker: Processed 228000/1429571 reads
+2025-08-11 02:54:43 [INFO]: Docker: Processed 229000/1429571 reads
+2025-08-11 02:54:43 [INFO]: Docker: Processed 230000/1429571 reads
+2025-08-11 02:54:44 [INFO]: Docker: Processed 231000/1429571 reads
+2025-08-11 02:54:45 [INFO]: Docker: Processed 232000/1429571 reads
+2025-08-11 02:54:45 [INFO]: Docker: Processed 233000/1429571 reads
+2025-08-11 02:54:46 [INFO]: Docker: Processed 234000/1429571 reads
+2025-08-11 02:54:46 [INFO]: Docker: Processed 235000/1429571 reads
+2025-08-11 02:54:47 [INFO]: Docker: Processed 236000/1429571 reads
+2025-08-11 02:54:47 [INFO]: Docker: Processed 237000/1429571 reads
+2025-08-11 02:54:48 [INFO]: Docker: Processed 238000/1429571 reads
+2025-08-11 02:54:48 [INFO]: Docker: Processed 239000/1429571 reads
+2025-08-11 02:54:49 [INFO]: Docker: Processed 240000/1429571 reads
+2025-08-11 02:54:50 [INFO]: Docker: Processed 241000/1429571 reads
+2025-08-11 02:54:50 [INFO]: Docker: Processed 242000/1429571 reads
+2025-08-11 02:54:51 [INFO]: Docker: Processed 243000/1429571 reads
+2025-08-11 02:54:51 [INFO]: Docker: Processed 244000/1429571 reads
+2025-08-11 02:54:52 [INFO]: Docker: Processed 245000/1429571 reads
+2025-08-11 02:54:52 [INFO]: Docker: Processed 246000/1429571 reads
+2025-08-11 02:54:53 [INFO]: Docker: Processed 247000/1429571 reads
+2025-08-11 02:54:53 [INFO]: Docker: Processed 248000/1429571 reads
+2025-08-11 02:54:54 [INFO]: Docker: Processed 249000/1429571 reads
+2025-08-11 02:54:55 [INFO]: Docker: Processed 250000/1429571 reads
+2025-08-11 02:54:55 [INFO]: Docker: Processed 251000/1429571 reads
+2025-08-11 02:54:56 [INFO]: Docker: Processed 252000/1429571 reads
+2025-08-11 02:54:56 [INFO]: Docker: Processed 253000/1429571 reads
+2025-08-11 02:54:57 [INFO]: Docker: Processed 254000/1429571 reads
+2025-08-11 02:54:58 [INFO]: Docker: Processed 255000/1429571 reads
+2025-08-11 02:54:58 [INFO]: Docker: Processed 256000/1429571 reads
+2025-08-11 02:54:59 [INFO]: Docker: Processed 257000/1429571 reads
+2025-08-11 02:54:59 [INFO]: Docker: Processed 258000/1429571 reads
+2025-08-11 02:55:00 [INFO]: Docker: Processed 259000/1429571 reads
+2025-08-11 02:55:00 [INFO]: Docker: Processed 260000/1429571 reads
+2025-08-11 02:55:01 [INFO]: Docker: Processed 261000/1429571 reads
+2025-08-11 02:55:01 [INFO]: Docker: Processed 262000/1429571 reads
+2025-08-11 02:55:02 [INFO]: Docker: Processed 263000/1429571 reads
+2025-08-11 02:55:02 [INFO]: Docker: Processed 264000/1429571 reads
+2025-08-11 02:55:03 [INFO]: Docker: Processed 265000/1429571 reads
+2025-08-11 02:55:04 [INFO]: Docker: Processed 266000/1429571 reads
+2025-08-11 02:55:04 [INFO]: Docker: Processed 267000/1429571 reads
+2025-08-11 02:55:05 [INFO]: Docker: Processed 268000/1429571 reads
+2025-08-11 02:55:05 [INFO]: Docker: Processed 269000/1429571 reads
+2025-08-11 02:55:06 [INFO]: Docker: Processed 270000/1429571 reads
+2025-08-11 02:55:06 [INFO]: Docker: Processed 271000/1429571 reads
+2025-08-11 02:55:07 [INFO]: Docker: Processed 272000/1429571 reads
+2025-08-11 02:55:07 [INFO]: Docker: Processed 273000/1429571 reads
+2025-08-11 02:55:08 [INFO]: Docker: Processed 274000/1429571 reads
+2025-08-11 02:55:08 [INFO]: Docker: Processed 275000/1429571 reads
+2025-08-11 02:55:09 [INFO]: Docker: Processed 276000/1429571 reads
+2025-08-11 02:55:10 [INFO]: Docker: Processed 277000/1429571 reads
+2025-08-11 02:55:10 [INFO]: Docker: Processed 278000/1429571 reads
+2025-08-11 02:55:11 [INFO]: Docker: Processed 279000/1429571 reads
+2025-08-11 02:55:11 [INFO]: Docker: Processed 280000/1429571 reads
+2025-08-11 02:55:12 [INFO]: Docker: Processed 281000/1429571 reads
+2025-08-11 02:55:12 [INFO]: Docker: Processed 282000/1429571 reads
+2025-08-11 02:55:13 [INFO]: Docker: Processed 283000/1429571 reads
+2025-08-11 02:55:13 [INFO]: Docker: Processed 284000/1429571 reads
+2025-08-11 02:55:14 [INFO]: Docker: Processed 285000/1429571 reads
+2025-08-11 02:55:14 [INFO]: Docker: Processed 286000/1429571 reads
+2025-08-11 02:55:15 [INFO]: Docker: Processed 287000/1429571 reads
+2025-08-11 02:55:15 [INFO]: Docker: Processed 288000/1429571 reads
+2025-08-11 02:55:16 [INFO]: Docker: Processed 289000/1429571 reads
+2025-08-11 02:55:17 [INFO]: Docker: Processed 290000/1429571 reads
+2025-08-11 02:55:17 [INFO]: Docker: Processed 291000/1429571 reads
+2025-08-11 02:55:18 [INFO]: Docker: Processed 292000/1429571 reads
+2025-08-11 02:55:18 [INFO]: Docker: Processed 293000/1429571 reads
+2025-08-11 02:55:19 [INFO]: Docker: Processed 294000/1429571 reads
+2025-08-11 02:55:19 [INFO]: Docker: Processed 295000/1429571 reads
+2025-08-11 02:55:20 [INFO]: Docker: Processed 296000/1429571 reads
+2025-08-11 02:55:20 [INFO]: Docker: Processed 297000/1429571 reads
+2025-08-11 02:55:21 [INFO]: Docker: Processed 298000/1429571 reads
+2025-08-11 02:55:22 [INFO]: Docker: Processed 299000/1429571 reads
+2025-08-11 02:55:22 [INFO]: Docker: Processed 300000/1429571 reads
+2025-08-11 02:55:23 [INFO]: Docker: Processed 301000/1429571 reads
+2025-08-11 02:55:23 [INFO]: Docker: Processed 302000/1429571 reads
+2025-08-11 02:55:24 [INFO]: Docker: Processed 303000/1429571 reads
+2025-08-11 02:55:24 [INFO]: Docker: Processed 304000/1429571 reads
+2025-08-11 02:55:25 [INFO]: Docker: Processed 305000/1429571 reads
+2025-08-11 02:55:25 [INFO]: Docker: Processed 306000/1429571 reads
+2025-08-11 02:55:26 [INFO]: Docker: Processed 307000/1429571 reads
+2025-08-11 02:55:26 [INFO]: Docker: Processed 308000/1429571 reads
+2025-08-11 02:55:27 [INFO]: Docker: Processed 309000/1429571 reads
+2025-08-11 02:55:27 [INFO]: Docker: Processed 310000/1429571 reads
+2025-08-11 02:55:28 [INFO]: Docker: Processed 311000/1429571 reads
+2025-08-11 02:55:29 [INFO]: Docker: Processed 312000/1429571 reads
+2025-08-11 02:55:29 [INFO]: Docker: Processed 313000/1429571 reads
+2025-08-11 02:55:30 [INFO]: Docker: Processed 314000/1429571 reads
+2025-08-11 02:55:30 [INFO]: Docker: Processed 315000/1429571 reads
+2025-08-11 02:55:31 [INFO]: Docker: Processed 316000/1429571 reads
+2025-08-11 02:55:31 [INFO]: Docker: Processed 317000/1429571 reads
+2025-08-11 02:55:32 [INFO]: Docker: Processed 318000/1429571 reads
+2025-08-11 02:55:32 [INFO]: Docker: Processed 319000/1429571 reads
+2025-08-11 02:55:33 [INFO]: Docker: Processed 320000/1429571 reads
+2025-08-11 02:55:34 [INFO]: Docker: Processed 321000/1429571 reads
+2025-08-11 02:55:34 [INFO]: Docker: Processed 322000/1429571 reads
+2025-08-11 02:55:35 [INFO]: Docker: Processed 323000/1429571 reads
+2025-08-11 02:55:35 [INFO]: Docker: Processed 324000/1429571 reads
+2025-08-11 02:55:36 [INFO]: Docker: Processed 325000/1429571 reads
+2025-08-11 02:55:36 [INFO]: Docker: Processed 326000/1429571 reads
+2025-08-11 02:55:37 [INFO]: Docker: Processed 327000/1429571 reads
+2025-08-11 02:55:37 [INFO]: Docker: Processed 328000/1429571 reads
+2025-08-11 02:55:38 [INFO]: Docker: Processed 329000/1429571 reads
+2025-08-11 02:55:38 [INFO]: Docker: Processed 330000/1429571 reads
+2025-08-11 02:55:39 [INFO]: Docker: Processed 331000/1429571 reads
+2025-08-11 02:55:40 [INFO]: Docker: Processed 332000/1429571 reads
+2025-08-11 02:55:40 [INFO]: Docker: Processed 333000/1429571 reads
+2025-08-11 02:55:41 [INFO]: Docker: Processed 334000/1429571 reads
+2025-08-11 02:55:41 [INFO]: Docker: Processed 335000/1429571 reads
+2025-08-11 02:55:42 [INFO]: Docker: Processed 336000/1429571 reads
+2025-08-11 02:55:42 [INFO]: Docker: Processed 337000/1429571 reads
+2025-08-11 02:55:43 [INFO]: Docker: Processed 338000/1429571 reads
+2025-08-11 02:55:44 [INFO]: Docker: Processed 339000/1429571 reads
+2025-08-11 02:55:44 [INFO]: Docker: Processed 340000/1429571 reads
+2025-08-11 02:55:45 [INFO]: Docker: Processed 341000/1429571 reads
+2025-08-11 02:55:45 [INFO]: Docker: Processed 342000/1429571 reads
+2025-08-11 02:55:46 [INFO]: Docker: Processed 343000/1429571 reads
+2025-08-11 02:55:46 [INFO]: Docker: Processed 344000/1429571 reads
+2025-08-11 02:55:47 [INFO]: Docker: Processed 345000/1429571 reads
+2025-08-11 02:55:47 [INFO]: Docker: Processed 346000/1429571 reads
+2025-08-11 02:55:48 [INFO]: Docker: Processed 347000/1429571 reads
+2025-08-11 02:55:48 [INFO]: Docker: Processed 348000/1429571 reads
+2025-08-11 02:55:49 [INFO]: Docker: Processed 349000/1429571 reads
+2025-08-11 02:55:49 [INFO]: Docker: Processed 350000/1429571 reads
+2025-08-11 02:55:50 [INFO]: Docker: Processed 351000/1429571 reads
+2025-08-11 02:55:51 [INFO]: Docker: Processed 352000/1429571 reads
+2025-08-11 02:55:51 [INFO]: Docker: Processed 353000/1429571 reads
+2025-08-11 02:55:52 [INFO]: Docker: Processed 354000/1429571 reads
+2025-08-11 02:55:52 [INFO]: Docker: Processed 355000/1429571 reads
+2025-08-11 02:55:53 [INFO]: Docker: Processed 356000/1429571 reads
+2025-08-11 02:55:53 [INFO]: Docker: Processed 357000/1429571 reads
+2025-08-11 02:55:54 [INFO]: Docker: Processed 358000/1429571 reads
+2025-08-11 02:55:55 [INFO]: Docker: Processed 359000/1429571 reads
+2025-08-11 02:55:55 [INFO]: Docker: Processed 360000/1429571 reads
+2025-08-11 02:55:56 [INFO]: Docker: Processed 361000/1429571 reads
+2025-08-11 02:55:56 [INFO]: Docker: Processed 362000/1429571 reads
+2025-08-11 02:55:57 [INFO]: Docker: Processed 363000/1429571 reads
+2025-08-11 02:55:57 [INFO]: Docker: Processed 364000/1429571 reads
+2025-08-11 02:55:58 [INFO]: Docker: Processed 365000/1429571 reads
+2025-08-11 02:55:58 [INFO]: Docker: Processed 366000/1429571 reads
+2025-08-11 02:55:59 [INFO]: Docker: Processed 367000/1429571 reads
+2025-08-11 02:56:00 [INFO]: Docker: Processed 368000/1429571 reads
+2025-08-11 02:56:01 [INFO]: Docker: Processed 369000/1429571 reads
+2025-08-11 02:56:01 [INFO]: Docker: Processed 370000/1429571 reads
+2025-08-11 02:56:02 [INFO]: Docker: Processed 371000/1429571 reads
+2025-08-11 02:56:02 [INFO]: Docker: Processed 372000/1429571 reads
+2025-08-11 02:56:03 [INFO]: Docker: Processed 373000/1429571 reads
+2025-08-11 02:56:03 [INFO]: Docker: Processed 374000/1429571 reads
+2025-08-11 02:56:04 [INFO]: Docker: Processed 375000/1429571 reads
+2025-08-11 02:56:04 [INFO]: Docker: Processed 376000/1429571 reads
+2025-08-11 02:56:05 [INFO]: Docker: Processed 377000/1429571 reads
+2025-08-11 02:56:06 [INFO]: Docker: Processed 378000/1429571 reads
+2025-08-11 02:56:06 [INFO]: Docker: Processed 379000/1429571 reads
+2025-08-11 10:10:21 [INFO]: Docker: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-11 10:10:21 [INFO]: Docker: Python: Python 3.13.0
+2025-08-11 10:10:21 [INFO]: Docker: BLAST: blastn: 2.12.0+
+2025-08-11 10:10:21 [INFO]: Docker: MAFFT: v7.505 (2022/Apr/10)
+2025-08-11 10:10:21 [INFO]: Docker: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-11 10:10:21 [INFO]: Docker: Architecture: aarch64
+2025-08-11 10:10:21 [INFO]: Docker: Operating System: Linux
+
+Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-11 10:10:21 [INFO]: Docker: Loaded quality configuration: {'CypDL': 4, 'ZpDL': 4, 'xworm': 4}
+2025-08-11 10:10:21 [INFO]: Docker: Starting integrated DNA analysis pipeline...
+Input files: /app/data/uploads/test1000-R1.fq, /app/data/uploads/test1000-R2.fq
+Barcode file: /app/data/uploads/all-tags.csv
+Quality configuration: {'CypDL': 4, 'ZpDL': 4, 'xworm': 4}
+
+=== Step 1: Renaming R1 reads ===
+Renaming reads in: /app/data/uploads/test1000-R1.fq
+2025-08-11 10:10:21 [INFO]: Docker: Renamed 250 reads. Output: /app/data/outputs/rename/test1000-R1.rename.fq
+
+=== Step 2: Renaming R2 reads ===
+Renaming reads in: /app/data/uploads/test1000-R2.fq
+2025-08-11 10:10:21 [INFO]: Docker: Renamed 250 reads. Output: /app/data/outputs/rename/test1000-R2.rename.fq
+
+=== Step 3: Barcode trimming ===
+Loading barcode file: /app/data/uploads/all-tags.csv
+2025-08-11 10:10:21 [INFO]: Docker: Loaded 90 barcode entries for species: {'ZpDL', 'CypDL', 'xworm'}
+2025-08-11 10:10:21 [INFO]: Docker: Quality standards loaded: {'CypDL': 4, 'ZpDL': 4, 'xworm': 4}
+Loading R1 reads...
+2025-08-11 10:10:21 [INFO]: Docker: Loading R2 reads...
+2025-08-11 10:10:21 [INFO]: Docker: Loaded 250 paired reads
+2025-08-11 10:10:21 [INFO]: Docker: Processing reads for barcode/primer matching...
+Processed 0/250 reads
+2025-08-11 10:10:21 [INFO]: Docker: Writing trimmed reads to output files...
+2025-08-11 10:10:21 [INFO]: Docker: Successfully wrote 250 trimmed read pairs
+2025-08-11 10:10:21 [INFO]: Docker: Integrated pipeline completed successfully!
+Output files in: outputs/

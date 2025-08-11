@@ -13,15 +13,6 @@ import json
 from pathlib import Path
 
 def detect_species(barcode_file: str) -> dict:
-    """
-    檢測 barcode 檔案中的所有物種
-    
-    Args:
-        barcode_file: barcode CSV 檔案路徑
-        
-    Returns:
-        dict: 包含物種列表的字典
-    """
     species_set = set()
     
     try:
@@ -29,7 +20,6 @@ def detect_species(barcode_file: str) -> dict:
             for line in f:
                 line = line.strip()
                 
-                # 跳過空行
                 if not line:
                     continue
                     
@@ -44,9 +34,8 @@ def detect_species(barcode_file: str) -> dict:
                     # 添加到物種集合
                     species_set.add(species_prefix)
         
-        # 返回物種列表
         result = {
-            'species': sorted(list(species_set))  # 排序讓結果更一致
+            'species': sorted(list(species_set))
         }
         
         return result
@@ -57,7 +46,6 @@ def detect_species(barcode_file: str) -> dict:
         return {'error': f'Failed to parse barcode file: {str(e)}'}
 
 def main():
-    """主函數"""
     if len(sys.argv) != 2:
         print(json.dumps({
             'error': 'Invalid arguments',
@@ -67,14 +55,12 @@ def main():
     
     barcode_file = sys.argv[1]
     
-    # 檢查檔案是否存在
     if not Path(barcode_file).exists():
         print(json.dumps({
             'error': f'File not found: {barcode_file}'
         }), flush=True)
         sys.exit(1)
     
-    # 檢測物種
     species_info = detect_species(barcode_file)
     
     # 輸出 JSON 格式給 Node.js 處理

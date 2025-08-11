@@ -61,6 +61,28 @@ export class PythonExecutor {
   }
 
   /**
+   * Create quality configuration file
+   * @private
+   */
+  async _createQualityConfigFile(qualityConfig) {
+    try {
+      const configFileName = `quality_config_${Date.now()}.json`;
+      const configFilePath = path.join(this.uploadsDir, configFileName);
+
+      await fs.writeJson(configFilePath, qualityConfig, { spaces: 2 });
+
+      logger.info(
+        `Created quality config file: ${configFileName}`,
+        qualityConfig
+      );
+      return configFileName;
+    } catch (error) {
+      logger.error("Failed to create quality config file:", error);
+      throw new Error(`Failed to create quality config file: ${error.message}`);
+    }
+  }
+
+  /**
    * Execute integrated pipeline with Docker only
    */
   async executePipeline(
@@ -68,7 +90,7 @@ export class PythonExecutor {
     progressCallback = null,
     processCallback = null
   ) {
-    const { r1File, r2File, barcodeFile } = params;
+    const { r1File, r2File, barcodeFile, qualityConfig = {} } = params;
 
     try {
       // 檢查 Docker 環境 - 如果不可用直接拋出錯誤
@@ -76,6 +98,11 @@ export class PythonExecutor {
 
       // 清理輸出目錄
       await this.clearOutputDirectories();
+
+      // 創建品質配置檔案
+      const qualityConfigFileName = await this._createQualityConfigFile(
+        qualityConfig
+      );
 
       // 創建輸出目錄
       const renameOutputDir = path.join(this.outputsDir, "rename");
@@ -87,6 +114,7 @@ export class PythonExecutor {
         r1File,
         r2File,
         barcodeFile,
+        qualityConfig,
       });
 
       // 發送初始進度
@@ -98,10 +126,23 @@ export class PythonExecutor {
       }
 
       // 只使用 Docker 執行
-      const result = await this._executeWithDocker(params, {
-        progressCallback,
-        processCallback,
-      });
+      const result = await this._executeWithDocker(
+        {
+          ...params,
+          qualityConfigFile: qualityConfigFileName,
+        },
+        {
+          progressCallback,
+          processCallback,
+        }
+      );
+
+      // 清理臨時配置檔案
+      try {
+        await fs.remove(path.join(this.uploadsDir, qualityConfigFileName));
+      } catch (cleanupError) {
+        logger.warn("Failed to cleanup quality config file:", cleanupError);
+      }
 
       // 解析結果
       const analysisResults = await this._parsePipelineResults(
@@ -126,6 +167,7 @@ export class PythonExecutor {
         trimOutputDir,
         results: analysisResults,
         executionMode: "docker",
+        qualityConfig,
       };
     } catch (error) {
       logger.error("Docker pipeline failed", error);
@@ -147,7 +189,7 @@ export class PythonExecutor {
    * @private
    */
   async _executeWithDocker(params, options = {}) {
-    const { r1File, r2File, barcodeFile } = params;
+    const { r1File, r2File, barcodeFile, qualityConfigFile } = params;
     const { progressCallback, processCallback } = options;
 
     const containerArgs = [
@@ -155,6 +197,7 @@ export class PythonExecutor {
       `/app/data/uploads/${path.basename(r1File)}`,
       `/app/data/uploads/${path.basename(r2File)}`,
       `/app/data/uploads/${path.basename(barcodeFile)}`,
+      `/app/data/uploads/${qualityConfigFile}`, // 新增品質配置檔案參數
     ];
 
     // 使用 DockerService 的標準方法

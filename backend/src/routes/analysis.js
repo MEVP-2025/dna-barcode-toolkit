@@ -117,6 +117,13 @@ const pipelineSchema = Joi.object({
   r1File: Joi.string().required(),
   r2File: Joi.string().required(),
   barcodeFile: Joi.string().required(),
+  qualityConfig: Joi.object()
+    .pattern(
+      Joi.string(), // species name
+      Joi.number().integer().min(0).max(50) // max mismatch value
+    )
+    .optional()
+    .default({}),
 });
 
 // Start integrated pipeline (main endpoint)
@@ -130,7 +137,7 @@ router.post("/pipeline/start", async (req, res, next) => {
       });
     }
 
-    // Validate input
+    // Validate input (now includes qualityConfig)
     const { error, value } = pipelineSchema.validate(req.body);
     if (error) {
       return res.status(400).json({
@@ -139,7 +146,10 @@ router.post("/pipeline/start", async (req, res, next) => {
       });
     }
 
-    const { r1File, r2File, barcodeFile } = value;
+    const { r1File, r2File, barcodeFile, qualityConfig } = value;
+
+    // Log the quality configuration
+    logger.info("Starting pipeline with quality config:", qualityConfig);
 
     // Create progress callback for SSE
     const progressCallback = (progress) => {
@@ -149,12 +159,13 @@ router.post("/pipeline/start", async (req, res, next) => {
       });
     };
 
-    // Start pipeline in background
+    // Start pipeline in background (now with quality config)
     const analysisPromise = pythonExecutor.executePipeline(
       {
         r1File,
         r2File,
         barcodeFile,
+        qualityConfig, // Pass quality config to executor
       },
       progressCallback,
       (pythonProcess) => {
@@ -168,6 +179,7 @@ router.post("/pipeline/start", async (req, res, next) => {
       startTime: new Date(),
       promise: analysisPromise,
       sseConnections: new Set(), // Store SSE connections
+      qualityConfig, // Store quality config for reference
     };
 
     // Handle completion
@@ -214,6 +226,7 @@ router.post("/pipeline/start", async (req, res, next) => {
     res.json({
       message: "Integrated pipeline started",
       status: "running",
+      qualityConfig, // Include quality config in response
     });
   } catch (error) {
     next(error);

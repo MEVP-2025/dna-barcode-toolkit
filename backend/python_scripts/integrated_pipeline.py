@@ -1,21 +1,21 @@
-# /python_scripts/integrated_pipeline.py
 #!/usr/bin/env python3
 
 """
 Integrated DNA Analysis Pipeline
 Combines rename and trim operations for paired-end sequencing data.
 
-Usage: python integrated_pipeline.py <R1_fastq> <R2_fastq> <barcode_csv>
+Usage: python integrated_pipeline.py <R1_fastq> <R2_fastq> <barcode_csv> <quality_config_json>
 
 Flow:
 1. Rename R1 reads → temp files
 2. Rename R2 reads → temp files
 3. Trim paired reads using barcode file → outputs/
-4. Output species-specific files
+4. Output species-specific files with custom quality standards
 """
 
 import sys
 import os
+import json
 from pathlib import Path
 from collections import defaultdict
 from typing import Dict, List, Tuple, Optional, TextIO
@@ -203,17 +203,14 @@ class SequenceMatcher:
 class OutputManager:
     """Manages output files for different species."""
     
-    def __init__(self, output_dir: str = "/app/data/outputs/trim"):
+    def __init__(self, quality_standards: Dict[str, int], output_dir: str = "/app/data/outputs/trim"):
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
         self.file_handles = {}
         
-        # Quality standards for different species
-        self.quality_standards = {
-            'xworm': {'max_mismatch': 9},
-            'ZpDL': {'max_mismatch': 0},
-            'CypDL': {'max_mismatch': 9},
-        }
+        # 使用傳入的品質標準，而不是硬編碼
+        self.quality_standards = quality_standards
+        print(f"Quality standards loaded: {quality_standards}", flush=True)
     
     def open_output_files(self, species_prefixes: set) -> None:
         """Open output files for all species."""
@@ -239,8 +236,8 @@ class OutputManager:
         if species_prefix not in self.file_handles:
             return
         
-        # Check quality standards
-        max_mismatch = self.quality_standards.get(species_prefix, {'max_mismatch': 0})['max_mismatch']
+        # 使用動態品質標準而不是硬編碼
+        max_mismatch = self.quality_standards.get(species_prefix, 0)  # 預設為 0
         
         if mismatch_f > max_mismatch or mismatch_r > max_mismatch:
             return
@@ -271,10 +268,11 @@ class OutputManager:
 class IntegratedPipeline:
     """Main pipeline that integrates rename and trim operations."""
     
-    def __init__(self, r1_file: str, r2_file: str, barcode_file: str, quality_config: dict):
+    def __init__(self, r1_file: str, r2_file: str, barcode_file: str, quality_config: Dict[str, int]):
         self.r1_file = r1_file
         self.r2_file = r2_file
         self.barcode_file = barcode_file
+        self.quality_config = quality_config  # 新增：品質配置
         
         # Generate temporary file names for renamed files
         self.r1_renamed = self._get_renamed_filename(r1_file)
@@ -304,6 +302,7 @@ class IntegratedPipeline:
         print("Starting integrated DNA analysis pipeline...", flush=True)
         print(f"Input files: {self.r1_file}, {self.r2_file}", flush=True)
         print(f"Barcode file: {self.barcode_file}", flush=True)
+        print(f"Quality configuration: {self.quality_config}", flush=True)
         
         try:
             # Step 1: Rename R1 reads
@@ -330,7 +329,9 @@ class IntegratedPipeline:
         # Initialize trim components
         self.barcode_db = BarcodeDatabase(self.barcode_file)
         self.fastq_processor = FastqProcessor(self.r1_renamed, self.r2_renamed)
-        self.output_manager = OutputManager()
+        
+        # 使用傳入的品質配置創建 OutputManager
+        self.output_manager = OutputManager(self.quality_config)
         
         # Load renamed reads
         self.fastq_processor.load_reads()
@@ -419,26 +420,47 @@ class IntegratedPipeline:
         print(f"Successfully wrote {written_count} trimmed read pairs", flush=True)
 
 
+def load_quality_config(config_file: str) -> Dict[str, int]:
+    """載入品質配置檔案"""
+    try:
+        with open(config_file, 'r', encoding='utf-8') as f:
+            config_data = json.load(f)
+        
+        print(f"Loaded quality configuration: {config_data}", flush=True)
+        return config_data
+        
+    except FileNotFoundError:
+        print(f"Quality config file not found: {config_file}", flush=True)
+        print("Using default quality standards", flush=True)
+        return {}
+    except json.JSONDecodeError as e:
+        print(f"Invalid JSON in quality config file: {e}", flush=True)
+        print("Using default quality standards", flush=True)
+        return {}
+
+
 def main():
     """Main function to run the integrated pipeline."""
-    if len(sys.argv) != 4:
-        print("Usage: python integrated_pipeline.py <R1_fastq> <R2_fastq> <barcode_csv>", flush=True)
-        print("Example: python integrated_pipeline.py sample_R1.fastq sample_R2.fastq barcodes.csv", flush=True)
+    if len(sys.argv) != 5:
+        print("Usage: python integrated_pipeline.py <R1_fastq> <R2_fastq> <barcode_csv> <quality_config_json>", flush=True)
+        print("Example: python integrated_pipeline.py sample_R1.fastq sample_R2.fastq barcodes.csv quality_config.json", flush=True)
         sys.exit(1)
     
     r1_file = sys.argv[1]
     r2_file = sys.argv[2]
     barcode_file = sys.argv[3]
-    quality_config_file. = sys.argv[4]
+    quality_config_file = sys.argv[4]
     
+    # 檢查檔案是否存在
     for file_path in [r1_file, r2_file, barcode_file]:
         if not os.path.exists(file_path):
             print(f"Error: File {file_path} not found", flush=True)
             sys.exit(1)
-
-    with open(quality_config_file, 'r') as f:
-        quality_config = json.load(f)
     
+    # 載入品質配置
+    quality_config = load_quality_config(quality_config_file)
+    
+    # 執行分析管道
     pipeline = IntegratedPipeline(r1_file, r2_file, barcode_file, quality_config)
     pipeline.run()
 

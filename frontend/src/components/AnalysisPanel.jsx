@@ -103,7 +103,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
         r1File: `uploads/${uploadedFiles.R1.filename}`,
         r2File: `uploads/${uploadedFiles.R2.filename}`,
         barcodeFile: `uploads/${uploadedFiles.barcode.filename}`,
-        qualityConfig: qualityConfig // 傳送品質配置
+        qualityConfig: qualityConfig
       }
 
       addLog('Starting DNA analysis pipeline with quality configuration...', 'info')
@@ -119,8 +119,10 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
         onAnalysisStart('pipeline', params)
       }
 
-      // Start SSE monitoring
-      startSSEMonitoring()
+      // 延遲啟動 SSE 監控，讓後端有時間設置分析狀態
+      setTimeout(() => {
+        startSSEMonitoring()
+      }, 1000)
 
     } catch (error) {
       console.error('Failed to start analysis:', error)
@@ -150,44 +152,70 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
   const startSSEMonitoring = () => {
     addLog('Starting SSE connection...', 'info')
     
-    // Test if SSE endpoint is accessible first
-    testSSEEndpoint()
-    
-    // Connect to simplified SSE endpoint
-    eventSourceRef.current = api.analysis.pipeline.watchProgress({
-      onConnect: () => {
-        addLog('SSE connection established', 'success')
-      },
+    // 先檢查是否有正在進行的分析
+    checkAnalysisExists()
+      .then(() => {
+        // 如果有分析存在，則建立 SSE 連線
+        eventSourceRef.current = api.analysis.pipeline.watchProgress({
+          onConnect: () => {
+            addLog('SSE connection established', 'success')
+          },
 
-      onStart: (data) => {
-        addLog(data.message || 'Started monitoring analysis progress...', 'info')
-      },
+          onStart: (data) => {
+            addLog(data.message || 'Started monitoring analysis progress...', 'info')
+          },
 
-      onProgress: (data) => {
-        addLog(data.message || 'Analysis in progress...', 'info')
-      },
+          onProgress: (data) => {
+            addLog(data.message || 'Analysis in progress...', 'info')
+          },
 
-      onComplete: (data) => {
-        addLog(data.message || 'Analysis completed!', 'success')
-        setIsAnalyzing(false)
-        setAnalysisStep('ready')
-        
-        // Optionally fetch results here
-        fetchAnalysisResults()
-      },
+          onComplete: (data) => {
+            addLog(data.message || 'Analysis completed!', 'success')
+            setIsAnalyzing(false)
+            setAnalysisStep('ready')
+            
+            // Optionally fetch results here
+            fetchAnalysisResults()
+          },
 
-      onError: (data) => {
-        addLog(`Analysis error: ${data.message || data.error || 'Unknown error'}`, 'error')
+          onError: (data) => {
+            addLog(`Analysis error: ${data.message || data.error || 'Unknown error'}`, 'error')
+            setIsAnalyzing(false)
+            setAnalysisStep('configuring')
+          },
+
+          onSSEError: (error) => {
+            addLog(`SSE connection error: ${error.message}`, 'warning')
+            // 不要立即停止分析狀態，可能只是連線問題
+            // 嘗試重新連線
+            setTimeout(() => {
+              if (isAnalyzing && eventSourceRef.current?.readyState === EventSource.CLOSED) {
+                addLog('Attempting to reconnect SSE...', 'info')
+                startSSEMonitoring()
+              }
+            }, 3000)
+          }
+        })
+      })
+      .catch((error) => {
+        addLog(`No active analysis found: ${error.message}`, 'warning')
         setIsAnalyzing(false)
         setAnalysisStep('configuring')
-      },
+      })
+  }
 
-      onSSEError: (error) => {
-        addLog(`SSE connection error: ${error.message}`, 'error')
-        setIsAnalyzing(false)
-        setAnalysisStep('configuring')
+  // 檢查是否有正在進行的分析
+  const checkAnalysisExists = async () => {
+    try {
+      const response = await api.analysis.pipeline.getStatus()
+      if (response.data && response.data.status === 'running') {
+        return true
+      } else {
+        throw new Error('No running analysis found')
       }
-    })
+    } catch (error) {
+      throw new Error('No active analysis')
+    }
   }
 
   // Test SSE endpoint

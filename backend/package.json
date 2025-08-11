@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js",
+    "dev": "nodemon --ignore uploads/ src/server.js",
     "setup": "node scripts/setup.js",
     "test": "jest",
     "lint": "eslint src/",
