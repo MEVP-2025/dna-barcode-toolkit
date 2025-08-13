@@ -6,12 +6,76 @@
   margin-bottom: 30px;
 }
 
+.analysis-section p {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.species-selection-container .steps {
+  margin: 20px 0;
+}
+
+.species-selection-container .detail {
+  margin-left: 25px;
+}
+
+.species-selection-configuration {
+  margin: 10px 40px;
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  width: fit-content;
+}
+
+/* species-selection */
+.species-list {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  gap: 20px;
+}
+
+.species-option {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 10px 0;
+}
+
+.species-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.quality-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quality-control .input-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.quality-control .input-group input {
+  width: 50px;
+  padding: 3px 5px;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
 /* Files Summary */
 .files-summary {
   background: #f8f9fa;
   padding: 20px;
   border-radius: 8px;
-  margin-bottom: 30px;
+  margin: 30px 0;
 }
 
 .files-summary h3 {
@@ -197,7 +261,7 @@
 }
 
 /* Progress Panel */
-.progress-panel {
+/* .progress-panel {
   text-align: center;
   padding: 60px 40px;
 }
@@ -211,7 +275,7 @@
   font-size: 1.1em;
   font-weight: 500;
   color: #7f8c8d;
-}
+} */
 
 /* ========================================
    RESPONSIVE DESIGN

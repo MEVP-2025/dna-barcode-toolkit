@@ -87,10 +87,10 @@ const FileUpload = ({ onFilesUploaded }) => {
       if (detectionResponse.data.success) {
         const species = detectionResponse.data.data.species
         
-        // 初始化品質配置（預設值）
+        // Quality config (default) Q
         const defaultQualityConfig = {}
         species.forEach(sp => {
-          defaultQualityConfig[sp] = 0 // 預設最大錯配數為 0
+          defaultQualityConfig[sp] = 0 // default 0
         })
 
         // 準備完整的檔案資訊，包含物種檢測結果
@@ -103,7 +103,6 @@ const FileUpload = ({ onFilesUploaded }) => {
         onFilesUploaded(filesWithSpecies)
       } else {
         setError('Species detection failed. You can still proceed with manual configuration.')
-        // 即使物種檢測失敗，也傳遞檔案資訊
         onFilesUploaded(uploadResponse.data.files)
       }
 
@@ -198,8 +197,10 @@ const FileUpload = ({ onFilesUploaded }) => {
             <div className="progress-fill detecting" />
           </div>
           <span>
-            <Settings size={16} style={{ animation: 'spin 1s linear infinite' }} />
-            Detecting species...
+            <div className='detecting-icon'>
+              <Settings size={16} style={{ animation: 'spin 1s linear infinite' }} />
+              Detecting projects...
+            </div>
           </span>
         </div>
       )}
@@ -224,8 +225,8 @@ const FileUpload = ({ onFilesUploaded }) => {
           disabled={!files.R1 || !files.R2 || !files.barcode || isProcessing}
         >
           {uploading ? 'Uploading Files...' : 
-           detectingSpecies ? 'Detecting Species...' : 
-           'Upload & Detect Species'}
+           detectingSpecies ? 'Detecting Projects...' : 
+           'Upload & Detect Projects'}
         </button>
       </div>
     </div>

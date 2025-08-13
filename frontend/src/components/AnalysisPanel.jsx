@@ -1,5 +1,5 @@
 // src/components/AnalysisPanel.jsx
-import { Play, RotateCcw, Settings, Terminal } from 'lucide-react'
+import { CheckCircle2, Circle, Dot, Play, RotateCcw, Settings, Terminal } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { api } from '../services/api'
 import '../styles/components/AnalysisPanel.css'
@@ -9,10 +9,11 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
   const [showLogs, setShowLogs] = useState(false)
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   
-  // 修改狀態：檢查是否已有物種檢測結果
+  // 修改狀態：單一物種選擇模式
   const [analysisStep, setAnalysisStep] = useState('ready')
   const [detectedSpecies, setDetectedSpecies] = useState([])
-  const [qualityConfig, setQualityConfig] = useState({})
+  const [selectedSpecies, setSelectedSpecies] = useState(null) // 新增：選中的物種
+  const [qualityConfig, setQualityConfig] = useState({}) // 現在只針對單一物種
   
   const eventSourceRef = useRef(null)
   const logContainerRef = useRef(null)
@@ -20,10 +21,9 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
   // 組件載入時檢查檔案中是否已包含物種檢測結果
   useEffect(() => {
     if (uploadedFiles?.detectedSpecies && uploadedFiles?.defaultQualityConfig) {
-      // 如果檔案已包含物種檢測結果，直接進入配置階段
+      // 如果檔案已包含物種檢測結果，直接進入物種選擇階段
       setDetectedSpecies(uploadedFiles.detectedSpecies)
-      setQualityConfig(uploadedFiles.defaultQualityConfig)
-      setAnalysisStep('configuring')
+      setAnalysisStep('selecting') // 新的步驟：選擇物種
       
       addLog(`Pre-detected species loaded: ${uploadedFiles.detectedSpecies.join(', ')}`, 'success')
     } else if (uploadedFiles?.barcode) {
@@ -80,15 +80,8 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
         const species = response.data.data.species
         setDetectedSpecies(species)
         
-        // 初始化品質配置（預設值）
-        const defaultConfig = {}
-        species.forEach(sp => {
-          defaultConfig[sp] = 0 // 預設最大錯配數為 0
-        })
-        setQualityConfig(defaultConfig)
-        
         addLog(`Species detection completed. Found ${species.length} species: ${species.join(', ')}`, 'success')
-        setAnalysisStep('configuring')
+        setAnalysisStep('selecting') // 進入物種選擇階段
       } else {
         addLog('Species detection failed', 'error')
         setAnalysisStep('ready')
@@ -101,7 +94,20 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
     }
   }
 
-  // 步驟 2: 開始分析（帶品質配置）
+  // 新增：選擇物種（不改變 step，保持在 selecting）
+  const selectSpecies = (species) => {
+    setSelectedSpecies(species)
+    
+    // 初始化該物種的品質配置
+    setQualityConfig({
+      [species]: 0 // 預設最大錯配數為 0
+    })
+    
+    // 保持在 selecting 階段，不跳轉到 configuring
+    addLog(`Selected species: ${species}`, 'info')
+  }
+
+  // 步驟 3: 開始分析（單一物種）
   const startPipeline = async () => {
     // Check if files are complete
     if (!uploadedFiles.R1 || !uploadedFiles.R2 || !uploadedFiles.barcode) {
@@ -109,9 +115,9 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
       return
     }
 
-    // Check if species are configured
-    if (detectedSpecies.length === 0) {
-      alert('Please detect species first or configure manually.')
+    // Check if species is selected
+    if (!selectedSpecies) {
+      alert('Please select a species to analyze.')
       return
     }
 
@@ -124,10 +130,10 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
         r1File: `uploads/${uploadedFiles.R1.filename}`,
         r2File: `uploads/${uploadedFiles.R2.filename}`,
         barcodeFile: `uploads/${uploadedFiles.barcode.filename}`,
-        qualityConfig: qualityConfig
+        qualityConfig: qualityConfig // 只包含選中物種的配置
       }
 
-      addLog('Starting DNA analysis pipeline with quality configuration...', 'info')
+      addLog(`Starting DNA analysis for species: ${selectedSpecies}`, 'info')
       addLog(`Quality settings: ${JSON.stringify(qualityConfig)}`, 'info')
 
       // Call API to start analysis
@@ -149,22 +155,22 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
       console.error('Failed to start analysis:', error)
       addLog(`Startup failed: ${error.response?.data?.error || error.message}`, 'error')
       setIsAnalyzing(false)
-      setAnalysisStep('configuring')
+      setAnalysisStep('selecting') // 錯誤時回到選擇階段
     }
   }
 
-  // 處理品質參數變更
-  const handleQualityChange = (species, value) => {
-    setQualityConfig(prev => ({
-      ...prev,
-      [species]: parseInt(value) || 0
-    }))
+  // 處理品質參數變更（單一物種）
+  const handleQualityChange = (value) => {
+    setQualityConfig({
+      [selectedSpecies]: parseInt(value) || 0
+    })
   }
 
   // 重設到初始狀態
   const resetToStart = () => {
     setAnalysisStep('ready')
     setDetectedSpecies([])
+    setSelectedSpecies(null)
     setQualityConfig({})
     setLogs([])
     setShowLogs(false)
@@ -173,6 +179,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
   // 重新檢測物種
   const redetectSpecies = () => {
     setDetectedSpecies([])
+    setSelectedSpecies(null)
     setQualityConfig({})
     detectSpecies()
   }
@@ -200,7 +207,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
           onComplete: (data) => {
             addLog(data.message || 'Analysis completed!', 'success')
             setIsAnalyzing(false)
-            setAnalysisStep('ready')
+            setAnalysisStep('selecting') // 完成後回到物種選擇，可以選擇其他物種
             
             // Optionally fetch results here
             fetchAnalysisResults()
@@ -209,7 +216,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
           onError: (data) => {
             addLog(`Analysis error: ${data.message || data.error || 'Unknown error'}`, 'error')
             setIsAnalyzing(false)
-            setAnalysisStep('configuring')
+            setAnalysisStep('selecting')
           },
 
           onSSEError: (error) => {
@@ -228,7 +235,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
       .catch((error) => {
         addLog(`No active analysis found: ${error.message}`, 'warning')
         setIsAnalyzing(false)
-        setAnalysisStep('configuring')
+        setAnalysisStep('selecting')
       })
   }
 
@@ -251,6 +258,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
     try {
       const response = await api.analysis.pipeline.getResults()
       if (response.data) {
+        addLog(`Analysis completed for ${selectedSpecies}!`, 'success')
         addLog(`Results ready: ${JSON.stringify(response.data.result, null, 2)}`, 'success')
       }
     } catch (error) {
@@ -272,7 +280,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
       }
       
       setIsAnalyzing(false)
-      setAnalysisStep('configuring')
+      setAnalysisStep('selecting')
       
     } catch (error) {
       console.error('Failed to stop analysis:', error)
@@ -283,7 +291,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
         eventSourceRef.current = null
       }
       setIsAnalyzing(false)
-      setAnalysisStep('configuring')
+      setAnalysisStep('selecting')
     }
   }
 
@@ -330,29 +338,121 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
     <div className="analysis-section">
       <h2>DNA Analysis Pipeline</h2>
 
-      {/* 物種檢測結果和品質配置 */}
-      {analysisStep === 'configuring' && detectedSpecies.length > 0 && (
-        <div className="quality-configuration">
-          <p>Set maximum allowed mismatches for each species:</p>
-          
-          <div className="species-config-list">
-            {detectedSpecies.map(species => (
-              <div key={species} className="species-config-item">
-                <label htmlFor={`quality-${species}`}>
-                  <strong>{species}</strong>:
-                </label>
-                <input
-                  id={`quality-${species}`}
-                  type="number"
-                  min="0"
-                  max="20"
-                  value={qualityConfig[species] || 0}
-                  onChange={(e) => handleQualityChange(species, e.target.value)}
-                  className="quality-input"
-                />
-                <span className="input-help">max mismatches</span>
+      {/* 物種選擇階段 */}
+      {analysisStep === 'selecting' && detectedSpecies.length > 0 && (
+        <div className="species-selection-container">
+          <h3>Analysis Steps</h3>
+          <div className='steps'>
+            <p>1. Data Preprocessing</p>
+            <div className='detail'>
+              <p><Dot />Standardizes read identifiers in R1/R2 FASTQ files</p>
+              <p><Dot />Matches barcodes with reference database and trims adapters</p>
+              <p><Dot />Applies quality filtering based on configurable parameters</p>
+
+              <div className='species-selection-configuration'>
+                {/* 物種選擇列表 */}
+                <div className="species-selection">
+                  <div className="selection-header">
+                    <h3>Select Species to Analyze</h3>
+                  </div>
+                  <div className="species-list">
+                    {detectedSpecies.map(species => (
+                      <div 
+                        key={species} 
+                        className={`species-option ${selectedSpecies === species ? 'selected' : ''} ${selectedSpecies && selectedSpecies !== species ? 'dimmed' : ''}`}
+                        onClick={() => selectSpecies(species)}
+                      >
+                        <div className="species-checkbox">
+                          {selectedSpecies === species ? (
+                            <CheckCircle2 size={20} className="checked" />
+                          ) : (
+                            <Circle size={20} className="unchecked" />
+                          )}
+                        </div>
+                        <div className="species-info">
+                          <span className="species-name">{species}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* 品質配置（當有選擇時顯示） */}
+                {selectedSpecies && (
+                  <div className="inline-configuration">
+                    <div className="config-panel">
+                      <div className="quality-control">
+                        <label htmlFor={`quality-${selectedSpecies}`}>
+                          Maximum mismatches for <strong>{selectedSpecies}</strong> :
+                        </label>
+                        <div className="input-group">
+                          <input
+                            id={`quality-${selectedSpecies}`}
+                            type="number"
+                            min="0"
+                            max="99"
+                            value={qualityConfig[selectedSpecies] || 0}
+                            onChange={(e) => handleQualityChange(e.target.value)}
+                            className="quality-input"
+                          />
+                          <span className="input-suffix">mismatches</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
-            ))}
+            </div>
+          </div>
+
+          <div className='steps'>
+            <p>2. Sequence Assembly & Length Filtering</p>
+            <div className='detail'>
+              <p><Dot />Tool: PEAR v0.9.6 for assembly</p>
+              <p><Dot />Merges overlapping paired-end reads (R1/R2) into single contigs</p>
+              <p><Dot />Converts FASTQ format to FASTA format</p>
+              <p><Dot />Applies length filtering with 200bp minimum threshold</p>
+            </div>
+          </div>
+          
+          <div className='steps'>
+            <p>3. Species Assignment & Classification</p>
+            <div className='detail'>
+              <p><Dot />Creates BLAST database from mitochondrial D-loop reference sequences</p>
+              <p><Dot />Performs BLAST search against NCBI reference database</p>
+              <p><Dot />Applies intelligent species assignment rules with quality control 這裡有部分要討論 Hint ["Opsariichthys_acutipinnis", "Opsariichthys_bidens", "Opsariichthys_uncirostris"]</p>
+              <p><Dot />Separates sequences by assigned species into individual FASTA files</p>
+            </div>
+          </div>
+
+          <div className='steps'>
+            <p>4. Multiple Sequence Alignment</p>
+            <div className='detail'>
+              <p><Dot />Tool: MAFFT v7.505 with auto-selection strategy</p>
+              <p><Dot />Aligns sequences within each species group separately</p>
+              <p><Dot />Requires minimum 2 sequences per species for alignment</p>
+              <p><Dot />Generates aligned FASTA files for downstream haplotype analysis</p>
+            </div>
+          </div>
+
+          <div className='steps'>
+            <p>5. Duplicate Analysis & Haplotype Identification</p>
+            <div className='detail'>
+              <p><Dot />Identifies identical sequences and counts their occurrence frequency</p>
+              <p><Dot />Separates high-frequency sequences (potential haplotypes) from unique sequences</p>
+              <p><Dot />Applies configurable copy number threshold for haplotype detection</p>
+              <p><Dot />Generates separate files for common haplotypes and rare variants</p>
+            </div>
+          </div>
+
+          <div className='steps'>
+            <p>6. Location-Haplotype Table Generation</p>
+            <div className='detail'>
+              <p><Dot />Parses haplotype data to extract geographic location information</p>
+              <p><Dot />Creates a cross-tabulation matrix of locations vs. haplotypes</p>
+              <p><Dot />Counts haplotype frequency at each sampling location</p>
+              <p><Dot />Generates CSV format table for population genetic analysis</p>
+            </div>
           </div>
         </div>
       )}
@@ -388,26 +488,25 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
             disabled={!uploadedFiles.barcode}
           >
             <Settings size={20} />
-            Detect Species & Configure
+            Detect Species
           </button>
         )}
 
-        {analysisStep === 'configuring' && (
+        {analysisStep === 'selecting' && (
           <>
-            <button
-              className="btn btn-primary"
-              onClick={startPipeline}
-              disabled={!uploadedFiles.R1 || !uploadedFiles.R2 || !uploadedFiles.barcode || detectedSpecies.length === 0}
-            >
-              <Play size={20} />
-              Start DNA Analysis
-            </button>
-            <button
-              className="btn btn-secondary"
-              onClick={resetToStart}
-            >
-              Back to File Selection
-            </button>
+            {!selectedSpecies && (
+              <p className="action-hint">Click on a species above to select it for analysis</p>
+            )}
+            {selectedSpecies && (
+              <button
+                className="btn btn-primary"
+                onClick={startPipeline}
+                disabled={!uploadedFiles.R1 || !uploadedFiles.R2 || !uploadedFiles.barcode || !selectedSpecies}
+              >
+                <Play size={20} />
+                Start Analysis for {selectedSpecies}
+              </button>
+            )}
           </>
         )}
 
@@ -445,7 +544,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
         <div className="analysis-status">
           <div className="status-indicator">
             <div className="spinner"></div>
-            <span>Analysis in progress...</span>
+            <span>Analyzing {selectedSpecies}...</span>
           </div>
         </div>
       )}
@@ -479,11 +578,11 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
         </div>
       )}
       
-      {/* 物種檢測提示 */}
-      {analysisStep === 'configuring' && detectedSpecies.length === 0 && (
+      {/* 物種選擇提示 */}
+      {analysisStep === 'selecting' && detectedSpecies.length === 0 && (
         <div className="requirements-notice">
-          <h4>Species Detection Required</h4>
-          <p>Please detect species from your barcode file before proceeding with the analysis.</p>
+          <h4>No Species Detected</h4>
+          <p>No species were found in your barcode file. Please check your file or try re-detection.</p>
         </div>
       )}
     </div>

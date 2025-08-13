@@ -281,3 +281,27 @@ SyntaxError: invalid syntax
     at ChildProcess._handle.onexit (node:internal/child_process:305:5)
 2025-08-04 23:34:32 [ERROR]: Failed to parse species detection output:
 2025-08-04 23:35:07 [ERROR]: Failed to parse species detection output:
+2025-08-11 11:28:38 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/integrated_pipeline.py", line 469, in <module>
+    main()
+    ~~~~^^
+  File "/app/data/python_scripts/integrated_pipeline.py", line 465, in main
+    pipeline.run()
+    ~~~~~~~~~~~~^^
+  File "/app/data/python_scripts/integrated_pipeline.py", line 318, in run
+    self._run_trim_analysis()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/app/data/python_scripts/integrated_pipeline.py", line 337, in _run_trim_analysis
+    self.fastq_processor.load_reads()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/app/data/python_scripts/integrated_pipeline.py", line 134, in load_reads
+    r1_reads = self._load_fastq_file(self.r1_file)
+  File "/app/data/python_scripts/integrated_pipeline.py", line 150, in _load_fastq_file
+    with open(filename, 'r', encoding='utf-8') as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/app/data/outputs/rename/MS23323-pool_000000000-L79NH_L1_R1.rename.fq'
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
