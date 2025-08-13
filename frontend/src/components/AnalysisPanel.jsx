@@ -339,11 +339,11 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
       <h2>DNA Analysis Pipeline</h2>
 
       {/* 物種選擇階段 */}
-      {analysisStep === 'selecting' && detectedSpecies.length > 0 && (
+      {detectedSpecies.length > 0 && (
         <div className="species-selection-container">
           <h3>Analysis Steps</h3>
           <div className='steps'>
-            <p>1. Data Preprocessing</p>
+            <h3>1. Data Preprocessing</h3>
             <div className='detail'>
               <p><Dot />Standardizes read identifiers in R1/R2 FASTQ files</p>
               <p><Dot />Matches barcodes with reference database and trims adapters</p>
@@ -406,7 +406,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
           </div>
 
           <div className='steps'>
-            <p>2. Sequence Assembly & Length Filtering</p>
+            <h3>2. Sequence Assembly & Length Filtering</h3>
             <div className='detail'>
               <p><Dot />Tool: PEAR v0.9.6 for assembly</p>
               <p><Dot />Merges overlapping paired-end reads (R1/R2) into single contigs</p>
@@ -416,7 +416,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
           </div>
           
           <div className='steps'>
-            <p>3. Species Assignment & Classification</p>
+            <h3>3. Species Assignment & Classification</h3>
             <div className='detail'>
               <p><Dot />Creates BLAST database from mitochondrial D-loop reference sequences</p>
               <p><Dot />Performs BLAST search against NCBI reference database</p>
@@ -426,7 +426,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
           </div>
 
           <div className='steps'>
-            <p>4. Multiple Sequence Alignment</p>
+            <h3>4. Multiple Sequence Alignment</h3>
             <div className='detail'>
               <p><Dot />Tool: MAFFT v7.505 with auto-selection strategy</p>
               <p><Dot />Aligns sequences within each species group separately</p>
@@ -436,7 +436,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
           </div>
 
           <div className='steps'>
-            <p>5. Duplicate Analysis & Haplotype Identification</p>
+            <h3>5. Duplicate Analysis & Haplotype Identification</h3>
             <div className='detail'>
               <p><Dot />Identifies identical sequences and counts their occurrence frequency</p>
               <p><Dot />Separates high-frequency sequences (potential haplotypes) from unique sequences</p>
@@ -446,7 +446,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
           </div>
 
           <div className='steps'>
-            <p>6. Location-Haplotype Table Generation</p>
+            <h3>6. Location-Haplotype Table Generation</h3>
             <div className='detail'>
               <p><Dot />Parses haplotype data to extract geographic location information</p>
               <p><Dot />Creates a cross-tabulation matrix of locations vs. haplotypes</p>

@@ -3176,3 +3176,60 @@ Directories:
 }
 === END_RESULT ===
 2025-08-14 02:41:11 [INFO]: Species detection completed. Found 3 species
+2025-08-14 03:56:51 [INFO]: Starting pipeline with quality config:
+2025-08-14 03:56:52 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-14 03:56:55 [INFO]: Docker daemon is running
+2025-08-14 03:57:00 [INFO]: Image mevp:latest exists: true
+2025-08-14 03:57:00 [INFO]: Image mevp:latest already exists
+2025-08-14 03:57:00 [INFO]: Docker environment verified successfully
+2025-08-14 03:57:00 [INFO]: Output directories cleared successfully
+2025-08-14 03:57:00 [INFO]: Created quality config file: quality_config_1755115020414.json
+2025-08-14 03:57:00 [INFO]: Starting integrated pipeline with Docker
+2025-08-14 03:57:00 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/integrated_pipeline.py /app/data/uploads/MS23323-pool_000000000-L79NH_L1_R1.fastq /app/data/uploads/MS23323-pool_000000000-L79NH_L1_R2.fastq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755115020414.json
+2025-08-14 03:58:23 [INFO]: SIGINT received, shutting down gracefully
+2025-08-14 03:58:28 [INFO]: Server running on port 3001
+2025-08-14 03:58:28 [INFO]: Environment: development
+2025-08-14 03:58:28 [INFO]: Frontend URL: http://localhost:5173
+2025-08-14 03:58:28 [INFO]: Serving static files from:
+2025-08-14 03:58:28 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-14 03:58:28 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-14 04:11:01 [INFO]: Paired files uploaded successfully
+2025-08-14 04:11:01 [INFO]: Starting species detection for: uploads/all-tags.csv
+2025-08-14 04:11:01 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/species_detector.py /app/data/uploads/all-tags.csv
+2025-08-14 04:11:03 [INFO]: Species detection output: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-14 04:11:04 [INFO]: Species detection output: Python: Python 3.13.0
+2025-08-14 04:11:04 [INFO]: Species detection output: BLAST: blastn: 2.12.0+
+2025-08-14 04:11:04 [INFO]: Species detection output: MAFFT: v7.505 (2022/Apr/10)
+2025-08-14 04:11:04 [INFO]: Species detection output: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-14 04:11:04 [INFO]: Species detection output: Architecture: aarch64
+2025-08-14 04:11:04 [INFO]: Species detection output: Operating System: Linux
+
+Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-14 04:11:04 [INFO]: Species detection output: === SPECIES_DETECTION_RESULT ===
+{
+  "species": [
+    "CypDL",
+    "ZpDL",
+    "xworm"
+  ]
+}
+=== END_RESULT ===
+2025-08-14 04:11:04 [INFO]: Species detection completed. Found 3 species
+2025-08-14 04:11:13 [INFO]: Starting pipeline with quality config:
+2025-08-14 04:11:15 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-14 04:11:16 [INFO]: Docker daemon is running
+2025-08-14 04:11:16 [INFO]: Image mevp:latest exists: true
+2025-08-14 04:11:16 [INFO]: Image mevp:latest already exists
+2025-08-14 04:11:16 [INFO]: Docker environment verified successfully
+2025-08-14 04:11:16 [INFO]: Output directories cleared successfully
+2025-08-14 04:11:16 [INFO]: Created quality config file: quality_config_1755115876730.json
+2025-08-14 04:11:16 [INFO]: Starting integrated pipeline with Docker
+2025-08-14 04:11:16 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/integrated_pipeline.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755115876730.json
+2025-08-14 04:11:22 [INFO]: Docker pipeline completed successfully

@@ -3,6 +3,7 @@
 """
 Integrated DNA Analysis Pipeline
 Combines rename and trim operations for paired-end sequencing data.
+Modified to output only the species specified in quality_config_file.
 
 Usage: python integrated_pipeline.py <R1_fastq> <R2_fastq> <barcode_csv> <quality_config_json>
 
@@ -10,7 +11,7 @@ Flow:
 1. Rename R1 reads → temp files
 2. Rename R2 reads → temp files
 3. Trim paired reads using barcode file → outputs/
-4. Output species-specific files with custom quality standards
+4. Output ONLY the selected species files with custom quality standards
 """
 
 import sys
@@ -87,14 +88,19 @@ class FastqRecord:
 class BarcodeDatabase:
     """Manages barcode and primer sequences."""
     
-    def __init__(self, tagfile: str):
+    def __init__(self, tagfile: str, target_species: str):
         self.tags = {}
+        self.target_species = target_species  # 新增：目標物種
         self.species_prefixes = set()
         self._load_tags(tagfile)
     
     def _load_tags(self, tagfile: str) -> None:
-        """Load barcode and primer sequences from CSV file."""
+        """Load barcode and primer sequences from CSV file, filtered by target species."""
         print(f"Loading barcode file: {tagfile}", flush=True)
+        print(f"Target species: {self.target_species}", flush=True)
+        
+        total_entries = 0
+        filtered_entries = 0
         
         with open(tagfile, 'r', encoding='utf-8') as f:
             for line in f:
@@ -105,14 +111,23 @@ class BarcodeDatabase:
                 fields = line.split(',')
                 if len(fields) >= 7:
                     location = fields[0]
-                    # Store: barcode_f, primer_f, barcode_r, primer_r
-                    self.tags[location] = fields[3:7]
+                    total_entries += 1
                     
                     # Extract species prefix
                     species_prefix = location.split('_')[0] if '_' in location else location
-                    self.species_prefixes.add(species_prefix)
+                    
+                    # 只載入目標物種的條碼
+                    if species_prefix == self.target_species:
+                        # Store: barcode_f, primer_f, barcode_r, primer_r
+                        self.tags[location] = fields[3:7]
+                        self.species_prefixes.add(species_prefix)
+                        filtered_entries += 1
         
-        print(f"Loaded {len(self.tags)} barcode entries for species: {self.species_prefixes}", flush=True)
+        print(f"Total entries in barcode file: {total_entries}", flush=True)
+        print(f"Loaded {filtered_entries} entries for target species '{self.target_species}'", flush=True)
+        
+        if filtered_entries == 0:
+            print(f"WARNING: No barcode entries found for species '{self.target_species}'", flush=True)
     
     def get_combined_tags(self, location: str) -> Tuple[str, str]:
         """Get combined forward and reverse tags for a location."""
@@ -201,24 +216,24 @@ class SequenceMatcher:
 
 
 class OutputManager:
-    """Manages output files for different species."""
+    """Manages output files for the target species only."""
     
-    def __init__(self, quality_standards: Dict[str, int], output_dir: str = "/app/data/outputs/trim"):
+    def __init__(self, target_species: str, quality_standard: int, output_dir: str = "/app/data/outputs/trim"):
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
         self.file_handles = {}
         
-        # 使用傳入的品質標準，而不是硬編碼
-        self.quality_standards = quality_standards
-        print(f"Quality standards loaded: {quality_standards}", flush=True)
+        self.target_species = target_species
+        self.quality_standard = quality_standard
+        print(f"Target species: {target_species}, Quality standard: {quality_standard}", flush=True)
     
-    def open_output_files(self, species_prefixes: set) -> None:
-        """Open output files for all species."""
-        for species in species_prefixes:
-            self.file_handles[species] = {
-                'F': open(self.output_dir / f"{species}.f.fq", 'w', encoding='utf-8'),
-                'R': open(self.output_dir / f"{species}.r.fq", 'w', encoding='utf-8')
-            }
+    def open_output_files(self) -> None:
+        """Open output files for the target species only."""
+        self.file_handles[self.target_species] = {
+            'F': open(self.output_dir / f"{self.target_species}.f.fq", 'w', encoding='utf-8'),
+            'R': open(self.output_dir / f"{self.target_species}.r.fq", 'w', encoding='utf-8')
+        }
+        print(f"Opened output files for species: {self.target_species}", flush=True)
     
     def close_all_files(self) -> None:
         """Close all open file handles."""
@@ -229,18 +244,17 @@ class OutputManager:
     def write_trimmed_reads(self, read_index: str, location: str, orientation: str,
                            r1_record: FastqRecord, r2_record: FastqRecord,
                            mismatch_f: int, mismatch_r: int,
-                           f_trim_len: int, r_trim_len: int) -> None:
-        """Write trimmed reads to appropriate output files."""
+                           f_trim_len: int, r_trim_len: int) -> bool:
+        """Write trimmed reads to output files. Returns True if written, False if filtered out."""
         species_prefix = location.split('_')[0] if '_' in location else location
         
-        if species_prefix not in self.file_handles:
-            return
+        # 只處理目標物種
+        if species_prefix != self.target_species:
+            return False
         
-        # 使用動態品質標準而不是硬編碼
-        max_mismatch = self.quality_standards.get(species_prefix, 0)  # 預設為 0
-        
-        if mismatch_f > max_mismatch or mismatch_r > max_mismatch:
-            return
+        # 品質控制：檢查錯配是否超過標準
+        if mismatch_f > self.quality_standard or mismatch_r > self.quality_standard:
+            return False
         
         # Determine correct orientation and trim sequences
         if orientation == "R1f":
@@ -252,13 +266,15 @@ class OutputManager:
         
         # Write forward read
         f_header = f"@f_{read_index}_{location}_{orientation}"
-        self._write_fastq_record(self.file_handles[species_prefix]['F'], 
+        self._write_fastq_record(self.file_handles[self.target_species]['F'], 
                                 f_header, f_record.sequence, f_record.quality)
         
         # Write reverse read  
         r_header = f"@r_{read_index}_{location}_{orientation}"
-        self._write_fastq_record(self.file_handles[species_prefix]['R'],
+        self._write_fastq_record(self.file_handles[self.target_species]['R'],
                                 r_header, r_record.sequence, r_record.quality)
+        
+        return True
     
     def _write_fastq_record(self, file_handle: TextIO, header: str, sequence: str, quality: str) -> None:
         """Write a single FASTQ record to file."""
@@ -272,7 +288,15 @@ class IntegratedPipeline:
         self.r1_file = r1_file
         self.r2_file = r2_file
         self.barcode_file = barcode_file
-        self.quality_config = quality_config  # 新增：品質配置
+        
+        # 取得目標物種和品質標準
+        if len(quality_config) != 1:
+            raise ValueError(f"Quality config should contain exactly one species, got: {list(quality_config.keys())}")
+        
+        self.target_species = list(quality_config.keys())[0]
+        self.quality_standard = quality_config[self.target_species]
+        
+        print(f"Pipeline configured for species: {self.target_species} (quality standard: {self.quality_standard})", flush=True)
         
         # Generate temporary file names for renamed files
         self.r1_renamed = self._get_renamed_filename(r1_file)
@@ -302,7 +326,7 @@ class IntegratedPipeline:
         print("Starting integrated DNA analysis pipeline...", flush=True)
         print(f"Input files: {self.r1_file}, {self.r2_file}", flush=True)
         print(f"Barcode file: {self.barcode_file}", flush=True)
-        print(f"Quality configuration: {self.quality_config}", flush=True)
+        print(f"Target species: {self.target_species} (quality standard: {self.quality_standard})", flush=True)
         
         try:
             # Step 1: Rename R1 reads
@@ -317,8 +341,8 @@ class IntegratedPipeline:
             print("\n=== Step 3: Barcode trimming ===", flush=True)
             self._run_trim_analysis()
             
-            print("\nIntegrated pipeline completed successfully!", flush=True)
-            print("Output files in: outputs/", flush=True)
+            print(f"\nIntegrated pipeline completed successfully!", flush=True)
+            print(f"Output files for {self.target_species} in: outputs/trim/", flush=True)
             
         except Exception as e:
             print(f"Pipeline failed: {str(e)}", flush=True)
@@ -326,18 +350,16 @@ class IntegratedPipeline:
     
     def _run_trim_analysis(self) -> None:
         """Run the trim analysis on renamed files."""
-        # Initialize trim components
-        self.barcode_db = BarcodeDatabase(self.barcode_file)
+        # Initialize trim components with target species filter
+        self.barcode_db = BarcodeDatabase(self.barcode_file, self.target_species)
         self.fastq_processor = FastqProcessor(self.r1_renamed, self.r2_renamed)
-        
-        # 使用傳入的品質配置創建 OutputManager
-        self.output_manager = OutputManager(self.quality_config)
+        self.output_manager = OutputManager(self.target_species, self.quality_standard)
         
         # Load renamed reads
         self.fastq_processor.load_reads()
         
-        # Setup output files
-        self.output_manager.open_output_files(self.barcode_db.species_prefixes)
+        # Setup output files (only for target species)
+        self.output_manager.open_output_files()
         
         try:
             # Process all reads for barcode matching
@@ -365,21 +387,24 @@ class IntegratedPipeline:
             if best_match:
                 location, orientation, mismatch_f, mismatch_r, f_trim_len, r_trim_len = best_match
                 
-                # Store results
-                self.results[read_index] = {
-                    'location': location,
-                    'orientation': orientation,
-                    'mismatch_f': mismatch_f,
-                    'mismatch_r': mismatch_r,
-                    'f_trim_len': f_trim_len,
-                    'r_trim_len': r_trim_len
-                }
+                # Store target results
+                species_prefix = location.split('_')[0] if '_' in location else location
+                if species_prefix == self.target_species:
+                    self.results[read_index] = {
+                        'location': location,
+                        'orientation': orientation,
+                        'mismatch_f': mismatch_f,
+                        'mismatch_r': mismatch_r,
+                        'f_trim_len': f_trim_len,
+                        'r_trim_len': r_trim_len
+                    }
     
     def _find_best_barcode_match(self, r1_record: FastqRecord, r2_record: FastqRecord) -> Optional[Tuple]:
         """Find the best barcode match for a read pair."""
         best_mismatch = float('inf')
         best_match = None
         
+        # 只在目標物種的條碼中搜尋
         for location in self.barcode_db.tags.keys():
             tag_f, tag_r = self.barcode_db.get_combined_tags(location)
             
@@ -404,7 +429,7 @@ class IntegratedPipeline:
             if read_index in self.fastq_processor.paired_reads:
                 r1_record, r2_record = self.fastq_processor.paired_reads[read_index]
                 
-                self.output_manager.write_trimmed_reads(
+                success = self.output_manager.write_trimmed_reads(
                     read_index=read_index,
                     location=result['location'],
                     orientation=result['orientation'],
@@ -415,9 +440,11 @@ class IntegratedPipeline:
                     f_trim_len=result['f_trim_len'],
                     r_trim_len=result['r_trim_len']
                 )
-                written_count += 1
+                
+                if success:
+                    written_count += 1
         
-        print(f"Successfully wrote {written_count} trimmed read pairs", flush=True)
+        print(f"Successfully wrote {written_count} trimmed read pairs for species '{self.target_species}'", flush=True)
 
 
 def load_quality_config(config_file: str) -> Dict[str, int]:
@@ -427,16 +454,19 @@ def load_quality_config(config_file: str) -> Dict[str, int]:
             config_data = json.load(f)
         
         print(f"Loaded quality configuration: {config_data}", flush=True)
+        
+        # 驗證只有一個物種
+        if len(config_data) != 1:
+            raise ValueError(f"Quality config should contain exactly one species, got: {list(config_data.keys())}")
+        
         return config_data
         
     except FileNotFoundError:
         print(f"Quality config file not found: {config_file}", flush=True)
-        print("Using default quality standards", flush=True)
-        return {}
+        raise
     except json.JSONDecodeError as e:
         print(f"Invalid JSON in quality config file: {e}", flush=True)
-        print("Using default quality standards", flush=True)
-        return {}
+        raise
 
 
 def main():
@@ -444,6 +474,7 @@ def main():
     if len(sys.argv) != 5:
         print("Usage: python integrated_pipeline.py <R1_fastq> <R2_fastq> <barcode_csv> <quality_config_json>", flush=True)
         print("Example: python integrated_pipeline.py sample_R1.fastq sample_R2.fastq barcodes.csv quality_config.json", flush=True)
+        print("Note: quality_config.json should contain exactly one species", flush=True)
         sys.exit(1)
     
     r1_file = sys.argv[1]
@@ -452,7 +483,7 @@ def main():
     quality_config_file = sys.argv[4]
     
     # 檢查檔案是否存在
-    for file_path in [r1_file, r2_file, barcode_file]:
+    for file_path in [r1_file, r2_file, barcode_file, quality_config_file]:
         if not os.path.exists(file_path):
             print(f"Error: File {file_path} not found", flush=True)
             sys.exit(1)
