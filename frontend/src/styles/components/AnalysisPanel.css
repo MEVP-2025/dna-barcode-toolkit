@@ -20,7 +20,7 @@
   margin-left: 25px;
 }
 
-.species-selection-configuration {
+.input-container {
   margin: 10px 40px;
   background: #f8f9fa;
   padding: 20px;
@@ -64,6 +64,21 @@
 
 .quality-control .input-group input {
   width: 50px;
+  padding: 3px 5px;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+/* NCBI Reference */
+.input-container .identity-container {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.input-container input[type='number'] {
+  width: 60px;
   padding: 3px 5px;
   border: 1px solid #e9ecef;
   border-radius: 4px;

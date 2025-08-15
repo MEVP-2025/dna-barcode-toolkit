@@ -3233,3 +3233,131 @@ Directories:
 2025-08-14 04:11:16 [INFO]: Starting integrated pipeline with Docker
 2025-08-14 04:11:16 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/integrated_pipeline.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755115876730.json
 2025-08-14 04:11:22 [INFO]: Docker pipeline completed successfully
+2025-08-14 09:57:38 [INFO]: Paired files uploaded successfully
+2025-08-14 09:57:38 [INFO]: Starting species detection for: uploads/all-tags.csv
+2025-08-14 09:57:38 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/species_detector.py /app/data/uploads/all-tags.csv
+2025-08-14 09:57:46 [INFO]: Species detection output: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-14 09:57:46 [INFO]: Species detection output: Python: Python 3.13.0
+2025-08-14 09:57:47 [INFO]: Species detection output: BLAST: blastn: 2.12.0+
+2025-08-14 09:57:47 [INFO]: Species detection output: MAFFT: v7.505 (2022/Apr/10)
+2025-08-14 09:57:47 [INFO]: Species detection output: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-14 09:57:47 [INFO]: Species detection output: Architecture: aarch64
+2025-08-14 09:57:47 [INFO]: Species detection output: Operating System: Linux
+
+Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-14 09:57:47 [INFO]: Species detection output: === SPECIES_DETECTION_RESULT ===
+{
+  "species": [
+    "CypDL",
+    "ZpDL",
+    "xworm"
+  ]
+}
+=== END_RESULT ===
+2025-08-14 09:57:47 [INFO]: Species detection completed. Found 3 species
+2025-08-14 10:06:28 [INFO]: Paired files uploaded successfully
+2025-08-14 10:06:28 [INFO]: Starting species detection for: uploads/all-tags.csv
+2025-08-14 10:06:28 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/species_detector.py /app/data/uploads/all-tags.csv
+2025-08-14 10:06:31 [INFO]: Species detection output: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-14 10:06:31 [INFO]: Species detection output: Python: Python 3.13.0
+2025-08-14 10:06:31 [INFO]: Species detection output: BLAST: blastn: 2.12.0+
+2025-08-14 10:06:31 [INFO]: Species detection output: MAFFT: v7.505 (2022/Apr/10)
+2025-08-14 10:06:31 [INFO]: Species detection output: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-14 10:06:31 [INFO]: Species detection output: Architecture: aarch64
+  Operating System: Linux
+
+Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-14 10:06:31 [INFO]: Species detection output: === SPECIES_DETECTION_RESULT ===
+{
+  "species": [
+    "CypDL",
+    "ZpDL",
+    "xworm"
+  ]
+}
+=== END_RESULT ===
+2025-08-14 10:06:31 [INFO]: Species detection completed. Found 3 species
+2025-08-14 10:10:31 [INFO]: Paired files uploaded successfully
+2025-08-14 10:10:31 [INFO]: Starting species detection for: uploads/all-tags.csv
+2025-08-14 10:10:31 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/species_detector.py /app/data/uploads/all-tags.csv
+2025-08-14 10:10:31 [INFO]: Species detection output: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-14 10:10:31 [INFO]: Species detection output: Python: Python 3.13.0
+2025-08-14 10:10:31 [INFO]: Species detection output: BLAST: blastn: 2.12.0+
+2025-08-14 10:10:31 [INFO]: Species detection output: MAFFT: v7.505 (2022/Apr/10)
+2025-08-14 10:10:31 [INFO]: Species detection output: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-14 10:10:31 [INFO]: Species detection output: Architecture: aarch64
+2025-08-14 10:10:31 [INFO]: Species detection output: Operating System: Linux
+
+Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-14 10:10:31 [INFO]: Species detection output: === SPECIES_DETECTION_RESULT ===
+{
+  "species": [
+    "CypDL",
+    "ZpDL",
+    "xworm"
+  ]
+}
+=== END_RESULT ===
+2025-08-14 10:10:31 [INFO]: Species detection completed. Found 3 species
+2025-08-14 11:01:58 [INFO]: Paired files uploaded successfully
+2025-08-14 11:01:58 [INFO]: Starting species detection for: uploads/all-tags.csv
+2025-08-14 11:01:58 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/species_detector.py /app/data/uploads/all-tags.csv
+2025-08-14 11:02:07 [INFO]: Species detection output: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-14 11:02:07 [INFO]: Species detection output: Python: Python 3.13.0
+2025-08-14 11:02:08 [INFO]: Species detection output: BLAST: blastn: 2.12.0+
+2025-08-14 11:02:08 [INFO]: Species detection output: MAFFT: v7.505 (2022/Apr/10)
+2025-08-14 11:02:08 [INFO]: Species detection output: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-14 11:02:08 [INFO]: Species detection output: Architecture: aarch64
+2025-08-14 11:02:08 [INFO]: Species detection output: Operating System: Linux
+
+Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-14 11:02:08 [INFO]: Species detection output: === SPECIES_DETECTION_RESULT ===
+{
+  "species": [
+    "CypDL",
+    "ZpDL",
+    "xworm"
+  ]
+}
+=== END_RESULT ===
+2025-08-14 11:02:08 [INFO]: Species detection completed. Found 3 species
+2025-08-14 11:10:27 [INFO]: Starting pipeline with quality config:
+2025-08-14 11:10:27 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-14 11:10:29 [INFO]: Docker daemon is running
+2025-08-14 11:10:32 [INFO]: Image mevp:latest exists: true
+2025-08-14 11:10:32 [INFO]: Image mevp:latest already exists
+2025-08-14 11:10:32 [INFO]: Docker environment verified successfully
+2025-08-14 11:10:32 [INFO]: Output directories cleared successfully
+2025-08-14 11:10:32 [INFO]: Created quality config file: quality_config_1755141032134.json
+2025-08-14 11:10:32 [INFO]: Starting integrated pipeline with Docker
+2025-08-14 11:10:32 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/integrated_pipeline.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755141032134.json
+2025-08-14 11:10:34 [INFO]: Docker pipeline completed successfully
+2025-08-15 16:04:07 [INFO]: SIGINT received, shutting down gracefully

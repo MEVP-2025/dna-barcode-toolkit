@@ -349,7 +349,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
               <p><Dot />Matches barcodes with reference database and trims adapters</p>
               <p><Dot />Applies quality filtering based on configurable parameters</p>
 
-              <div className='species-selection-configuration'>
+              <div className='input-container'>
                 {/* 物種選擇列表 */}
                 <div className="species-selection">
                   <div className="selection-header">
@@ -420,7 +420,19 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
             <div className='detail'>
               <p><Dot />Creates BLAST database from mitochondrial D-loop reference sequences</p>
               <p><Dot />Performs BLAST search against NCBI reference database</p>
+              <div className='input-container'>
+                <h3>Upload NCBI reference file</h3>
+                <input type="file" id="ncbi-file" className="ncbi-reference"></input>
+              </div>
               <p><Dot />Applies intelligent species assignment rules with quality control 這裡有部分要討論 Hint ["Opsariichthys_acutipinnis", "Opsariichthys_bidens", "Opsariichthys_uncirostris"]</p>
+              <div className="input-container">
+                <h3>I have no idea what this is</h3>
+                <div className='identity-container'>
+                  <p>Mitochondrial sequences with ≥</p>
+                  <input type='number' id = "identity" className='identity' min="0" max="100" value={0} />
+                  <p>% identity</p>
+                </div>
+              </div>
               <p><Dot />Separates sequences by assigned species into individual FASTA files</p>
             </div>
           </div>
@@ -442,6 +454,10 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
               <p><Dot />Separates high-frequency sequences (potential haplotypes) from unique sequences</p>
               <p><Dot />Applies configurable copy number threshold for haplotype detection</p>
               <p><Dot />Generates separate files for common haplotypes and rare variants</p>
+              <div className='input-container'>
+                <h3>I have no idea what this is called</h3>
+                <input type='number' min="1" max="100" value={2}/>
+              </div>
             </div>
           </div>
 

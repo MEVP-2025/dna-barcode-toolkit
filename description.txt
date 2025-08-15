@@ -1,0 +1,42 @@
+1. Data Preprocessing
+    Standardizes read identifiers in R1/R2 FASTQ files
+    Matches barcodes with reference database and trims adapters
+    Applies quality filtering based on configurable parameters
+        Select Species to Analyze
+            CypDL  ZpDL  xworm
+            Maximum mismatches for ZpDL : 3 mismatches
+
+2. Sequence Assembly & Length Filtering
+    Tool: PEAR v0.9.6 for assembly
+    Merges overlapping paired-end reads (R1/R2) into single contigs
+    Converts FASTQ format to FASTA format
+    Applies length filtering with 200bp minimum threshold
+
+3. Species Assignment & Classification
+    Creates BLAST database from mitochondrial D-loop reference sequences
+    Performs BLAST search against NCBI reference database
+        Upload NCBI reference file
+    Applies intelligent species assignment rules with quality control
+        * title *
+        Mitochondrial sequences with ≥ 0 % identity
+    Separates sequences by assigned species into individual FASTA files
+
+4. Multiple Sequence Alignment
+    Tool: MAFFT v7.505 with auto-selection strategy
+    Aligns sequences within each species group separately
+    Requires minimum 2 sequences per species for alignment
+    Generates aligned FASTA files for downstream haplotype analysis
+
+5. Duplicate Analysis & Haplotype Identification
+    Identifies identical sequences and counts their occurrence frequency
+    Separates high-frequency sequences (potential haplotypes) from unique sequences
+    Applies configurable copy number threshold for haplotype detection
+    Generates separate files for common haplotypes and rare variants
+        * title *
+        2
+
+6. Location-Haplotype Table Generation
+    Parses haplotype data to extract geographic location information
+    Creates a cross-tabulation matrix of locations vs. haplotypes
+    Counts haplotype frequency at each sampling location
+    Generates CSV format table for population genetic analysis

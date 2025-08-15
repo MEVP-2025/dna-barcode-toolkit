@@ -63813,3 +63813,50 @@ Processed 0/250 reads
 2025-08-14 04:11:22 [INFO]: Docker: Successfully wrote 48 trimmed read pairs for species 'ZpDL'
 2025-08-14 04:11:22 [INFO]: Docker: Integrated pipeline completed successfully!
 Output files for ZpDL in: outputs/trim/
+2025-08-14 11:10:32 [INFO]: Docker: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-14 11:10:33 [INFO]: Docker: Python: Python 3.13.0
+2025-08-14 11:10:33 [INFO]: Docker: BLAST: blastn: 2.12.0+
+2025-08-14 11:10:33 [INFO]: Docker: MAFFT: v7.505 (2022/Apr/10)
+2025-08-14 11:10:33 [INFO]: Docker: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-14 11:10:33 [INFO]: Docker: Architecture: aarch64
+2025-08-14 11:10:33 [INFO]: Docker: Operating System: Linux
+
+Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-14 11:10:33 [INFO]: Docker: Loaded quality configuration: {'ZpDL': 0}
+Pipeline configured for species: ZpDL (quality standard: 0)
+2025-08-14 11:10:33 [INFO]: Docker: Starting integrated DNA analysis pipeline...
+Input files: /app/data/uploads/test1000-R1.fq, /app/data/uploads/test1000-R2.fq
+Barcode file: /app/data/uploads/all-tags.csv
+Target species: ZpDL (quality standard: 0)
+
+=== Step 1: Renaming R1 reads ===
+Renaming reads in: /app/data/uploads/test1000-R1.fq
+2025-08-14 11:10:33 [INFO]: Docker: Renamed 250 reads. Output: /app/data/outputs/rename/test1000-R1.rename.fq
+
+=== Step 2: Renaming R2 reads ===
+Renaming reads in: /app/data/uploads/test1000-R2.fq
+2025-08-14 11:10:33 [INFO]: Docker: Renamed 250 reads. Output: /app/data/outputs/rename/test1000-R2.rename.fq
+
+=== Step 3: Barcode trimming ===
+Loading barcode file: /app/data/uploads/all-tags.csv
+Target species: ZpDL
+2025-08-14 11:10:33 [INFO]: Docker: Total entries in barcode file: 90
+Loaded 45 entries for target species 'ZpDL'
+2025-08-14 11:10:33 [INFO]: Docker: Target species: ZpDL, Quality standard: 0
+Loading R1 reads...
+2025-08-14 11:10:33 [INFO]: Docker: Loading R2 reads...
+2025-08-14 11:10:33 [INFO]: Docker: Loaded 250 paired reads
+2025-08-14 11:10:33 [INFO]: Docker: Opened output files for species: ZpDL
+Processing reads for barcode/primer matching...
+Processed 0/250 reads
+2025-08-14 11:10:33 [INFO]: Docker: Writing trimmed reads to output files...
+2025-08-14 11:10:33 [INFO]: Docker: Successfully wrote 24 trimmed read pairs for species 'ZpDL'
+2025-08-14 11:10:33 [INFO]: Docker: Integrated pipeline completed successfully!
+Output files for ZpDL in: outputs/trim/
