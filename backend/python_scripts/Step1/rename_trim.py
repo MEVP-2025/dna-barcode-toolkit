@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
 """
-Integrated DNA Analysis Pipeline
+Rename and trim DNA Analysis Pipeline
 Combines rename and trim operations for paired-end sequencing data.
 Modified to output only the species specified in quality_config_file.
 
-Usage: python integrated_pipeline.py <R1_fastq> <R2_fastq> <barcode_csv> <quality_config_json>
+Usage: python rename_trim.py <R1_fastq> <R2_fastq> <barcode_csv> <quality_config_json>
 
 Flow:
 1. Rename R1 reads → temp files
@@ -322,8 +322,8 @@ class IntegratedPipeline:
         return str(rename_dir / f"{filename}.rename.fq")
     
     def run(self) -> None:
-        """Run the complete integrated pipeline."""
-        print("Starting integrated DNA analysis pipeline...", flush=True)
+        """Run the complete rename and trim pipeline."""
+        print("Starting rename and trim DNA analysis pipeline...", flush=True)
         print(f"Input files: {self.r1_file}, {self.r2_file}", flush=True)
         print(f"Barcode file: {self.barcode_file}", flush=True)
         print(f"Target species: {self.target_species} (quality standard: {self.quality_standard})", flush=True)
@@ -341,7 +341,7 @@ class IntegratedPipeline:
             print("\n=== Step 3: Barcode trimming ===", flush=True)
             self._run_trim_analysis()
             
-            print(f"\nIntegrated pipeline completed successfully!", flush=True)
+            print(f"\nRename and trim completed successfully!", flush=True)
             print(f"Output files for {self.target_species} in: outputs/trim/", flush=True)
             
         except Exception as e:
@@ -470,10 +470,10 @@ def load_quality_config(config_file: str) -> Dict[str, int]:
 
 
 def main():
-    """Main function to run the integrated pipeline."""
+    """Main function to run the rename and trim."""
     if len(sys.argv) != 5:
-        print("Usage: python integrated_pipeline.py <R1_fastq> <R2_fastq> <barcode_csv> <quality_config_json>", flush=True)
-        print("Example: python integrated_pipeline.py sample_R1.fastq sample_R2.fastq barcodes.csv quality_config.json", flush=True)
+        print("Usage: python rename_trim.py <R1_fastq> <R2_fastq> <barcode_csv> <quality_config_json>", flush=True)
+        print("Example: python rename_trim.py sample_R1.fastq sample_R2.fastq barcodes.csv quality_config.json", flush=True)
         print("Note: quality_config.json should contain exactly one species", flush=True)
         sys.exit(1)
     

@@ -305,3 +305,29 @@ FileNotFoundError: [Errno 2] No such file or directory: '/app/data/outputs/renam
     at ChildProcess.emit (node:events:513:28)
     at maybeClose (node:internal/child_process:1101:16)
     at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-15 17:33:03 [ERROR]: Species detection error: docker: Cannot connect to the Docker daemon at unix:///Users/angus/.docker/run/docker.sock. Is the docker daemon running?
+
+Run 'docker run --help' for more information
+2025-08-15 17:33:03 [ERROR]: Error: Docker container exited with code 125: docker: Cannot connect to the Docker daemon at unix:///Users/angus/.docker/run/docker.sock. Is the docker daemon running?
+
+Run 'docker run --help' for more information
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Socket.<anonymous> (node:internal/child_process:457:11)
+    at Socket.emit (node:events:513:28)
+    at Pipe.<anonymous> (node:net:351:12)
+2025-08-17 15:41:54 [ERROR]: Species detection error: docker: Cannot connect to the Docker daemon at unix:///Users/angus/.docker/run/docker.sock. Is the docker daemon running?
+
+Run 'docker run --help' for more information
+2025-08-17 15:41:54 [ERROR]: Error: Docker container exited with code 125: docker: Cannot connect to the Docker daemon at unix:///Users/angus/.docker/run/docker.sock. Is the docker daemon running?
+
+Run 'docker run --help' for more information
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Socket.<anonymous> (node:internal/child_process:457:11)
+    at Socket.emit (node:events:513:28)
+    at Pipe.<anonymous> (node:net:351:12)

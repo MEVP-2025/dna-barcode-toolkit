@@ -16,6 +16,27 @@ export class PythonExecutor {
     this.outputsDir = path.join(__dirname, "../../outputs");
     this.backendRootDir = path.join(__dirname, "../../");
     this.uploadsDir = path.join(__dirname, "../../uploads");
+
+    this.standardPipeline = [
+      {
+        name: "trim and rename",
+        script: "Step1/rename_trim.py",
+        requiredFiles: ["R1", "R2", "barcode", "qualityConfig"],
+        description: "",
+      },
+      {
+        name: "pear",
+        script: "Step2/joinPear.py",
+        requiredFiles: [],
+        description: "",
+      },
+      // {
+      //   name: "length filter",
+      //   script: "Step2/lengthFilter.py",
+      //   requiredFiles: [],
+      //   description: "",
+      // },
+    ];
   }
 
   /**
@@ -46,12 +67,15 @@ export class PythonExecutor {
     try {
       const renameDir = path.join(this.outputsDir, "rename");
       const trimDir = path.join(this.outputsDir, "trim");
+      const pearDir = path.join(this.outputsDir, "pear");
 
       // Remove and recreate directories
       await fs.remove(renameDir);
       await fs.remove(trimDir);
+      await fs.remove(pearDir);
       await fs.ensureDir(renameDir);
       await fs.ensureDir(trimDir);
+      await fs.ensureDir(pearDir);
 
       logger.info("Output directories cleared successfully");
     } catch (error) {
@@ -90,31 +114,34 @@ export class PythonExecutor {
     progressCallback = null,
     processCallback = null
   ) {
-    const { r1File, r2File, barcodeFile, qualityConfig = {} } = params;
+    const {
+      r1File,
+      r2File,
+      barcodeFile,
+      qualityConfig = {},
+      lenFilter = {},
+      ncbiReference,
+      identity = {},
+      somethingdefault2 = {},
+    } = params;
 
     try {
-      // 檢查 Docker 環境 - 如果不可用直接拋出錯誤
+      // -- check Docker environment
       const envCheck = await this.checkEnvironment();
 
-      // 清理輸出目錄
       await this.clearOutputDirectories();
 
-      // 創建品質配置檔案
+      // -- create quality config json file
       const qualityConfigFileName = await this._createQualityConfigFile(
         qualityConfig
       );
-
-      // 創建輸出目錄
-      const renameOutputDir = path.join(this.outputsDir, "rename");
-      const trimOutputDir = path.join(this.outputsDir, "trim");
-      await fs.ensureDir(renameOutputDir);
-      await fs.ensureDir(trimOutputDir);
 
       logger.info("Starting integrated pipeline with Docker", {
         r1File,
         r2File,
         barcodeFile,
         qualityConfig,
+        steps: this.standardPipeline.map((s) => s.name),
       });
 
       // 發送初始進度
@@ -125,17 +152,41 @@ export class PythonExecutor {
         });
       }
 
-      // 只使用 Docker 執行
-      const result = await this._executeWithDocker(
-        {
-          ...params,
-          qualityConfigFile: qualityConfigFileName,
-        },
-        {
-          progressCallback,
-          processCallback,
+      const stepResults = {};
+
+      for (let i = 0; i < this.standardPipeline.length; i++) {
+        const step = this.standardPipeline[i];
+
+        if (progressCallback) {
+          progressCallback({
+            type: "step_start",
+            message: `Starting ${step.description}...`,
+            stepName: step.name,
+          });
         }
-      );
+
+        const stepResult = await this._executeStep(
+          step,
+          {
+            r1File,
+            r2File,
+            barcodeFile,
+            qualityConfigFile: qualityConfigFileName,
+          },
+          progressCallback,
+          processCallback
+        );
+
+        stepResults[step.name] = stepResult;
+
+        if (progressCallback) {
+          progressCallback({
+            type: "step_complete",
+            message: `Completed ${step.description}`,
+            stepName: step.name,
+          });
+        }
+      }
 
       // 清理臨時配置檔案
       try {
@@ -145,10 +196,7 @@ export class PythonExecutor {
       }
 
       // 解析結果
-      const analysisResults = await this._parsePipelineResults(
-        renameOutputDir,
-        trimOutputDir
-      );
+      const analysisResults = await this._parsePipelineResults();
 
       logger.info("Docker pipeline completed successfully");
 
@@ -163,8 +211,8 @@ export class PythonExecutor {
 
       return {
         status: "completed",
-        renameOutputDir,
-        trimOutputDir,
+        // renameOutputDir,
+        // trimOutputDir,
         results: analysisResults,
         executionMode: "docker",
         qualityConfig,
@@ -188,20 +236,30 @@ export class PythonExecutor {
    * Execute pipeline using Docker
    * @private
    */
-  async _executeWithDocker(params, options = {}) {
+  async _executeStep(step, params, progressCallback, processCallback) {
     const { r1File, r2File, barcodeFile, qualityConfigFile } = params;
-    const { progressCallback, processCallback } = options;
 
-    const containerArgs = [
-      "/app/data/python_scripts/integrated_pipeline.py",
-      `/app/data/uploads/${path.basename(r1File)}`,
-      `/app/data/uploads/${path.basename(r2File)}`,
-      `/app/data/uploads/${path.basename(barcodeFile)}`,
-      `/app/data/uploads/${qualityConfigFile}`, // 新增品質配置檔案參數
-    ];
+    const containerArgs = [`/app/data/python_scripts/${step.script}`];
+
+    for (const requiredFile of step.requiredFiles) {
+      switch (requiredFile) {
+        case "R1":
+          containerArgs.push(`/app/data/uploads/${path.basename(r1File)}`);
+          break;
+        case "R2":
+          containerArgs.push(`/app/data/uploads/${path.basename(r2File)}`);
+          break;
+        case "barcode":
+          containerArgs.push(`/app/data/uploads/${path.basename(barcodeFile)}`);
+          break;
+        case "qualityConfig":
+          containerArgs.push(`/app/data/uploads/${qualityConfigFile}`);
+          break;
+      }
+    }
 
     // 使用 DockerService 的標準方法
-    return this.dockerService.runContainer({
+    const result = await this.dockerService.runContainer({
       workDir: this.backendRootDir,
       command: "python3",
       args: containerArgs,
@@ -234,13 +292,19 @@ export class PythonExecutor {
         }
       },
     });
+
+    return {
+      stepName: step.name,
+      script: step.script,
+      status: "completed",
+    };
   }
 
   /**
    * Parse pipeline results from output directories
    * @private
    */
-  async _parsePipelineResults(renameOutputDir, trimOutputDir) {
+  async _parsePipelineResults() {
     try {
       const results = {
         rename: {
@@ -252,18 +316,24 @@ export class PythonExecutor {
           totalFiles: 0,
           files: [],
         },
+        pear: {
+          files: [],
+          totalFiles: 0,
+        },
       };
 
       // Parse rename results
-      if (await fs.pathExists(renameOutputDir)) {
-        const renameFiles = await fs.readdir(renameOutputDir);
+      const renameDir = path.join(this.outputsDir, "rename");
+      if (await fs.pathExists(renameDir)) {
+        const renameFiles = await fs.readdir(renameDir);
         results.rename.files = renameFiles;
         results.rename.totalFiles = renameFiles.length;
       }
 
       // Parse trim results
-      if (await fs.pathExists(trimOutputDir)) {
-        const trimFiles = await fs.readdir(trimOutputDir);
+      const trimDir = path.join(this.outputsDir, "trim");
+      if (await fs.pathExists(trimDir)) {
+        const trimFiles = await fs.readdir(trimDir);
         results.trim.files = trimFiles;
         results.trim.totalFiles = trimFiles.length;
 
@@ -279,11 +349,18 @@ export class PythonExecutor {
 
             results.trim.species[species][direction] = {
               filename: file,
-              path: path.join(trimOutputDir, file),
-              size: (await fs.stat(path.join(trimOutputDir, file))).size,
+              path: path.join(trimDir, file),
+              size: (await fs.stat(path.join(trimDir, file))).size,
             };
           }
         }
+      }
+
+      const pearDir = path.join(this.outputsDir, "pear");
+      if (await fs.pathExists(pearDir)) {
+        const pearFiles = await fs.readdir(pearDir);
+        results.pear.files = pearFiles;
+        results.pear.totalFiles = pearFiles.length;
       }
 
       return results;
@@ -292,6 +369,7 @@ export class PythonExecutor {
       return {
         rename: { files: [], totalFiles: 0 },
         trim: { species: {}, totalFiles: 0, files: [] },
+        pear: { files: [], totalFiles: 0 },
       };
     }
   }

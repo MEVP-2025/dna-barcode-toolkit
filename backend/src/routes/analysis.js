@@ -1,15 +1,13 @@
 // src/routes/analysis.js
 import express from "express";
-import fs from "fs-extra"; // 如果需要的話
+import fs from "fs-extra";
 import Joi from "joi";
 import path from "path";
-import { logger } from "../utils/logger.js";
-// import { DockerService } from "../services/dockerService.js";
 import { PythonExecutor } from "../services/pythonExecutor.js";
+import { logger } from "../utils/logger.js";
 
 const router = express.Router();
 const pythonExecutor = new PythonExecutor();
-// const dockerService = new DockerService();
 
 // 物種檢測端點
 router.post("/pipeline/detect-species", async (req, res) => {

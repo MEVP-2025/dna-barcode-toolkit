@@ -1,5 +1,5 @@
 // src/components/AnalysisPanel.jsx
-import { CheckCircle2, Circle, Dot, Play, RotateCcw, Settings, Terminal } from 'lucide-react'
+import { CheckCircle2, Circle, Dot, Play, RotateCcw, Terminal } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { api } from '../services/api'
 import '../styles/components/AnalysisPanel.css'
@@ -25,7 +25,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
       setDetectedSpecies(uploadedFiles.detectedSpecies)
       setAnalysisStep('selecting') // 新的步驟：選擇物種
       
-      addLog(`Pre-detected species loaded: ${uploadedFiles.detectedSpecies.join(', ')}`, 'success')
+      addLog(`Pre-detected projects loaded: ${uploadedFiles.detectedSpecies.join(', ')}`, 'success')
     } else if (uploadedFiles?.barcode) {
       // 如果只有檔案但沒有物種檢測結果，停留在準備階段
       setAnalysisStep('ready')
@@ -104,7 +104,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
     })
     
     // 保持在 selecting 階段，不跳轉到 configuring
-    addLog(`Selected species: ${species}`, 'info')
+    addLog(`Selected project: ${species}`, 'info')
   }
 
   // 步驟 3: 開始分析（單一物種）
@@ -133,7 +133,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
         qualityConfig: qualityConfig // 只包含選中物種的配置
       }
 
-      addLog(`Starting DNA analysis for species: ${selectedSpecies}`, 'info')
+      addLog(`Starting DNA analysis for project: ${selectedSpecies}`, 'info')
       addLog(`Quality settings: ${JSON.stringify(qualityConfig)}`, 'info')
 
       // Call API to start analysis
@@ -497,7 +497,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
 
       {/* 動作按鈕 */}
       <div className="analysis-actions">
-        {analysisStep === 'ready' && (
+        {/* {analysisStep === 'ready' && (
           <button
             className="btn btn-primary"
             onClick={detectSpecies}
@@ -506,7 +506,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
             <Settings size={20} />
             Detect Species
           </button>
-        )}
+        )} */}
 
         {analysisStep === 'selecting' && (
           <>
