@@ -1,3 +1,4 @@
+// backend/src/services/pythonExecutor.js
 import fs from "fs-extra";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -9,10 +10,8 @@ const __dirname = path.dirname(__filename);
 
 export class PythonExecutor {
   constructor() {
-    // Docker 配置 - 移除本地執行相關配置
     this.dockerService = new DockerService();
 
-    // 路徑配置
     this.outputsDir = path.join(__dirname, "../../outputs");
     this.backendRootDir = path.join(__dirname, "../../");
     this.uploadsDir = path.join(__dirname, "../../uploads");
@@ -119,10 +118,10 @@ export class PythonExecutor {
       r2File,
       barcodeFile,
       qualityConfig = {},
-      lenFilter = {},
-      ncbiReference,
-      identity = {},
-      somethingdefault2 = {},
+      // lenFilter = {},
+      // ncbiReference,
+      // identity = {},
+      // somethingdefault2 = {},
     } = params;
 
     try {
@@ -211,8 +210,6 @@ export class PythonExecutor {
 
       return {
         status: "completed",
-        // renameOutputDir,
-        // trimOutputDir,
         results: analysisResults,
         executionMode: "docker",
         qualityConfig,

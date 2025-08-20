@@ -444,7 +444,7 @@ class IntegratedPipeline:
                 if success:
                     written_count += 1
         
-        print(f"Successfully wrote {written_count} trimmed read pairs for species '{self.target_species}'", flush=True)
+        print(f"Successfully wrote {written_count} trimmed read pairs for project '{self.target_species}'", flush=True)
 
 
 def load_quality_config(config_file: str) -> Dict[str, int]:

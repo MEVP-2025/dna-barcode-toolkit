@@ -3,10 +3,9 @@
 import subprocess
 import os
 import sys
-import logging
+# import logging
 from pathlib import Path
 
-# 設定行緩衝輸出
 sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 1)
 sys.stderr = os.fdopen(sys.stderr.fileno(), 'w', 1)
 
@@ -14,9 +13,6 @@ class PEARTools:
     """PEAR Tool Wrapper"""
     
     def __init__(self):
-        logging.basicConfig(level=logging.INFO)
-        self.logger = logging.getLogger(__name__)
-        
         # -- check if running in Docker environment
         self.in_docker = os.path.exists("/app") and os.path.exists("/.dockerenv")
         
@@ -25,7 +21,6 @@ class PEARTools:
     
     def run_command(self, cmd, cwd=None, capture_output=True):
         try:
-            self.logger.info(f"Executing: {' '.join(cmd)}")
             print(f"Executing: {' '.join(cmd)}", flush=True)
             
             result = subprocess.run(
@@ -39,8 +34,6 @@ class PEARTools:
             return result
             
         except subprocess.CalledProcessError as e:
-            self.logger.error(f"Command failed: {' '.join(cmd)}")
-            self.logger.error(f"Error: {e.stderr}")
             print(f"Command failed: {' '.join(cmd)}", flush=True)
             print(f"Error: {e.stderr}", flush=True)
             raise
@@ -80,14 +73,6 @@ def run_pear_analysis():
     tools = PEARTools()
     
     print("=" * 40, flush=True)
-    # print(r"""
-    #  ____  _____    _    ____    
-    # |  _ \| ____|  / \  |  _ \   
-    # | |_) |  _|   / _ \ | |_) |  
-    # |  __/| |___ / ___ \|  _ <   
-    # |_|   |_____/_/   \_\_| \_\  
-    # PEAR v0.9.6 [January 15, 2015]
-    # """, flush=True)
     print("PEAR v0.9.6 [January 15, 2015]", flush=True)
     
     print(f"\nPEAR output directory: {tools.pear_output_dir}", flush=True)
@@ -119,7 +104,7 @@ def run_pear_analysis():
                 f_seqs = f_lines // 4
                 r_seqs = r_lines // 4
                 
-                print(f"Found species: {species_name}", flush=True)
+                print(f"Found project: {species_name}", flush=True)
                 print(f"  Forward: {f_file.name} ({f_seqs} sequences)", flush=True)
                 print(f"  Reverse: {r_file.name} ({r_seqs} sequences)", flush=True)
                 
@@ -138,7 +123,7 @@ def run_pear_analysis():
     for species_data in species_files:
         species = species_data['species']
         print(f"\n{'='*30}", flush=True)
-        print(f"Processing species: {species}", flush=True)
+        print(f"Processing project: {species}", flush=True)
         print(f"{'='*30}", flush=True)
         
         try:
