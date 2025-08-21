@@ -35,7 +35,6 @@ const App = () => {
           <img src="/MEVP_logo.png" alt="MEVP Logo" className="mevp-logo" />
           <h1>DNA Barcode Analysis Tool</h1>
         </div>
-        <p>Upload FASTQ files and run rename/trim analysis</p>
       </header>
 
       <main className="app-main">

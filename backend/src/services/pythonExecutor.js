@@ -29,12 +29,12 @@ export class PythonExecutor {
         requiredFiles: [],
         description: "",
       },
-      // {
-      //   name: "length filter",
-      //   script: "Step2/lengthFilter.py",
-      //   requiredFiles: [],
-      //   description: "",
-      // },
+      {
+        name: "length filter",
+        script: "Step2/lenFilter.py",
+        requiredFiles: ["minLength"],
+        description: "",
+      },
     ];
   }
 
@@ -67,14 +67,20 @@ export class PythonExecutor {
       const renameDir = path.join(this.outputsDir, "rename");
       const trimDir = path.join(this.outputsDir, "trim");
       const pearDir = path.join(this.outputsDir, "pear");
+      const filterDir = path.join(this.outputsDir, "filter");
+      const filterDelDir = path.join(this.outputsDir, "filter_del");
 
       // Remove and recreate directories
       await fs.remove(renameDir);
       await fs.remove(trimDir);
       await fs.remove(pearDir);
+      await fs.remove(filterDir);
+      await fs.remove(filterDelDir);
       await fs.ensureDir(renameDir);
       await fs.ensureDir(trimDir);
       await fs.ensureDir(pearDir);
+      await fs.ensureDir(filterDir);
+      await fs.ensureDir(filterDelDir);
 
       logger.info("Output directories cleared successfully");
     } catch (error) {
@@ -118,10 +124,7 @@ export class PythonExecutor {
       r2File,
       barcodeFile,
       qualityConfig = {},
-      // lenFilter = {},
-      // ncbiReference,
-      // identity = {},
-      // somethingdefault2 = {},
+      minLength = 200,
     } = params;
 
     try {
@@ -140,6 +143,7 @@ export class PythonExecutor {
         r2File,
         barcodeFile,
         qualityConfig,
+        minLength,
         steps: this.standardPipeline.map((s) => s.name),
       });
 
@@ -171,6 +175,7 @@ export class PythonExecutor {
             r2File,
             barcodeFile,
             qualityConfigFile: qualityConfigFileName,
+            minLength,
           },
           progressCallback,
           processCallback
@@ -199,7 +204,6 @@ export class PythonExecutor {
 
       logger.info("Docker pipeline completed successfully");
 
-      // 發送完成訊息
       if (progressCallback) {
         progressCallback({
           type: "complete",
@@ -213,6 +217,7 @@ export class PythonExecutor {
         results: analysisResults,
         executionMode: "docker",
         qualityConfig,
+        minLength, // 回傳 minLength 參數
       };
     } catch (error) {
       logger.error("Docker pipeline failed", error);
@@ -234,7 +239,8 @@ export class PythonExecutor {
    * @private
    */
   async _executeStep(step, params, progressCallback, processCallback) {
-    const { r1File, r2File, barcodeFile, qualityConfigFile } = params;
+    const { r1File, r2File, barcodeFile, qualityConfigFile, minLength } =
+      params;
 
     const containerArgs = [`/app/data/python_scripts/${step.script}`];
 
@@ -251,6 +257,9 @@ export class PythonExecutor {
           break;
         case "qualityConfig":
           containerArgs.push(`/app/data/uploads/${qualityConfigFile}`);
+          break;
+        case "minLength":
+          containerArgs.push(minLength.toString());
           break;
       }
     }
@@ -317,6 +326,12 @@ export class PythonExecutor {
           files: [],
           totalFiles: 0,
         },
+        filter: {
+          files: [],
+          totalFiles: 0,
+          deletedFiles: [],
+          deletedCount: 0,
+        },
       };
 
       // Parse rename results
@@ -353,11 +368,28 @@ export class PythonExecutor {
         }
       }
 
+      // Parse pear results
       const pearDir = path.join(this.outputsDir, "pear");
       if (await fs.pathExists(pearDir)) {
         const pearFiles = await fs.readdir(pearDir);
         results.pear.files = pearFiles;
         results.pear.totalFiles = pearFiles.length;
+      }
+
+      // Parse filter results
+      const filterDir = path.join(this.outputsDir, "filter");
+      if (await fs.pathExists(filterDir)) {
+        const filterFiles = await fs.readdir(filterDir);
+        results.filter.files = filterFiles;
+        results.filter.totalFiles = filterFiles.length;
+      }
+
+      // Parse deleted sequences
+      const filterDelDir = path.join(this.outputsDir, "filter_del");
+      if (await fs.pathExists(filterDelDir)) {
+        const deletedFiles = await fs.readdir(filterDelDir);
+        results.filter.deletedFiles = deletedFiles;
+        results.filter.deletedCount = deletedFiles.length;
       }
 
       return results;
@@ -367,6 +399,7 @@ export class PythonExecutor {
         rename: { files: [], totalFiles: 0 },
         trim: { species: {}, totalFiles: 0, files: [] },
         pear: { files: [], totalFiles: 0 },
+        filter: { files: [], totalFiles: 0, deletedFiles: [], deletedCount: 0 },
       };
     }
   }

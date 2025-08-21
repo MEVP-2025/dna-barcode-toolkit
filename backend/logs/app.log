@@ -4690,3 +4690,1144 @@ Directories:
 2025-08-20 17:26:37 [INFO]: Serving static files from:
 2025-08-20 17:26:37 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
 2025-08-20 17:26:37 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-20 18:19:47 [INFO]: Server running on port 3001
+2025-08-20 18:19:47 [INFO]: Environment: development
+2025-08-20 18:19:47 [INFO]: Frontend URL: http://localhost:5173
+2025-08-20 18:19:47 [INFO]: Serving static files from:
+2025-08-20 18:19:47 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-20 18:19:47 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-20 18:21:12 [INFO]: Paired files uploaded successfully
+2025-08-20 18:21:12 [INFO]: Starting species detection for: uploads/all-tags.csv
+2025-08-20 18:21:12 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/species_detector.py /app/data/uploads/all-tags.csv
+2025-08-20 18:21:20 [INFO]: Species detection output: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-20 18:21:20 [INFO]: Species detection output: Python: Python 3.13.0
+2025-08-20 18:21:20 [INFO]: Species detection output: BLAST: blastn: 2.12.0+
+2025-08-20 18:21:20 [INFO]: Species detection output: MAFFT: v7.505 (2022/Apr/10)
+2025-08-20 18:21:20 [INFO]: Species detection output: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-20 18:21:20 [INFO]: Species detection output: Architecture: aarch64
+2025-08-20 18:21:20 [INFO]: Species detection output: Operating System: Linux
+
+Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-20 18:21:20 [INFO]: Species detection output: === SPECIES_DETECTION_RESULT ===
+{
+  "species": [
+    "CypDL",
+    "ZpDL",
+    "xworm"
+  ]
+}
+=== END_RESULT ===
+2025-08-20 18:21:20 [INFO]: Species detection completed. Found 3 species
+2025-08-20 18:36:17 [INFO]: Paired files uploaded successfully
+2025-08-20 18:36:17 [INFO]: Starting species detection for: uploads/all-tags.csv
+2025-08-20 18:36:17 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/species_detector.py /app/data/uploads/all-tags.csv
+2025-08-20 18:36:20 [INFO]: Species detection output: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-20 18:36:20 [INFO]: Species detection output: Python: Python 3.13.0
+2025-08-20 18:36:20 [INFO]: Species detection output: BLAST: blastn: 2.12.0+
+2025-08-20 18:36:20 [INFO]: Species detection output: MAFFT: v7.505 (2022/Apr/10)
+2025-08-20 18:36:20 [INFO]: Species detection output: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-20 18:36:20 [INFO]: Species detection output: Architecture: aarch64
+2025-08-20 18:36:20 [INFO]: Species detection output: Operating System: Linux
+
+Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-20 18:36:20 [INFO]: Species detection output: === SPECIES_DETECTION_RESULT ===
+{
+  "species": [
+    "CypDL",
+    "ZpDL",
+    "xworm"
+  ]
+}
+=== END_RESULT ===
+2025-08-20 18:36:20 [INFO]: Species detection completed. Found 3 species
+2025-08-20 20:12:28 [INFO]: Paired files uploaded successfully
+2025-08-20 20:12:28 [INFO]: Starting species detection for: uploads/all-tags.csv
+2025-08-20 20:12:28 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/species_detector.py /app/data/uploads/all-tags.csv
+2025-08-20 20:12:36 [INFO]: Species detection output: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-20 20:12:36 [INFO]: Species detection output: Python: Python 3.13.0
+2025-08-20 20:12:36 [INFO]: Species detection output: BLAST: blastn: 2.12.0+
+2025-08-20 20:12:36 [INFO]: Species detection output: MAFFT: v7.505 (2022/Apr/10)
+2025-08-20 20:12:36 [INFO]: Species detection output: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-20 20:12:36 [INFO]: Species detection output: Architecture: aarch64
+2025-08-20 20:12:36 [INFO]: Species detection output: Operating System: Linux
+2025-08-20 20:12:36 [INFO]: Species detection output: Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-20 20:12:36 [INFO]: Species detection output: === SPECIES_DETECTION_RESULT ===
+{
+  "species": [
+    "CypDL",
+    "ZpDL",
+    "xworm"
+  ]
+}
+=== END_RESULT ===
+2025-08-20 20:12:37 [INFO]: Species detection completed. Found 3 species
+2025-08-20 20:14:06 [INFO]: Starting pipeline with quality config:
+2025-08-20 20:14:07 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-20 20:14:09 [INFO]: Docker daemon is running
+2025-08-20 20:14:09 [INFO]: Image mevp:latest exists: true
+2025-08-20 20:14:09 [INFO]: Image mevp:latest already exists
+2025-08-20 20:14:09 [INFO]: Docker environment verified successfully
+2025-08-20 20:14:09 [INFO]: Output directories cleared successfully
+2025-08-20 20:14:09 [INFO]: Created quality config file: quality_config_1755692049880.json
+2025-08-20 20:14:09 [INFO]: Starting integrated pipeline with Docker
+2025-08-20 20:14:09 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755692049880.json
+2025-08-20 20:14:10 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-20 20:14:11 [INFO]: Docker pipeline completed successfully
+2025-08-20 20:14:17 [INFO]: Paired files uploaded successfully
+2025-08-20 20:14:17 [INFO]: Starting species detection for: uploads/all-tags.csv
+2025-08-20 20:14:17 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/species_detector.py /app/data/uploads/all-tags.csv
+2025-08-20 20:14:17 [INFO]: Species detection output: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-20 20:14:17 [INFO]: Species detection output: Python: Python 3.13.0
+2025-08-20 20:14:17 [INFO]: Species detection output: BLAST: blastn: 2.12.0+
+2025-08-20 20:14:17 [INFO]: Species detection output: MAFFT: v7.505 (2022/Apr/10)
+2025-08-20 20:14:17 [INFO]: Species detection output: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-20 20:14:17 [INFO]: Species detection output: Architecture: aarch64
+2025-08-20 20:14:17 [INFO]: Species detection output: Operating System: Linux
+
+Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-20 20:14:17 [INFO]: Species detection output: === SPECIES_DETECTION_RESULT ===
+{
+  "species": [
+    "CypDL",
+    "ZpDL",
+    "xworm"
+  ]
+}
+=== END_RESULT ===
+2025-08-20 20:14:17 [INFO]: Species detection completed. Found 3 species
+2025-08-21 10:30:07 [INFO]: Server running on port 3001
+2025-08-21 10:30:07 [INFO]: Environment: development
+2025-08-21 10:30:07 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 10:30:07 [INFO]: Serving static files from:
+2025-08-21 10:30:07 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 10:30:07 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 10:41:50 [INFO]: Server running on port 3001
+2025-08-21 10:41:50 [INFO]: Environment: development
+2025-08-21 10:41:50 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 10:41:50 [INFO]: Serving static files from:
+2025-08-21 10:41:50 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 10:41:50 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 10:42:04 [INFO]: Paired files uploaded successfully
+2025-08-21 10:42:04 [INFO]: Starting species detection for: uploads/all-tags.csv
+2025-08-21 10:42:04 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/species_detector.py /app/data/uploads/all-tags.csv
+2025-08-21 10:42:10 [INFO]: Species detection output: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-21 10:42:10 [INFO]: Species detection output: Python: Python 3.13.0
+2025-08-21 10:42:10 [INFO]: Species detection output: BLAST: blastn: 2.12.0+
+2025-08-21 10:42:10 [INFO]: Species detection output: MAFFT: v7.505 (2022/Apr/10)
+2025-08-21 10:42:10 [INFO]: Species detection output: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-21 10:42:10 [INFO]: Species detection output: Architecture: aarch64
+2025-08-21 10:42:10 [INFO]: Species detection output: Operating System: Linux
+
+Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-21 10:42:11 [INFO]: Species detection output: === SPECIES_DETECTION_RESULT ===
+{
+  "species": [
+    "CypDL",
+    "ZpDL",
+    "xworm"
+  ]
+}
+=== END_RESULT ===
+2025-08-21 10:42:11 [INFO]: Species detection completed. Found 3 species
+2025-08-21 10:42:18 [INFO]: Server running on port 3001
+2025-08-21 10:42:18 [INFO]: Environment: development
+2025-08-21 10:42:18 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 10:42:18 [INFO]: Serving static files from:
+2025-08-21 10:42:18 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 10:42:18 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 10:42:53 [INFO]: Server running on port 3001
+2025-08-21 10:42:53 [INFO]: Environment: development
+2025-08-21 10:42:53 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 10:42:53 [INFO]: Serving static files from:
+2025-08-21 10:42:53 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 10:42:53 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 10:43:31 [INFO]: Server running on port 3001
+2025-08-21 10:43:31 [INFO]: Environment: development
+2025-08-21 10:43:31 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 10:43:31 [INFO]: Serving static files from:
+2025-08-21 10:43:31 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 10:43:31 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 10:43:49 [INFO]: Server running on port 3001
+2025-08-21 10:43:49 [INFO]: Environment: development
+2025-08-21 10:43:49 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 10:43:49 [INFO]: Serving static files from:
+2025-08-21 10:43:49 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 10:43:49 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 10:44:04 [INFO]: Server running on port 3001
+2025-08-21 10:44:04 [INFO]: Environment: development
+2025-08-21 10:44:04 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 10:44:04 [INFO]: Serving static files from:
+2025-08-21 10:44:04 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 10:44:04 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 10:44:46 [INFO]: Server running on port 3001
+2025-08-21 10:44:46 [INFO]: Environment: development
+2025-08-21 10:44:46 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 10:44:46 [INFO]: Serving static files from:
+2025-08-21 10:44:46 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 10:44:46 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 10:44:59 [INFO]: Server running on port 3001
+2025-08-21 10:44:59 [INFO]: Environment: development
+2025-08-21 10:44:59 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 10:44:59 [INFO]: Serving static files from:
+2025-08-21 10:44:59 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 10:44:59 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 10:45:48 [INFO]: Server running on port 3001
+2025-08-21 10:45:48 [INFO]: Environment: development
+2025-08-21 10:45:48 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 10:45:48 [INFO]: Serving static files from:
+2025-08-21 10:45:48 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 10:45:48 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 10:46:05 [INFO]: Server running on port 3001
+2025-08-21 10:46:05 [INFO]: Environment: development
+2025-08-21 10:46:05 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 10:46:05 [INFO]: Serving static files from:
+2025-08-21 10:46:05 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 10:46:05 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 10:46:18 [INFO]: Server running on port 3001
+2025-08-21 10:46:18 [INFO]: Environment: development
+2025-08-21 10:46:18 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 10:46:18 [INFO]: Serving static files from:
+2025-08-21 10:46:18 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 10:46:18 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 10:47:51 [INFO]: Server running on port 3001
+2025-08-21 10:47:51 [INFO]: Environment: development
+2025-08-21 10:47:51 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 10:47:51 [INFO]: Serving static files from:
+2025-08-21 10:47:51 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 10:47:51 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 10:49:16 [INFO]: Server running on port 3001
+2025-08-21 10:49:16 [INFO]: Environment: development
+2025-08-21 10:49:16 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 10:49:16 [INFO]: Serving static files from:
+2025-08-21 10:49:16 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 10:49:16 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 10:50:08 [INFO]: Server running on port 3001
+2025-08-21 10:50:08 [INFO]: Environment: development
+2025-08-21 10:50:08 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 10:50:08 [INFO]: Serving static files from:
+2025-08-21 10:50:08 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 10:50:08 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 10:54:16 [INFO]: Server running on port 3001
+2025-08-21 10:54:16 [INFO]: Environment: development
+2025-08-21 10:54:16 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 10:54:16 [INFO]: Serving static files from:
+2025-08-21 10:54:16 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 10:54:16 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 10:54:19 [INFO]: Server running on port 3001
+2025-08-21 10:54:19 [INFO]: Environment: development
+2025-08-21 10:54:19 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 10:54:19 [INFO]: Serving static files from:
+2025-08-21 10:54:19 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 10:54:19 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 10:54:26 [INFO]: Server running on port 3001
+2025-08-21 10:54:26 [INFO]: Environment: development
+2025-08-21 10:54:26 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 10:54:26 [INFO]: Serving static files from:
+2025-08-21 10:54:26 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 10:54:26 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 10:54:55 [INFO]: Starting pipeline with quality config:
+2025-08-21 10:54:55 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 10:54:57 [INFO]: Docker daemon is running
+2025-08-21 10:55:00 [INFO]: Image mevp:latest exists: true
+2025-08-21 10:55:00 [INFO]: Image mevp:latest already exists
+2025-08-21 10:55:00 [INFO]: Docker environment verified successfully
+2025-08-21 10:55:00 [INFO]: Output directories cleared successfully
+2025-08-21 10:55:00 [INFO]: Created quality config file: quality_config_1755744900150.json
+2025-08-21 10:55:00 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 10:55:00 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755744900150.json
+2025-08-21 10:55:00 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 10:55:01 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 200
+2025-08-21 10:55:01 [INFO]: Docker pipeline completed successfully
+2025-08-21 10:56:32 [INFO]: Server running on port 3001
+2025-08-21 10:56:32 [INFO]: Environment: development
+2025-08-21 10:56:32 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 10:56:32 [INFO]: Serving static files from:
+2025-08-21 10:56:32 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 10:56:32 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 10:56:37 [INFO]: Server running on port 3001
+2025-08-21 10:56:37 [INFO]: Environment: development
+2025-08-21 10:56:37 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 10:56:37 [INFO]: Serving static files from:
+2025-08-21 10:56:37 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 10:56:37 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 10:56:42 [INFO]: Server running on port 3001
+2025-08-21 10:56:42 [INFO]: Environment: development
+2025-08-21 10:56:42 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 10:56:42 [INFO]: Serving static files from:
+2025-08-21 10:56:42 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 10:56:42 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 10:56:52 [INFO]: Server running on port 3001
+2025-08-21 10:56:52 [INFO]: Environment: development
+2025-08-21 10:56:52 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 10:56:52 [INFO]: Serving static files from:
+2025-08-21 10:56:52 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 10:56:52 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 10:56:59 [INFO]: Server running on port 3001
+2025-08-21 10:56:59 [INFO]: Environment: development
+2025-08-21 10:56:59 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 10:56:59 [INFO]: Serving static files from:
+2025-08-21 10:56:59 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 10:56:59 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 10:57:07 [INFO]: Server running on port 3001
+2025-08-21 10:57:07 [INFO]: Environment: development
+2025-08-21 10:57:07 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 10:57:07 [INFO]: Serving static files from:
+2025-08-21 10:57:07 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 10:57:07 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 10:57:14 [INFO]: Server running on port 3001
+2025-08-21 10:57:14 [INFO]: Environment: development
+2025-08-21 10:57:14 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 10:57:14 [INFO]: Serving static files from:
+2025-08-21 10:57:14 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 10:57:14 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 10:58:04 [INFO]: Server running on port 3001
+2025-08-21 10:58:04 [INFO]: Environment: development
+2025-08-21 10:58:04 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 10:58:04 [INFO]: Serving static files from:
+2025-08-21 10:58:04 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 10:58:04 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 11:08:03 [INFO]: Paired files uploaded successfully
+2025-08-21 11:08:03 [INFO]: Starting species detection for: uploads/all-tags.csv
+2025-08-21 11:08:03 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/species_detector.py /app/data/uploads/all-tags.csv
+2025-08-21 11:08:05 [INFO]: Species detection output: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-21 11:08:05 [INFO]: Species detection output: Python: Python 3.13.0
+2025-08-21 11:08:05 [INFO]: Species detection output: BLAST: blastn: 2.12.0+
+2025-08-21 11:08:05 [INFO]: Species detection output: MAFFT: v7.505 (2022/Apr/10)
+2025-08-21 11:08:05 [INFO]: Species detection output: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-21 11:08:05 [INFO]: Species detection output: Architecture: aarch64
+2025-08-21 11:08:05 [INFO]: Species detection output: Operating System: Linux
+
+Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-21 11:08:05 [INFO]: Species detection output: 
+2025-08-21 11:08:05 [INFO]: Species detection output: === SPECIES_DETECTION_RESULT ===
+{
+  "species": [
+    "CypDL",
+    "ZpDL",
+    "xworm"
+  ]
+}
+=== END_RESULT ===
+2025-08-21 11:08:05 [INFO]: Species detection completed. Found 3 species
+2025-08-21 11:10:32 [INFO]: Starting pipeline with quality config:
+2025-08-21 11:10:32 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 11:10:32 [INFO]: Docker daemon is running
+2025-08-21 11:10:32 [INFO]: Image mevp:latest exists: true
+2025-08-21 11:10:32 [INFO]: Image mevp:latest already exists
+2025-08-21 11:10:32 [INFO]: Docker environment verified successfully
+2025-08-21 11:10:32 [INFO]: Output directories cleared successfully
+2025-08-21 11:10:32 [INFO]: Created quality config file: quality_config_1755745832913.json
+2025-08-21 11:10:32 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 11:10:32 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755745832913.json
+2025-08-21 11:10:33 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 11:10:34 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 200
+2025-08-21 11:10:34 [INFO]: Docker pipeline completed successfully
+2025-08-21 11:12:38 [INFO]: Paired files uploaded successfully
+2025-08-21 11:12:38 [INFO]: Starting species detection for: uploads/all-tags.csv
+2025-08-21 11:12:38 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/species_detector.py /app/data/uploads/all-tags.csv
+2025-08-21 11:12:39 [INFO]: Species detection output: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-21 11:12:39 [INFO]: Species detection output: Python: Python 3.13.0
+2025-08-21 11:12:39 [INFO]: Species detection output: BLAST: blastn: 2.12.0+
+2025-08-21 11:12:39 [INFO]: Species detection output: MAFFT: v7.505 (2022/Apr/10)
+2025-08-21 11:12:39 [INFO]: Species detection output: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-21 11:12:39 [INFO]: Species detection output: Architecture: aarch64
+2025-08-21 11:12:39 [INFO]: Species detection output: Operating System: Linux
+
+Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-21 11:12:39 [INFO]: Species detection output: === SPECIES_DETECTION_RESULT ===
+{
+  "species": [
+    "CypDL",
+    "ZpDL",
+    "xworm"
+  ]
+}
+=== END_RESULT ===
+2025-08-21 11:12:39 [INFO]: Species detection completed. Found 3 species
+2025-08-21 11:12:48 [INFO]: Starting pipeline with quality config:
+2025-08-21 11:12:48 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 11:12:48 [INFO]: Docker daemon is running
+2025-08-21 11:12:48 [INFO]: Image mevp:latest exists: true
+2025-08-21 11:12:48 [INFO]: Image mevp:latest already exists
+2025-08-21 11:12:48 [INFO]: Docker environment verified successfully
+2025-08-21 11:12:48 [INFO]: Output directories cleared successfully
+2025-08-21 11:12:48 [INFO]: Created quality config file: quality_config_1755745968570.json
+2025-08-21 11:12:48 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 11:12:48 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755745968570.json
+2025-08-21 11:12:49 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 11:12:49 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 200
+2025-08-21 11:12:49 [INFO]: Docker pipeline completed successfully
+2025-08-21 11:34:21 [INFO]: Paired files uploaded successfully
+2025-08-21 11:34:21 [INFO]: Starting species detection for: uploads/all-tags.csv
+2025-08-21 11:34:21 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/species_detector.py /app/data/uploads/all-tags.csv
+2025-08-21 11:34:28 [INFO]: Species detection output: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-21 11:34:28 [INFO]: Species detection output: Python: Python 3.13.0
+2025-08-21 11:34:28 [INFO]: Species detection output: BLAST: blastn: 2.12.0+
+2025-08-21 11:34:28 [INFO]: Species detection output: MAFFT: v7.505 (2022/Apr/10)
+2025-08-21 11:34:28 [INFO]: Species detection output: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-21 11:34:28 [INFO]: Species detection output: Architecture: aarch64
+2025-08-21 11:34:28 [INFO]: Species detection output: Operating System: Linux
+
+Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-21 11:34:28 [INFO]: Species detection output: === SPECIES_DETECTION_RESULT ===
+{
+  "species": [
+    "CypDL",
+    "ZpDL",
+    "xworm"
+  ]
+}
+=== END_RESULT ===
+2025-08-21 11:34:28 [INFO]: Species detection completed. Found 3 species
+2025-08-21 11:49:20 [INFO]: Server running on port 3001
+2025-08-21 11:49:20 [INFO]: Environment: development
+2025-08-21 11:49:20 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 11:49:20 [INFO]: Serving static files from:
+2025-08-21 11:49:20 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 11:49:20 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 11:49:46 [INFO]: Server running on port 3001
+2025-08-21 11:49:46 [INFO]: Environment: development
+2025-08-21 11:49:46 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 11:49:46 [INFO]: Serving static files from:
+2025-08-21 11:49:46 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 11:49:46 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 11:50:58 [INFO]: Server running on port 3001
+2025-08-21 11:50:58 [INFO]: Environment: development
+2025-08-21 11:50:58 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 11:50:58 [INFO]: Serving static files from:
+2025-08-21 11:50:58 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 11:50:58 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 11:51:05 [INFO]: Server running on port 3001
+2025-08-21 11:51:05 [INFO]: Environment: development
+2025-08-21 11:51:05 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 11:51:05 [INFO]: Serving static files from:
+2025-08-21 11:51:05 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 11:51:05 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 11:51:14 [INFO]: Server running on port 3001
+2025-08-21 11:51:14 [INFO]: Environment: development
+2025-08-21 11:51:14 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 11:51:14 [INFO]: Serving static files from:
+2025-08-21 11:51:14 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 11:51:14 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 11:51:38 [INFO]: Server running on port 3001
+2025-08-21 11:51:38 [INFO]: Environment: development
+2025-08-21 11:51:38 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 11:51:38 [INFO]: Serving static files from:
+2025-08-21 11:51:38 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 11:51:38 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 11:51:58 [INFO]: Server running on port 3001
+2025-08-21 11:51:58 [INFO]: Environment: development
+2025-08-21 11:51:58 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 11:51:58 [INFO]: Serving static files from:
+2025-08-21 11:51:58 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 11:51:58 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 11:52:19 [INFO]: Server running on port 3001
+2025-08-21 11:52:19 [INFO]: Environment: development
+2025-08-21 11:52:19 [INFO]: Frontend URL: http://localhost:5173
+2025-08-21 11:52:19 [INFO]: Serving static files from:
+2025-08-21 11:52:19 [INFO]:   - Uploads: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/uploads
+2025-08-21 11:52:19 [INFO]:   - Outputs: /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs
+2025-08-21 11:52:25 [INFO]: Starting pipeline with quality config:
+2025-08-21 11:52:25 [INFO]: Starting pipeline with minimum length threshold of 
+2025-08-21 11:52:26 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 11:52:27 [INFO]: Docker daemon is running
+2025-08-21 11:52:32 [INFO]: Image mevp:latest exists: true
+2025-08-21 11:52:32 [INFO]: Image mevp:latest already exists
+2025-08-21 11:52:32 [INFO]: Docker environment verified successfully
+2025-08-21 11:52:32 [INFO]: Output directories cleared successfully
+2025-08-21 11:52:32 [INFO]: Created quality config file: quality_config_1755748352762.json
+2025-08-21 11:52:32 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 11:52:32 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755748352762.json
+2025-08-21 11:52:33 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 11:52:33 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 200
+2025-08-21 11:52:34 [INFO]: Docker pipeline completed successfully
+2025-08-21 11:55:09 [INFO]: Starting pipeline with quality config:
+2025-08-21 11:55:09 [INFO]: Starting pipeline with minimum length threshold of 
+2025-08-21 11:55:09 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 11:55:09 [INFO]: Docker daemon is running
+2025-08-21 11:55:09 [INFO]: Image mevp:latest exists: true
+2025-08-21 11:55:09 [INFO]: Image mevp:latest already exists
+2025-08-21 11:55:09 [INFO]: Docker environment verified successfully
+2025-08-21 11:55:09 [INFO]: Output directories cleared successfully
+2025-08-21 11:55:09 [INFO]: Created quality config file: quality_config_1755748509866.json
+2025-08-21 11:55:09 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 11:55:09 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755748509866.json
+2025-08-21 11:55:10 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 11:55:10 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 200
+2025-08-21 11:55:11 [INFO]: Docker pipeline completed successfully
+2025-08-21 11:55:43 [INFO]: Starting pipeline with quality config:
+2025-08-21 11:55:43 [INFO]: Starting pipeline with minimum length threshold of 
+2025-08-21 11:55:43 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 11:55:43 [INFO]: Docker daemon is running
+2025-08-21 11:55:43 [INFO]: Image mevp:latest exists: true
+2025-08-21 11:55:43 [INFO]: Image mevp:latest already exists
+2025-08-21 11:55:43 [INFO]: Docker environment verified successfully
+2025-08-21 11:55:43 [INFO]: Output directories cleared successfully
+2025-08-21 11:55:43 [INFO]: Created quality config file: quality_config_1755748543599.json
+2025-08-21 11:55:43 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 11:55:43 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755748543599.json
+2025-08-21 11:55:44 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 11:55:44 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 200
+2025-08-21 11:55:44 [INFO]: Docker pipeline completed successfully
+2025-08-21 11:56:34 [INFO]: Starting pipeline with quality config:
+2025-08-21 11:56:34 [INFO]: Starting pipeline with minimum length threshold of 
+2025-08-21 11:56:34 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 11:56:34 [INFO]: Docker daemon is running
+2025-08-21 11:56:34 [INFO]: Image mevp:latest exists: true
+2025-08-21 11:56:34 [INFO]: Image mevp:latest already exists
+2025-08-21 11:56:34 [INFO]: Docker environment verified successfully
+2025-08-21 11:56:34 [INFO]: Output directories cleared successfully
+2025-08-21 11:56:34 [INFO]: Created quality config file: quality_config_1755748594778.json
+2025-08-21 11:56:34 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 11:56:34 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755748594778.json
+2025-08-21 11:56:35 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 11:56:35 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 200
+2025-08-21 11:56:36 [INFO]: Docker pipeline completed successfully
+2025-08-21 11:57:17 [INFO]: Starting pipeline with quality config:
+2025-08-21 11:57:17 [INFO]: Starting pipeline with minimum length threshold of 
+2025-08-21 11:57:17 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 11:57:17 [INFO]: Docker daemon is running
+2025-08-21 11:57:17 [INFO]: Image mevp:latest exists: true
+2025-08-21 11:57:17 [INFO]: Image mevp:latest already exists
+2025-08-21 11:57:17 [INFO]: Docker environment verified successfully
+2025-08-21 11:57:17 [INFO]: Output directories cleared successfully
+2025-08-21 11:57:17 [INFO]: Created quality config file: quality_config_1755748637639.json
+2025-08-21 11:57:17 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 11:57:17 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755748637639.json
+2025-08-21 11:57:18 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 11:57:18 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 200
+2025-08-21 11:57:18 [INFO]: Docker pipeline completed successfully
+2025-08-21 11:57:33 [INFO]: Starting pipeline with quality config:
+2025-08-21 11:57:33 [INFO]: Starting pipeline with minimum length threshold of 
+2025-08-21 11:57:33 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 11:57:34 [INFO]: Docker daemon is running
+2025-08-21 11:57:34 [INFO]: Image mevp:latest exists: true
+2025-08-21 11:57:34 [INFO]: Image mevp:latest already exists
+2025-08-21 11:57:34 [INFO]: Docker environment verified successfully
+2025-08-21 11:57:34 [INFO]: Output directories cleared successfully
+2025-08-21 11:57:34 [INFO]: Created quality config file: quality_config_1755748654169.json
+2025-08-21 11:57:34 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 11:57:34 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755748654169.json
+2025-08-21 11:57:34 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 11:57:34 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 200
+2025-08-21 11:57:35 [INFO]: Docker pipeline completed successfully
+2025-08-21 11:57:56 [INFO]: Starting pipeline with quality config:
+2025-08-21 11:57:56 [INFO]: Starting pipeline with minimum length threshold of 
+2025-08-21 11:57:56 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 11:57:56 [INFO]: Docker daemon is running
+2025-08-21 11:57:56 [INFO]: Image mevp:latest exists: true
+2025-08-21 11:57:56 [INFO]: Image mevp:latest already exists
+2025-08-21 11:57:56 [INFO]: Docker environment verified successfully
+2025-08-21 11:57:56 [INFO]: Output directories cleared successfully
+2025-08-21 11:57:56 [INFO]: Created quality config file: quality_config_1755748676987.json
+2025-08-21 11:57:56 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 11:57:56 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755748676987.json
+2025-08-21 11:57:57 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 11:57:57 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 200
+2025-08-21 11:57:58 [INFO]: Docker pipeline completed successfully
+2025-08-21 11:59:03 [INFO]: Starting pipeline with quality config:
+2025-08-21 11:59:03 [INFO]: Starting pipeline with minimum length threshold of 
+2025-08-21 11:59:04 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 11:59:04 [INFO]: Docker daemon is running
+2025-08-21 11:59:04 [INFO]: Image mevp:latest exists: true
+2025-08-21 11:59:04 [INFO]: Image mevp:latest already exists
+2025-08-21 11:59:04 [INFO]: Docker environment verified successfully
+2025-08-21 11:59:04 [INFO]: Output directories cleared successfully
+2025-08-21 11:59:04 [INFO]: Created quality config file: quality_config_1755748744457.json
+2025-08-21 11:59:04 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 11:59:04 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755748744457.json
+2025-08-21 11:59:04 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 11:59:05 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 200
+2025-08-21 11:59:05 [INFO]: Docker pipeline completed successfully
+2025-08-21 12:01:16 [INFO]: Starting pipeline with quality config:
+2025-08-21 12:01:16 [INFO]: Starting pipeline with minimum length threshold of 
+2025-08-21 12:01:16 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 12:01:17 [INFO]: Docker daemon is running
+2025-08-21 12:01:17 [INFO]: Image mevp:latest exists: true
+2025-08-21 12:01:17 [INFO]: Image mevp:latest already exists
+2025-08-21 12:01:17 [INFO]: Docker environment verified successfully
+2025-08-21 12:01:17 [INFO]: Output directories cleared successfully
+2025-08-21 12:01:17 [INFO]: Created quality config file: quality_config_1755748877360.json
+2025-08-21 12:01:17 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 12:01:17 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755748877360.json
+2025-08-21 12:01:17 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 12:01:18 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 200
+2025-08-21 12:01:18 [INFO]: Docker pipeline completed successfully
+2025-08-21 12:02:05 [INFO]: Starting pipeline with quality config:
+2025-08-21 12:02:05 [INFO]: Starting pipeline with minimum length threshold of 
+2025-08-21 12:02:05 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 12:02:06 [INFO]: Docker daemon is running
+2025-08-21 12:02:06 [INFO]: Image mevp:latest exists: true
+2025-08-21 12:02:06 [INFO]: Image mevp:latest already exists
+2025-08-21 12:02:06 [INFO]: Docker environment verified successfully
+2025-08-21 12:02:06 [INFO]: Output directories cleared successfully
+2025-08-21 12:02:06 [INFO]: Created quality config file: quality_config_1755748926407.json
+2025-08-21 12:02:06 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 12:02:06 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755748926407.json
+2025-08-21 12:02:06 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 12:02:07 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 200
+2025-08-21 12:02:07 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 66, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 59, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 39, in convert_fq_to_fa_and_filter
+    if len(sequence) >= min_length:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'int' and 'str'
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-21 12:02:49 [INFO]: Starting pipeline with quality config:
+2025-08-21 12:02:49 [INFO]: Starting pipeline with minimum length threshold of 
+2025-08-21 12:02:49 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 12:02:49 [INFO]: Docker daemon is running
+2025-08-21 12:02:49 [INFO]: Image mevp:latest exists: true
+2025-08-21 12:02:49 [INFO]: Image mevp:latest already exists
+2025-08-21 12:02:49 [INFO]: Docker environment verified successfully
+2025-08-21 12:02:49 [INFO]: Output directories cleared successfully
+2025-08-21 12:02:49 [INFO]: Created quality config file: quality_config_1755748969665.json
+2025-08-21 12:02:49 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 12:02:49 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755748969665.json
+2025-08-21 12:02:50 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 12:02:50 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 200
+2025-08-21 12:02:50 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 64, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 58, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 38, in convert_fq_to_fa_and_filter
+    if len(sequence) >= min_length:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'int' and 'str'
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-21 12:03:52 [INFO]: Starting pipeline with quality config:
+2025-08-21 12:03:52 [INFO]: Starting pipeline with minimum length threshold of 
+2025-08-21 12:03:52 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 12:03:52 [INFO]: Docker daemon is running
+2025-08-21 12:03:52 [INFO]: Image mevp:latest exists: true
+2025-08-21 12:03:52 [INFO]: Image mevp:latest already exists
+2025-08-21 12:03:52 [INFO]: Docker environment verified successfully
+2025-08-21 12:03:52 [INFO]: Output directories cleared successfully
+2025-08-21 12:03:52 [INFO]: Created quality config file: quality_config_1755749032682.json
+2025-08-21 12:03:52 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 12:03:52 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755749032682.json
+2025-08-21 12:03:53 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 12:03:53 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 200
+2025-08-21 12:03:54 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 59, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 53, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 33, in convert_fq_to_fa_and_filter
+    if len(sequence) >= min_length:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'int' and 'str'
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-21 12:03:56 [INFO]: Starting pipeline with quality config:
+2025-08-21 12:03:56 [INFO]: Starting pipeline with minimum length threshold of 
+2025-08-21 12:03:56 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 12:03:56 [INFO]: Docker daemon is running
+2025-08-21 12:03:56 [INFO]: Image mevp:latest exists: true
+2025-08-21 12:03:56 [INFO]: Image mevp:latest already exists
+2025-08-21 12:03:56 [INFO]: Docker environment verified successfully
+2025-08-21 12:03:56 [INFO]: Output directories cleared successfully
+2025-08-21 12:03:56 [INFO]: Created quality config file: quality_config_1755749036624.json
+2025-08-21 12:03:56 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 12:03:56 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755749036624.json
+2025-08-21 12:03:57 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 12:03:57 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 200
+2025-08-21 12:03:57 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 60, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 54, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 33, in convert_fq_to_fa_and_filter
+    if len(sequence) >= min_length:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'int' and 'str'
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-21 12:04:38 [INFO]: Starting pipeline with quality config:
+2025-08-21 12:04:38 [INFO]: Starting pipeline with minimum length threshold of 
+2025-08-21 12:04:38 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 12:04:38 [INFO]: Docker daemon is running
+2025-08-21 12:04:38 [INFO]: Image mevp:latest exists: true
+2025-08-21 12:04:38 [INFO]: Image mevp:latest already exists
+2025-08-21 12:04:38 [INFO]: Docker environment verified successfully
+2025-08-21 12:04:38 [INFO]: Output directories cleared successfully
+2025-08-21 12:04:38 [INFO]: Created quality config file: quality_config_1755749078772.json
+2025-08-21 12:04:38 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 12:04:38 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755749078772.json
+2025-08-21 12:04:39 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 12:04:39 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 200
+2025-08-21 12:04:40 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 60, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 54, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 33, in convert_fq_to_fa_and_filter
+    if len(sequence) >= min_length:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'int' and 'str'
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-21 12:05:04 [INFO]: Starting pipeline with quality config:
+2025-08-21 12:05:04 [INFO]: Starting pipeline with minimum length threshold of 
+2025-08-21 12:05:04 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 12:05:05 [INFO]: Docker daemon is running
+2025-08-21 12:05:05 [INFO]: Image mevp:latest exists: true
+2025-08-21 12:05:05 [INFO]: Image mevp:latest already exists
+2025-08-21 12:05:05 [INFO]: Docker environment verified successfully
+2025-08-21 12:05:05 [INFO]: Output directories cleared successfully
+2025-08-21 12:05:05 [INFO]: Created quality config file: quality_config_1755749105390.json
+2025-08-21 12:05:05 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 12:05:05 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755749105390.json
+2025-08-21 12:05:05 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 12:05:06 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 200
+2025-08-21 12:05:06 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 60, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 54, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 33, in convert_fq_to_fa_and_filter
+    if len(sequence) >= min_length:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'int' and 'str'
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-21 12:05:46 [INFO]: Paired files uploaded successfully
+2025-08-21 12:05:46 [INFO]: Starting species detection for: uploads/all-tags.csv
+2025-08-21 12:05:46 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/species_detector.py /app/data/uploads/all-tags.csv
+2025-08-21 12:05:46 [INFO]: Species detection output: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-21 12:05:46 [INFO]: Species detection output: Python: Python 3.13.0
+2025-08-21 12:05:46 [INFO]: Species detection output: BLAST: blastn: 2.12.0+
+2025-08-21 12:05:46 [INFO]: Species detection output: MAFFT: v7.505 (2022/Apr/10)
+2025-08-21 12:05:46 [INFO]: Species detection output: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-21 12:05:46 [INFO]: Species detection output: Architecture: aarch64
+2025-08-21 12:05:46 [INFO]: Species detection output: Operating System: Linux
+
+Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-21 12:05:46 [INFO]: Species detection output: === SPECIES_DETECTION_RESULT ===
+{
+  "species": [
+    "CypDL",
+    "ZpDL",
+    "xworm"
+  ]
+}
+=== END_RESULT ===
+2025-08-21 12:05:46 [INFO]: Species detection completed. Found 3 species
+2025-08-21 12:05:51 [INFO]: Starting pipeline with quality config:
+2025-08-21 12:05:51 [INFO]: Starting pipeline with minimum length threshold of 
+2025-08-21 12:05:51 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 12:05:53 [INFO]: Docker daemon is running
+2025-08-21 12:05:53 [INFO]: Image mevp:latest exists: true
+2025-08-21 12:05:53 [INFO]: Image mevp:latest already exists
+2025-08-21 12:05:53 [INFO]: Docker environment verified successfully
+2025-08-21 12:05:53 [INFO]: Output directories cleared successfully
+2025-08-21 12:05:53 [INFO]: Created quality config file: quality_config_1755749153465.json
+2025-08-21 12:05:53 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 12:05:53 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/MS23323-pool_000000000-L79NH_L1_R1.fastq /app/data/uploads/MS23323-pool_000000000-L79NH_L1_R2.fastq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755749153465.json
+2025-08-21 12:13:30 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 12:13:57 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 200
+2025-08-21 12:13:58 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 60, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 54, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 33, in convert_fq_to_fa_and_filter
+    if len(sequence) >= min_length:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'int' and 'str'
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-21 12:16:00 [INFO]: Paired files uploaded successfully
+2025-08-21 12:16:00 [INFO]: Starting species detection for: uploads/all-tags.csv
+2025-08-21 12:16:00 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/species_detector.py /app/data/uploads/all-tags.csv
+2025-08-21 12:16:00 [INFO]: Species detection output: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-21 12:16:00 [INFO]: Species detection output: Python: Python 3.13.0
+2025-08-21 12:16:00 [INFO]: Species detection output: BLAST: blastn: 2.12.0+
+2025-08-21 12:16:00 [INFO]: Species detection output: MAFFT: v7.505 (2022/Apr/10)
+2025-08-21 12:16:00 [INFO]: Species detection output: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-21 12:16:00 [INFO]: Species detection output: Architecture: aarch64
+2025-08-21 12:16:00 [INFO]: Species detection output: Operating System: Linux
+
+Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-21 12:16:00 [INFO]: Species detection output: === SPECIES_DETECTION_RESULT ===
+{
+  "species": [
+    "CypDL",
+    "ZpDL",
+    "xworm"
+  ]
+}
+=== END_RESULT ===
+2025-08-21 12:16:00 [INFO]: Species detection completed. Found 3 species
+2025-08-21 12:16:09 [INFO]: Starting pipeline with quality config:
+2025-08-21 12:16:09 [INFO]: Starting pipeline with minimum length threshold of 
+2025-08-21 12:16:09 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 12:16:09 [INFO]: Docker daemon is running
+2025-08-21 12:16:09 [INFO]: Image mevp:latest exists: true
+2025-08-21 12:16:09 [INFO]: Image mevp:latest already exists
+2025-08-21 12:16:09 [INFO]: Docker environment verified successfully
+2025-08-21 12:16:09 [INFO]: Output directories cleared successfully
+2025-08-21 12:16:09 [INFO]: Created quality config file: quality_config_1755749769517.json
+2025-08-21 12:16:09 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 12:16:09 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755749769517.json
+2025-08-21 12:16:09 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 12:16:10 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 224
+2025-08-21 12:16:10 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 60, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 54, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 34, in convert_fq_to_fa_and_filter
+    if len(sequence) >= min_length:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'int' and 'str'
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Socket.<anonymous> (node:internal/child_process:457:11)
+    at Socket.emit (node:events:513:28)
+    at Pipe.<anonymous> (node:net:351:12)
+2025-08-21 12:17:31 [INFO]: Starting pipeline with quality config:
+2025-08-21 12:17:31 [INFO]: Starting pipeline with minimum length threshold of 
+2025-08-21 12:17:31 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 12:17:32 [INFO]: Docker daemon is running
+2025-08-21 12:17:32 [INFO]: Image mevp:latest exists: true
+2025-08-21 12:17:32 [INFO]: Image mevp:latest already exists
+2025-08-21 12:17:32 [INFO]: Docker environment verified successfully
+2025-08-21 12:17:32 [INFO]: Output directories cleared successfully
+2025-08-21 12:17:32 [INFO]: Created quality config file: quality_config_1755749852163.json
+2025-08-21 12:17:32 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 12:17:32 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755749852163.json
+2025-08-21 12:17:32 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 12:17:33 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 224
+2025-08-21 12:17:33 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 60, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 54, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 34, in convert_fq_to_fa_and_filter
+    if len(sequence) >= min_length:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'int' and 'str'
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-21 12:17:48 [INFO]: Starting pipeline with quality config:
+2025-08-21 12:17:48 [INFO]: Starting pipeline with minimum length threshold of 
+2025-08-21 12:17:48 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 12:17:48 [INFO]: Docker daemon is running
+2025-08-21 12:17:48 [INFO]: Image mevp:latest exists: true
+2025-08-21 12:17:48 [INFO]: Image mevp:latest already exists
+2025-08-21 12:17:48 [INFO]: Docker environment verified successfully
+2025-08-21 12:17:48 [INFO]: Output directories cleared successfully
+2025-08-21 12:17:48 [INFO]: Created quality config file: quality_config_1755749868802.json
+2025-08-21 12:17:48 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 12:17:48 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755749868802.json
+2025-08-21 12:17:49 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 12:17:49 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 224
+2025-08-21 12:17:49 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 63, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 57, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 36, in convert_fq_to_fa_and_filter
+    if len(sequence) >= min_length:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'int' and 'str'
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-21 12:18:22 [INFO]: Starting pipeline with quality config:
+2025-08-21 12:18:22 [INFO]: Starting pipeline with minimum length threshold of 
+2025-08-21 12:18:22 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 12:18:22 [INFO]: Docker daemon is running
+2025-08-21 12:18:22 [INFO]: Image mevp:latest exists: true
+2025-08-21 12:18:22 [INFO]: Image mevp:latest already exists
+2025-08-21 12:18:22 [INFO]: Docker environment verified successfully
+2025-08-21 12:18:22 [INFO]: Output directories cleared successfully
+2025-08-21 12:18:22 [INFO]: Created quality config file: quality_config_1755749902555.json
+2025-08-21 12:18:22 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 12:18:22 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755749902555.json
+2025-08-21 12:18:23 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 12:18:23 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 224
+2025-08-21 12:18:23 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 63, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 57, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 36, in convert_fq_to_fa_and_filter
+    if len(sequence) >= min_length:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'int' and 'str'
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-21 12:19:15 [INFO]: Starting pipeline with quality config:
+2025-08-21 12:19:15 [INFO]: Starting pipeline with minimum length threshold of 
+2025-08-21 12:19:15 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 12:19:16 [INFO]: Docker daemon is running
+2025-08-21 12:19:16 [INFO]: Image mevp:latest exists: true
+2025-08-21 12:19:16 [INFO]: Image mevp:latest already exists
+2025-08-21 12:19:16 [INFO]: Docker environment verified successfully
+2025-08-21 12:19:16 [INFO]: Output directories cleared successfully
+2025-08-21 12:19:16 [INFO]: Created quality config file: quality_config_1755749956371.json
+2025-08-21 12:19:16 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 12:19:16 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755749956371.json
+2025-08-21 12:19:16 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 12:19:17 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 224
+2025-08-21 12:19:17 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 64, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 58, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 36, in convert_fq_to_fa_and_filter
+    if len(sequence) >= min_length:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'int' and 'str'
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-21 12:20:47 [INFO]: Starting pipeline with quality config:
+2025-08-21 12:20:47 [INFO]: Starting pipeline with minimum length threshold of 
+2025-08-21 12:20:47 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 12:20:48 [INFO]: Docker daemon is running
+2025-08-21 12:20:48 [INFO]: Image mevp:latest exists: true
+2025-08-21 12:20:48 [INFO]: Image mevp:latest already exists
+2025-08-21 12:20:48 [INFO]: Docker environment verified successfully
+2025-08-21 12:20:48 [INFO]: Output directories cleared successfully
+2025-08-21 12:20:48 [INFO]: Created quality config file: quality_config_1755750048207.json
+2025-08-21 12:20:48 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 12:20:48 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755750048207.json
+2025-08-21 12:20:48 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 12:20:49 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 224
+2025-08-21 12:20:49 [INFO]: Docker pipeline completed successfully
+2025-08-21 12:21:44 [INFO]: Starting pipeline with quality config:
+2025-08-21 12:21:44 [INFO]: Starting pipeline with minimum length threshold of 
+2025-08-21 12:21:44 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 12:21:44 [INFO]: Docker daemon is running
+2025-08-21 12:21:44 [INFO]: Image mevp:latest exists: true
+2025-08-21 12:21:44 [INFO]: Image mevp:latest already exists
+2025-08-21 12:21:44 [INFO]: Docker environment verified successfully
+2025-08-21 12:21:44 [INFO]: Output directories cleared successfully
+2025-08-21 12:21:44 [INFO]: Created quality config file: quality_config_1755750104927.json
+2025-08-21 12:21:44 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 12:21:44 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755750104927.json
+2025-08-21 12:21:45 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 12:21:45 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 224
+2025-08-21 12:21:46 [INFO]: Docker pipeline completed successfully
+2025-08-21 12:26:31 [INFO]: Starting pipeline with quality config:
+2025-08-21 12:26:31 [INFO]: Starting pipeline with minimum length threshold of 
+2025-08-21 12:26:32 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 12:26:32 [INFO]: Docker daemon is running
+2025-08-21 12:26:32 [INFO]: Image mevp:latest exists: true
+2025-08-21 12:26:32 [INFO]: Image mevp:latest already exists
+2025-08-21 12:26:32 [INFO]: Docker environment verified successfully
+2025-08-21 12:26:32 [INFO]: Output directories cleared successfully
+2025-08-21 12:26:32 [INFO]: Created quality config file: quality_config_1755750392561.json
+2025-08-21 12:26:32 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 12:26:32 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755750392561.json
+2025-08-21 12:26:33 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 12:26:33 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 224
+2025-08-21 12:26:33 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 74, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 68, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 28, in convert_fq_to_fa_and_filter
+    print(f"Processing {total_sequences} sequences...")
+                        ^^^^^^^^^^^^^^^
+NameError: name 'total_sequences' is not defined
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-21 12:27:59 [INFO]: Starting pipeline with quality config:
+2025-08-21 12:27:59 [INFO]: Starting pipeline with minimum length threshold of 
+2025-08-21 12:27:59 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 12:28:00 [INFO]: Docker daemon is running
+2025-08-21 12:28:00 [INFO]: Image mevp:latest exists: true
+2025-08-21 12:28:00 [INFO]: Image mevp:latest already exists
+2025-08-21 12:28:00 [INFO]: Docker environment verified successfully
+2025-08-21 12:28:00 [INFO]: Output directories cleared successfully
+2025-08-21 12:28:00 [INFO]: Created quality config file: quality_config_1755750480436.json
+2025-08-21 12:28:00 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 12:28:00 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/test1000-R1.fq /app/data/uploads/test1000-R2.fq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755750480436.json
+2025-08-21 12:28:00 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 12:28:01 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 224
+2025-08-21 12:28:01 [INFO]: Docker pipeline completed successfully
+2025-08-21 12:28:17 [INFO]: Paired files uploaded successfully
+2025-08-21 12:28:17 [INFO]: Starting species detection for: uploads/all-tags.csv
+2025-08-21 12:28:17 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/species_detector.py /app/data/uploads/all-tags.csv
+2025-08-21 12:28:17 [INFO]: Species detection output: DNA Analysis Environment Ready
+
+Available Tools:
+2025-08-21 12:28:17 [INFO]: Species detection output: Python: Python 3.13.0
+2025-08-21 12:28:17 [INFO]: Species detection output: BLAST: blastn: 2.12.0+
+2025-08-21 12:28:17 [INFO]: Species detection output: MAFFT: v7.505 (2022/Apr/10)
+2025-08-21 12:28:17 [INFO]: Species detection output: PEAR:  ____  _____    _    ____ 
+
+System Information:
+2025-08-21 12:28:17 [INFO]: Species detection output: Architecture: aarch64
+2025-08-21 12:28:17 [INFO]: Species detection output: Operating System: Linux
+
+Directories:
+ /app/data   - Place your data files here
+ /app/output - Analysis results output
+ /app/scripts - Your Python programs
+2025-08-21 12:28:17 [INFO]: Species detection output: === SPECIES_DETECTION_RESULT ===
+{
+  "species": [
+    "CypDL",
+    "ZpDL",
+    "xworm"
+  ]
+}
+=== END_RESULT ===
+2025-08-21 12:28:17 [INFO]: Species detection completed. Found 3 species
+2025-08-21 12:28:21 [INFO]: Starting pipeline with quality config:
+2025-08-21 12:28:21 [INFO]: Starting pipeline with minimum length threshold of 
+2025-08-21 12:28:21 [INFO]: Docker version: Docker version 28.2.2, build e6534b4
+2025-08-21 12:28:22 [INFO]: Docker daemon is running
+2025-08-21 12:28:22 [INFO]: Image mevp:latest exists: true
+2025-08-21 12:28:22 [INFO]: Image mevp:latest already exists
+2025-08-21 12:28:22 [INFO]: Docker environment verified successfully
+2025-08-21 12:28:22 [INFO]: Output directories cleared successfully
+2025-08-21 12:28:22 [INFO]: Created quality config file: quality_config_1755750502150.json
+2025-08-21 12:28:22 [INFO]: Starting integrated pipeline with Docker
+2025-08-21 12:28:22 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step1/rename_trim.py /app/data/uploads/MS23323-pool_000000000-L79NH_L1_R1.fastq /app/data/uploads/MS23323-pool_000000000-L79NH_L1_R2.fastq /app/data/uploads/all-tags.csv /app/data/uploads/quality_config_1755750502150.json
+2025-08-21 12:36:13 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/joinPear.py
+2025-08-21 12:36:40 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step2/lenFilter.py 200
+2025-08-21 12:36:41 [INFO]: Docker pipeline completed successfully

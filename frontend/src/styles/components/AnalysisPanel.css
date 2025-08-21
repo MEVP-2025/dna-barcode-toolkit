@@ -50,24 +50,17 @@
   cursor: pointer;
 }
 
-.quality-control {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.quality-control .input-group {
+.inline-configuration .quality-control {
   display: flex;
   align-items: center;
   gap: 5px;
 }
 
-.quality-control .input-group input {
-  width: 50px;
-  padding: 3px 5px;
-  border: 1px solid #e9ecef;
-  border-radius: 4px;
-  font-size: 1em;
+/* minimum length threshold */
+.minimum-length-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 /* NCBI Reference */
@@ -75,14 +68,6 @@
   display: flex;
   align-items: center;
   gap: 3px;
-}
-
-.input-container input[type='number'] {
-  width: 60px;
-  padding: 3px 5px;
-  border: 1px solid #e9ecef;
-  border-radius: 4px;
-  font-size: 1em;
 }
 
 /* Files Summary */

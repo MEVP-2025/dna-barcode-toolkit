@@ -331,3 +331,213 @@ Run 'docker run --help' for more information
     at Socket.<anonymous> (node:internal/child_process:457:11)
     at Socket.emit (node:events:513:28)
     at Pipe.<anonymous> (node:net:351:12)
+2025-08-21 12:02:07 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 66, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 59, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 39, in convert_fq_to_fa_and_filter
+    if len(sequence) >= min_length:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'int' and 'str'
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-21 12:02:50 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 64, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 58, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 38, in convert_fq_to_fa_and_filter
+    if len(sequence) >= min_length:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'int' and 'str'
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-21 12:03:54 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 59, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 53, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 33, in convert_fq_to_fa_and_filter
+    if len(sequence) >= min_length:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'int' and 'str'
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-21 12:03:57 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 60, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 54, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 33, in convert_fq_to_fa_and_filter
+    if len(sequence) >= min_length:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'int' and 'str'
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-21 12:04:40 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 60, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 54, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 33, in convert_fq_to_fa_and_filter
+    if len(sequence) >= min_length:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'int' and 'str'
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-21 12:05:06 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 60, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 54, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 33, in convert_fq_to_fa_and_filter
+    if len(sequence) >= min_length:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'int' and 'str'
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-21 12:13:58 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 60, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 54, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 33, in convert_fq_to_fa_and_filter
+    if len(sequence) >= min_length:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'int' and 'str'
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-21 12:16:10 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 60, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 54, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 34, in convert_fq_to_fa_and_filter
+    if len(sequence) >= min_length:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'int' and 'str'
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Socket.<anonymous> (node:internal/child_process:457:11)
+    at Socket.emit (node:events:513:28)
+    at Pipe.<anonymous> (node:net:351:12)
+2025-08-21 12:17:33 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 60, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 54, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 34, in convert_fq_to_fa_and_filter
+    if len(sequence) >= min_length:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'int' and 'str'
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-21 12:17:49 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 63, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 57, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 36, in convert_fq_to_fa_and_filter
+    if len(sequence) >= min_length:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'int' and 'str'
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-21 12:18:23 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 63, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 57, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 36, in convert_fq_to_fa_and_filter
+    if len(sequence) >= min_length:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'int' and 'str'
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-21 12:19:17 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 64, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 58, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 36, in convert_fq_to_fa_and_filter
+    if len(sequence) >= min_length:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'int' and 'str'
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-21 12:26:33 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 74, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 68, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 28, in convert_fq_to_fa_and_filter
+    print(f"Processing {total_sequences} sequences...")
+                        ^^^^^^^^^^^^^^^
+NameError: name 'total_sequences' is not defined
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)

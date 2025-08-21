@@ -122,6 +122,7 @@ const pipelineSchema = Joi.object({
     )
     .optional()
     .default({}),
+  minLength: Joi.number().integer().min(1).max(10000).optional().default(200), // 新增：minLength 欄位驗證，預設值為 200
 });
 
 // Start integrated pipeline (main endpoint)
@@ -144,10 +145,15 @@ router.post("/pipeline/start", async (req, res, next) => {
       });
     }
 
-    const { r1File, r2File, barcodeFile, qualityConfig } = value;
+    const { r1File, r2File, barcodeFile, qualityConfig, minLength } = value;
 
     // Log the quality configuration
     logger.info("Starting pipeline with quality config:", qualityConfig);
+    logger.info(
+      "Starting pipeline with minimum length threshold of ",
+      minLength,
+      "bp"
+    );
 
     // Create progress callback for SSE
     const progressCallback = (progress) => {
@@ -164,6 +170,7 @@ router.post("/pipeline/start", async (req, res, next) => {
         r2File,
         barcodeFile,
         qualityConfig, // Pass quality config to executor
+        minLength,
       },
       progressCallback,
       (pythonProcess) => {
@@ -178,6 +185,7 @@ router.post("/pipeline/start", async (req, res, next) => {
       promise: analysisPromise,
       sseConnections: new Set(), // Store SSE connections
       qualityConfig, // Store quality config for reference
+      minLength,
     };
 
     // Handle completion
@@ -225,6 +233,7 @@ router.post("/pipeline/start", async (req, res, next) => {
       message: "Integrated pipeline started",
       status: "running",
       qualityConfig, // Include quality config in response
+      minLength,
     });
   } catch (error) {
     next(error);
