@@ -15,6 +15,8 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
   const [qualityConfig, setQualityConfig] = useState({}) // 現在只針對單一物種
 
   const [minLength, setMinLength] = useState(200)
+
+  const [ncbiFile, setNcbiFile] = useState(null)
   
   const eventSourceRef = useRef(null)
   const logContainerRef = useRef(null)
@@ -119,17 +121,33 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
       return
     }
 
+    if (!ncbiFile) {
+      alert('Please upload NCBI reference file.')
+      return
+    }
+
     try {
       setIsAnalyzing(true)
       setAnalysisStep('running')
       setShowLogs(true)
+
+      addLog(`Uploading NCBI reference file: ${ncbiFile.name}...`, 'info')
+    
+      const formData = new FormData()
+      formData.append('file', ncbiFile)
+      
+      const uploadResponse = await api.files.uploadSingle(formData)
+      const uploadedFilename = uploadResponse.data.filename
+      
+      addLog(`NCBI file uploaded: ${uploadedFilename}`, 'success')
       
       const params = {
         r1File: `uploads/${uploadedFiles.R1.filename}`,
         r2File: `uploads/${uploadedFiles.R2.filename}`,
         barcodeFile: `uploads/${uploadedFiles.barcode.filename}`,
-        qualityConfig: qualityConfig, // 只包含選中物種的配置
-        minLength: minLength
+        qualityConfig: qualityConfig,
+        minLength: minLength,
+        ncbiReferenceFile: `uploads/${uploadedFilename}`
       }
 
       addLog(`Starting DNA analysis for project: ${selectedSpecies}`, 'info')
@@ -169,6 +187,11 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
   const handleMinLengthChange = (value) => {
     const parsedValue = parseInt(value) || 0
     setMinLength(parsedValue)
+  }
+
+  const handleNCBIFileChange = (event) => {
+    const file = event.target.files[0]
+    setNcbiFile(file)
   }
 
   const startSSEMonitoring = () => {
@@ -415,8 +438,15 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
             <div className='detail'>
               <p><Dot />Perform BLAST search against NCBI reference sequences</p>
               <div className='input-container'>
-                <h3>Upload NCBI reference file</h3>
-                <input type="file" id="ncbi-file" className="ncbi-reference"></input>
+                <h3>Please upload the NCBI reference file for {selectedSpecies? selectedSpecies : '...'}</h3>
+                <input 
+                  type="file" 
+                  id="ncbi-file" 
+                  className="ncbi-reference" 
+                  accept='.fasta,.fa' 
+                  required 
+                  onChange={handleNCBIFileChange}
+                />
               </div>
               <p><Dot />Applies species assignment rules using sequence identity</p>
               <div className="input-container">
@@ -481,6 +511,13 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
             <span className="file-name">{uploadedFiles.barcode?.originalName}</span>
             <span className="file-size">({formatFileSize(uploadedFiles.barcode?.size || 0)})</span>
           </div>
+          {ncbiFile && (
+            <div className="file-item">
+              <span className="file-type">NCBI reference</span>
+              <span className="file-name">{ncbiFile.name}</span>
+              <span className="file-size">({formatFileSize(ncbiFile.size || 0)})</span>
+            </div>
+          )}
         </div>
       </div>
 
@@ -491,7 +528,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
             <button
                 className="btn btn-primary"
                 onClick={startPipeline}
-                disabled={!uploadedFiles.R1 || !uploadedFiles.R2 || !uploadedFiles.barcode || !selectedSpecies || !minLength}
+                disabled={!uploadedFiles.R1 || !uploadedFiles.R2 || !uploadedFiles.barcode || !selectedSpecies || !minLength || !ncbiFile}
               >
                 <Play size={20} />
                 Start Analysis for {selectedSpecies? selectedSpecies : '...'}

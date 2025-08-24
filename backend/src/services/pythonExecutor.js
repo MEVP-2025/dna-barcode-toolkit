@@ -35,6 +35,12 @@ export class PythonExecutor {
         requiredFiles: ["minLength"],
         description: "",
       },
+      {
+        name: "blast",
+        script: "Step3/joinBlast.py",
+        requiredFiles: ["ncbiReference"],
+        description: "",
+      },
     ];
   }
 
@@ -69,6 +75,7 @@ export class PythonExecutor {
       const pearDir = path.join(this.outputsDir, "pear");
       const filterDir = path.join(this.outputsDir, "filter");
       const filterDelDir = path.join(this.outputsDir, "filter_del");
+      const blastDir = path.join(this.outputsDir, "blast");
 
       // Remove and recreate directories
       await fs.remove(renameDir);
@@ -76,11 +83,13 @@ export class PythonExecutor {
       await fs.remove(pearDir);
       await fs.remove(filterDir);
       await fs.remove(filterDelDir);
+      await fs.remove(blastDir);
       await fs.ensureDir(renameDir);
       await fs.ensureDir(trimDir);
       await fs.ensureDir(pearDir);
       await fs.ensureDir(filterDir);
       await fs.ensureDir(filterDelDir);
+      await fs.ensureDir(blastDir);
 
       logger.info("Output directories cleared successfully");
     } catch (error) {
@@ -125,6 +134,7 @@ export class PythonExecutor {
       barcodeFile,
       qualityConfig = {},
       minLength = 200,
+      ncbiReferenceFile,
     } = params;
 
     try {
@@ -144,6 +154,7 @@ export class PythonExecutor {
         barcodeFile,
         qualityConfig,
         minLength,
+        ncbiReferenceFile,
         steps: this.standardPipeline.map((s) => s.name),
       });
 
@@ -176,6 +187,7 @@ export class PythonExecutor {
             barcodeFile,
             qualityConfigFile: qualityConfigFileName,
             minLength,
+            ncbiReferenceFile,
           },
           progressCallback,
           processCallback
@@ -239,8 +251,14 @@ export class PythonExecutor {
    * @private
    */
   async _executeStep(step, params, progressCallback, processCallback) {
-    const { r1File, r2File, barcodeFile, qualityConfigFile, minLength } =
-      params;
+    const {
+      r1File,
+      r2File,
+      barcodeFile,
+      qualityConfigFile,
+      minLength,
+      ncbiReferenceFile,
+    } = params;
 
     const containerArgs = [`/app/data/python_scripts/${step.script}`];
 
@@ -260,6 +278,11 @@ export class PythonExecutor {
           break;
         case "minLength":
           containerArgs.push(minLength.toString());
+          break;
+        case "ncbiReference":
+          containerArgs.push(
+            `/app/data/uploads/${path.basename(ncbiReferenceFile)}`
+          );
           break;
       }
     }

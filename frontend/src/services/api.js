@@ -19,6 +19,13 @@ export const api = {
         onUploadProgress,
       });
     },
+
+    uploadSingle: (formData, onUploadProgress) => {
+      return apiClient.post("/files/upload/single", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+        onUploadProgress,
+      });
+    },
   },
 
   // Analysis

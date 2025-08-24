@@ -201,7 +201,7 @@ def list_available_files():
 
 def main():
     list_available_files()
-    print()
+    print(flush=True)
     results = run_pear_analysis()
 
 if __name__ == "__main__":

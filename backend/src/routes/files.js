@@ -3,7 +3,11 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import { v4 as uuidv4 } from "uuid";
-import { clearUploadsDir, uploadPairedFiles } from "../middleware/upload.js";
+import {
+  clearUploadsDir,
+  uploadPairedFiles,
+  uploadSingleFile,
+} from "../middleware/upload.js";
 import { logger } from "../utils/logger.js";
 
 const router = express.Router();
@@ -68,5 +72,33 @@ router.post(
     }
   }
 );
+
+router.post("/upload/single", uploadSingleFile, (req, res, next) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
+    const uploadedFile = {
+      id: uuidv4(),
+      originalName: req.file.originalname,
+      filename: req.file.filename,
+      path: req.file.path,
+      size: req.file.size,
+      uploadTime: new Date().toISOString(),
+    };
+
+    logger.info("Single file uploaded:", uploadedFile.originalName);
+
+    res.json({
+      success: true,
+      message: "File uploaded successfully",
+      filename: uploadedFile.filename, // -- file name required by front-end
+      file: uploadedFile,
+    });
+  } catch (error) {
+    next(error);
+  }
+});
 
 export default router;

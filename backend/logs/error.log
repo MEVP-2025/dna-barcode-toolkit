@@ -541,3 +541,79 @@ NameError: name 'total_sequences' is not defined
     at ChildProcess.emit (node:events:513:28)
     at maybeClose (node:internal/child_process:1101:16)
     at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-25 03:22:40 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 60, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 54, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 28, in convert_fq_to_fa_and_filter
+    print(f"Processing {total_sequences} sequences...")
+                        ^^^^^^^^^^^^^^^
+NameError: name 'total_sequences' is not defined
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-25 03:25:47 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 60, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 54, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 28, in convert_fq_to_fa_and_filter
+    print(f"Processing {total_sequences} sequences...")
+                        ^^^^^^^^^^^^^^^
+NameError: name 'total_sequences' is not defined
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-25 03:35:17 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 60, in <module>
+    filter_and_convert(assembled_files, min_length)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 54, in filter_and_convert
+    convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/data/python_scripts/Step2/lenFilter.py", line 28, in convert_fq_to_fa_and_filter
+    print(f"Processing {total_sequences} sequences...")
+                        ^^^^^^^^^^^^^^^
+NameError: name 'total_sequences' is not defined
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-25 03:37:38 [ERROR]: TypeError: step.requiredFiles is not iterable
+    at PythonExecutor._executeStep (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:265:37)
+    at PythonExecutor.executePipeline (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:182:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-25 03:38:24 [ERROR]: TypeError: step.requiredFiles is not iterable
+    at PythonExecutor._executeStep (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:265:37)
+    at PythonExecutor.executePipeline (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:182:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-25 03:41:20 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step3/joinBlast.py", line 234, in <module>
+    list_available_files(ncbi_reference)
+                         ^^^^^^^^^^^^^^
+NameError: name 'ncbi_reference' is not defined
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-25 06:22:03 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step3/joinBlast.py", line 234, in <module>
+    list_available_files(ncbi_reference)
+                         ^^^^^^^^^^^^^^
+NameError: name 'ncbi_reference' is not defined
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)

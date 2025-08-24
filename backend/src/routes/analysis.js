@@ -9,7 +9,7 @@ import { logger } from "../utils/logger.js";
 const router = express.Router();
 const pythonExecutor = new PythonExecutor();
 
-// 物種檢測端點
+// -- Project detect
 router.post("/pipeline/detect-species", async (req, res) => {
   try {
     // 驗證輸入
@@ -122,10 +122,11 @@ const pipelineSchema = Joi.object({
     )
     .optional()
     .default({}),
-  minLength: Joi.number().integer().min(1).max(10000).optional().default(200), // 新增：minLength 欄位驗證，預設值為 200
+  minLength: Joi.number().integer().min(1).max(10000).required().default(200),
+  ncbiReferenceFile: Joi.string().required(),
 });
 
-// Start integrated pipeline (main endpoint)
+// Start integrated pipeline
 router.post("/pipeline/start", async (req, res, next) => {
   try {
     // Check if analysis is already running
@@ -145,7 +146,14 @@ router.post("/pipeline/start", async (req, res, next) => {
       });
     }
 
-    const { r1File, r2File, barcodeFile, qualityConfig, minLength } = value;
+    const {
+      r1File,
+      r2File,
+      barcodeFile,
+      qualityConfig,
+      minLength,
+      ncbiReferenceFile,
+    } = value;
 
     // Log the quality configuration
     logger.info("Starting pipeline with quality config:", qualityConfig);
@@ -171,6 +179,7 @@ router.post("/pipeline/start", async (req, res, next) => {
         barcodeFile,
         qualityConfig, // Pass quality config to executor
         minLength,
+        ncbiReferenceFile,
       },
       progressCallback,
       (pythonProcess) => {
@@ -184,8 +193,9 @@ router.post("/pipeline/start", async (req, res, next) => {
       startTime: new Date(),
       promise: analysisPromise,
       sseConnections: new Set(), // Store SSE connections
-      qualityConfig, // Store quality config for reference
-      minLength,
+      // qualityConfig, // Store quality config for reference
+      // minLength,
+      // ncbiReferenceFile,
     };
 
     // Handle completion
@@ -232,8 +242,9 @@ router.post("/pipeline/start", async (req, res, next) => {
     res.json({
       message: "Integrated pipeline started",
       status: "running",
-      qualityConfig, // Include quality config in response
-      minLength,
+      // qualityConfig, // Include quality config in response
+      // minLength,
+      // ncbiReferenceFile,
     });
   } catch (error) {
     next(error);

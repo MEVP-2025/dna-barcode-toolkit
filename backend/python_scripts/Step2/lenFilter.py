@@ -25,7 +25,6 @@ def process_assembled_fastq(directory = "/app/data/outputs/pear"):
 
 def convert_fq_to_fa_and_filter(fastq_file, output_file, delete_seq_file, min_length = 200):
     with open(fastq_file, 'r') as f_in, open(output_file, 'w') as f_out, open(delete_seq_file, 'w') as f_del:
-        print(f"Processing {total_sequences} sequences...")
         lines = f_in.readlines()
         for i in range(0, len(lines), 4):
             header = lines[i].strip().replace('@', '>', 1)
@@ -58,3 +57,4 @@ if __name__ == "__main__":
     min_length = int(sys.argv[1])
     assembled_files = process_assembled_fastq()
     filter_and_convert(assembled_files, min_length)
+    print("結束", flush=True)
