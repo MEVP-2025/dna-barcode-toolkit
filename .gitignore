@@ -3,6 +3,11 @@
 *.fa
 *.fasta
 *.fastq
+*.tab
+*.csv
+*.bln
+*.species
+*.trimmed
 
 # compression file
 *.gz

@@ -65,6 +65,12 @@ export class PythonExecutor {
         requiredFiles: [],
         description: "",
       },
+      {
+        name: "trim gaps",
+        script: "Step4/trim_gaps.py",
+        requiredFiles: [],
+        description: "",
+      },
     ];
   }
 
@@ -104,6 +110,7 @@ export class PythonExecutor {
       const classifierDir = path.join(this.outputsDir, "classifier");
       const mafftDir = path.join(this.outputsDir, "mafft");
       const tabFormatter = path.join(this.outputsDir, "tab_formatter");
+      const trimmedDir = path.join(this.outputsDir, "trimmed");
 
       // Remove and recreate directories
       await fs.remove(renameDir);
@@ -116,6 +123,8 @@ export class PythonExecutor {
       await fs.remove(classifierDir);
       await fs.remove(mafftDir);
       await fs.remove(tabFormatter);
+      await fs.remove(trimmedDir);
+
       await fs.ensureDir(renameDir);
       await fs.ensureDir(trimDir);
       await fs.ensureDir(pearDir);
@@ -126,6 +135,7 @@ export class PythonExecutor {
       await fs.ensureDir(classifierDir);
       await fs.ensureDir(mafftDir);
       await fs.ensureDir(tabFormatter);
+      await fs.ensureDir(trimmedDir);
 
       logger.info("Output directories cleared successfully");
     } catch (error) {

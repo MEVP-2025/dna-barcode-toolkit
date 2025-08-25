@@ -466,7 +466,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
                 <h3>Please define minimum identity</h3>
                 <div className='identity-container'>
                   <div className='param-group'>
-                    <label htmlFor="keyword">Sequence type keyword:</label>
+                    <label htmlFor="keyword">Priority exactly matched word:</label>
                     <input 
                       type="text" 
                       id="keyword" 
