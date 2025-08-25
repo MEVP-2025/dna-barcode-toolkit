@@ -53,6 +53,12 @@ export class PythonExecutor {
         requiredFiles: [],
         description: "",
       },
+      {
+        name: "MAFFT",
+        script: "Step4/joinMAFFT.py",
+        requiredFiles: [],
+        description: "",
+      },
     ];
   }
 
@@ -90,6 +96,7 @@ export class PythonExecutor {
       const blastDir = path.join(this.outputsDir, "blast");
       const assignDir = path.join(this.outputsDir, "assign");
       const classifierDir = path.join(this.outputsDir, "classifier");
+      const mafftDir = path.join(this.outputsDir, "mafft");
 
       // Remove and recreate directories
       await fs.remove(renameDir);
@@ -100,6 +107,7 @@ export class PythonExecutor {
       await fs.remove(blastDir);
       await fs.remove(assignDir);
       await fs.remove(classifierDir);
+      await fs.remove(mafftDir);
       await fs.ensureDir(renameDir);
       await fs.ensureDir(trimDir);
       await fs.ensureDir(pearDir);
@@ -108,6 +116,7 @@ export class PythonExecutor {
       await fs.ensureDir(blastDir);
       await fs.ensureDir(assignDir);
       await fs.ensureDir(classifierDir);
+      await fs.ensureDir(mafftDir);
 
       logger.info("Output directories cleared successfully");
     } catch (error) {

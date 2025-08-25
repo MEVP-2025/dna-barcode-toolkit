@@ -627,3 +627,7 @@ NameError: name 'identity' is not defined
     at ChildProcess.emit (node:events:513:28)
     at maybeClose (node:internal/child_process:1101:16)
     at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-25 10:20:48 [ERROR]: TypeError: step.requiredFiles is not iterable
+    at PythonExecutor._executeStep (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:300:37)
+    at PythonExecutor.executePipeline (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
