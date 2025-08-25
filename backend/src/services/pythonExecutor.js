@@ -41,6 +41,12 @@ export class PythonExecutor {
         requiredFiles: ["ncbiReference"],
         description: "",
       },
+      {
+        name: "assign species",
+        script: "Step3/assign_species.py",
+        requiredFiles: ["keyword", "identity"],
+        description: "",
+      },
     ];
   }
 
@@ -76,6 +82,7 @@ export class PythonExecutor {
       const filterDir = path.join(this.outputsDir, "filter");
       const filterDelDir = path.join(this.outputsDir, "filter_del");
       const blastDir = path.join(this.outputsDir, "blast");
+      const assignDir = path.join(this.outputsDir, "assign");
 
       // Remove and recreate directories
       await fs.remove(renameDir);
@@ -84,12 +91,14 @@ export class PythonExecutor {
       await fs.remove(filterDir);
       await fs.remove(filterDelDir);
       await fs.remove(blastDir);
+      await fs.remove(assignDir);
       await fs.ensureDir(renameDir);
       await fs.ensureDir(trimDir);
       await fs.ensureDir(pearDir);
       await fs.ensureDir(filterDir);
       await fs.ensureDir(filterDelDir);
       await fs.ensureDir(blastDir);
+      await fs.ensureDir(assignDir);
 
       logger.info("Output directories cleared successfully");
     } catch (error) {
@@ -135,6 +144,8 @@ export class PythonExecutor {
       qualityConfig = {},
       minLength = 200,
       ncbiReferenceFile,
+      keyword,
+      identity,
     } = params;
 
     try {
@@ -155,6 +166,8 @@ export class PythonExecutor {
         qualityConfig,
         minLength,
         ncbiReferenceFile,
+        keyword,
+        identity,
         steps: this.standardPipeline.map((s) => s.name),
       });
 
@@ -188,6 +201,8 @@ export class PythonExecutor {
             qualityConfigFile: qualityConfigFileName,
             minLength,
             ncbiReferenceFile,
+            keyword,
+            identity,
           },
           progressCallback,
           processCallback
@@ -228,8 +243,8 @@ export class PythonExecutor {
         status: "completed",
         results: analysisResults,
         executionMode: "docker",
-        qualityConfig,
-        minLength, // 回傳 minLength 參數
+        // qualityConfig,
+        // minLength, // 回傳 minLength 參數
       };
     } catch (error) {
       logger.error("Docker pipeline failed", error);
@@ -258,6 +273,8 @@ export class PythonExecutor {
       qualityConfigFile,
       minLength,
       ncbiReferenceFile,
+      keyword,
+      identity,
     } = params;
 
     const containerArgs = [`/app/data/python_scripts/${step.script}`];
@@ -277,12 +294,18 @@ export class PythonExecutor {
           containerArgs.push(`/app/data/uploads/${qualityConfigFile}`);
           break;
         case "minLength":
-          containerArgs.push(minLength.toString());
+          containerArgs.push(parseInt(minLength));
           break;
         case "ncbiReference":
           containerArgs.push(
             `/app/data/uploads/${path.basename(ncbiReferenceFile)}`
           );
+          break;
+        case "keyword":
+          containerArgs.push(keyword.toString());
+          break;
+        case "identity":
+          containerArgs.push(parseInt(identity));
           break;
       }
     }

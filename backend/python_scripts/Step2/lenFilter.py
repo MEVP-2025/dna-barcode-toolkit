@@ -57,4 +57,3 @@ if __name__ == "__main__":
     min_length = int(sys.argv[1])
     assembled_files = process_assembled_fastq()
     filter_and_convert(assembled_files, min_length)
-    print("結束", flush=True)

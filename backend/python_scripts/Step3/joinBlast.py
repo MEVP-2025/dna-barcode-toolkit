@@ -231,7 +231,7 @@ def list_available_files(ncbi_reference):
 
 
 if __name__ == "__main__":
-    ncbi_reference = sys.argv[1]
+    ncbi_reference = sys.argv[1] # -- string
     list_available_files(ncbi_reference)
     print(flush=True)
     

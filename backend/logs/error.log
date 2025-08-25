@@ -617,3 +617,13 @@ NameError: name 'ncbi_reference' is not defined
     at ChildProcess.emit (node:events:513:28)
     at maybeClose (node:internal/child_process:1101:16)
     at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+2025-08-25 09:18:22 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step3/assign_species.py", line 116, in <module>
+    species_assignment(keyword, identity)
+                                ^^^^^^^^
+NameError: name 'identity' is not defined
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)

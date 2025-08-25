@@ -124,6 +124,8 @@ const pipelineSchema = Joi.object({
     .default({}),
   minLength: Joi.number().integer().min(1).max(10000).required().default(200),
   ncbiReferenceFile: Joi.string().required(),
+  keyword: Joi.string().required(),
+  identity: Joi.number().integer().min(0).max(100).required().default(98),
 });
 
 // Start integrated pipeline
@@ -153,6 +155,8 @@ router.post("/pipeline/start", async (req, res, next) => {
       qualityConfig,
       minLength,
       ncbiReferenceFile,
+      keyword,
+      identity,
     } = value;
 
     // Log the quality configuration
@@ -180,6 +184,8 @@ router.post("/pipeline/start", async (req, res, next) => {
         qualityConfig, // Pass quality config to executor
         minLength,
         ncbiReferenceFile,
+        keyword,
+        identity,
       },
       progressCallback,
       (pythonProcess) => {

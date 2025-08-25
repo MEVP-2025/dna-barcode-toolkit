@@ -17,6 +17,9 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
   const [minLength, setMinLength] = useState(200)
 
   const [ncbiFile, setNcbiFile] = useState(null)
+
+  const [keyword, setKeyword] = useState()
+  const [identity, setIdentity] = useState(98)
   
   const eventSourceRef = useRef(null)
   const logContainerRef = useRef(null)
@@ -147,7 +150,9 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
         barcodeFile: `uploads/${uploadedFiles.barcode.filename}`,
         qualityConfig: qualityConfig,
         minLength: minLength,
-        ncbiReferenceFile: `uploads/${uploadedFilename}`
+        ncbiReferenceFile: `uploads/${uploadedFilename}`,
+        keyword: keyword,
+        identity: identity
       }
 
       addLog(`Starting DNA analysis for project: ${selectedSpecies}`, 'info')
@@ -177,7 +182,6 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
     }
   }
 
-  // 處理品質參數變更（單一物種）
   const handleQualityChange = (value) => {
     setQualityConfig({
       [selectedSpecies]: parseInt(value) || 0
@@ -192,6 +196,15 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
   const handleNCBIFileChange = (event) => {
     const file = event.target.files[0]
     setNcbiFile(file)
+  }
+
+  const handleKeywordChange = (value) => {
+    setKeyword(value)
+  }
+
+  const handleIdentityChange = (value) => {
+    const parsedValue = parseInt(value) || 0
+    setIdentity(parsedValue)
   }
 
   const startSSEMonitoring = () => {
@@ -452,9 +465,31 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
               <div className="input-container">
                 <h3>Please define minimum identity</h3>
                 <div className='identity-container'>
-                  <p>Mitochondrial sequences with ≥</p>
-                  <input type='number' id = "identity" className='identity' min="0" max="100" value={0} />
-                  <p>% identity</p>
+                  <div className='param-group'>
+                    <label htmlFor="keyword">Sequence type keyword:</label>
+                    <input 
+                      type="text" 
+                      id="keyword" 
+                      className="keyword-input" 
+                      value={keyword}
+                      onChange={(e) => handleKeywordChange(e.target.value)}
+                      placeholder="mitochondrion"
+                    />
+                  </div>
+                </div>
+                <div className='identity-container'>
+                  {/* <p>Mitochondrial sequences with ≥</p> */}
+                  <label htmlFor="identity">Minimum identity threshold:</label>
+                  <input 
+                    type='number' 
+                    id="identity" 
+                    className='identity' 
+                    min="0" 
+                    max="100" 
+                    value={identity} 
+                    onChange={(e) => handleIdentityChange(e.target.value)}
+                  />
+                  <span>% identity</span>
                 </div>
               </div>
               <p><Dot />Separates sequences by assigned species into individual FASTA files</p>
@@ -492,7 +527,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
         </div>
       )}
 
-      {/* 檔案摘要 */}
+      {/* files summary */}
       <div className="files-summary">
         <h3>Uploaded Files:</h3>
         <div className="files-list">
@@ -521,14 +556,13 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
         </div>
       </div>
 
-      {/* 動作按鈕 */}
       <div className="analysis-actions">
         {analysisStep === 'selecting' && (
           <>
             <button
                 className="btn btn-primary"
                 onClick={startPipeline}
-                disabled={!uploadedFiles.R1 || !uploadedFiles.R2 || !uploadedFiles.barcode || !selectedSpecies || !minLength || !ncbiFile}
+                disabled={!uploadedFiles.R1 || !uploadedFiles.R2 || !uploadedFiles.barcode || !selectedSpecies || !minLength || !ncbiFile || !keyword || !identity}
               >
                 <Play size={20} />
                 Start Analysis for {selectedSpecies? selectedSpecies : '...'}
