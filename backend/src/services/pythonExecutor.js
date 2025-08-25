@@ -59,6 +59,12 @@ export class PythonExecutor {
         requiredFiles: [],
         description: "",
       },
+      {
+        name: "tab formatter",
+        script: "Step4/tabFormatter.py",
+        requiredFiles: [],
+        description: "",
+      },
     ];
   }
 
@@ -97,6 +103,7 @@ export class PythonExecutor {
       const assignDir = path.join(this.outputsDir, "assign");
       const classifierDir = path.join(this.outputsDir, "classifier");
       const mafftDir = path.join(this.outputsDir, "mafft");
+      const tabFormatter = path.join(this.outputsDir, "tab_formatter");
 
       // Remove and recreate directories
       await fs.remove(renameDir);
@@ -108,6 +115,7 @@ export class PythonExecutor {
       await fs.remove(assignDir);
       await fs.remove(classifierDir);
       await fs.remove(mafftDir);
+      await fs.remove(tabFormatter);
       await fs.ensureDir(renameDir);
       await fs.ensureDir(trimDir);
       await fs.ensureDir(pearDir);
@@ -117,6 +125,7 @@ export class PythonExecutor {
       await fs.ensureDir(assignDir);
       await fs.ensureDir(classifierDir);
       await fs.ensureDir(mafftDir);
+      await fs.ensureDir(tabFormatter);
 
       logger.info("Output directories cleared successfully");
     } catch (error) {

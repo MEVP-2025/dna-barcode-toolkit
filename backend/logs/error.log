@@ -631,3 +631,13 @@ NameError: name 'identity' is not defined
     at PythonExecutor._executeStep (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:300:37)
     at PythonExecutor.executePipeline (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/pythonExecutor.js:213:39)
     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-25 10:30:48 [ERROR]: Error: Docker container exited with code 1: Traceback (most recent call last):
+  File "/app/data/python_scripts/Step4/tabFormatter.py", line 63, in <module>
+    process_fasta(input_file, output_file, flush=True)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: process_fasta() got an unexpected keyword argument 'flush'
+
+    at ChildProcess.<anonymous> (file:///Users/angus/Visualization%20Bioinformatics/dna-barcode-toolkit/backend/src/services/dockerService.js:146:13)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
