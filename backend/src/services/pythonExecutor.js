@@ -47,6 +47,12 @@ export class PythonExecutor {
         requiredFiles: ["keyword", "identity"],
         description: "",
       },
+      {
+        name: "species classifier",
+        script: "Step3/speciesClassifier.py",
+        requiredFiles: [],
+        description: "",
+      },
     ];
   }
 
@@ -83,6 +89,7 @@ export class PythonExecutor {
       const filterDelDir = path.join(this.outputsDir, "filter_del");
       const blastDir = path.join(this.outputsDir, "blast");
       const assignDir = path.join(this.outputsDir, "assign");
+      const classifierDir = path.join(this.outputsDir, "classifier");
 
       // Remove and recreate directories
       await fs.remove(renameDir);
@@ -92,6 +99,7 @@ export class PythonExecutor {
       await fs.remove(filterDelDir);
       await fs.remove(blastDir);
       await fs.remove(assignDir);
+      await fs.remove(classifierDir);
       await fs.ensureDir(renameDir);
       await fs.ensureDir(trimDir);
       await fs.ensureDir(pearDir);
@@ -99,6 +107,7 @@ export class PythonExecutor {
       await fs.ensureDir(filterDelDir);
       await fs.ensureDir(blastDir);
       await fs.ensureDir(assignDir);
+      await fs.ensureDir(classifierDir);
 
       logger.info("Output directories cleared successfully");
     } catch (error) {
