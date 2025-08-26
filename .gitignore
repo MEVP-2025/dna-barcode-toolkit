@@ -8,7 +8,8 @@
 *.bln
 *.species
 
-/outputs/*
+outputs/
+uploads/
 
 # compression file
 *.gz
