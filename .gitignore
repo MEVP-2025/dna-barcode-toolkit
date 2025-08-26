@@ -16,3 +16,6 @@ logs/
 
 # Dependency directories
 node_modules/
+
+# yarn
+yarn.lock
