@@ -7,7 +7,8 @@
 *.csv
 *.bln
 *.species
-*.trimmed
+
+/outputs/*
 
 # compression file
 *.gz

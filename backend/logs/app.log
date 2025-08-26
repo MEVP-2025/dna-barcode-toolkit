@@ -7002,3 +7002,6 @@ Directories:
 2025-08-25 11:47:35 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step3/assign_species.py mitochondrion 98
 2025-08-25 11:47:47 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step3/speciesClassifier.py
 2025-08-25 11:47:49 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step4/joinMAFFT.py
+2025-08-25 12:23:57 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step4/tabFormatter.py
+2025-08-25 12:24:00 [INFO]: Running Docker command: docker run --rm -v /Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/:/app/data mevp:latest python3 /app/data/python_scripts/Step4/trim_gaps.py
+2025-08-25 12:24:04 [INFO]: Docker pipeline completed successfully
