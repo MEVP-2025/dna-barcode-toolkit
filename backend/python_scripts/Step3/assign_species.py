@@ -77,7 +77,7 @@ def species_assignment(keyword, identity_threshold):
     assigned_count = 0
     for read_id in dt.keys():
         assigned_count += 1
-        if assigned_count % 1000 == 0:
+        if assigned_count % 10000 == 0:
             print(f"Assigned {assigned_count} reads...", flush=True)
         
         # -- Priority 1: check keyword + identity >= threshold

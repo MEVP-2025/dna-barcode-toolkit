@@ -113,8 +113,6 @@ def write_species_fasta(species_sequences, prefix):
     return output_files
 
 if __name__ == "__main__":
-    # assign_file = sys.argv[1]
-    # fasta_file = sys.argv[2]
     assign_path = Path("/app/data/outputs/assign")
     assign_f = list(assign_path.glob("*.assign.species"))
     assign_file = str(assign_f[0])

@@ -24,7 +24,8 @@ def trim_alignment_gaps(infile_name, output_dir):
     print(f"Processing: {Path(infile_name).name}", flush=True)
     
     # Create output filename
-    input_name = Path(infile_name).stem
+    input_name = Path(infile_name).name
+    print(f"Output directory: ", output_dir, flush=True)
     output_file = os.path.join(output_dir, f"{input_name}.trimmed.fa")
     
     # -- 1. counts, maximum
@@ -78,7 +79,8 @@ def trim_alignment_gaps(infile_name, output_dir):
             len3 = len(read_seq) - max3
             read_seq = read_seq[max5:len3]
 
-            out.write('>' + read_id + '\n' + read_seq + '\n')
+            # out.write('>' + read_id + '\n' + read_seq + '\n')
+            out.write(read_id + '\t' + read_seq + '\n')
     
     print(f"  Output saved to: {output_file}", flush=True)
 
