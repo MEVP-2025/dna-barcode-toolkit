@@ -71,6 +71,12 @@ export class PythonExecutor {
         requiredFiles: [],
         description: "",
       },
+      {
+        name: "separate reads",
+        script: "Step5/separate_reads.py",
+        requiredFiles: ["copyNumber"],
+        description: "",
+      },
     ];
   }
 
@@ -111,6 +117,7 @@ export class PythonExecutor {
       const mafftDir = path.join(this.outputsDir, "mafft");
       const tabFormatter = path.join(this.outputsDir, "tab_formatter");
       const trimmedDir = path.join(this.outputsDir, "trimmed");
+      const copyNumberDir = path.join(this.outputsDir, "separated");
 
       // Remove and recreate directories
       await fs.remove(renameDir);
@@ -124,6 +131,7 @@ export class PythonExecutor {
       await fs.remove(mafftDir);
       await fs.remove(tabFormatter);
       await fs.remove(trimmedDir);
+      await fs.remove(copyNumberDir);
 
       await fs.ensureDir(renameDir);
       await fs.ensureDir(trimDir);
@@ -136,6 +144,7 @@ export class PythonExecutor {
       await fs.ensureDir(mafftDir);
       await fs.ensureDir(tabFormatter);
       await fs.ensureDir(trimmedDir);
+      await fs.ensureDir(copyNumberDir);
 
       logger.info("Output directories cleared successfully");
     } catch (error) {
@@ -183,6 +192,7 @@ export class PythonExecutor {
       ncbiReferenceFile,
       keyword,
       identity,
+      copyNumber,
     } = params;
 
     try {
@@ -205,6 +215,7 @@ export class PythonExecutor {
         ncbiReferenceFile,
         keyword,
         identity,
+        copyNumber,
         steps: this.standardPipeline.map((s) => s.name),
       });
 
@@ -240,6 +251,7 @@ export class PythonExecutor {
             ncbiReferenceFile,
             keyword,
             identity,
+            copyNumber,
           },
           progressCallback,
           processCallback
@@ -312,6 +324,7 @@ export class PythonExecutor {
       ncbiReferenceFile,
       keyword,
       identity,
+      copyNumber,
     } = params;
 
     const containerArgs = [`/app/data/python_scripts/${step.script}`];
@@ -343,6 +356,9 @@ export class PythonExecutor {
           break;
         case "identity":
           containerArgs.push(parseInt(identity));
+          break;
+        case "copyNumber":
+          containerArgs.push(parseInt(copyNumber));
           break;
       }
     }

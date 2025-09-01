@@ -20,6 +20,8 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
 
   const [keyword, setKeyword] = useState()
   const [identity, setIdentity] = useState(98)
+
+  const [copyNumber, setCopyNumber] = useState(2)
   
   const eventSourceRef = useRef(null)
   const logContainerRef = useRef(null)
@@ -152,7 +154,8 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
         minLength: minLength,
         ncbiReferenceFile: `uploads/${uploadedFilename}`,
         keyword: keyword,
-        identity: identity
+        identity: identity,
+        copyNumber: copyNumber
       }
 
       addLog(`Starting DNA analysis for project: ${selectedSpecies}`, 'info')
@@ -189,7 +192,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
   }
 
   const handleMinLengthChange = (value) => {
-    const parsedValue = parseInt(value) || 0
+    const parsedValue = parseInt(value) || 200
     setMinLength(parsedValue)
   }
 
@@ -203,8 +206,13 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
   }
 
   const handleIdentityChange = (value) => {
-    const parsedValue = parseInt(value) || 0
+    const parsedValue = parseInt(value) || 98
     setIdentity(parsedValue)
+  }
+
+  const handleCopyNumberChange = (value) => {
+    const parsedValue = parseInt(value) || 2
+    setCopyNumber(parsedValue)
   }
 
   const startSSEMonitoring = () => {
@@ -457,7 +465,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
                   id="ncbi-file" 
                   className="ncbi-reference" 
                   accept='.fasta,.fa' 
-                  required 
+                  required
                   onChange={handleNCBIFileChange}
                 />
               </div>
@@ -478,7 +486,6 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
                   </div>
                 </div>
                 <div className='identity-container'>
-                  {/* <p>Mitochondrial sequences with ≥</p> */}
                   <label htmlFor="identity">Minimum identity threshold:</label>
                   <input 
                     type='number' 
@@ -512,7 +519,15 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
               <p><Dot />Generate separate files for common haplotypes and rare variants</p>
               <div className='input-container'>
                 <h3>Please define minimum number of copies</h3>
-                <input type='number' min="1" max="100" value={2}/>
+                <input 
+                  type='number' 
+                  id="copy-number" 
+                  className='copy-number' 
+                  min="1" 
+                  max="1000" 
+                  value={copyNumber} 
+                  onChange={(e) => handleCopyNumberChange(e.target.value)}
+                />
               </div>
             </div>
           </div>
@@ -562,7 +577,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
             <button
                 className="btn btn-primary"
                 onClick={startPipeline}
-                disabled={!uploadedFiles.R1 || !uploadedFiles.R2 || !uploadedFiles.barcode || !selectedSpecies || !minLength || !ncbiFile || !keyword || !identity}
+                disabled={!uploadedFiles.R1 || !uploadedFiles.R2 || !uploadedFiles.barcode || !selectedSpecies || !minLength || !ncbiFile || !keyword || !identity || !copyNumber}
               >
                 <Play size={20} />
                 Start Analysis for {selectedSpecies? selectedSpecies : '...'}
