@@ -77,6 +77,12 @@ export class PythonExecutor {
         requiredFiles: ["copyNumber"],
         description: "",
       },
+      {
+        name: "generate location-haplotype table",
+        script: "Step6/get_loc_hap_table.py",
+        requiredFiles: ["barcode"],
+        description: "",
+      },
     ];
   }
 
@@ -118,6 +124,7 @@ export class PythonExecutor {
       const tabFormatter = path.join(this.outputsDir, "tab_formatter");
       const trimmedDir = path.join(this.outputsDir, "trimmed");
       const copyNumberDir = path.join(this.outputsDir, "separated");
+      const tableDir = path.join(this.outputsDir, "table");
 
       // Remove and recreate directories
       await fs.remove(renameDir);
@@ -132,6 +139,7 @@ export class PythonExecutor {
       await fs.remove(tabFormatter);
       await fs.remove(trimmedDir);
       await fs.remove(copyNumberDir);
+      await fs.remove(tableDir);
 
       await fs.ensureDir(renameDir);
       await fs.ensureDir(trimDir);
@@ -145,6 +153,7 @@ export class PythonExecutor {
       await fs.ensureDir(tabFormatter);
       await fs.ensureDir(trimmedDir);
       await fs.ensureDir(copyNumberDir);
+      await fs.ensureDir(tableDir);
 
       logger.info("Output directories cleared successfully");
     } catch (error) {
