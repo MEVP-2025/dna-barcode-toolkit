@@ -269,6 +269,8 @@ router.post("/pipeline/stop", (req, res) => {
       });
     }
 
+    currentAnalysis.status = "stopping";
+
     // 殺死 Python 程序
     if (currentPythonProcess) {
       console.log("Terminating Python process...");

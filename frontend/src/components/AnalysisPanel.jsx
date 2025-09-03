@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { api } from '../services/api'
 import '../styles/components/AnalysisPanel.css'
 
-const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
+const AnalysisPanel = ({ uploadedFiles, onAnalysisComplete, onReset }) => {
   const [logs, setLogs] = useState([])
   const [showLogs, setShowLogs] = useState(false)
   const [isAnalyzing, setIsAnalyzing] = useState(false)
@@ -168,9 +168,9 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
       addLog('Analysis task started successfully', 'success')
 
       // Call original callback if needed
-      if (onAnalysisStart) {
-        onAnalysisStart('pipeline', params)
-      }
+      // if (onAnalysisStart) {
+      //   onAnalysisStart('pipeline', params)
+      // }
 
       // -- Delay starting SSE monitoring to give the backend time to set up the analysis state
       setTimeout(() => {
@@ -238,10 +238,14 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
           onComplete: (data) => {
             addLog(data.message || 'Analysis completed!', 'success')
             setIsAnalyzing(false)
-            setAnalysisStep('selecting') // 完成後回到物種選擇，可以選擇其他物種
+            setAnalysisStep('completed') // 完成後回到物種選擇，可以選擇其他物種
             
             // Optionally fetch results here
-            fetchAnalysisResults()
+            fetchAnalysisResults().then(results => {
+              if (onAnalysisComplete && results) {
+                onAnalysisComplete(results)
+              }
+            })
           },
 
           onError: (data) => {
@@ -290,6 +294,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisStart, onReset }) => {
       if (response.data) {
         addLog(`Analysis completed for ${selectedSpecies}!`, 'success')
         addLog(`Results ready: ${JSON.stringify(response.data.result, null, 2)}`, 'success')
+        return response.data
       }
     } catch (error) {
       addLog(`Failed to fetch results: ${error.message}`, 'warning')

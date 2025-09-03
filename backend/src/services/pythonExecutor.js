@@ -372,7 +372,7 @@ export class PythonExecutor {
       }
     }
 
-    // 使用 DockerService 的標準方法
+    // -- Docker
     const result = await this.dockerService.runContainer({
       workDir: this.backendRootDir,
       command: "python3",
