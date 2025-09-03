@@ -78,6 +78,6 @@ if __name__ == "__main__":
 
         full_prefix = os.path.join(sample_dir, prefix)
 
-        print(f"Processing {t_file}...")
+        print(f"Processing {t_file}...", flush=True)
         asv_generator(str(t_file), full_prefix, copy_num)
-        print(f"Completed {prefix}")
+        print(f"Completed {prefix}", flush=True)
