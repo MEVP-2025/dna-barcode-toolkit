@@ -11,6 +11,7 @@ import { fileURLToPath } from "url";
 import analysisRoutes from "./routes/analysis.js";
 import fileRoutes from "./routes/files.js";
 import indexRoutes from "./routes/index.js";
+import outputRoutes from "./routes/outputs.js";
 
 // Import middleware
 import { errorHandler } from "./middleware/errorHandler.js";
@@ -63,6 +64,7 @@ app.use("/outputs", express.static(path.join(__dirname, "../outputs")));
 app.use("/api", indexRoutes);
 app.use("/api/files", fileRoutes);
 app.use("/api/analysis", analysisRoutes);
+app.use("/api/outputs", outputRoutes);
 
 // Health check endpoint
 app.get("/health", (req, res) => {

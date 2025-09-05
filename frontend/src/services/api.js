@@ -115,6 +115,11 @@ export const api = {
       getSSEUrl: () => `${API_BASE_URL}/analysis/pipeline/progress`,
     },
   },
+
+  // Outputs
+  outputs: {
+    list: () => apiClient.get("outputs/list"),
+  },
 };
 
 export default api;

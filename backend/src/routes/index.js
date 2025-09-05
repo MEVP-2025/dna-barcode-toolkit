@@ -37,6 +37,7 @@ router.get("/", (req, res) => {
       system: "/api/system",
       files: "/api/files",
       analysis: "/api/analysis",
+      outputs: "/api/outputs",
     },
   });
 });

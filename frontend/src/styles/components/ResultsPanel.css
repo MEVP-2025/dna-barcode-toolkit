@@ -1,223 +1,93 @@
-/* ========================================
-   RESULTS SECTION
-   ======================================== */
-
 .results-section {
-  margin-bottom: 30px;
-}
-
-/* Analysis Summary */
-.analysis-summary {
-  background: #f8f9fa;
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 30px;
-  border-left: 4px solid #27ae60;
-}
-
-.analysis-summary h3 {
-  margin-bottom: 15px;
-  color: #2c3e50;
-}
-
-.summary-item {
   display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
+  flex-direction: column;
+  gap: 25px;
 }
 
-.summary-item .label {
-  font-weight: 500;
-  color: #2c3e50;
-  min-width: 120px;
+.species-results {
+  display: flex;
+  flex-direction: column;
+  /* gap: 10px; */
 }
 
-.summary-item .value {
-  color: #7f8c8d;
-}
-
-.summary-item .value.success {
-  color: #27ae60;
-  font-weight: 500;
-}
-
-/* Pipeline Results */
-.pipeline-results {
-  margin-bottom: 30px;
-}
-
-/* Step Results */
-.step-results {
-  background: #f8f9fa;
-  border-radius: 8px;
-  padding: 25px;
-  margin-bottom: 25px;
-  border-left: 4px solid #3498db;
-}
-
-.step-results h3 {
-  color: #2c3e50;
-  margin-bottom: 20px;
+.results-summary {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 7px;
 }
 
-.step-summary {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
-  color: #7f8c8d;
-  font-weight: 500;
+/* Species Header */
+.species-summary .line {
+  width: 100%;
+  border-top: 2px solid #aaa;
+  margin: 20px 0;
 }
 
-/* Files Grid */
-.files-grid {
-  display: grid;
-  gap: 15px;
-}
-
-.file-result-item {
+.species-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
-  background: white;
-  border-radius: 6px;
-  border: 1px solid #e9ecef;
-  transition: all 0.2s;
+  /* padding-top: 20px; */
 }
 
-.file-result-item:hover {
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  border-color: #3498db;
+.species-header h3 {
+  margin: 10px 0px 10px 15px
 }
 
-.file-result-item .file-info {
-  flex: 1;
+.species-header .species-actions{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: 30px;
+}
+
+.species-header .btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 12px 15px;
+}
+
+/* Files Summary */
+.results-files-summary {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 10px;
+  background: #f8f9fa;
+  padding: 20px 30px;
+  border-radius: 8px;
+  margin-top: 10px;
 }
 
-.file-result-item .file-info strong {
-  color: #2c3e50;
-  font-weight: 500;
+.results-files-summary .file-category h4 {
+  margin-bottom: 10px;
 }
 
-.file-result-item .file-info small {
-  color: #7f8c8d;
-  font-size: 0.85em;
-}
-
-.file-actions {
+.results-files-summary .files-list {
   display: flex;
+  flex-direction: column;
   gap: 10px;
 }
 
-/* Species Results */
-.species-results {
-  display: grid;
-  gap: 20px;
-}
-
-.species-section {
+.results-files-summary .files-list .file-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
   background: white;
-  padding: 20px;
   border-radius: 8px;
   border: 1px solid #e9ecef;
-  border-left: 4px solid #2ecc71;
 }
 
-.species-section h4 {
-  margin-bottom: 15px;
-  color: #2c3e50;
+.results-files-summary .files-list .file-item .result-file-info {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.species-files {
-  display: grid;
-  gap: 12px;
-}
-
-/* Simple Result */
-.simple-result {
-  background: #d5f4e6;
-  padding: 30px;
-  border-radius: 8px;
-  text-align: center;
-  border: 1px solid #a9dfbf;
-}
-
-.simple-result p {
-  margin-bottom: 10px;
-  color: #27ae60;
-}
-
-.simple-result p:last-child {
-  margin-bottom: 0;
-}
-
-/* Results Actions */
-.results-actions {
-  text-align: center;
-  padding-top: 20px;
-  border-top: 1px solid #e9ecef;
-}
-
-/* Error Panel */
-.error-panel {
-  text-align: center;
-  padding: 60px 40px;
-  background: #fadbd8;
-  border-radius: 8px;
-  border: 1px solid #f5b7b1;
-}
-
-.error-panel h2 {
-  color: #c0392b;
-  margin-bottom: 15px;
-}
-
-.error-panel p {
-  color: #e74c3c;
-  margin-bottom: 30px;
-  font-weight: 500;
-}
-
-/* ========================================
-   RESPONSIVE DESIGN
-   ======================================== */
-
-@media (max-width: 768px) {
-  .file-result-item {
-    flex-direction: column;
-    gap: 15px;
-    align-items: stretch;
-  }
-  
-  .file-actions {
-    justify-content: center;
-  }
-  
-  .summary-item {
-    flex-direction: column;
-    gap: 5px;
-  }
-  
-  .summary-item .label {
-    min-width: auto;
-    font-weight: 600;
-  }
-  
-  .step-results {
-    padding: 20px 15px;
-  }
-  
-  .species-section {
-    padding: 15px;
-  }
+.results-files-summary .files-list .file-item .file-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }

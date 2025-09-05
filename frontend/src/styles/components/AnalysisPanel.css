@@ -83,6 +83,12 @@
   color: #2c3e50;
 }
 
+.files-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .files-list .file-item {
   background: white;
   border: 1px solid #e9ecef;
