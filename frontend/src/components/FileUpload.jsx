@@ -4,6 +4,7 @@ import { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import api from '../services/api'
 import '../styles/components/FileUpload.css'
+import { formatFileSize } from '../utils/formatFileSize'
 
 const FileUpload = ({ onFilesUploaded }) => {
   const [files, setFiles] = useState({
@@ -116,26 +117,12 @@ const FileUpload = ({ onFilesUploaded }) => {
     }
   }
 
-  const formatFileSize = (bytes) => {
-    const sizes = ['Bytes', 'KB', 'MB', 'GB']
-    if (bytes === 0) return '0 Bytes'
-    const i = Math.floor(Math.log(bytes) / Math.log(1024))
-    return Math.round(bytes / Math.pow(1024, i) * 100) / 100 + ' ' + sizes[i]
-  }
-
   const isProcessing = uploading || detectingSpecies
 
   return (
     <div className="upload-section">
       <h2>Upload Files</h2>
       <p>Upload R1, R2 FASTQ files and barcode CSV file</p>
-
-      {error && (
-        <div className="alert error">
-          {error}
-          <button onClick={() => setError(null)}>×</button>
-        </div>
-      )}
 
       <div className="file-drop-zone" {...getRootProps()}>
         <input {...getInputProps()} />
@@ -187,6 +174,13 @@ const FileUpload = ({ onFilesUploaded }) => {
             />
           </div>
           <span>Uploading... {uploadProgress}%</span>
+        </div>
+      )}
+
+      {error && (
+        <div className="alert error">
+          {error}
+          <button onClick={() => setError(null)}>×</button>
         </div>
       )}
 

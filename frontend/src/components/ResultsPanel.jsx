@@ -3,13 +3,14 @@ import { Download, Eye, Folder, RefreshCw, RotateCcw } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import api from '../services/api'
 import '../styles/components/ResultsPanel.css'
+import { formatFileSize } from '../utils/formatFileSize'
 
 const ResultsPanel = ({ onReset }) => {
   const [outputData, setOutputData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  // 載入輸出檔案列表
+  // -- Load output files list
   const loadOutputs = async () => {
     try {
       setLoading(true)
@@ -28,13 +29,6 @@ const ResultsPanel = ({ onReset }) => {
   useEffect(() => {
     loadOutputs()
   }, [])
-
-  const formatFileSize = (bytes) => {
-    const sizes = ['Bytes', 'KB', 'MB', 'GB']
-    if (bytes === 0) return '0 Bytes'
-    const i = Math.floor(Math.log(bytes) / Math.log(1024))
-    return Math.round(bytes / Math.pow(1024, i) * 100) / 100 + ' ' + sizes[i]
-  }
 
   const downloadFile = (category, species, fileName) => {
     const downloadUrl = `${import.meta.env.VITE_API_URL || 'http://localhost:3001/api'}/outputs/download/${category}/${species}/${fileName}`

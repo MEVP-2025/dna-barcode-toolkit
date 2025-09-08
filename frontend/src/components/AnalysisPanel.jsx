@@ -3,6 +3,7 @@ import { CheckCircle2, Circle, Dot, Play, RotateCcw, Terminal } from 'lucide-rea
 import { useEffect, useRef, useState } from 'react'
 import { api } from '../services/api'
 import '../styles/components/AnalysisPanel.css'
+import { formatFileSize } from '../utils/formatFileSize'
 
 const AnalysisPanel = ({ uploadedFiles, onAnalysisComplete, onReset }) => {
   const [logs, setLogs] = useState([])
@@ -72,13 +73,6 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisComplete, onReset }) => {
       detectSpecies()
     }
   }, [uploadedFiles])
-
-  const formatFileSize = (bytes) => {
-    const sizes = ['Bytes', 'KB', 'MB', 'GB']
-    if (bytes === 0) return '0 Bytes'
-    const i = Math.floor(Math.log(bytes) / Math.log(1024))
-    return Math.round(bytes / Math.pow(1024, i) * 100) / 100 + ' ' + sizes[i]
-  }
 
   // Add log entry
   const addLog = (message, type = 'info') => {

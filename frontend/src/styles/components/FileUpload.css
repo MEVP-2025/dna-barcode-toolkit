@@ -6,9 +6,13 @@
   margin-bottom: 30px;
 }
 
+.upload-section p {
+  margin-bottom: 30px;
+}
+
 /* Drop Zone */
 .file-drop-zone {
-  border: 3px dashed #bdc3c7;
+  border: 3px dashed var(--border);
   border-radius: 12px;
   padding: 60px 40px;
   text-align: center;
@@ -22,10 +26,10 @@
   background-color: #f8f9fa;
 }
 
-.drop-active {
-  color: #27ae60;
-  border-color: #27ae60;
-  background-color: #d5f4e6;
+.file-drop-zone:has(.drop-active) {
+  color: var(--success);
+  border-color: var(--success);
+  background-color: color-mix(in srgb, var(--success) 10%, var(--surface) 90%);
 }
 
 .drop-active p {
@@ -35,7 +39,7 @@
 }
 
 .drop-idle {
-  color: #7f8c8d;
+  color: var(--detail);
 }
 
 .drop-idle p {
@@ -44,7 +48,7 @@
 }
 
 .drop-idle small {
-  color: #95a5a6;
+  color: var(--detail);
   font-size: 0.9em;
 }
 
@@ -54,8 +58,8 @@
 }
 
 .selected-files .file-item {
-  background: #f8f9fa;
-  border: 1px solid #e9ecef;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
   margin-bottom: 10px;
 }
 
@@ -69,7 +73,7 @@
 
 .upload-progress span {
   font-weight: 500;
-  color: #7f8c8d;
+  color: var(--detail);
   min-width: 40px;
 }
 
@@ -94,26 +98,21 @@
   font-weight: 500;
   padding: 8px 16px;
   border-radius: 20px;
-  background: #f8f9fa;
-  border: 1px solid #e9ecef;
+  border: 1px solid var(--border);
 }
 
 .file-status .ready {
-  color: #27ae60;
-  background: #d5f4e6;
-  border-color: #a9dfbf;
+  color: var(--success);
+  /* background: #d5f4e6;
+  border-color: #a9dfbf; */
+  background: color-mix(in srgb, var(--success) 14%, var(--surface) 86%);
+  border-color: color-mix(in srgb, var(--success) 50%, var(--surface) 50%);
 }
 
 .file-status .missing {
-  color: #e74c3c;
-  background: #fadbd8;
-  border-color: #f5b7b1;
-}
-
-.file-status .optional {
-  color: #95a5a6;
-  background: #f8f9fa;
-  border-color: #dee2e6;
+  color: var(--danger);
+  background: color-mix(in srgb, var(--danger) 20%, var(--surface) 80%);
+  border-color: color-mix(in srgb, var(--danger) 50%, var(--surface) 50%);
 }
 
 /* Detect Species */
