@@ -29,7 +29,12 @@ def species_assignment(keyword, identity_threshold):
     
     blnfile_name = dloop_files[0]
     print(f"Processing: {blnfile_name}", flush=True)
-    print(f"Using keyword: {keyword}, identity threshold: {identity_threshold}", flush=True)
+
+    has_keyword = keyword and keyword.strip()
+    if has_keyword:
+        print(f"Using keyword: '{keyword}', identity threshold: {identity_threshold}", flush=True)
+    else:
+        print(f"No keyword provided, using identity threshold: {identity_threshold}", flush=True)
     
     species_name = blnfile_name.name.split('.')[0] # -- select all names before the first "."
     
@@ -82,13 +87,14 @@ def species_assignment(keyword, identity_threshold):
         
         # -- Priority 1: check keyword + identity >= threshold
         priority = 0 
-        for i, hit in enumerate(dt[read_id]):
-            extracted_species_name, species, identity, line = hit
-            full_species_info = species.split('_')
-            if keyword in full_species_info and identity >= identity_threshold:
-                print_line = extracted_species_name + ',' + str(identity) + ',' + line
-                priority = 1
-                break
+        if has_keyword:
+            for i, hit in enumerate(dt[read_id]):
+                extracted_species_name, species, identity, line = hit
+                full_species_info = species.split('_')
+                if keyword in full_species_info and identity >= identity_threshold:
+                    print_line = extracted_species_name + ',' + str(identity) + ',' + line
+                    priority = 1
+                    break
         
         # -- Priority 2: if no keyword match, choose first with identity >= threshold
         secondary = 0
@@ -113,4 +119,8 @@ def species_assignment(keyword, identity_threshold):
 if __name__ == "__main__":
     keyword = sys.argv[1]
     identity_threshold = int(sys.argv[2])
+
+    if not keyword or keyword.strip() == "":
+        keyword = None
+
     species_assignment(keyword, identity_threshold)

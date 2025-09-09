@@ -361,7 +361,7 @@ export class PythonExecutor {
           );
           break;
         case "keyword":
-          containerArgs.push(keyword.toString());
+          containerArgs.push(keyword ? keyword.toString() : "");
           break;
         case "identity":
           containerArgs.push(parseInt(identity));

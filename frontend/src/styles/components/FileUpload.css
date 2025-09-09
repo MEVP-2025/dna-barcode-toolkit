@@ -12,6 +12,7 @@
 
 /* Drop Zone */
 .file-drop-zone {
+  height: 30vh;
   border: 3px dashed var(--border);
   border-radius: 12px;
   padding: 60px 40px;

@@ -124,7 +124,7 @@ const pipelineSchema = Joi.object({
     .default({}),
   minLength: Joi.number().integer().min(1).max(10000).required().default(200),
   ncbiReferenceFile: Joi.string().required(),
-  keyword: Joi.string().required(),
+  keyword: Joi.string().optional().allow("").default(""),
   identity: Joi.number().integer().min(0).max(100).required().default(98),
   copyNumber: Joi.number().integer().min(1).max(1000).required().default(2),
 });
@@ -177,19 +177,24 @@ router.post("/pipeline/start", async (req, res, next) => {
       });
     };
 
-    // Start pipeline in background (now with quality config)
+    const pipelineParams = {
+      r1File,
+      r2File,
+      barcodeFile,
+      qualityConfig,
+      minLength,
+      ncbiReferenceFile,
+      identity,
+      copyNumber,
+    };
+
+    if (keyword && keyword.trim()) {
+      pipelineParams.keyword = keyword.trim();
+    }
+
+    // Start pipeline in background
     const analysisPromise = pythonExecutor.executePipeline(
-      {
-        r1File,
-        r2File,
-        barcodeFile,
-        qualityConfig, // Pass quality config to executor
-        minLength,
-        ncbiReferenceFile,
-        keyword,
-        identity,
-        copyNumber,
-      },
+      pipelineParams,
       progressCallback,
       (pythonProcess) => {
         currentPythonProcess = pythonProcess;
@@ -202,9 +207,6 @@ router.post("/pipeline/start", async (req, res, next) => {
       startTime: new Date(),
       promise: analysisPromise,
       sseConnections: new Set(), // Store SSE connections
-      // qualityConfig, // Store quality config for reference
-      // minLength,
-      // ncbiReferenceFile,
     };
 
     // Handle completion

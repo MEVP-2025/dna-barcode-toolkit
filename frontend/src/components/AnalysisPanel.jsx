@@ -377,52 +377,54 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisComplete, onReset }) => {
               <p><Dot />Barcode sequences were used to identify sample locations</p>
 
               <div className='input-container'>
-                <div className="species-selection">
-                  <div className="selection-header">
-                    <h3>Please select which project to analyze</h3>
-                  </div>
-                  <div className="species-list">
-                    {detectedSpecies.map(species => (
-                      <div 
-                        key={species} 
-                        className={`species-option ${selectedSpecies === species ? 'selected' : ''} ${selectedSpecies && selectedSpecies !== species ? 'dimmed' : ''}`}
-                        onClick={() => selectSpecies(species)}
-                      >
-                        <div className="species-checkbox">
-                          {selectedSpecies === species ? (
-                            <CheckCircle2 size={20} className="checked" />
-                          ) : (
-                            <Circle size={20} className="unchecked" />
-                          )}
+                <div className='inline-configuration'>
+                  <div className="species-selection">
+                    <div className="selection-header">
+                      <h3>Please select which project to analyze</h3>
+                    </div>
+                    <div className="species-list">
+                      {detectedSpecies.map(species => (
+                        <div 
+                          key={species} 
+                          className={`species-option ${selectedSpecies === species ? 'selected' : ''} ${selectedSpecies && selectedSpecies !== species ? 'dimmed' : ''}`}
+                          onClick={() => selectSpecies(species)}
+                        >
+                          <div className="species-checkbox">
+                            {selectedSpecies === species ? (
+                              <CheckCircle2 size={20} className="checked" />
+                            ) : (
+                              <Circle size={20} className="unchecked" />
+                            )}
+                          </div>
+                          <div className="species-info">
+                            <span className="species-name">{species}</span>
+                          </div>
                         </div>
-                        <div className="species-info">
-                          <span className="species-name">{species}</span>
-                        </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
-                </div>
 
-                {/* Quality Control Configuration */}
-                {selectedSpecies && (
-                  <div className="inline-configuration">
-                    <label htmlFor={`quality-${selectedSpecies}`} className='quality-control'>
-                      Maximum mismatches for barcode and primer sequences, <strong>{selectedSpecies}</strong> :
-                      <span className="input-group">
-                        <input
-                          id={`quality-${selectedSpecies}`}
-                          type="number"
-                          min="0"
-                          max="99"
-                          value={qualityConfig[selectedSpecies] || 0}
-                          onChange={(e) => handleQualityChange(e.target.value)}
-                          className="quality-input"
-                        />
-                        <span className="input-suffix">mismatches</span>
-                      </span>
-                    </label>
-                  </div>
-                )}
+                  {/* Quality Control Configuration */}
+                  {selectedSpecies && (
+                    <div className="inline-configuration">
+                      <label htmlFor={`quality-${selectedSpecies}`} className='quality-control'>
+                        Maximum mismatches for barcode and primer sequences, <strong>{selectedSpecies}</strong> :
+                        <span className="input-group">
+                          <input
+                            id={`quality-${selectedSpecies}`}
+                            type="number"
+                            min="0"
+                            max="99"
+                            value={qualityConfig[selectedSpecies] || 0}
+                            onChange={(e) => handleQualityChange(e.target.value)}
+                            className="quality-input"
+                          />
+                          <span className="input-suffix">mismatches</span>
+                        </span>
+                      </label>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -472,17 +474,15 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisComplete, onReset }) => {
               <div className="input-container">
                 <h3>Please define minimum identity</h3>
                 <div className='identity-container'>
-                  <div className='param-group'>
-                    <label htmlFor="keyword">Priority exactly matched word:</label>
-                    <input 
-                      type="text" 
-                      id="keyword" 
-                      className="keyword-input" 
-                      value={keyword}
-                      onChange={(e) => handleKeywordChange(e.target.value)}
-                      placeholder="mitochondrion"
-                    />
-                  </div>
+                  <label htmlFor="keyword">Priority exactly matched word (optional):</label>
+                  <input 
+                    type="text" 
+                    id="keyword" 
+                    className="keyword-input" 
+                    value={keyword}
+                    onChange={(e) => handleKeywordChange(e.target.value)}
+                  />
+                  <label>(ex. mitochondrion)</label>
                 </div>
                 <div className='identity-container'>
                   <label htmlFor="identity">Minimum identity threshold:</label>
@@ -517,16 +517,18 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisComplete, onReset }) => {
               <p><Dot />Identify identical sequences and counts their occurrence frequency</p>
               <p><Dot />Generate separate files for common haplotypes and rare variants</p>
               <div className='input-container'>
-                <h3>Please define minimum number of copies</h3>
-                <input 
-                  type='number' 
-                  id="copy-number" 
-                  className='copy-number' 
-                  min="1" 
-                  max="1000" 
-                  value={copyNumber} 
-                  onChange={(e) => handleCopyNumberChange(e.target.value)}
-                />
+                <div className='copies-container'>
+                  <h3>Please define minimum number of copies:</h3>
+                  <input 
+                    type='number' 
+                    id="copy-number" 
+                    className='copy-number' 
+                    min="1" 
+                    max="1000" 
+                    value={copyNumber} 
+                    onChange={(e) => handleCopyNumberChange(e.target.value)}
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -576,7 +578,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisComplete, onReset }) => {
             <button
                 className="btn btn-primary"
                 onClick={startPipeline}
-                disabled={!uploadedFiles.R1 || !uploadedFiles.R2 || !uploadedFiles.barcode || !selectedSpecies || !minLength || !ncbiFile || !keyword || !identity || !copyNumber}
+                disabled={!uploadedFiles.R1 || !uploadedFiles.R2 || !uploadedFiles.barcode || !selectedSpecies || !minLength || !ncbiFile || !identity || !copyNumber}
               >
                 <Play size={20} />
                 Start Analysis for {selectedSpecies? selectedSpecies : '...'}

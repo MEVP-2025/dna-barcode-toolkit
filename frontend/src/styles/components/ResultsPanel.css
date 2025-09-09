@@ -57,6 +57,7 @@
   background: var(--surface-alt);
   padding: 20px 30px;
   border-radius: 8px;
+  border: 1px solid var(--border);
   margin-top: 10px;
 }
 
