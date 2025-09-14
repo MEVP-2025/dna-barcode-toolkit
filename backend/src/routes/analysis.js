@@ -9,10 +9,56 @@ import { logger } from "../utils/logger.js";
 const router = express.Router();
 const pythonExecutor = new PythonExecutor();
 
+const handleDockerError = (error) => {
+  const errorMessage = error.message.toLowerCase();
+  const errorStack = error.stack?.toLowerCase() || '';
+  
+  // Docker daemon not running
+  if (errorMessage.includes('docker daemon') || 
+      errorMessage.includes('cannot connect to the docker daemon') ||
+      errorMessage.includes('connection refused') ||
+      errorMessage.includes('econnrefused')) {
+    return 'Docker is not running. Please start Docker Desktop.';
+  }
+  
+  // Docker image not found
+  if (errorMessage.includes('no such image') || 
+      errorMessage.includes('pull access denied') ||
+      errorMessage.includes('repository does not exist')) {
+    return 'Docker image not found. Please pull the required image first.';
+  }
+  
+  // Docker container execution failed
+  if (errorMessage.includes('container exited') || 
+      errorMessage.includes('non-zero exit code')) {
+    return 'Docker container execution failed. Please check input files and scripts.';
+  }
+  
+  // Permission issues
+  if (errorMessage.includes('permission denied') || 
+      errorMessage.includes('access denied')) {
+    return 'Docker permission error. Please ensure Docker has sufficient privileges.';
+  }
+  
+  // Network issues
+  if (errorMessage.includes('network') || 
+      errorMessage.includes('timeout')) {
+    return 'Docker network error. Please check network connection and Docker settings.';
+  }
+  
+  // Resource issues
+  if (errorMessage.includes('out of memory') || 
+      errorMessage.includes('disk space')) {
+    return 'Insufficient system resources. Please free up memory or disk space.';
+  }
+  
+  // Default error
+  return `Docker execution error: ${error.message}`;
+};
+
 // -- Project detect
 router.post("/pipeline/detect-species", async (req, res) => {
   try {
-    // 驗證輸入
     const { barcodeFile } = req.body;
 
     if (!barcodeFile) {
@@ -35,21 +81,31 @@ router.post("/pipeline/detect-species", async (req, res) => {
 
     logger.info(`Starting species detection for: ${barcodeFile}`);
 
-    // 使用 DockerService 執行物種檢測腳本
-    const result = await pythonExecutor.dockerService.runContainer({
-      workDir: pythonExecutor.backendRootDir,
-      command: "python3",
-      args: [
-        "/app/data/python_scripts/species_detector.py",
-        `/app/data/uploads/${path.basename(barcodeFile)}`,
-      ],
-      onStdout: (chunk) => {
-        logger.info(`Species detection output: ${chunk.trim()}`);
-      },
-      onStderr: (chunk) => {
-        logger.error(`Species detection error: ${chunk.trim()}`);
-      },
-    });
+    let result;
+    try {
+      result = await pythonExecutor.dockerService.runContainer({
+        workDir: pythonExecutor.backendRootDir,
+        command: "python3",
+        args: [
+          "/app/data/python_scripts/species_detector.py",
+          `/app/data/uploads/${path.basename(barcodeFile)}`,
+        ],
+        onStdout: (chunk) => {
+          logger.info(`Species detection output: ${chunk.trim()}`);
+        },
+        onStderr: (chunk) => {
+          logger.error(`Species detection error: ${chunk.trim()}`);
+        },
+      });
+    } catch (dockerError) {
+      // handle Docker error
+      const errorMessage = handleDockerError(dockerError);
+      logger.error("Docker execution failed:", errorMessage);
+      
+      return res.status(500).json({
+        error: errorMessage
+      });
+    }
 
     // 解析 Python 腳本的 JSON 輸出
     let speciesData;
@@ -91,7 +147,7 @@ router.post("/pipeline/detect-species", async (req, res) => {
       `Species detection completed. Found ${speciesData.species.length} species`
     );
 
-    // 返回成功結果
+    // Returns successful result
     res.json({
       success: true,
       data: speciesData,

@@ -26,19 +26,20 @@
   --log-bg: #2c3e50;
 }
 
+
 html[data-theme="dark"] {
-  --bg: #0f1114;
-  --surface: #121315;
-  --surface-alt: #1a1c1f;
-  --text: #e6eef6;
-  --detail: #95a5a6;
-  --primary: #4aa3ff;
-  --primary-600: #2b82d9;
+  --bg: #242423;
+  --surface: #2C2D2B;
+  --surface-alt: #333533;
+  --text: #E8EDDF;
+  --detail: #CFDBD5;
+  --primary: #F5CB5C;
+  --primary-600: #8D7840;
   --success: #2ecc71;
   --danger: #ff6b6b;
   --warning: #f1c40f;
-  --border: #222428;
-  --progress-fill: #4aa3ff;
+  --border: #DCE4DA;
+  --progress-fill: #282927;
   --code-bg: #0b0b0b;
   --log-bg: #0f1720;
 }
@@ -60,6 +61,7 @@ body {
   max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
+  user-select: none;
 }
 
 .app-header {
@@ -69,6 +71,7 @@ body {
   background: var(--surface);
   border-radius: 12px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  /* user-select: none; */
 }
 
 .app-header .title-header{

@@ -12,7 +12,7 @@
 
 /* Drop Zone */
 .file-drop-zone {
-  height: 30vh;
+  /* height: 30vh; */
   border: 3px dashed var(--border);
   border-radius: 12px;
   padding: 60px 40px;
@@ -23,8 +23,8 @@
 }
 
 .file-drop-zone:hover {
-  border-color: #3498db;
-  background-color: #f8f9fa;
+  border-color: var(--primary);
+  background-color: var(--surface-alt);
 }
 
 .file-drop-zone:has(.drop-active) {
@@ -37,6 +37,11 @@
   font-size: 1.2em;
   margin: 15px 0 5px 0;
   font-weight: 500;
+}
+
+.drop-active small {
+  color: var(--success);
+  font-size: 0.9em;
 }
 
 .drop-idle {

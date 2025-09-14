@@ -34,7 +34,7 @@ router.post(
         R1: {
           id: uuidv4(), // 生成新的唯一ID
           originalName: R1[0].originalname,
-          filename: R1[0].filename, // 現在等同於 originalname
+          filename: R1[0].filename,
           path: R1[0].path,
           size: R1[0].size,
           uploadTime: new Date().toISOString(),
@@ -42,7 +42,7 @@ router.post(
         R2: {
           id: uuidv4(), // 生成新的唯一ID
           originalName: R2[0].originalname,
-          filename: R2[0].filename, // 現在等同於 originalname
+          filename: R2[0].filename,
           path: R2[0].path,
           size: R2[0].size,
           uploadTime: new Date().toISOString(),
@@ -50,7 +50,7 @@ router.post(
         barcode: {
           id: uuidv4(), // 生成新的唯一ID
           originalName: barcode[0].originalname,
-          filename: barcode[0].filename, // 現在等同於 originalname
+          filename: barcode[0].filename,
           path: barcode[0].path,
           size: barcode[0].size,
           uploadTime: new Date().toISOString(),

@@ -88,7 +88,7 @@ const FileUpload = ({ onFilesUploaded }) => {
       if (detectionResponse.data.success) {
         const species = detectionResponse.data.data.species
         
-        // Quality config (default) Q
+        // Quality config (default)
         const defaultQualityConfig = {}
         species.forEach(sp => {
           defaultQualityConfig[sp] = 0 // default 0
@@ -130,6 +130,7 @@ const FileUpload = ({ onFilesUploaded }) => {
           <div className="drop-active">
             <Upload size={48} />
             <p>Drop files here...</p>
+            <small>Supported: .fq, .fastq, .csv</small>
           </div>
         ) : (
           <div className="drop-idle">
