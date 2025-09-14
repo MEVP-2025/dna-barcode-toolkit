@@ -587,18 +587,4 @@ router.delete("/clear", (req, res) => {
   });
 });
 
-// Check Docker environment
-// router.get("/docker/check", async (req, res) => {
-//   try {
-//     const result = await dockerService.checkEnvironment();
-//     res.json(result);
-//   } catch (error) {
-//     res.status(500).json({
-//       success: false,
-//       message: "Failed to check Docker environment",
-//       error: error.message,
-//     });
-//   }
-// });
-
 export default router;
