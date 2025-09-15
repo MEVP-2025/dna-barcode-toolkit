@@ -6,9 +6,10 @@ const execAsync = promisify(exec);
 
 export class DockerService {
   constructor() {
-    this.imageName = "mevp";
+    this.authorName = "uiskskkekekk"
+    this.imageName = "mevp-2025";
     this.imageTag = "latest";
-    this.fullImageName = `${this.imageName}:${this.imageTag}`;
+    this.fullImageName = `${this.authorName}/${this.imageName}:${this.imageTag}`;
   }
 
   // Check if Docker is installed and running
@@ -172,13 +173,13 @@ export class DockerService {
     };
 
     try {
-      // 檢查 Docker 安裝
+      // -- Check Docker installation
       checks.dockerInstalled = await this.checkDockerAvailable();
       if (!checks.dockerInstalled) {
         return { success: false, checks, message: "Docker is not installed" };
       }
 
-      // 檢查 Docker daemon
+      // -- Check Docker daemon
       checks.dockerRunning = await this.checkDockerRunning();
       if (!checks.dockerRunning) {
         return {

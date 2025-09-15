@@ -96,9 +96,6 @@ app.listen(PORT, () => {
   logger.info(
     `Frontend URL: ${process.env.FRONTEND_URL || "http://localhost:5173"}`
   );
-  logger.info(`Serving static files from:`);
-  logger.info(`  - Uploads: ${path.join(__dirname, "../uploads")}`);
-  logger.info(`  - Outputs: ${path.join(__dirname, "../outputs")}`);
 });
 
 // Graceful shutdown handling
