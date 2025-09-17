@@ -31,12 +31,7 @@
     },
     "files": [
       "electron/**/*",
-      "frontend/dist/**/*",
-      "backend/**/*",
-      "!backend/node_modules/**/*",
-      "!backend/uploads/**/*",
-      "!backend/outputs/**/*",
-      "!backend/logs/**/*"
+      "frontend/dist/**/*"
     ],
     "extraResources": [
       {
@@ -44,7 +39,6 @@
         "to": "backend",
         "filter": [
           "**/*",
-          "!node_modules/**/*",
           "!uploads/**/*",
           "!outputs/**/*",
           "!logs/**/*"
@@ -54,7 +48,8 @@
     "mac": {
       "icon": "MEVP.png",
       "category": "public.app-category.utilities",
-      "target": "dmg"
+      "target": "dmg",
+      "identity": null
     },
     "win": {
       "icon": "MEVP.png",

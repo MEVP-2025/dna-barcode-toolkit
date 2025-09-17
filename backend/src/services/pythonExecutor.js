@@ -1,5 +1,6 @@
 // backend/src/services/pythonExecutor.js
 import fs from "fs-extra";
+import os from "os";
 import path from "path";
 import { fileURLToPath } from "url";
 import { analysisLogger, logger } from "../utils/logger.js";
@@ -12,9 +13,29 @@ export class PythonExecutor {
   constructor() {
     this.dockerService = new DockerService();
 
-    this.outputsDir = path.join(__dirname, "../../outputs");
-    this.backendRootDir = path.join(__dirname, "../../");
-    this.uploadsDir = path.join(__dirname, "../../uploads");
+    if (process.env.NODE_ENV === 'production') {
+      this.workingDir = path.join(os.homedir(), '.dna-barcode-toolkit');
+      this.outputsDir = path.join(this.workingDir, "outputs");
+      this.uploadsDir = path.join(this.workingDir, "uploads");
+      this.backendRootDir = this.workingDir;
+      
+      // 確保目錄存在
+      fs.ensureDirSync(this.workingDir);
+      fs.ensureDirSync(this.outputsDir);
+      fs.ensureDirSync(this.uploadsDir);
+
+      const sourcePythonScripts = path.join(__dirname, "../../python_scripts");
+      const destPythonScripts = path.join(this.workingDir, "python_scripts");
+      
+      if (fs.existsSync(sourcePythonScripts) && !fs.existsSync(destPythonScripts)) {
+        fs.copySync(sourcePythonScripts, destPythonScripts);
+        console.log("Python scripts copied to working directory");
+      }
+    } else {
+      this.outputsDir = path.join(__dirname, "../../outputs");
+      this.backendRootDir = path.join(__dirname, "../../");
+      this.uploadsDir = path.join(__dirname, "../../uploads");
+    }
 
     this.standardPipeline = [
       {

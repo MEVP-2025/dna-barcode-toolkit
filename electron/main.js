@@ -2,7 +2,6 @@ import { spawn } from "child_process";
 import { app, BrowserWindow, dialog, ipcMain, shell } from "electron";
 import path from "path";
 import { fileURLToPath } from "url";
-import fs from "fs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -62,76 +61,46 @@ function createWindow() {
 // 啟動後端伺服器
 function startBackend() {
   return new Promise((resolve, reject) => {
-    console.log("=== Debug Info ===");
-    console.log("__dirname:", __dirname);
-    console.log("process.resourcesPath:", process.resourcesPath);
-    console.log("app.getAppPath():", app.getAppPath());
-
-    // 檢查幾個可能的路徑
-    const possiblePaths = [
-      path.join(process.resourcesPath, "backend", "src", "server.js"),
-      path.join(process.resourcesPath, "app", "backend", "src", "server.js"),
-      path.join(process.resourcesPath, "app.asar.unpacked", "backend", "src", "server.js"),
-      path.join(__dirname, "../backend", "src", "server.js")
-    ];
-    
-    possiblePaths.forEach(p => {
-      console.log("Checking path:", p, "exists:", fs.existsSync(p));
-    });
-
-    const backendPath = isDev
-      ? path.join(__dirname, "../backend/src/server.js")
-      : path.join(process.resourcesPath, "backend/src/server.js");
+    const backendPath = path.join(
+      process.resourcesPath,
+      "backend/src/server.js"
+    );
+    const backendDir = path.join(process.resourcesPath, "backend");
 
     console.log("Starting backend from:", backendPath);
-    resolve();
 
-    // backendProcess = spawn("node", [backendPath], {
-    //   cwd: isDev
-    //     ? path.join(__dirname, "../backend")
-    //     : path.join(process.resourcesPath, "backend"),
-    //   env: {
-    //     ...process.env,
-    //     NODE_ENV: isDev ? "development" : "production",
-    //     PORT: "3001",
-    //     FRONTEND_URL: isDev ? "http://localhost:5173" : null,
-    //   },
-    //   stdio: ["pipe", "pipe", "pipe"],
-    // });
+    backendProcess = spawn("node", [backendPath], {
+      cwd: backendDir,
+      env: {
+        ...process.env,
+        NODE_ENV: "production",
+        PORT: "3001",
+      },
+      stdio: ["pipe", "pipe", "pipe"],
+    });
 
-    // 使用 Electron 內建的 Node.js
-    //   backendProcess = spawn(process.execPath, [backendPath], {
-    //     cwd: backendPath,
-    //     env: {
-    //       ...process.env,
-    //       NODE_ENV: "production",
-    //       PORT: "3001",
-    //     },
-    //     stdio: ["pipe", "pipe", "pipe"],
-    //   });
+    backendProcess.stdout.on("data", (data) => {
+      console.log(`Backend: ${data.toString().trim()}`);
+    });
 
-    //   backendProcess.stdout.on("data", (data) => {
-    //     console.log(`Backend: ${data}`);
-    //   });
+    backendProcess.stderr.on("data", (data) => {
+      console.error(`Backend Error: ${data.toString().trim()}`);
+    });
 
-    //   backendProcess.stderr.on("data", (data) => {
-    //     console.error(`Backend Error: ${data}`);
-    //   });
+    backendProcess.on("error", (error) => {
+      console.error("Failed to start backend:", error);
+      reject(error);
+    });
 
-    //   backendProcess.on("error", (error) => {
-    //     console.error("Failed to start backend:", error);
-    //     reject(error);
-    //   });
-
-    //   // 等待後端啟動
-    //   setTimeout(() => {
-    //     if (backendProcess && !backendProcess.killed) {
-    //       console.log("Backend started successfully");
-    //       resolve();
-    //     } else {
-    //       reject(new Error("Backend failed to start"));
-    //     }
-    //   }, 3000);
+    // 等待後端啟動
+    setTimeout(() => {
+      if (backendProcess && !backendProcess.killed) {
+        console.log("Backend process started");
+        resolve();
+      } else {
+        reject(new Error("Backend failed to start"));
+      }
+    }, 3000);
   });
 }
 

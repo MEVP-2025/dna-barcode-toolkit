@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import helmet from "helmet";
+import os from "os";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -25,6 +26,8 @@ const __dirname = path.dirname(__filename);
 dotenv.config();
 
 const app = express();
+
+console.log("=== SERVER.JS STARTING ===", process.argv);
 
 // Middleware
 app.use(
@@ -58,7 +61,13 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
 // Static file serving for uploads and outputs
 app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
-app.use("/outputs", express.static(path.join(__dirname, "../outputs")));
+
+const outputsPath =
+  process.env.NODE_ENV === "production"
+    ? path.join(os.homedir(), ".dna-barcode-toolkit", "outputs")
+    : path.join(__dirname, "../outputs");
+
+app.use("/outputs", express.static(outputsPath));
 
 // Routes
 app.use("/api", indexRoutes);

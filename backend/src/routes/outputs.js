@@ -1,5 +1,6 @@
 import express from "express";
 import fs from "fs/promises";
+import os from "os";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -9,6 +10,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const safeJoin = (...parts) => path.normalize(path.join(...parts));
+
+const getOutputsRoot = () => {
+  return process.env.NODE_ENV === "production"
+    ? path.join(os.homedir(), ".dna-barcode-toolkit", "outputs")
+    : path.join(__dirname, "../../outputs");
+};
 
 async function listDirContents(dirPath) {
   try {
@@ -47,7 +54,7 @@ async function listDirContents(dirPath) {
 // GET /api/outputs/list
 router.get("/list", async (req, res, next) => {
   try {
-    const outputsRoot = path.join(__dirname, "../../outputs");
+    const outputsRoot = getOutputsRoot();
     const separatedDir = path.join(outputsRoot, "separated");
     const tableDir = path.join(outputsRoot, "table");
 
@@ -73,7 +80,7 @@ router.get("/download/:category/:species/:filename", async (req, res, next) => {
     }
 
     // 建構檔案路徑
-    const outputsRoot = path.join(__dirname, "../../outputs");
+    const outputsRoot = getOutputsRoot();
     const categoryDir = path.join(outputsRoot, category);
     const speciesDir = path.join(categoryDir, species);
     const filePath = safeJoin(speciesDir, filename);

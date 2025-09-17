@@ -93,8 +93,8 @@ const App = () => {
       <header className="app-header">
         <div className='title-header'>
           {theme == 'light' ?
-            <img src="/MEVP_logo.png" alt="MEVP Logo" className="mevp-logo" />
-            : <img src="/MEVP_logo_dark.png" alt="MEVP Logo" className="mevp-logo" />
+            <img src="./MEVP_logo.png" alt="MEVP Logo" className="mevp-logo" />
+            : <img src="./MEVP_logo_dark.png" alt="MEVP Logo" className="mevp-logo" />
           }
           <h1>DNA Barcode Analysis Tool</h1>
         </div>

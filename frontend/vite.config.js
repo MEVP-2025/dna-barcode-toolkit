@@ -9,5 +9,8 @@ export default defineConfig({
     strictPort: true, // Ensure the port is not changed if it's already in use 如果port被佔用就失敗，不自動換端口
     host: true,
   },
-  base: './',
+  base: "./",
+  build: {
+    copyPublicDir: true,
+  },
 });

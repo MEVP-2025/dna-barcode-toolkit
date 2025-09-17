@@ -1,5 +1,6 @@
 // src/middleware/upload.js
 import fs from "fs";
+import os from "os";
 import multer from "multer";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -8,10 +9,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Ensure upload directory exists
-const uploadDir = path.join(__dirname, "../../uploads");
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
-}
+const uploadDir = process.env.NODE_ENV === 'production' 
+  ? path.join(os.homedir(), '.dna-barcode-toolkit', 'uploads')
+  : path.join(__dirname, "../../uploads");
+
+// const uploadDir = path.join(__dirname, "../../uploads");
+// if (!fs.existsSync(uploadDir)) {
+//   fs.mkdirSync(uploadDir, { recursive: true });
+// }
 
 // Storage configuration
 const storage = multer.diskStorage({
