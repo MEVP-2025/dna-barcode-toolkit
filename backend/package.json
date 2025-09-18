@@ -4,7 +4,6 @@
   "description": "Backend for evolution analysis system",
   "main": "src/server.js",
   "type": "module",
-  },
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon --ignore uploads/ src/server.js",
