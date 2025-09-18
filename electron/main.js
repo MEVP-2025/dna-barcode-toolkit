@@ -58,19 +58,33 @@ function createWindow() {
   });
 }
 
-// 啟動後端伺服器
+// -- Start Backend Server
 function startBackend() {
   return new Promise((resolve, reject) => {
-    const backendPath = path.join(
+    const platform = process.platform;
+    const arch = process.arch;
+
+    const platformKey = `${platform}-${arch}`;
+    const nodeBinary = path.join(
       process.resourcesPath,
-      "backend/src/server.js"
+      "node",
+      platformKey,
+      "bin",
+      "node"
     );
-    const backendDir = path.join(process.resourcesPath, "backend");
 
-    console.log("Starting backend from:", backendPath);
+    const serverScript = path.join(
+      process.resourcesPath,
+      "backend",
+      "src",
+      "server.js"
+    );
 
-    backendProcess = spawn("node", [backendPath], {
-      cwd: backendDir,
+    console.log("Using Node.js binary:", nodeBinary);
+    console.log("Server script:", serverScript);
+
+    backendProcess = spawn(nodeBinary, [serverScript], {
+      cwd: path.join(process.resourcesPath, "backend"),
       env: {
         ...process.env,
         NODE_ENV: "production",
@@ -92,7 +106,7 @@ function startBackend() {
       reject(error);
     });
 
-    // 等待後端啟動
+    // -- Wait the backend start
     setTimeout(() => {
       if (backendProcess && !backendProcess.killed) {
         console.log("Backend process started");

@@ -9,19 +9,14 @@
   "scripts": {
     "electron": "electron .",
     "electron:dev": "concurrently \"npm run backend:dev\" \"npm run frontend:dev\" \"wait-on http://localhost:5174 http://localhost:3001 && electron .\"",
-    "build": "npm run frontend:build && npm run backend:install",
+    "prepare-node": "node scripts/download-node.js && node scripts/extract-node.js",
+    "build": "npm run prepare-node && npm run frontend:build && npm run backend:install",
     "dist": "npm run build && electron-builder",
     "frontend:dev": "cd frontend && npm run dev",
     "frontend:build": "cd frontend && npm run build",
     "backend:dev": "cd backend && npm run dev",
     "backend:install": "cd backend && npm install",
     "postinstall": "cd frontend && npm install && cd ../backend && npm install"
-  },
-  "devDependencies": {
-    "electron": "^32.0.0",
-    "electron-builder": "^25.0.0",
-    "concurrently": "^8.2.0",
-    "wait-on": "^8.0.0"
   },
   "build": {
     "appId": "com.mevp.dna-barcode-toolkit",
@@ -34,6 +29,10 @@
       "frontend/dist/**/*"
     ],
     "extraResources": [
+      {
+        "from": "resources/node",
+        "to": "node"
+      },
       {
         "from": "backend",
         "to": "backend",
