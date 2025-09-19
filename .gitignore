@@ -24,3 +24,6 @@ dist/
 # node.js binaries
 node-binaries/
 resources/
+
+.DS_Store
+.DS_Store?

@@ -13,7 +13,7 @@ const isDev = !app.isPackaged;
 let mainWindow;
 let backendProcess;
 
-// 建立主視窗
+// create the main application window
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1200,
@@ -24,20 +24,18 @@ function createWindow() {
       nodeIntegration: false,
       contextIsolation: true,
       preload: path.join(__dirname, "preload.js"),
-      webSecurity: !isDev, // 開發模式下放寬安全限制
+      webSecurity: !isDev,
     },
     icon: path.join(__dirname, "../frontend/public/MEVP_logo.png"), // 應用圖示
     show: false, // 先不顯示，等載入完成
   });
 
-  // 載入前端
+  // Loading the frontend
   if (isDev) {
-    // 開發模式：載入 Vite 開發伺服器
     mainWindow.loadURL("http://localhost:5173");
-    // 開啟開發者工具
-    // mainWindow.webContents.openDevTools();
+    // F12
+    mainWindow.webContents.openDevTools();
   } else {
-    // 生產模式：載入打包後的檔案
     mainWindow.loadFile(path.join(__dirname, "../frontend/dist/index.html"));
   }
 
@@ -89,6 +87,7 @@ function startBackend() {
         ...process.env,
         NODE_ENV: "production",
         PORT: "3001",
+        PATH: "/usr/local/bin:/usr/bin:/bin:" + (process.env.PATH || ""),
       },
       stdio: ["pipe", "pipe", "pipe"],
     });
@@ -118,18 +117,17 @@ function startBackend() {
   });
 }
 
-// 應用準備就緒
+// Application ready
 app.whenReady().then(async () => {
   try {
-    // 先啟動後端
+    // Start backend server first
     if (!isDev) {
       await startBackend();
     }
 
-    // 再建立視窗
     createWindow();
 
-    // macOS 特殊處理
+    // special handling for macOS
     app.on("activate", () => {
       if (BrowserWindow.getAllWindows().length === 0) {
         createWindow();
