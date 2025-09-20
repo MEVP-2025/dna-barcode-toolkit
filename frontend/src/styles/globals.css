@@ -60,6 +60,7 @@ body {
   width: 80vw;
   max-width: 1000px;
   margin: 0 auto;
+  margin: 30px auto 0px auto; /* account for title bar */
   padding: 20px;
   user-select: none;
 }

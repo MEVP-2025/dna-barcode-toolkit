@@ -1,5 +1,6 @@
 // src/App.jsx
 import { useEffect, useState } from 'react'
+import TitleBar from './bar-components/TitleBar'
 import AnalysisPanel from './components/AnalysisPanel'
 import FileUpload from './components/FileUpload'
 import ResultsPanel from './components/ResultsPanel'
@@ -87,6 +88,7 @@ const App = () => {
 
   return (
     <div className="app">
+      <TitleBar />
       <div className='theme-toggle-container'>
         <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
       </div>

@@ -6,8 +6,6 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// 開發模式檢測 - 暫時強制使用開發模式
-// const isDev = true; // process.env.NODE_ENV === 'development';
 const isDev = !app.isPackaged;
 
 let mainWindow;
@@ -18,15 +16,16 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 800,
-    minWidth: 800,
-    minHeight: 600,
+    minWidth: 1000,
+    minHeight: 800,
+    titleBarStyle: "hiddenInset",
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
       preload: path.join(__dirname, "preload.js"),
       webSecurity: !isDev,
     },
-    icon: path.join(__dirname, "../frontend/public/MEVP_logo.png"), // 應用圖示
+    icon: path.join(__dirname, "../frontend/public/MEVP_logo.png"),
     show: false, // 先不顯示，等載入完成
   });
 
@@ -39,18 +38,18 @@ function createWindow() {
     mainWindow.loadFile(path.join(__dirname, "../frontend/dist/index.html"));
   }
 
-  // 視窗準備好後顯示
+  // Display when it's ready to avoid flickering
   mainWindow.once("ready-to-show", () => {
     mainWindow.show();
   });
 
-  // 處理外部連結
+  // handle external url
   mainWindow.webContents.setWindowOpenHandler(({ url }) => {
     shell.openExternal(url);
     return { action: "deny" };
   });
 
-  // 視窗關閉事件
+  // handle window closed
   mainWindow.on("closed", () => {
     mainWindow = null;
   });
