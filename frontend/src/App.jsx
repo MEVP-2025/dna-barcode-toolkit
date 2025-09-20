@@ -87,44 +87,46 @@ const App = () => {
   }
 
   return (
-    <div className="app">
-      <TitleBar />
-      <div className='theme-toggle-container'>
-        <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-      </div>
-      <header className="app-header">
-        <div className='title-header'>
-          {theme == 'light' ?
-            <img src="./MEVP_logo.png" alt="MEVP Logo" className="mevp-logo" />
-            : <img src="./MEVP_logo_dark.png" alt="MEVP Logo" className="mevp-logo" />
-          }
-          <h1>DNA Barcode Analysis Tool</h1>
+    <div className="main-content">
+      <div className="app">
+        <TitleBar />
+        <div className='theme-toggle-container'>
+          <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
         </div>
-      </header>
+        <header className="app-header">
+          <div className='title-header'>
+            {theme == 'light' ?
+              <img src="./MEVP_logo.png" alt="MEVP Logo" className="mevp-logo" />
+              : <img src="./MEVP_logo_dark.png" alt="MEVP Logo" className="mevp-logo" />
+            }
+            <h1>DNA Barcode Analysis Tool</h1>
+          </div>
+        </header>
 
-      <main className="app-main">
-        {/* Step 1: File Upload */}
-        {!uploadedFiles && (
-          <FileUpload onFilesUploaded={handleFilesUploaded} />
-        )}
+        <main className="app-main">
+          {/* Step 1: File Upload */}
+          {!uploadedFiles && (
+            <FileUpload onFilesUploaded={handleFilesUploaded} />
+          )}
 
-        {/* Step 2: Analysis Panel */}
-        {uploadedFiles && !showResults && (
-          <AnalysisPanel
-            uploadedFiles={uploadedFiles}
-            onAnalysisComplete={handleAnalysisComplete}
-            onReset={resetApp}
-          />
-        )}
+          {/* Step 2: Analysis Panel */}
+          {uploadedFiles && !showResults && (
+            <AnalysisPanel
+              uploadedFiles={uploadedFiles}
+              onAnalysisComplete={handleAnalysisComplete}
+              onReset={resetApp}
+            />
+          )}
 
-        {/* Step 3: Results */}
-        {showResults && analysisResult && (
-          <ResultsPanel
-            result={analysisResult}
-            onReset={resetApp}
-          />
-        )}
-      </main>
+          {/* Step 3: Results */}
+          {showResults && analysisResult && (
+            <ResultsPanel
+              result={analysisResult}
+              onReset={resetApp}
+            />
+          )}
+        </main>
+      </div>
     </div>
   )
 }
