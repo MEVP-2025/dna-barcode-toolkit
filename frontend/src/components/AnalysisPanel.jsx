@@ -181,12 +181,12 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisComplete, onReset }) => {
 
   const handleQualityChange = (value) => {
     setQualityConfig({
-      [selectedSpecies]: parseInt(value) || 0
+      [selectedSpecies]: parseInt(value)
     })
   }
 
   const handleMinLengthChange = (value) => {
-    const parsedValue = parseInt(value) || 200
+    const parsedValue = parseInt(value)
     setMinLength(parsedValue)
   }
 
@@ -200,22 +200,35 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisComplete, onReset }) => {
   }
 
   const handleIdentityChange = (value) => {
-    const parsedValue = parseInt(value) || 98
+    const parsedValue = parseInt(value)
     setIdentity(parsedValue)
   }
 
   const handleCopyNumberChange = (value) => {
-    const parsedValue = parseInt(value) || 2
+    const parsedValue = parseInt(value)
     setCopyNumber(parsedValue)
+  }
+
+  const isFormValid = () => {
+    return (
+          uploadedFiles.R1 &&
+          uploadedFiles.R2 && 
+          uploadedFiles.barcode && 
+          selectedSpecies && 
+          qualityConfig && !isNaN(qualityConfig[selectedSpecies]) && 
+          minLength && !isNaN(minLength) && 
+          ncbiFile && 
+          identity && !isNaN(identity) && 
+          copyNumber && !isNaN(copyNumber)
+          )
   }
 
   const startSSEMonitoring = () => {
     addLog('Starting SSE connection...', 'info')
     
-    // 先檢查是否有正在進行的分析
     checkAnalysisExists()
       .then(() => {
-        // 如果有分析存在，則建立 SSE 連線
+        // -- If an analysis exists, establish an SSE connection
         eventSourceRef.current = api.analysis.pipeline.watchProgress({
           onConnect: () => {
             addLog('SSE connection established', 'success')
@@ -232,7 +245,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisComplete, onReset }) => {
           onComplete: (data) => {
             addLog(data.message || 'Analysis completed!', 'success')
             setIsAnalyzing(false)
-            setAnalysisStep('completed') // 完成後回到物種選擇，可以選擇其他物種
+            setAnalysisStep('completed')
             
             // Optionally fetch results here
             fetchAnalysisResults().then(results => {
@@ -415,7 +428,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisComplete, onReset }) => {
                             type="number"
                             min="0"
                             max="99"
-                            value={qualityConfig[selectedSpecies] || 0}
+                            defaultValue={qualityConfig[selectedSpecies]}
                             onChange={(e) => handleQualityChange(e.target.value)}
                             className="quality-input"
                           />
@@ -443,10 +456,10 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisComplete, onReset }) => {
                       type="number"
                       min="1"
                       max="1000"
-                      value={minLength}
+                      defaultValue={minLength}
                       onChange={(e) => handleMinLengthChange(e.target.value)}
                       className="minimum-length"
-                      placeholder="200"
+                      // placeholder="200"
                     />
                     <span className="input-suffix">bp</span>
                   </span>
@@ -492,7 +505,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisComplete, onReset }) => {
                     className='identity' 
                     min="0" 
                     max="100" 
-                    value={identity} 
+                    defaultValue={identity}
                     onChange={(e) => handleIdentityChange(e.target.value)}
                   />
                   <span>% identity</span>
@@ -525,10 +538,11 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisComplete, onReset }) => {
                     className='copy-number' 
                     min="1" 
                     max="1000" 
-                    value={copyNumber} 
+                    defaultValue={copyNumber}
                     onChange={(e) => handleCopyNumberChange(e.target.value)}
                   />
                 </div>
+                (Sequences with copies ≤ this number will be classified as unique)
               </div>
             </div>
           </div>
@@ -578,7 +592,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisComplete, onReset }) => {
             <button
                 className="btn btn-primary"
                 onClick={startPipeline}
-                disabled={!uploadedFiles.R1 || !uploadedFiles.R2 || !uploadedFiles.barcode || !selectedSpecies || !minLength || !ncbiFile || !identity || !copyNumber}
+                disabled={!isFormValid()}
               >
                 <Play size={20} />
                 Start Analysis for {selectedSpecies? selectedSpecies : '...'}
@@ -646,7 +660,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisComplete, onReset }) => {
         </div>
       )}
 
-      {/* 需求提示 */}
+      {/* Requirements alert */}
       {analysisStep === 'ready' && (!uploadedFiles.R1 || !uploadedFiles.R2 || !uploadedFiles.barcode) && (
         <div className="requirements-notice">
           <h4>Required Files</h4>
