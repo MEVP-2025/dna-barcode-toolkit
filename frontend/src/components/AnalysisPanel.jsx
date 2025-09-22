@@ -16,6 +16,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisComplete, onReset }) => {
   const [qualityConfig, setQualityConfig] = useState({}) // 現在只針對單一物種
 
   const [minLength, setMinLength] = useState(200)
+  const [maxLength, setMaxLength] = useState()
 
   const [ncbiFile, setNcbiFile] = useState(null)
 
@@ -114,6 +115,11 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisComplete, onReset }) => {
       return
     }
 
+    if (!isNumberValid()) {
+      alert('Please check your input values - some numbers are outside the allowed range.')
+      return
+    }
+
     // Check if project is selected
     if (!selectedSpecies) {
       alert('Please select a project to analyze.')
@@ -190,6 +196,11 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisComplete, onReset }) => {
     setMinLength(parsedValue)
   }
 
+  const handleMaxLengthChange = (value) => {
+    const parsedValue = parseInt(value)
+    setMaxLength(parsedValue)
+  }
+
   const handleNCBIFileChange = (event) => {
     const file = event.target.files[0]
     setNcbiFile(file)
@@ -221,6 +232,31 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisComplete, onReset }) => {
           identity && !isNaN(identity) && 
           copyNumber && !isNaN(copyNumber)
           )
+  }
+
+  const isNumberValid = () => {
+    // 0 - 99
+    const qualityConfigValid = !selectedSpecies || 
+      (qualityConfig[selectedSpecies] >= 0 && qualityConfig[selectedSpecies] <= 99)
+
+    // > 0
+    const minLengthValid = minLength > 0
+
+    // 0-100
+    const identityValid = identity >= 0 && identity <= 100
+
+    // >= 1
+    const copyNumberValid = copyNumber >= 1
+
+    // 0-10000 && > minLength
+    const maxLengthValid = !maxLength || 
+      (maxLength > 0 && maxLength > minLength && maxLength <= 10000)
+
+    return qualityConfigValid && 
+          minLengthValid && 
+          identityValid && 
+          copyNumberValid && 
+          maxLengthValid
   }
 
   const startSSEMonitoring = () => {
@@ -459,9 +495,22 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisComplete, onReset }) => {
                       defaultValue={minLength}
                       onChange={(e) => handleMinLengthChange(e.target.value)}
                       className="minimum-length"
-                      // placeholder="200"
                     />
                     <span className="input-suffix">bp</span>
+                  </span>
+                </span>
+                <span className='maximum-length-container'>Apply maximum length threshold of
+                  <span className="input-group">
+                    <input
+                      id="length-filter"
+                      type="number"
+                      min="1"
+                      max="10000"
+                      defaultValue={maxLength}
+                      onChange={(e) => handleMaxLengthChange(e.target.value)}
+                      className="minimum-length"
+                    />
+                    <span className="input-suffix">bp (optional)</span>
                   </span>
                 </span>
               </div>
@@ -629,7 +678,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisComplete, onReset }) => {
         )}
       </div>
 
-      {/* 分析狀態 */}
+      {/* Analysis status */}
       {isAnalyzing && (
         <div className="analysis-status">
           <div className="status-indicator">

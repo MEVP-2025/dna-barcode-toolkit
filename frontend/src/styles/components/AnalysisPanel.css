@@ -67,6 +67,12 @@
   gap: 5px;
 }
 
+.maximum-length-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
 /* Identity */
 .input-container .identity-container {
   display: flex;
