@@ -55,6 +55,24 @@ function createWindow() {
   });
 }
 
+function getSystemPath() {
+  const platform = process.platform;
+
+  if (platform == "darwin") {
+    // -- MacOS
+    return "/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin";
+  } else if (platform == "win32") {
+    // -- Windows
+    return (
+      "C:\\Program Files\\Docker\\Docker\\resources\\bin;" +
+      (process.env.PATH || "")
+    );
+  } else {
+    // -- Linux
+    return "/usr/local/bin:/usr/bin:/bin";
+  }
+}
+
 // -- Start Backend Server
 function startBackend() {
   return new Promise((resolve, reject) => {
@@ -87,6 +105,7 @@ function startBackend() {
         NODE_ENV: "production",
         PORT: "3001",
         PATH: "/usr/local/bin:/usr/bin:/bin:" + (process.env.PATH || ""),
+        // PATH: getSystemPath() + ":" + (process.env.PATH || ""),
       },
       stdio: ["pipe", "pipe", "pipe"],
     });
