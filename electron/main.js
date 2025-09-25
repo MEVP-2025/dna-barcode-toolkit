@@ -1,5 +1,5 @@
 import { spawn } from "child_process";
-import { app, BrowserWindow, dialog, ipcMain, shell } from "electron";
+import { app, BrowserWindow, dialog, ipcMain, screen, shell } from "electron";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -13,9 +13,13 @@ let backendProcess;
 
 // create the main application window
 function createWindow() {
+  const primaryDisplay = screen.getPrimaryDisplay();
+  const { width: screenWidth, height: screenHeight } =
+    primaryDisplay.workAreaSize;
+
   mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 800,
+    width: Math.max(Math.floor(screenWidth * 0.8), 1200),
+    height: Math.max(Math.floor(screenHeight * 0.8), 800),
     minWidth: 1000,
     minHeight: 800,
     titleBarStyle: "hiddenInset",
