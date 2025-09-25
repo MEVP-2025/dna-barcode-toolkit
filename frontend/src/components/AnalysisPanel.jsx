@@ -239,18 +239,18 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisComplete, onReset }) => {
     const qualityConfigValid = !selectedSpecies || 
       (qualityConfig[selectedSpecies] >= 0 && qualityConfig[selectedSpecies] <= 99)
 
-    // > 0
-    const minLengthValid = minLength > 0
+    // > 0-10000
+    const minLengthValid = minLength > 0 && minLength <= 10000
+
+    // 0-10000 && > minLength 
+    const maxLengthValid = !maxLength || 
+      (maxLength > 0 && maxLength > minLength && maxLength <= 10000)
 
     // 0-100
     const identityValid = identity >= 0 && identity <= 100
 
-    // >= 1
-    const copyNumberValid = copyNumber >= 1
-
-    // 0-10000 && > minLength
-    const maxLengthValid = !maxLength || 
-      (maxLength > 0 && maxLength > minLength && maxLength <= 10000)
+    // 1-1000
+    const copyNumberValid = copyNumber >= 1 && copyNumber <= 1000
 
     return qualityConfigValid && 
           minLengthValid && 
