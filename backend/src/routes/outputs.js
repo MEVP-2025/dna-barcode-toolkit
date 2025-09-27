@@ -30,6 +30,7 @@ async function listDirContents(dirPath) {
         const fileInfos = [];
 
         for (const f of files) {
+          if (path.extname(f) === ".list") continue;
           try {
             const stat = await fs.stat(safeJoin(speciesPath, f));
             fileInfos.push({
