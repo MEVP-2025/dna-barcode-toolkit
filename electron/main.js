@@ -1,4 +1,4 @@
-import { spawn } from "child_process";
+import { execSync, spawn } from "child_process";
 import { app, BrowserWindow, dialog, ipcMain, screen, shell } from "electron";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -59,22 +59,102 @@ function createWindow() {
   });
 }
 
-function getSystemPath() {
-  const platform = process.platform;
-
-  if (platform == "darwin") {
-    // -- MacOS
-    return "/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin";
-  } else if (platform == "win32") {
-    // -- Windows
-    return (
-      "C:\\Program Files\\Docker\\Docker\\resources\\bin;" +
-      (process.env.PATH || "")
-    );
-  } else {
-    // -- Linux
-    return "/usr/local/bin:/usr/bin:/bin";
+function findExecutablePath(command) {
+  try {
+    const whichCmd = process.platform === "win32" ? "where" : "which";
+    console.log("which cmd: ", whichCmd);
+    const result = execSync(`${whichCmd} ${command}`, {
+      encoding: "utf8",
+      stdio: ["pipe", "pipe", "ignore"],
+    });
+    console.log("result: ", result);
+    return result.trim().split("\n")[0];
+  } catch (error) {
+    return null;
   }
+}
+
+function buildEnhancedPath() {
+  const criticalTools = ["docker"];
+  const foundPaths = new Set();
+
+  criticalTools.forEach((tool) => {
+    const toolPath = findExecutablePath(tool);
+    if (toolPath) {
+      const dirPath = path.dirname(toolPath);
+      foundPaths.add(dirPath);
+      console.log(`Found ${tool} at: ${toolPath}`);
+    } else {
+      console.warn(`${tool} not found in current PATH`);
+    }
+  });
+
+  // -- Create PATH: detected paths + original paths + common paths
+  const separator = process.platform === "win32" ? ";" : ":";
+  const pathComponents = [
+    ...Array.from(foundPaths), // Highest priority: dynamically detected paths
+    ...(process.env.PATH || "").split(separator), // Original PATH
+    ...getCommonPaths(), // Fallback: common system paths
+  ];
+
+  // -- Remove duplicates and empty values
+  const uniquePaths = [...new Set(pathComponents.filter(Boolean))];
+  return uniquePaths.join(separator);
+}
+
+function getCommonPaths() {
+  if (process.platform === "darwin") {
+    return ["/usr/local/bin", "/opt/homebrew/bin", "/usr/bin", "/bin"];
+  } else if (process.platform === "win32") {
+    return ["C:\\Program Files\\Docker\\Docker\\resources\\bin"];
+  } else {
+    return ["/usr/local/bin", "/usr/bin", "/bin"];
+  }
+}
+
+function createEnhancedEnvironment() {
+  const env = { ...process.env };
+
+  try {
+    env.PATH = buildEnhancedPath();
+  } catch (error) {
+    console.warn(
+      "Failed to build enhanced PATH, using fallback: ",
+      error.message
+    );
+    const separator = process.platform === "win32" ? ";" : ":";
+    env.PATH =
+      (process.env.PATH || "") + separator + getCommonPaths().join(separator);
+  }
+
+  env.NODE_ENV = "production";
+  env.PORT = "3001";
+
+  return env;
+}
+
+async function validateEnvironment() {
+  const requiredTools = ["docker"];
+  const missing = [];
+
+  for (const tool of requiredTools) {
+    if (!findExecutablePath(tool)) {
+      missing.push(tool);
+    }
+  }
+
+  if (missing.length > 0) {
+    const error = new Error(`Required tools not found ${missing.join(", ")}`);
+    dialog.showErrorBox(
+      "Missing Dependencies",
+      `The following required tools were not found:\n${missing.join(
+        ", "
+      )}\n\nPlease ensure they are installed and accessible from the command line.`
+    );
+    throw error;
+  }
+
+  console.log("All required tools found");
 }
 
 // -- Start Backend Server
@@ -102,15 +182,11 @@ function startBackend() {
     console.log("Using Node.js binary:", nodeBinary);
     console.log("Server script:", serverScript);
 
+    const enhancedEnv = createEnhancedEnvironment();
+
     backendProcess = spawn(nodeBinary, [serverScript], {
       cwd: path.join(process.resourcesPath, "backend"),
-      env: {
-        ...process.env,
-        NODE_ENV: "production",
-        PORT: "3001",
-        PATH: "/usr/local/bin:/usr/bin:/bin:" + (process.env.PATH || ""),
-        // PATH: getSystemPath() + ":" + (process.env.PATH || ""),
-      },
+      env: enhancedEnv,
       stdio: ["pipe", "pipe", "pipe"],
     });
 
@@ -143,7 +219,10 @@ function startBackend() {
 app.whenReady().then(async () => {
   try {
     // Start backend server first
+    console.log("find executable path: ", findExecutablePath("docker"));
     if (!isDev) {
+      console.log(findExecutablePath("docker"));
+      await validateEnvironment();
       await startBackend();
     }
 
