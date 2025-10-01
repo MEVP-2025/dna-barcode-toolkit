@@ -10,6 +10,7 @@ import { fileURLToPath } from "url";
 
 // Import routes
 import analysisRoutes from "./routes/analysis.js";
+import dockerRoutes from "./routes/docker.js";
 import fileRoutes from "./routes/files.js";
 import indexRoutes from "./routes/index.js";
 import outputRoutes from "./routes/outputs.js";
@@ -74,6 +75,7 @@ app.use("/api", indexRoutes);
 app.use("/api/files", fileRoutes);
 app.use("/api/analysis", analysisRoutes);
 app.use("/api/outputs", outputRoutes);
+app.use("/api/docker", dockerRoutes);
 
 // Health check endpoint
 app.get("/health", (req, res) => {

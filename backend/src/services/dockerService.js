@@ -6,7 +6,7 @@ const execAsync = promisify(exec);
 
 export class DockerService {
   constructor() {
-    this.authorName = "uiskskkekekk"
+    this.authorName = "uiskskkekekk";
     this.imageName = "mevp-2025";
     this.imageTag = "latest";
     this.fullImageName = `${this.authorName}/${this.imageName}:${this.imageTag}`;
@@ -189,7 +189,7 @@ export class DockerService {
         };
       }
 
-      // 檢查/拉取 image
+      // -- Check/Pull image
       checks.imageAvailable = await this.pullImageIfNeeded();
       if (!checks.imageAvailable) {
         return {

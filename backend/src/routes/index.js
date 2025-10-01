@@ -38,6 +38,7 @@ router.get("/", (req, res) => {
       files: "/api/files",
       analysis: "/api/analysis",
       outputs: "/api/outputs",
+      docker: "/api/docker",
     },
   });
 });

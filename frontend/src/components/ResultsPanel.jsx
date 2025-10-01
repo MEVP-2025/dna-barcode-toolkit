@@ -50,7 +50,7 @@ const ResultsPanel = ({ onReset }) => {
   }
 
   const downloadAllSpeciesFiles = (species, separatedFiles = [], tableFiles = []) => {
-    // 下載該物種的所有檔案
+    // -- Download all archives for this species
     separatedFiles.forEach((file, index) => {
       setTimeout(() => {
         downloadFile('separated', species, file.filename)

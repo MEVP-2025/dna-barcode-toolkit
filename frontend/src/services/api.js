@@ -11,6 +11,11 @@ const apiClient = axios.create({
 
 // Simple API methods
 export const api = {
+  // Check docker environment
+  docker: {
+    checkEnvironment: () => apiClient.get("/docker/check"),
+  },
+
   // File upload
   files: {
     uploadPaired: (formData, onUploadProgress) => {

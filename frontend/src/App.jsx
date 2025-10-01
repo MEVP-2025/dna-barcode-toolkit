@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import TitleBar from './bar-components/TitleBar'
 import AnalysisPanel from './components/AnalysisPanel'
+import DockerCheckPanel from './components/DockerCheckPanel'
 import FileUpload from './components/FileUpload'
 import ResultsPanel from './components/ResultsPanel'
 import './styles/components.css'
@@ -48,6 +49,7 @@ const ThemeToggle = ({ theme, toggleTheme }) => {
 }
 
 const App = () => {
+  const [dockerReady, setDockerReady] = useState(false)
   const [uploadedFiles, setUploadedFiles] = useState(null)
   const [analysisResult, setAnalysisResult] = useState(null)
   const [showResults, setShowResults] = useState(false)
@@ -69,6 +71,10 @@ const App = () => {
     localStorage.setItem('theme', newTheme)
   }
 
+  const handleDockerReady = () => {
+    setDockerReady(true)
+  }
+
   const handleFilesUploaded = (files) => {
     setUploadedFiles(files)
     setAnalysisResult(null)
@@ -81,6 +87,7 @@ const App = () => {
   }
 
   const resetApp = () => {
+    setDockerReady(false)
     setUploadedFiles(null)
     setAnalysisResult(null)
     setShowResults(false)
@@ -104,8 +111,12 @@ const App = () => {
         </header>
 
         <main className="app-main">
+          {!dockerReady && (
+            <DockerCheckPanel onDockerReady={handleDockerReady} />
+          )}
+
           {/* Step 1: File Upload */}
-          {!uploadedFiles && (
+          {dockerReady && !uploadedFiles && (
             <FileUpload onFilesUploaded={handleFilesUploaded} />
           )}
 
