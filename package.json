@@ -12,6 +12,7 @@
     "prepare-node": "node scripts/download-node.js && node scripts/extract-node.js",
     "build": "npm run prepare-node && npm run frontend:build && npm run backend:install",
     "dist": "npm run build && electron-builder",
+    "dist:all": "npm run build && electron-builder -mwl",
     "frontend:dev": "cd frontend && npm run dev",
     "frontend:build": "cd frontend && npm run build",
     "backend:dev": "cd backend && npm run dev",
