@@ -30,7 +30,7 @@ function createWindow() {
       webSecurity: !isDev,
     },
     icon: path.join(__dirname, "../frontend/public/MEVP_logo.png"),
-    show: false, // 先不顯示，等載入完成
+    show: false, // -- wait until loading is complete
   });
 
   // Loading the frontend
@@ -61,14 +61,14 @@ function createWindow() {
 
 function findExecutablePath(command) {
   try {
-    const whichCmd = process.platform === "win32" ? "where" : "which";
-    console.log("which cmd: ", whichCmd);
-    const result = execSync(`${whichCmd} ${command}`, {
+    const shell = process.env.SHELL;
+
+    const result = execSync(`${shell} -l -c "which ${command}"`, {
       encoding: "utf8",
       stdio: ["pipe", "pipe", "ignore"],
+      timeout: 3000,
     });
-    console.log("result: ", result);
-    return result.trim().split("\n")[0];
+    return result.trim();
   } catch (error) {
     return null;
   }
@@ -117,14 +117,15 @@ function createEnhancedEnvironment() {
 
   try {
     env.PATH = buildEnhancedPath();
+    dialog.showErrorBox("env.PATH: ", env.PATH);
   } catch (error) {
     console.warn(
       "Failed to build enhanced PATH, using fallback: ",
       error.message
     );
-    const separator = process.platform === "win32" ? ";" : ":";
-    env.PATH =
-      (process.env.PATH || "") + separator + getCommonPaths().join(separator);
+    // const separator = process.platform === "win32" ? ";" : ":";
+    // env.PATH =
+    //   (process.env.PATH || "") + separator + getCommonPaths().join(separator);
   }
 
   env.NODE_ENV = "production";
