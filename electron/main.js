@@ -123,9 +123,9 @@ function createEnhancedEnvironment() {
       "Failed to build enhanced PATH, using fallback: ",
       error.message
     );
-    // const separator = process.platform === "win32" ? ";" : ":";
-    // env.PATH =
-    //   (process.env.PATH || "") + separator + getCommonPaths().join(separator);
+    const separator = process.platform === "win32" ? ";" : ":";
+    env.PATH =
+      (process.env.PATH || "") + separator + getCommonPaths().join(separator);
   }
 
   env.NODE_ENV = "production";
@@ -220,9 +220,7 @@ function startBackend() {
 app.whenReady().then(async () => {
   try {
     // Start backend server first
-    console.log("find executable path: ", findExecutablePath("docker"));
     if (!isDev) {
-      console.log(findExecutablePath("docker"));
       await validateEnvironment();
       await startBackend();
     }
