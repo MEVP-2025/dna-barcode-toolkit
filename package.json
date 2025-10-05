@@ -55,6 +55,14 @@
       "icon": "MEVP.png",
       "target": "nsis"
     },
+    "nsis": {
+      "oneClick": true,
+      "installerIcon": "MEVP.png",
+      "uninstallerIcon": "MEVP.png",
+      "uninstallDisplayName": "dna barcode toolkit uninstaller",
+      "license": "license.md",
+      "allowToChangeInstallationDirectory": false
+    },
     "linux": {
       "icon": "MEVP.png",
       "target": "AppImage"
