@@ -165,12 +165,14 @@ function startBackend() {
     const arch = process.arch;
 
     const platformKey = `${platform}-${arch}`;
+
+    const nodeExeName = platform === "win32" ? "node.exe" : "node";
     const nodeBinary = path.join(
       process.resourcesPath,
       "node",
       platformKey,
       "bin",
-      "node"
+      nodeExeName
     );
 
     const serverScript = path.join(
