@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "DNA Barcode Analysis Tool",
   "main": "electron/main.js",
-  "type": "module",
   "author": "uiskskkekekk",
   "license": "MIT",
   "scripts": {
@@ -46,26 +45,26 @@
       }
     ],
     "mac": {
-      "icon": "MEVP.png",
+      "icon": "icon/MEVP.png",
       "category": "public.app-category.utilities",
-      "target": "dmg",
+      "target": ["dmg"],
       "identity": null
     },
     "win": {
-      "icon": "MEVP.png",
-      "target": "nsis"
+      "icon": "icon/MEVP.ico",
+      "target": ["nsis"]
     },
     "nsis": {
-      "oneClick": true,
-      "installerIcon": "MEVP.png",
-      "uninstallerIcon": "MEVP.png",
+      "oneClick": false,
+      "installerIcon": "icon/MEVP.ico",
+      "uninstallerIcon": "icon/MEVP.ico",
       "uninstallDisplayName": "dna barcode toolkit uninstaller",
       "license": "license.md",
-      "allowToChangeInstallationDirectory": false
+      "allowToChangeInstallationDirectory": true
     },
     "linux": {
-      "icon": "MEVP.png",
-      "target": "AppImage"
+      "icon": "icon/MEVP.png",
+      "target": [ "AppImage"]
     }
   }
 }

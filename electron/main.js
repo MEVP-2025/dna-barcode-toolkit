@@ -1,18 +1,57 @@
-import { execSync, spawn } from "child_process";
-import { app, BrowserWindow, dialog, ipcMain, screen, shell } from "electron";
-import path from "path";
-import { fileURLToPath } from "url";
+const { execSync, spawn } = require("child_process");
+const {
+  app,
+  BrowserWindow,
+  dialog,
+  ipcMain,
+  screen,
+  shell,
+} = require("electron");
+const path = require("path");
+const fs = require("fs");
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
 
 const isDev = !app.isPackaged;
+
+function writeLog(message) {
+  const logPath = path.join(app.getPath("userData"), "debug.log");
+  const timestamp = new Date().toISOString();
+  const logMessage = `[${timestamp}] ${message}\n`;
+
+  try {
+    fs.appendFileSync(logPath, logMessage);
+    console.log(message);
+  } catch (error) {
+    console.error("Failed to write log:", error);
+  }
+}
+
+process.on("uncaughtException", (error) => {
+  const errorMsg = `Uncaught Exception: ${error.message}\nStack: ${error.stack}`;
+  writeLog(errorMsg);
+  dialog.showErrorBox("An error occurred", errorMsg);
+});
+
+process.on("unhandledRejection", (error) => {
+  const errorMsg = `Unhandled Rejection: ${error}`;
+  writeLog(errorMsg);
+  dialog.showErrorBox("An error occurred", errorMsg);
+});
 
 let mainWindow;
 let backendProcess;
 
 // create the main application window
 function createWindow() {
+  writeLog("=== createWindow called ===");
+  writeLog(`isDev: ${isDev}`);
+  writeLog(`isPackaged: ${app.isPackaged}`);
+  writeLog(`__dirname: ${__dirname}`);
+  writeLog(`process.resourcesPath: ${process.resourcesPath}`);
+  writeLog(`app.getAppPath(): ${app.getAppPath()}`);
+
   const primaryDisplay = screen.getPrimaryDisplay();
   const { width: screenWidth, height: screenHeight } =
     primaryDisplay.workAreaSize;
@@ -30,30 +69,61 @@ function createWindow() {
       webSecurity: !isDev,
     },
     icon: path.join(__dirname, "../frontend/public/MEVP_logo.png"),
-    show: false, // -- wait until loading is complete
+    show: false,
   });
 
-  // Loading the frontend
   if (isDev) {
     mainWindow.loadURL("http://localhost:5173");
-    // F12
     mainWindow.webContents.openDevTools();
   } else {
-    mainWindow.loadFile(path.join(__dirname, "../frontend/dist/index.html"));
+    const indexPath = path.join(__dirname, "../frontend/dist/index.html");
+    writeLog(`Trying to load: ${indexPath}`);
+    writeLog(`File exists: ${fs.existsSync(indexPath)}`);
+
+    // 列出所有可能的路徑
+    const possiblePaths = [
+      indexPath,
+      path.join(
+        process.resourcesPath,
+        "app.asar",
+        "electron",
+        "../frontend/dist/index.html"
+      ),
+      path.join(process.resourcesPath, "app", "frontend", "dist", "index.html"),
+      path.join(app.getAppPath(), "frontend", "dist", "index.html"),
+    ];
+
+    possiblePaths.forEach((p, i) => {
+      writeLog(`Path ${i}: ${p} - exists: ${fs.existsSync(p)}`);
+    });
+
+    // 嘗試載入
+    mainWindow.loadFile(indexPath).catch((err) => {
+      writeLog(`Failed to load file: ${err.message}`);
+      dialog.showErrorBox(
+        "載入錯誤",
+        `無法載入前端:\n${err.message}\n\n日誌位置:\n${app.getPath("userData")}`
+      );
+    });
   }
 
-  // Display when it's ready to avoid flickering
   mainWindow.once("ready-to-show", () => {
+    writeLog("Window ready to show");
     mainWindow.show();
   });
 
-  // handle external url
+  mainWindow.webContents.on(
+    "did-fail-load",
+    (event, errorCode, errorDescription) => {
+      writeLog(`did-fail-load: ${errorCode} - ${errorDescription}`);
+    }
+  );
+
   mainWindow.webContents.setWindowOpenHandler(({ url }) => {
     shell.openExternal(url);
     return { action: "deny" };
   });
 
-  // handle window closed
   mainWindow.on("closed", () => {
     mainWindow = null;
   });
@@ -117,7 +187,7 @@ function createEnhancedEnvironment() {
 
   try {
     env.PATH = buildEnhancedPath();
-    dialog.showErrorBox("env.PATH: ", env.PATH);
+    // dialog.showErrorBox("env.PATH: ", env.PATH);
   } catch (error) {
     console.warn(
       "Failed to build enhanced PATH, using fallback: ",
