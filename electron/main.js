@@ -15,43 +15,11 @@ const fs = require("fs");
 
 const isDev = !app.isPackaged;
 
-function writeLog(message) {
-  const logPath = path.join(app.getPath("userData"), "debug.log");
-  const timestamp = new Date().toISOString();
-  const logMessage = `[${timestamp}] ${message}\n`;
-
-  try {
-    fs.appendFileSync(logPath, logMessage);
-    console.log(message);
-  } catch (error) {
-    console.error("Failed to write log:", error);
-  }
-}
-
-process.on("uncaughtException", (error) => {
-  const errorMsg = `Uncaught Exception: ${error.message}\nStack: ${error.stack}`;
-  writeLog(errorMsg);
-  dialog.showErrorBox("An error occurred", errorMsg);
-});
-
-process.on("unhandledRejection", (error) => {
-  const errorMsg = `Unhandled Rejection: ${error}`;
-  writeLog(errorMsg);
-  dialog.showErrorBox("An error occurred", errorMsg);
-});
-
 let mainWindow;
 let backendProcess;
 
 // create the main application window
 function createWindow() {
-  writeLog("=== createWindow called ===");
-  writeLog(`isDev: ${isDev}`);
-  writeLog(`isPackaged: ${app.isPackaged}`);
-  writeLog(`__dirname: ${__dirname}`);
-  writeLog(`process.resourcesPath: ${process.resourcesPath}`);
-  writeLog(`app.getAppPath(): ${app.getAppPath()}`);
-
   const primaryDisplay = screen.getPrimaryDisplay();
   const { width: screenWidth, height: screenHeight } =
     primaryDisplay.workAreaSize;
@@ -76,48 +44,12 @@ function createWindow() {
     mainWindow.loadURL("http://localhost:5173");
     mainWindow.webContents.openDevTools();
   } else {
-    const indexPath = path.join(__dirname, "../frontend/dist/index.html");
-    writeLog(`Trying to load: ${indexPath}`);
-    writeLog(`File exists: ${fs.existsSync(indexPath)}`);
-
-    // 列出所有可能的路徑
-    const possiblePaths = [
-      indexPath,
-      path.join(
-        process.resourcesPath,
-        "app.asar",
-        "electron",
-        "../frontend/dist/index.html"
-      ),
-      path.join(process.resourcesPath, "app", "frontend", "dist", "index.html"),
-      path.join(app.getAppPath(), "frontend", "dist", "index.html"),
-    ];
-
-    possiblePaths.forEach((p, i) => {
-      writeLog(`Path ${i}: ${p} - exists: ${fs.existsSync(p)}`);
-    });
-
-    // 嘗試載入
-    mainWindow.loadFile(indexPath).catch((err) => {
-      writeLog(`Failed to load file: ${err.message}`);
-      dialog.showErrorBox(
-        "載入錯誤",
-        `無法載入前端:\n${err.message}\n\n日誌位置:\n${app.getPath("userData")}`
-      );
-    });
+    mainWindow.loadFile(path.join(__dirname, "../frontend/dist/index.html"));
   }
 
   mainWindow.once("ready-to-show", () => {
-    writeLog("Window ready to show");
     mainWindow.show();
   });
-
-  mainWindow.webContents.on(
-    "did-fail-load",
-    (event, errorCode, errorDescription) => {
-      writeLog(`did-fail-load: ${errorCode} - ${errorDescription}`);
-    }
-  );
 
   mainWindow.webContents.setWindowOpenHandler(({ url }) => {
     shell.openExternal(url);
@@ -131,14 +63,24 @@ function createWindow() {
 
 function findExecutablePath(command) {
   try {
-    const shell = process.env.SHELL;
+    if (process.platform === "win32") {
+      const result = execSync(`where ${command}`, {
+        encoding: "utf8",
+        stdio: ["pipe", "pipe", "ignore"],
+        timeout: 3000,
+      });
+      return result.split('\n')[0].trim();
+    } else {
+      const shell = process.env.SHELL;
+      dialog.showErrorBox("process.env.SHELL: ", shell);
 
-    const result = execSync(`${shell} -l -c "which ${command}"`, {
-      encoding: "utf8",
-      stdio: ["pipe", "pipe", "ignore"],
-      timeout: 3000,
-    });
-    return result.trim();
+      const result = execSync(`${shell} -l -c "which ${command}"`, {
+        encoding: "utf8",
+        stdio: ["pipe", "pipe", "ignore"],
+        timeout: 3000,
+      });
+      return result.trim();
+    }
   } catch (error) {
     return null;
   }
@@ -150,6 +92,7 @@ function buildEnhancedPath() {
 
   criticalTools.forEach((tool) => {
     const toolPath = findExecutablePath(tool);
+    dialog.showErrorBox("toolPath: ", toolPath);
     if (toolPath) {
       const dirPath = path.dirname(toolPath);
       foundPaths.add(dirPath);
@@ -236,14 +179,23 @@ function startBackend() {
 
     const platformKey = `${platform}-${arch}`;
 
-    const nodeExeName = platform === "win32" ? "node.exe" : "node";
-    const nodeBinary = path.join(
-      process.resourcesPath,
-      "node",
-      platformKey,
-      "bin",
-      nodeExeName
-    );
+    let nodeBinary
+    if (platform === "win32") {
+      nodeBinary = path.join(
+        process.resourcesPath,
+        "node",
+        platformKey,
+        "node.exe"
+      );
+    } else {
+      nodeBinary = path.join(
+        process.resourcesPath,
+        "node",
+        platformKey,
+        "bin",
+        "node"
+      )
+    }
 
     const serverScript = path.join(
       process.resourcesPath,

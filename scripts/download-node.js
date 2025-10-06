@@ -1,6 +1,7 @@
-import fs, { createWriteStream } from "fs";
-import path from "path";
-import { pipeline } from "stream/promises";
+const fs = require("fs");
+const { createWriteStream } = require("fs");
+const path = require("path");
+const { pipeline } = require("stream/promises");
 
 const NODE_VERSION = "23.5.0";
 const platforms = {

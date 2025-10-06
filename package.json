@@ -47,12 +47,17 @@
     "mac": {
       "icon": "icon/MEVP.png",
       "category": "public.app-category.utilities",
-      "target": ["dmg"],
+      "target": [
+        "dmg"
+      ],
       "identity": null
     },
     "win": {
       "icon": "icon/MEVP.ico",
-      "target": ["nsis"]
+      "target": [
+        "nsis"
+      ],
+      "signAndEditExecutable": false
     },
     "nsis": {
       "oneClick": false,
@@ -64,7 +69,13 @@
     },
     "linux": {
       "icon": "icon/MEVP.png",
-      "target": [ "AppImage"]
+      "target": [
+        "AppImage"
+      ]
     }
+  },
+  "devDependencies": {
+    "electron": "^38.2.1",
+    "electron-builder": "^26.0.12"
   }
 }

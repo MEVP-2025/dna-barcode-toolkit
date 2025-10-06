@@ -1,12 +1,11 @@
-import { execSync } from "child_process";
-import fs from "fs";
-import path from "path";
+const { execSync } = require("child_process");
+const fs = require("fs");
+const path = require("path");
 
 const NODE_VERSION = "23.5.0";
 const nodeDir = path.join(process.cwd(), "node-binaries");
 const extractDir = path.join(process.cwd(), "resources", "node");
 
-// 清理並創建目錄
 if (fs.existsSync(extractDir)) {
   fs.rmSync(extractDir, { recursive: true });
 }
@@ -21,7 +20,7 @@ const platforms = {
     file: `node-v${NODE_VERSION}-darwin-x64.tar.gz`,
     type: "tar.gz"
   },
-  "win-x64": {
+  "win32-x64": {
     file: `node-v${NODE_VERSION}-win-x64.zip`,
     type: "zip"
   },
@@ -29,9 +28,48 @@ const platforms = {
     file: `node-v${NODE_VERSION}-linux-x64.tar.xz`,
     type: "tar.xz"
   }
+};
+
+function extractArchive(archivePath, platformDir, type, platform) {
+  const isWindows = process.platform === "win32";
+
+  if (type === "zip") {
+    if (isWindows) {
+      const psCommand = `Expand-Archive -Path "${archivePath}" -DestinationPath "${platformDir}" -Force`;
+      execSync(`powershell -Command "${psCommand}"`, { stdio: "inherit" });
+    } else {
+      execSync(`unzip -q "${archivePath}" -d "${platformDir}"`, { stdio: "inherit" });
+    }
+
+    const extractedDir = path.join(platformDir, `node-v${NODE_VERSION}-win-x64`);
+    if (fs.existsSync(extractedDir)) {
+      const files = fs.readdirSync(extractedDir);
+      files.forEach((file) => {
+        const src = path.join(extractedDir, file);
+        const dest = path.join(platformDir, file);
+        if (fs.existsSync(dest)) {
+          fs.rmSync(dest, { recursive: true });
+        }
+        fs.renameSync(src, dest);
+      });
+      fs.rmdirSync(extractedDir);
+    }
+
+  } else if (type === "tar.gz" || type === "tar.xz") {
+    // Skip extraction on Unix platform on Windows
+    if (isWindows && (platform.startsWith("darwin") || platform.startsWith("linux"))) {
+      console.log(`Skipping ${platform} extraction on Windows (will be extracted on target platform)`);
+      return;
+    }
+
+    const flag = type === "tar.gz" ? "z" : "J";
+    execSync(
+      `tar -x${flag}f "${archivePath}" -C "${platformDir}" --strip-components=1`,
+      { stdio: "inherit" }
+    );
+  }
 }
 
-// ** Just for MacOS **
 for (const [platform, { file: filename, type }] of Object.entries(platforms)) {
   const archivePath = path.join(nodeDir, filename);
   const platformDir = path.join(extractDir, platform);
@@ -46,33 +84,11 @@ for (const [platform, { file: filename, type }] of Object.entries(platforms)) {
   console.log(`Extracting ${filename}...`);
 
   try {
-    if (type == "zip") {
-      execSync(`unzip -q "${archivePath}" -d "${platformDir}"`, {
-        stdio: "inherit",
-      });
-
-      const extractedDir = path.join(platformDir, `node-v${NODE_VERSION}-${platform}`);
-      if (fs.existsSync(extractedDir)) {
-        const files = fs.readdirSync(extractedDir);
-        files.forEach((file) => {
-          const src = path.join(extractedDir, file);
-          const dest = path.join(platformDir, file);
-          fs.renameSync(src, dest);
-        });
-        fs.rmdirSync(extractedDir);
-      }
-    } else if (type === "tar.gz") {
-      execSync(
-        `tar -xzf "${archivePath}" -C "${platformDir}" --strip-components=1`,
-        { stdio: "inherit" }
-      );
-    } else if (type === "tar.xz") {
-      execSync(
-        `tar -xJf "${archivePath}" -C "${platformDir}" --strip-components=1`,
-        { stdio: "inherit" }
-      );
-    }
+    extractArchive(archivePath, platformDir, type, platform);
+    console.log(`Successfully extracted ${filename}`);
   } catch (error) {
-    console.log(`Failed to extract ${filename}:`, error.message);
+    console.error(`Failed to extract ${filename}:`, error.message);
   }
 }
+
+console.log("Extraction complete!");
