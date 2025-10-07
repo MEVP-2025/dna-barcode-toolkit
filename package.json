@@ -42,6 +42,10 @@
           "!outputs/**/*",
           "!logs/**/*"
         ]
+      },
+      {
+        "from": "backend/node_modules",
+        "to": "backend/node_modules"
       }
     ],
     "mac": {

@@ -10,9 +10,6 @@ const {
 const path = require("path");
 const fs = require("fs");
 
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
-
 const isDev = !app.isPackaged;
 
 let mainWindow;
@@ -72,7 +69,6 @@ function findExecutablePath(command) {
       return result.split('\n')[0].trim();
     } else {
       const shell = process.env.SHELL;
-      dialog.showErrorBox("process.env.SHELL: ", shell);
 
       const result = execSync(`${shell} -l -c "which ${command}"`, {
         encoding: "utf8",
@@ -92,7 +88,6 @@ function buildEnhancedPath() {
 
   criticalTools.forEach((tool) => {
     const toolPath = findExecutablePath(tool);
-    dialog.showErrorBox("toolPath: ", toolPath);
     if (toolPath) {
       const dirPath = path.dirname(toolPath);
       foundPaths.add(dirPath);
@@ -130,7 +125,6 @@ function createEnhancedEnvironment() {
 
   try {
     env.PATH = buildEnhancedPath();
-    // dialog.showErrorBox("env.PATH: ", env.PATH);
   } catch (error) {
     console.warn(
       "Failed to build enhanced PATH, using fallback: ",

@@ -1,7 +1,7 @@
 // src/middleware/upload.js
 import fs from "fs";
-import os from "os";
 import multer from "multer";
+import os from "os";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Ensure upload directory exists
-const uploadDir = process.env.NODE_ENV === 'production' 
+const uploadDir = process.env.NODE_ENV === 'production'
   ? path.join(os.homedir(), '.dna-barcode-toolkit', 'uploads')
   : path.join(__dirname, "../../uploads");
 
@@ -59,12 +59,14 @@ const upload = multer({
 // 清空資料夾的 middleware
 export const clearUploadsDir = async (req, res, next) => {
   try {
-    await fs.promises.rmdir(uploadDir, { recursive: true });
+    if (fs.existsSync(uploadDir)) {
+      await fs.promises.rm(uploadDir, { recursive: true, force: true });
+    }
     await fs.promises.mkdir(uploadDir, { recursive: true });
-    console.log("Upload directory cleared before upload");
+    console.log("Upload directory prepared");
     next();
   } catch (error) {
-    console.error("Error clearing upload directory:", error);
+    console.error("Error handling upload directory:", error);
     next(error);
   }
 };
