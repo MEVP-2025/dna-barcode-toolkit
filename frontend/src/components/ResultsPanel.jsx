@@ -31,7 +31,7 @@ const ResultsPanel = ({ onReset }) => {
   }, [])
 
   const downloadFile = (category, species, fileName) => {
-    const downloadUrl = `${import.meta.env.VITE_API_URL || 'http://localhost:3001/api'}/outputs/download/${category}/${species}/${fileName}`
+    const downloadUrl = api.outputs.getDownloadUrl(category, species, fileName)
     
     const link = document.createElement('a')
     link.href = downloadUrl
@@ -49,19 +49,16 @@ const ResultsPanel = ({ onReset }) => {
     }
   }
 
-  const downloadAllSpeciesFiles = (species, separatedFiles = [], tableFiles = []) => {
+  const downloadAllSpeciesFiles = (species) => {
     // -- Download all archives for this species
-    separatedFiles.forEach((file, index) => {
-      setTimeout(() => {
-        downloadFile('separated', species, file.filename)
-      }, index * 100)
-    })
-    
-    tableFiles.forEach((file, index) => {
-      setTimeout(() => {
-        downloadFile('table', species, file.filename)
-      }, (separatedFiles.length + index) * 100)
-    })
+    const downloadUrl = api.outputs.getDownloadAllSpeciesUrl(species)
+
+    const link = document.createElement('a')
+    link.href = downloadUrl
+    link.download = `${species}.zip`
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
   }
 
   // 組織資料：合併相同物種的 separated 和 table 檔案
@@ -100,7 +97,7 @@ const ResultsPanel = ({ onReset }) => {
             <span className="total-files">{totalFiles} total files</span>
             <button
               className="btn btn-primary"
-              onClick={() => downloadAllSpeciesFiles(species, separated, table)}
+              onClick={() => downloadAllSpeciesFiles(species)}
               title={`Download all ${species} files`}
             >
               <Download size={16} />

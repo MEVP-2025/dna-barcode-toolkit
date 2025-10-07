@@ -1,3 +1,4 @@
+import archiver from "archiver";
 import express from "express";
 import fs from "fs/promises";
 import os from "os";
@@ -72,7 +73,7 @@ router.get("/download/:category/:species/:filename", async (req, res, next) => {
   try {
     const { category, species, filename } = req.params;
 
-    // 驗證 category 只能是 'separated' 或 'table'
+    // Only allow 'sperated' or 'table' as category
     if (!["separated", "table"].includes(category)) {
       return res.status(400).json({
         success: false,
@@ -80,7 +81,7 @@ router.get("/download/:category/:species/:filename", async (req, res, next) => {
       });
     }
 
-    // 建構檔案路徑
+    // Build file path
     const outputsRoot = getOutputsRoot();
     const categoryDir = path.join(outputsRoot, category);
     const speciesDir = path.join(categoryDir, species);
@@ -122,6 +123,72 @@ router.get("/download/:category/:species/:filename", async (req, res, next) => {
     });
   } catch (error) {
     console.error("Download error:", error);
+    next(error);
+  }
+});
+
+router.get("/download-species/:species", async (req, res, next) => {
+  try {
+    const { species } = req.params;
+    const outputsRoot = getOutputsRoot();
+
+    const zipFilename = `${species}.zip`;
+    res.setHeader("Content-Type", "application/zip");
+    res.setHeader(
+      "Content-Disposition",
+      `attachment; filename="${zipFilename}"`
+    );
+
+    const archive = archiver("zip", {
+      zlib: { level: 9 }, // compression level (0-9, 9 is highest compression)
+    });
+
+    // 錯誤處理
+    archive.on("error", (err) => {
+      console.error("Archive error:", err);
+      if (!res.headersSent) {
+        res.status(500).json({
+          success: false,
+          error: "Error creating ZIP file",
+        });
+      }
+    });
+
+    // 將 archive 的輸出導向 response
+    archive.pipe(res);
+
+    // Add separated files
+    const separatedDir = path.join(outputsRoot, "separated", species);
+    try {
+      await fs.access(separatedDir);
+      const separatedFiles = await fs.readdir(separatedDir);
+
+      for (const file of separatedFiles) {
+        if (path.extname(file) === ".list") continue; // -- skip .list file
+        const filePath = path.join(separatedDir, file);
+        archive.file(filePath, { name: `separated/${file}` });
+      }
+    } catch (error) {
+      console.log(`No separated files for species: ${species}`);
+    }
+
+    //Add table file
+    const tableDir = path.join(outputsRoot, "table", species);
+    try {
+      await fs.access(tableDir);
+      const tableFiles = await fs.readdir(tableDir);
+
+      for (const file of tableFiles) {
+        const filePath = path.join(tableDir, file);
+        archive.file(filePath, { name: `table/${file}` });
+      }
+    } catch (error) {
+      console.log(`No table files for species: ${species}`);
+    }
+
+    await archive.finalize();
+  } catch (error) {
+    console.error("Download species ZIP error:", error);
     next(error);
   }
 });

@@ -124,6 +124,14 @@ export const api = {
   // Outputs
   outputs: {
     list: () => apiClient.get("outputs/list"),
+
+    getDownloadUrl: (category, species, fileName) => {
+      return `${API_BASE_URL}/outputs/download/${category}/${species}/${fileName}`;
+    },
+
+    getDownloadAllSpeciesUrl: (species) => {
+      return `${API_BASE_URL}/outputs/download-species/${species}`;
+    },
   },
 };
 
