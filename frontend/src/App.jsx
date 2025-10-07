@@ -55,6 +55,8 @@ const App = () => {
   const [showResults, setShowResults] = useState(false)
   const [theme, setTheme] = useState('light')
 
+  const isMac = window.electronAPI?.platform === "darwin"
+
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme')
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -96,7 +98,7 @@ const App = () => {
   return (
     <div className="main-content">
       <div className="app">
-        <TitleBar />
+        {isMac && <TitleBar />}
         <div className='theme-toggle-container'>
           <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
         </div>
