@@ -105,7 +105,8 @@
 
 .progress-fill {
   height: 100%;
-  background: var(--progress-fill); /*linear-gradient(90deg, var(--progress-fill), var(--success)); */
+  background: var(--progress-fill);
+  /*linear-gradient(90deg, var(--progress-fill), var(--success)); */
   transition: width 0.3s ease;
 }
 
@@ -113,15 +114,20 @@
 .spinner {
   width: 20px;
   height: 20px;
-  border: 2px solid #f3f3f3;
-  border-top: 2px solid #3498db;
+  border: 2px solid var(--surface);
+  border-top: 2px solid var(--primary);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* File Items (通用) */
@@ -145,7 +151,7 @@
   color: var(--text);
 }
 
-.file-size, 
+.file-size,
 .file-type {
   font-size: 0.9em;
   color: var(--detail);
@@ -170,16 +176,17 @@
 }
 
 /* input type = "number" */
-input[type='number']{
+input[type='number'] {
   padding: 3px 5px;
   border: 1px solid var(--border);
   border-radius: 4px;
   font-size: 1em;
 }
 
-input[type='text']{
+input[type='text'] {
   padding: 3px 5px;
   border: 1px solid var(--border);
   border-radius: 4px;
-  font-size: 1em;;
+  font-size: 1em;
+  ;
 }
