@@ -13,21 +13,24 @@ export class PythonExecutor {
   constructor() {
     this.dockerService = new DockerService();
 
-    if (process.env.NODE_ENV === 'production') {
-      this.workingDir = path.join(os.homedir(), '.dna-barcode-toolkit');
+    if (process.env.NODE_ENV === "production") {
+      this.workingDir = path.join(os.homedir(), ".dna-barcode-toolkit");
       this.outputsDir = path.join(this.workingDir, "outputs");
       this.uploadsDir = path.join(this.workingDir, "uploads");
       this.backendRootDir = this.workingDir;
-      
-      // 確保目錄存在
+
+      // ensure that directories exist
       fs.ensureDirSync(this.workingDir);
       fs.ensureDirSync(this.outputsDir);
       fs.ensureDirSync(this.uploadsDir);
 
       const sourcePythonScripts = path.join(__dirname, "../../python_scripts");
       const destPythonScripts = path.join(this.workingDir, "python_scripts");
-      
-      if (fs.existsSync(sourcePythonScripts) && !fs.existsSync(destPythonScripts)) {
+
+      if (
+        fs.existsSync(sourcePythonScripts) &&
+        !fs.existsSync(destPythonScripts)
+      ) {
         fs.copySync(sourcePythonScripts, destPythonScripts);
         console.log("Python scripts copied to working directory");
       }

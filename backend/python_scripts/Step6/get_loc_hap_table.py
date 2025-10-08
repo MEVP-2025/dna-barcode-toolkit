@@ -98,9 +98,7 @@ def generate_haplotype_table(input_file, output_file, locations):
         header = 'locations,total,' + ','.join(haplotypes) + '\n'
         outfile.write(header)
         
-        total_in_reads = {}
-        for hap in haplotypes:
-            total_in_reads[hap] = 0
+        total_in_reads = dict.fromkeys(haplotypes, 0)
 
         for loc in locations:
             total_in_loc = 0
