@@ -43,14 +43,19 @@ def load_location(csv_file, target_species):
     return locations
 
 
-
+# -- input_files: .dup.list file
+# -- output_files: .tbl.csv file
 def generate_haplotype_table(input_file, output_file, locations):
     dt = {}
     haplotypes = []
 
     print(f"Processing: {input_file.split('/')[-1]}")
     
+    # -- first: collapse all reads in each haplotype
+    # -- dt:  {'CHR_0': 681, 'Bie_0': 1997, 'XkB_0': 2526, 'DsXlR_0': 2094... }
     with open(input_file, 'r') as f:
+        # One line at a time
+        # >hap_0_5	f_164_ZpDL_LLR_R2f,f_182_ZpDL_LLR_R1f,f_1...
         for i, line in enumerate(f):
             line = line.rstrip()
             
@@ -60,11 +65,13 @@ def generate_haplotype_table(input_file, output_file, locations):
             parts = line.split('\t')
             if len(parts) != 2:
                 continue
-                
-            # -- hap_info = >hap_0_5
+            
             hap_info, all_read_IDs = parts
+            # hap_info = >hap_0_5
+            # all_read_IDs = f_164_ZpDL_LLR_R2f,f_182_ZpDL_LLR_R1f,f_1...
 
-            hap_index = hap_info.split('_')[1] # >hap_0_5 -> 0
+            hap_index = hap_info.split('_')[1]
+            # >hap_0_5 => 0
 
             all_read_IDs = all_read_IDs.split(',')
 
@@ -75,46 +82,58 @@ def generate_haplotype_table(input_file, output_file, locations):
                 read_parts = read_ID.split('_')
                 if len(read_parts) >= 4:
                     location = read_parts[3]
+                    # read_ID = f_164_ZpDL_LLR_R2f => location = LLR
 
                     k = location + '_' + hap_index
+                    # k = LLR_0
 
                     if k in dt:
                         dt[k] += 1
                     else:
                         dt[k] = 1
-
-    # haplotypes = sorted(haplotypes, key=lambda x: int(x) if x.isdigit() else float('inf'))
     
     # print(f"Found haplotypes: {haplotypes}")
 
     with open(output_file, 'w') as outfile:
         header = 'locations,total,' + ','.join(haplotypes) + '\n'
         outfile.write(header)
-        # print(f"Header: {header.strip()}")
+        
+        total_in_reads = {}
+        for hap in haplotypes:
+            total_in_reads[hap] = 0
 
         for loc in locations:
             total_in_loc = 0
             tmp = []
-            
             for hap in haplotypes:
                 k = loc + '_' + hap
                 if k in dt:
                     count = dt[k] # dt[k] => ex. dt[Bie_0] = 3 (count = 3)
                     tmp.append(str(count))
+                    total_in_reads[hap] += count
                     total_in_loc += count
                 else:
                     tmp.append('0')
-            
+
             output_line = loc + ',' + str(total_in_loc) + ',' + ','.join(tmp)
             outfile.write(output_line + '\n')
             # print(output_line)
+
+        grand_total = sum(total_in_reads.values())
+
+        total_in_reads_str = [str(count) for count in total_in_reads.values()]
+        
+        total_line = 'total count,' + str(grand_total) + ',' + ','.join(total_in_reads_str)
+        outfile.write(total_line)
     
     print(f"Output: {output_file.split('/')[-1]}", flush=True)
     print("-" * 50, flush=True)
 
 if __name__ == "__main__":
-    input_dir = "/app/data/outputs/separated"
-    output_dir = "/app/data/outputs/table"
+    # input_dir = "/app/data/outputs/separated"
+    # output_dir = "/app/data/outputs/table"
+    input_dir = "/Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs/separated"
+    output_dir = "/Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs/table"
 
     barcodeFile = sys.argv[1]
 
@@ -134,13 +153,13 @@ if __name__ == "__main__":
         print(f"  - {species}", flush=True)
     print("-" * 50, flush=True)
 
-    project = str(species_dirs[0].split('_')[0])
+    project = str(species_dirs[0].split('_')[0]) 
     locations = load_location(barcodeFile, project)
 
     # -- Proces each species
     for species in species_dirs:
         species_input_dir = os.path.join(input_dir, species)
-        species_output_dir = os.path.join(output_dir, species)
+        species_output_dir = os.path.join(output_dir, species) # -- table/species
         
         os.makedirs(species_output_dir, exist_ok=True)
         

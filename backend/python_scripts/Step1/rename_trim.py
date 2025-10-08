@@ -379,7 +379,7 @@ class IntegratedPipeline:
         total_reads = len(self.fastq_processor.paired_reads)
         
         for i, (read_index, (r1_record, r2_record)) in enumerate(self.fastq_processor.paired_reads.items()):
-            if i % 1000 == 0:
+            if i % 10000 == 0:
                 print(f"Processed {i}/{total_reads} reads", flush=True)
             
             best_match = self._find_best_barcode_match(r1_record, r2_record)
