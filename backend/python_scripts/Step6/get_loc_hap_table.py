@@ -130,10 +130,8 @@ def generate_haplotype_table(input_file, output_file, locations):
     print("-" * 50, flush=True)
 
 if __name__ == "__main__":
-    # input_dir = "/app/data/outputs/separated"
-    # output_dir = "/app/data/outputs/table"
-    input_dir = "/Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs/separated"
-    output_dir = "/Users/angus/Visualization Bioinformatics/dna-barcode-toolkit/backend/outputs/table"
+    input_dir = "/app/data/outputs/separated"
+    output_dir = "/app/data/outputs/table"
 
     barcodeFile = sys.argv[1]
 
