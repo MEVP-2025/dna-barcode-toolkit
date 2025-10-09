@@ -11,47 +11,56 @@ const pythonExecutor = new PythonExecutor();
 
 const handleDockerError = (error) => {
   const errorMessage = error.message.toLowerCase();
-  const errorStack = error.stack?.toLowerCase() || '';
-  
+  const errorStack = error.stack?.toLowerCase() || "";
+
   // Docker daemon not running
-  if (errorMessage.includes('docker daemon') || 
-      errorMessage.includes('cannot connect to the docker daemon') ||
-      errorMessage.includes('connection refused') ||
-      errorMessage.includes('econnrefused')) {
-    return 'Docker is not running. Please start Docker Desktop.';
+  if (
+    errorMessage.includes("docker daemon") ||
+    errorMessage.includes("cannot connect to the docker daemon") ||
+    errorMessage.includes("connection refused") ||
+    errorMessage.includes("econnrefused")
+  ) {
+    return "Docker is not running. Please start Docker Desktop.";
   }
-  
+
   // Docker image not found
-  if (errorMessage.includes('no such image') || 
-      errorMessage.includes('pull access denied') ||
-      errorMessage.includes('repository does not exist')) {
-    return 'Docker image not found. Please pull the required image first.';
+  if (
+    errorMessage.includes("no such image") ||
+    errorMessage.includes("pull access denied") ||
+    errorMessage.includes("repository does not exist")
+  ) {
+    return "Docker image not found. Please pull the required image first.";
   }
-  
+
   // Docker container execution failed
-  if (errorMessage.includes('container exited') || 
-      errorMessage.includes('non-zero exit code')) {
-    return 'Docker container execution failed. Please check input files and scripts.';
+  if (
+    errorMessage.includes("container exited") ||
+    errorMessage.includes("non-zero exit code")
+  ) {
+    return "Docker container execution failed. Please check input files and scripts.";
   }
-  
+
   // Permission issues
-  if (errorMessage.includes('permission denied') || 
-      errorMessage.includes('access denied')) {
-    return 'Docker permission error. Please ensure Docker has sufficient privileges.';
+  if (
+    errorMessage.includes("permission denied") ||
+    errorMessage.includes("access denied")
+  ) {
+    return "Docker permission error. Please ensure Docker has sufficient privileges.";
   }
-  
+
   // Network issues
-  if (errorMessage.includes('network') || 
-      errorMessage.includes('timeout')) {
-    return 'Docker network error. Please check network connection and Docker settings.';
+  if (errorMessage.includes("network") || errorMessage.includes("timeout")) {
+    return "Docker network error. Please check network connection and Docker settings.";
   }
-  
+
   // Resource issues
-  if (errorMessage.includes('out of memory') || 
-      errorMessage.includes('disk space')) {
-    return 'Insufficient system resources. Please free up memory or disk space.';
+  if (
+    errorMessage.includes("out of memory") ||
+    errorMessage.includes("disk space")
+  ) {
+    return "Insufficient system resources. Please free up memory or disk space.";
   }
-  
+
   // Default error
   return `Docker execution error: ${error.message}`;
 };
@@ -101,9 +110,9 @@ router.post("/pipeline/detect-species", async (req, res) => {
       // handle Docker error
       const errorMessage = handleDockerError(dockerError);
       logger.error("Docker execution failed:", errorMessage);
-      
+
       return res.status(500).json({
-        error: errorMessage
+        error: errorMessage,
       });
     }
 
@@ -179,6 +188,13 @@ const pipelineSchema = Joi.object({
     .optional()
     .default({}),
   minLength: Joi.number().integer().min(1).max(10000).required().default(200),
+  maxLength: Joi.number()
+    .integer()
+    .min(1)
+    .max(10000)
+    .optional()
+    .allow(null)
+    .default(null),
   ncbiReferenceFile: Joi.string().required(),
   keyword: Joi.string().optional().allow("").default(""),
   identity: Joi.number().integer().min(0).max(100).required().default(98),
@@ -211,6 +227,7 @@ router.post("/pipeline/start", async (req, res, next) => {
       barcodeFile,
       qualityConfig,
       minLength,
+      maxLength,
       ncbiReferenceFile,
       keyword,
       identity,
@@ -239,6 +256,7 @@ router.post("/pipeline/start", async (req, res, next) => {
       barcodeFile,
       qualityConfig,
       minLength,
+      maxLength,
       ncbiReferenceFile,
       identity,
       copyNumber,

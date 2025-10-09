@@ -152,6 +152,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisComplete, onReset }) => {
         barcodeFile: `uploads/${uploadedFiles.barcode.filename}`,
         qualityConfig: qualityConfig,
         minLength: minLength,
+        maxLength: maxLength || null,
         ncbiReferenceFile: `uploads/${uploadedFilename}`,
         keyword: keyword,
         identity: identity,
@@ -228,6 +229,7 @@ const AnalysisPanel = ({ uploadedFiles, onAnalysisComplete, onReset }) => {
           selectedSpecies && 
           qualityConfig && !isNaN(qualityConfig[selectedSpecies]) && 
           minLength && !isNaN(minLength) && 
+          (!maxLength || (maxLength && !isNaN(maxLength))) &&
           ncbiFile && 
           identity && !isNaN(identity) && 
           copyNumber && !isNaN(copyNumber)

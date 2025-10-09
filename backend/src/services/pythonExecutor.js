@@ -56,7 +56,7 @@ export class PythonExecutor {
       {
         name: "length filter",
         script: "Step2/lenFilter.py",
-        requiredFiles: ["minLength"],
+        requiredFiles: ["minLength", "maxLength"],
         description: "",
       },
       {
@@ -222,6 +222,7 @@ export class PythonExecutor {
       barcodeFile,
       qualityConfig = {},
       minLength = 200,
+      maxLength = null,
       ncbiReferenceFile,
       keyword,
       identity,
@@ -245,6 +246,7 @@ export class PythonExecutor {
         barcodeFile,
         qualityConfig,
         minLength,
+        maxLength,
         ncbiReferenceFile,
         keyword,
         identity,
@@ -281,6 +283,7 @@ export class PythonExecutor {
             barcodeFile,
             qualityConfigFile: qualityConfigFileName,
             minLength,
+            maxLength,
             ncbiReferenceFile,
             keyword,
             identity,
@@ -354,6 +357,7 @@ export class PythonExecutor {
       barcodeFile,
       qualityConfigFile,
       minLength,
+      maxLength,
       ncbiReferenceFile,
       keyword,
       identity,
@@ -378,6 +382,11 @@ export class PythonExecutor {
           break;
         case "minLength":
           containerArgs.push(parseInt(minLength));
+          break;
+        case "maxLength":
+          if (maxLength !== null && maxLength !== undefined) {
+            containerArgs.push(parseInt(maxLength));
+          }
           break;
         case "ncbiReference":
           containerArgs.push(

@@ -23,20 +23,23 @@ def process_assembled_fastq(directory = "/app/data/outputs/pear"):
     return assembled_files
 
 
-def convert_fq_to_fa_and_filter(fastq_file, output_file, delete_seq_file, min_length = 200):
+def convert_fq_to_fa_and_filter(fastq_file, output_file, delete_seq_file, min_length = 200, max_length = None):
     with open(fastq_file, 'r') as f_in, open(output_file, 'w') as f_out, open(delete_seq_file, 'w') as f_del:
         lines = f_in.readlines()
         for i in range(0, len(lines), 4):
             header = lines[i].strip().replace('@', '>', 1)
             sequence = lines[i+1].strip()
 
-            if len(sequence) >= min_length:
+            min_check = len(sequence) >= min_length
+            max_check = (max_length is None) or (len(sequence) <= max_length)
+
+            if min_check and max_check:
                 f_out.write(f"{header}\n{sequence}\n")
             else:
                 f_del.write(f"{header}\n{sequence}\n")
 
 
-def filter_and_convert(assembled_files, min_length):
+def filter_and_convert(assembled_files, min_length, max_length = None):
     output_dir = "/app/data/outputs/filter"
     os.makedirs(output_dir, exist_ok = True) # -- if the file "output_dir" is empty, create
 
@@ -50,10 +53,15 @@ def filter_and_convert(assembled_files, min_length):
         output_path = os.path.join(output_dir, f"{sample_name}.assembled.len.fasta")
         delete_seq_file = os.path.join(delete_dir, f"{sample_name}.assembled.del.fasta")
         print(output_path, flush=True)
-        convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length)
+        convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length, max_length)
 
 
 if __name__ == "__main__":
     min_length = int(sys.argv[1])
+    max_length = None
+
+    if len(sys.argv) >= 2 and sys.argv[2]:
+        max_length = int(sys.argv[2])
+
     assembled_files = process_assembled_fastq()
-    filter_and_convert(assembled_files, min_length)
+    filter_and_convert(assembled_files, min_length, max_length)
