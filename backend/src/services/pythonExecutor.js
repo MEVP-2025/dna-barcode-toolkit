@@ -45,67 +45,67 @@ export class PythonExecutor {
         name: "trim and rename",
         script: "Step1/rename_trim.py",
         requiredFiles: ["R1", "R2", "barcode", "qualityConfig"],
-        description: "",
+        outputDirs: ["rename", "trim"],
       },
       {
         name: "pear",
         script: "Step2/joinPear.py",
         requiredFiles: [],
-        description: "",
+        outputDirs: ["pear"],
       },
       {
         name: "length filter",
         script: "Step2/lenFilter.py",
         requiredFiles: ["minLength", "maxLength"],
-        description: "",
+        outputDirs: ["filter", "filter_del"],
       },
       {
         name: "blast",
         script: "Step3/joinBlast.py",
         requiredFiles: ["ncbiReference"],
-        description: "",
+        outputDirs: ["blast"],
       },
       {
         name: "assign species",
         script: "Step3/assign_species.py",
         requiredFiles: ["keyword", "identity"],
-        description: "",
+        outputDirs: ["assign"],
       },
       {
         name: "species classifier",
         script: "Step3/speciesClassifier.py",
         requiredFiles: [],
-        description: "",
+        outputDirs: ["classifier"],
       },
       {
         name: "MAFFT",
         script: "Step4/joinMAFFT.py",
         requiredFiles: [],
-        description: "",
+        outputDirs: ["mafft"],
       },
       {
         name: "tab formatter",
         script: "Step4/tabFormatter.py",
         requiredFiles: [],
-        description: "",
+        outputDirs: ["tab_formatter"],
       },
       {
         name: "trim gaps",
         script: "Step4/trim_gaps.py",
         requiredFiles: [],
-        description: "",
+        outputDirs: ["trimmed"],
       },
       {
         name: "separate reads",
         script: "Step5/separate_reads.py",
         requiredFiles: ["copyNumber"],
-        description: "",
+        outputDirs: ["separated"],
       },
       {
         name: "generate location-haplotype table",
         script: "Step6/get_loc_hap_table.py",
         requiredFiles: ["barcode"],
-        description: "",
+        outputDirs: ["table"],
       },
     ];
   }
@@ -136,48 +136,16 @@ export class PythonExecutor {
    */
   async clearOutputDirectories() {
     try {
-      const renameDir = path.join(this.outputsDir, "rename");
-      const trimDir = path.join(this.outputsDir, "trim");
-      const pearDir = path.join(this.outputsDir, "pear");
-      const filterDir = path.join(this.outputsDir, "filter");
-      const filterDelDir = path.join(this.outputsDir, "filter_del");
-      const blastDir = path.join(this.outputsDir, "blast");
-      const assignDir = path.join(this.outputsDir, "assign");
-      const classifierDir = path.join(this.outputsDir, "classifier");
-      const mafftDir = path.join(this.outputsDir, "mafft");
-      const tabFormatter = path.join(this.outputsDir, "tab_formatter");
-      const trimmedDir = path.join(this.outputsDir, "trimmed");
-      const copyNumberDir = path.join(this.outputsDir, "separated");
-      const tableDir = path.join(this.outputsDir, "table");
+      const allOutputDirs = this.standardPipeline.flatMap(
+        (step) => step.outputDirs || []
+      );
+      const uniqueDirs = [...new Set(allOutputDirs)];
 
-      // Remove and recreate directories
-      await fs.remove(renameDir);
-      await fs.remove(trimDir);
-      await fs.remove(pearDir);
-      await fs.remove(filterDir);
-      await fs.remove(filterDelDir);
-      await fs.remove(blastDir);
-      await fs.remove(assignDir);
-      await fs.remove(classifierDir);
-      await fs.remove(mafftDir);
-      await fs.remove(tabFormatter);
-      await fs.remove(trimmedDir);
-      await fs.remove(copyNumberDir);
-      await fs.remove(tableDir);
-
-      await fs.ensureDir(renameDir);
-      await fs.ensureDir(trimDir);
-      await fs.ensureDir(pearDir);
-      await fs.ensureDir(filterDir);
-      await fs.ensureDir(filterDelDir);
-      await fs.ensureDir(blastDir);
-      await fs.ensureDir(assignDir);
-      await fs.ensureDir(classifierDir);
-      await fs.ensureDir(mafftDir);
-      await fs.ensureDir(tabFormatter);
-      await fs.ensureDir(trimmedDir);
-      await fs.ensureDir(copyNumberDir);
-      await fs.ensureDir(tableDir);
+      for (const dirName of uniqueDirs) {
+        const dirPath = path.join(this.outputsDir, dirName);
+        await fs.remove(dirPath);
+        await fs.ensureDir(dirPath);
+      }
 
       logger.info("Output directories cleared successfully");
     } catch (error) {
@@ -270,7 +238,7 @@ export class PythonExecutor {
         if (progressCallback) {
           progressCallback({
             type: "step_start",
-            message: `Starting ${step.description}...`,
+            message: `Starting ${step.name}...`,
             stepName: step.name,
           });
         }
@@ -298,7 +266,7 @@ export class PythonExecutor {
         if (progressCallback) {
           progressCallback({
             type: "step_complete",
-            message: `Completed ${step.description}`,
+            message: `Completed ${step.name}`,
             stepName: step.name,
           });
         }
@@ -311,25 +279,18 @@ export class PythonExecutor {
         logger.warn("Failed to cleanup quality config file:", cleanupError);
       }
 
-      // 解析結果
-      const analysisResults = await this._parsePipelineResults();
-
       logger.info("Docker pipeline completed successfully");
 
       if (progressCallback) {
         progressCallback({
           type: "complete",
           message: "Analysis completed!",
-          result: analysisResults,
         });
       }
 
       return {
         status: "completed",
-        results: analysisResults,
         executionMode: "docker",
-        // qualityConfig,
-        // minLength, // 回傳 minLength 參數
       };
     } catch (error) {
       logger.error("Docker pipeline failed", error);
@@ -435,7 +396,7 @@ export class PythonExecutor {
       },
       onExit: (code, signal) => {
         if (processCallback) {
-          processCallback(null); // 清除 process reference
+          processCallback(null); // clear process reference
         }
       },
     });
@@ -445,103 +406,5 @@ export class PythonExecutor {
       script: step.script,
       status: "completed",
     };
-  }
-
-  /**
-   * Parse pipeline results from output directories
-   * @private
-   */
-  async _parsePipelineResults() {
-    try {
-      const results = {
-        rename: {
-          files: [],
-          totalFiles: 0,
-        },
-        trim: {
-          species: {},
-          totalFiles: 0,
-          files: [],
-        },
-        pear: {
-          files: [],
-          totalFiles: 0,
-        },
-        filter: {
-          files: [],
-          totalFiles: 0,
-          deletedFiles: [],
-          deletedCount: 0,
-        },
-      };
-
-      // Parse rename results
-      const renameDir = path.join(this.outputsDir, "rename");
-      if (await fs.pathExists(renameDir)) {
-        const renameFiles = await fs.readdir(renameDir);
-        results.rename.files = renameFiles;
-        results.rename.totalFiles = renameFiles.length;
-      }
-
-      // Parse trim results
-      const trimDir = path.join(this.outputsDir, "trim");
-      if (await fs.pathExists(trimDir)) {
-        const trimFiles = await fs.readdir(trimDir);
-        results.trim.files = trimFiles;
-        results.trim.totalFiles = trimFiles.length;
-
-        // Group files by species
-        for (const file of trimFiles) {
-          const match = file.match(/^(\w+)\.(f|r)\.fq$/);
-          if (match) {
-            const [, species, direction] = match;
-
-            if (!results.trim.species[species]) {
-              results.trim.species[species] = {};
-            }
-
-            results.trim.species[species][direction] = {
-              filename: file,
-              path: path.join(trimDir, file),
-              size: (await fs.stat(path.join(trimDir, file))).size,
-            };
-          }
-        }
-      }
-
-      // Parse pear results
-      const pearDir = path.join(this.outputsDir, "pear");
-      if (await fs.pathExists(pearDir)) {
-        const pearFiles = await fs.readdir(pearDir);
-        results.pear.files = pearFiles;
-        results.pear.totalFiles = pearFiles.length;
-      }
-
-      // Parse filter results
-      const filterDir = path.join(this.outputsDir, "filter");
-      if (await fs.pathExists(filterDir)) {
-        const filterFiles = await fs.readdir(filterDir);
-        results.filter.files = filterFiles;
-        results.filter.totalFiles = filterFiles.length;
-      }
-
-      // Parse deleted sequences
-      const filterDelDir = path.join(this.outputsDir, "filter_del");
-      if (await fs.pathExists(filterDelDir)) {
-        const deletedFiles = await fs.readdir(filterDelDir);
-        results.filter.deletedFiles = deletedFiles;
-        results.filter.deletedCount = deletedFiles.length;
-      }
-
-      return results;
-    } catch (error) {
-      logger.error("Failed to parse pipeline results:", error);
-      return {
-        rename: { files: [], totalFiles: 0 },
-        trim: { species: {}, totalFiles: 0, files: [] },
-        pear: { files: [], totalFiles: 0 },
-        filter: { files: [], totalFiles: 0, deletedFiles: [], deletedCount: 0 },
-      };
-    }
   }
 }
