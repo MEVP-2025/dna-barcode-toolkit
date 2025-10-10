@@ -56,6 +56,28 @@ def filter_and_convert(assembled_files, min_length, max_length = None):
         convert_fq_to_fa_and_filter(fastq_file, output_path, delete_seq_file, min_length, max_length)
 
 
+def validate_filter_results(directory = "/app/data/outputs/filter"):
+    total_sequences = 0
+
+    pattern = os.path.join(directory, '*.fasta')
+    files = glob.glob(pattern)
+
+    if not files:
+        print(f"Validation Error: No FASTA files found in {directory}", flush=True)
+        sys.exit(1)
+
+    for file_path in files:
+        with open(file_path, 'r') as f:
+            for line in f:
+                if line.startswith('>'):
+                    total_sequences += 1
+
+    if total_sequences < 2:
+        error_message = f"Validation Error: Not enough sequences remained after filtering (found {total_sequences}, require at least 2). This wll cause downstream alignment to fail. Please adjust your min/max length settings."
+        print(error_message, file=sys.stderr, flush=True)
+        sys.exit(1)
+
+
 if __name__ == "__main__":
     min_length = int(sys.argv[1])
     max_length = None
@@ -65,3 +87,6 @@ if __name__ == "__main__":
 
     assembled_files = process_assembled_fastq()
     filter_and_convert(assembled_files, min_length, max_length)
+
+    # validate filter results
+    validate_filter_results()
