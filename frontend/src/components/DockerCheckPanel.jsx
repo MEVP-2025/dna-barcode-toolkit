@@ -18,6 +18,7 @@ const DockerCheckPanel = ({ onDockerReady }) => {
             const response = await api.docker.checkEnvironment()
             setDockerStatus(response.data)
             setChecking(false)
+            setShowInstructions(false)
         } catch (error) {
             console.error('Docker check failed:', error)
             setDockerStatus({
@@ -52,54 +53,29 @@ const DockerCheckPanel = ({ onDockerReady }) => {
             return (
                 <div className="instructions-content">
                     <h3>Docker Not Installed</h3>
-                    <p>Please download and install Docker Desktop for your operating system:</p>
+                    <p>This application requires Docker Desktop to run its analysis environment.</p>
+                    <p>Please visit the official Docker website to download the version suitable for your system.</p>
 
                     <div className="download-links">
                         <a
-                            href="https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe"
-                            className="download-button windows"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        href="https://www.docker.com/products/docker-desktop/"
+                        className="download-button primary"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801" />
-                            </svg>
-                            Windows
-                        </a>
-
-                        <a
-                            href="https://desktop.docker.com/mac/main/amd64/Docker.dmg"
-                            className="download-button mac"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-                            </svg>
-                            macOS (Intel)
-                        </a>
-
-                        <a
-                            href="https://desktop.docker.com/mac/main/arm64/Docker.dmg"
-                            className="download-button mac"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-                            </svg>
-                            macOS (Apple Silicon)
+                        Download from Docker.com
                         </a>
                     </div>
 
                     <div className="instruction-steps">
                         <h4>Installation Steps:</h4>
                         <ol>
-                            <li>Download Docker Desktop for your operating system</li>
-                            <li>Run the installer and follow the installation wizard</li>
-                            <li>After installation, launch Docker Desktop</li>
-                            <li>Wait for Docker to start (the icon in the system tray will turn green)</li>
-                            <li>Click the "Recheck" button below</li>
+                            <li>Click the button above to go to the official Docker website.</li>
+                            <li>On their page, find and download the correct installer for your system.</li>
+                            <li>Run the installer and follow the on-screen instructions.</li>
+                            <li>After installation is complete, launch Docker Desktop from your applications.</li>
+                            <li>Wait for Docker to fully start (the whale icon in your system tray or menu bar will stop animating and stay lit).</li>
+                            <li>Once Docker is running, come back to this application and click the "Recheck" button below.</li>
                         </ol>
                     </div>
                 </div>
@@ -182,17 +158,19 @@ const DockerCheckPanel = ({ onDockerReady }) => {
                         </div>
 
                         {!dockerStatus?.success && (
-                            <button
-                                className="instruction-toggle"
-                                onClick={() => setShowInstructions(!showInstructions)}
-                            >
-                                {showInstructions ? 'Hide Instructions' : 'Show Installation Guide'}
-                            </button>
+                            <div className="button-container">
+                                <button
+                                    className="instruction-toggle"
+                                    onClick={() => setShowInstructions(!showInstructions)}
+                                >
+                                    {showInstructions ? 'Hide Instructions' : 'Show Installation Guide'}
+                                </button>
+                            </div>
                         )}
 
                         {showInstructions && (
                             <div className="instructions-panel">
-                                {renderInstructions()}
+                              {renderInstructions()}
                             </div>
                         )}
                     </>

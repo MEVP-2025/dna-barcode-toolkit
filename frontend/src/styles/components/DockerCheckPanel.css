@@ -13,24 +13,23 @@
   width: 80px;
   height: 80px;
   margin: 0 auto 1rem;
-  color: #5490e8;
 }
 
 .docker-icon svg {
   width: 100%;
   height: 100%;
-  color: #5490e8;
+  fill: #5490e8;
 }
 
 .panel-header h2 {
   margin: 0 0 0.5rem;
-  color: var(--text-primary);
+  color: var(--text);
   font-size: 1.8rem;
 }
 
 .panel-header p {
   margin: 0;
-  color: var(--text-secondary);
+  color: var(--detail);
 }
 
 .check-status {
@@ -46,8 +45,8 @@
   width: 50px;
   height: 50px;
   margin: 0 auto 1rem;
-  border: 4px solid var(--border-color);
-  border-top-color: #2496ed;
+  border: 4px solid var(--border);
+  border-top-color: var(--primary);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -76,14 +75,20 @@
 
 .status-item.success {
   background: color-mix(in srgb, var(--success) 20%, var(--surface) 80%);
+  color: var(--success);
+  border-color: color-mix(in srgb, var(--success) 50%, var(--surface) 50%);
 }
 
 .status-item.error {
   background: color-mix(in srgb, var(--danger) 20%, var(--surface) 80%);
+  color: var(--danger);
+  border-color: color-mix(in srgb, var(--danger) 50%, var(--surface) 50%);
 }
 
 .status-item.warning {
   background: color-mix(in srgb, var(--warning) 20%, var(--surface) 80%);
+  color: var(--warning);
+  border-color: color-mix(in srgb, var(--warning) 50%, var(--surface) 50%);
 }
 
 .status-icon {
@@ -102,22 +107,28 @@
   font-size: 0.9rem;
 }
 
-.instruction-toggle {
+.button-container {
+  display: flex;
+  justify-content: center;
   width: 100%;
-  padding: 0.75rem;
   margin-top: 1rem;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
+}
+
+.instruction-toggle {
+  padding: 0.75rem 2.5rem;
+  background: var(--bg);
+  border: 2px solid var(--border);
   border-radius: 8px;
-  color: var(--text-primary);
+  color: var(--text);
   font-size: 0.95rem;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .instruction-toggle:hover {
-  background: var(--bg-hover);
-  border-color: #2496ed;
+  /* background-color: var(--border); */
+  background: color-mix(in srgb, var(--bg) 85%, var(--text) 15%);
+  color: var(--text);
 }
 
 .instructions-panel {
@@ -149,55 +160,30 @@
   border-left: 3px solid #f59e0b;
 }
 
-.download-links {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1rem;
-  margin: 1.5rem 0;
-}
-
 .download-button {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
   padding: 1rem;
-  background: var(--card-bg);
-  border: 2px solid var(--border-color);
+  background: var(--surface-alt);
+  border: 2px solid #5490e8;
   border-radius: 8px;
-  color: var(--text-primary);
+  color: #5490e8;
   text-decoration: none;
   transition: all 0.3s ease;
   font-weight: 500;
 }
 
 .download-button:hover {
-  border-color: #2496ed;
+  border-color: #5490e8;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(36, 150, 237, 0.2);
+  box-shadow: 0 4px 12px #5490e8;
 }
 
 .download-button svg {
   width: 32px;
   height: 32px;
-}
-
-.download-button.windows {
-  border-color: #0078d4;
-}
-
-.download-button.windows:hover {
-  border-color: #0078d4;
-  background: rgba(0, 120, 212, 0.05);
-}
-
-.download-button.mac {
-  border-color: #666;
-}
-
-.download-button.mac:hover {
-  border-color: #000;
-  background: rgba(0, 0, 0, 0.05);
 }
 
 .instruction-steps {
@@ -249,25 +235,26 @@
 }
 
 .recheck-button {
-  background: var(--bg-secondary);
-  color: var(--text-primary);
-  border: 1px solid var(--border-color);
+  background: var(--bg);
+  color: var(--text);
+  border: 2px solid var(--border);
 }
 
 .recheck-button:hover:not(:disabled) {
-  background: var(--bg-hover);
-  border-color: #2496ed;
+  background: color-mix(in srgb, var(--bg) 85%, var(--text) 15%);
+  border-color: var(--text);
 }
 
 .next-button {
-  background: linear-gradient(135deg, #2496ed 0%, #1a7bc4 100%);
-  color: white;
+  /* background: linear-gradient(135deg, #2496ed 0%, #1a7bc4 100%); */
+  background: var(--primary );
+  color: var(--surface);
 }
 
 .next-button:hover:not(:disabled) {
-  background: linear-gradient(135deg, #1a7bc4 0%, #15629e 100%);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(36, 150, 237, 0.3);
+  /* background: linear-gradient(135deg, #1a7bc4 0%, #15629e 100%); */
+  background: color-mix(in srgb, var(--primary) 60%, var(--bg) 40%);
+
 }
 
 .recheck-button:disabled,
