@@ -27,10 +27,7 @@ export class PythonExecutor {
       const sourcePythonScripts = path.join(__dirname, "../../python_scripts");
       const destPythonScripts = path.join(this.workingDir, "python_scripts");
 
-      if (
-        fs.existsSync(sourcePythonScripts) &&
-        !fs.existsSync(destPythonScripts)
-      ) {
+      if (fs.existsSync(sourcePythonScripts)) {
         fs.copySync(sourcePythonScripts, destPythonScripts);
         console.log("Python scripts copied to working directory");
       }

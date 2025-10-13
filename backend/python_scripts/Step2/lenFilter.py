@@ -82,7 +82,7 @@ if __name__ == "__main__":
     min_length = int(sys.argv[1])
     max_length = None
 
-    if len(sys.argv) >= 2 and sys.argv[2]:
+    if len(sys.argv) > 2 and sys.argv[2]:
         max_length = int(sys.argv[2])
 
     assembled_files = process_assembled_fastq()
