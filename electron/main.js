@@ -66,7 +66,7 @@ function findExecutablePath(command) {
         stdio: ["pipe", "pipe", "ignore"],
         timeout: 3000,
       });
-      return result.split('\n')[0].trim();
+      return result.split("\n")[0].trim();
     } else {
       const shell = process.env.SHELL;
 
@@ -141,30 +141,6 @@ function createEnhancedEnvironment() {
   return env;
 }
 
-async function validateEnvironment() {
-  const requiredTools = ["docker"];
-  const missing = [];
-
-  for (const tool of requiredTools) {
-    if (!findExecutablePath(tool)) {
-      missing.push(tool);
-    }
-  }
-
-  if (missing.length > 0) {
-    const error = new Error(`Required tools not found ${missing.join(", ")}`);
-    dialog.showErrorBox(
-      "Missing Dependencies",
-      `The following required tools were not found:\n${missing.join(
-        ", "
-      )}\n\nPlease ensure they are installed and accessible from the command line.`
-    );
-    throw error;
-  }
-
-  console.log("All required tools found");
-}
-
 // -- Start Backend Server
 function startBackend() {
   return new Promise((resolve, reject) => {
@@ -173,7 +149,7 @@ function startBackend() {
 
     const platformKey = `${platform}-${arch}`;
 
-    let nodeBinary
+    let nodeBinary;
     if (platform === "win32") {
       nodeBinary = path.join(
         process.resourcesPath,
@@ -188,7 +164,7 @@ function startBackend() {
         platformKey,
         "bin",
         "node"
-      )
+      );
     }
 
     const serverScript = path.join(
@@ -234,12 +210,28 @@ function startBackend() {
   });
 }
 
+function stopBackend() {
+  return new Promise((resolve) => {
+    if (backendProcess && !backendProcess.killed) {
+      console.log("Terminating backend process...");
+      backendProcess.once("exit", () => {
+        console.log("Backend process terminated.");
+        backendProcess = null;
+        resolve();
+      });
+      backendProcess.kill("SIGTERM");
+    } else {
+      backendProcess = null;
+      resolve();
+    }
+  });
+}
+
 // Application ready
 app.whenReady().then(async () => {
   try {
     // Start backend server first
     if (!isDev) {
-      await validateEnvironment();
       await startBackend();
     }
 
@@ -273,6 +265,17 @@ app.on("before-quit", () => {
   if (backendProcess && !backendProcess.killed) {
     console.log("Terminating backend process...");
     backendProcess.kill("SIGTERM");
+  }
+});
+
+ipcMain.handle("reinitalize-backend", async () => {
+  try {
+    await stopBackend();
+    await startBackend();
+
+    return { success: true };
+  } catch (error) {
+    return { success: false, error: error.message };
   }
 });
 

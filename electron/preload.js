@@ -1,5 +1,5 @@
 // import { contextBridge, ipcRenderer } from "electron";
-const { contextBridge, ipcRenderer } = require("electron")
+const { contextBridge, ipcRenderer } = require("electron");
 
 // 暴露安全的 API 給前端使用
 contextBridge.exposeInMainWorld("electronAPI", {
@@ -11,6 +11,8 @@ contextBridge.exposeInMainWorld("electronAPI", {
 
   // 開啟外部連結
   openExternal: (url) => ipcRenderer.invoke("open-external", url),
+
+  reinitializeBackend: () => ipcRenderer.invoke("reinitalize-backend"),
 
   // 環境資訊
   isElectron: true,

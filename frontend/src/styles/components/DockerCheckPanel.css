@@ -263,18 +263,3 @@
   cursor: not-allowed;
   transform: none;
 }
-
-/* Dark mode adjustments */
-[data-theme="dark"] .download-button.mac {
-  border-color: #999;
-}
-
-[data-theme="dark"] .download-button.mac:hover {
-  border-color: #fff;
-  background: rgba(255, 255, 255, 0.05);
-}
-
-[data-theme="dark"] .instruction-steps code {
-  background: rgba(255, 255, 255, 0.1);
-  color: #ff79c6;
-}

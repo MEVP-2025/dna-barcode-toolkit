@@ -9,29 +9,59 @@ const DockerCheckPanel = ({ onDockerReady }) => {
     const [showInstructions, setShowInstructions] = useState(false)
 
     useEffect(() => {
-        checkDockerEnvironment()
+      const initialCheck = async () => {
+        setChecking(true);
+        try {
+          const response = await api.docker.checkEnvironment();
+          setDockerStatus(response.data);
+        } catch (error) {
+          setDockerStatus({
+            success: false,
+            checks: {
+              dockerInstalled: false,
+              dockerRunning: false,
+              imageAvailable: false
+            },
+            message: error.response?.data?.message || 'Failed to check Docker environment'
+          });
+        } finally {
+          setChecking(false);
+        }
+      };
+      initialCheck();
     }, [])
 
-    const checkDockerEnvironment = async () => {
-        setChecking(true)
+    const handleRecheck = async () => {
+      setChecking(true);
+
+      if (dockerStatus?.checks?.dockerInstalled === false) {
         try {
-            const response = await api.docker.checkEnvironment()
-            setDockerStatus(response.data)
-            setChecking(false)
-            setShowInstructions(false)
+          await window.electronAPI.reinitializeBackend();
         } catch (error) {
-            console.error('Docker check failed:', error)
-            setDockerStatus({
-                success: false,
-                checks: {
-                    dockerInstalled: false,
-                    dockerRunning: false,
-                    imageAvailable: false
-                },
-                message: error.response?.data?.message || 'Failed to check Docker environment'
-            })
-            setChecking(false)
+          console.error('Backend reinitialization failed:', error);
         }
+      }
+
+      try {
+        console.log("Performing a new environment check...");
+        const response = await api.docker.checkEnvironment();
+        setDockerStatus(response.data);
+        if (response.data.success) {
+            setShowInstructions(false);
+        }
+      } catch (error) {
+        setDockerStatus({
+            success: false,
+            checks: { 
+              dockerInstalled: false,
+              dockerRunning: false,
+              imageAvailable: false
+            },
+            message: error.response?.data?.message || 'Failed to check Docker environment'
+        });
+      } finally {
+        setChecking(false);
+      }
     }
 
     const getStatusText = (status) => {
@@ -180,7 +210,7 @@ const DockerCheckPanel = ({ onDockerReady }) => {
             <div className="panel-actions">
                 <button
                     className="recheck-button"
-                    onClick={checkDockerEnvironment}
+                    onClick={handleRecheck}
                     disabled={checking}
                 >
                     {checking ? 'Checking...' : 'Recheck'}
@@ -189,7 +219,7 @@ const DockerCheckPanel = ({ onDockerReady }) => {
                 <button
                     className="next-button"
                     onClick={handleNext}
-                    disabled={!dockerStatus?.success || checking}
+                    disabled={!dockerStatus?.success || checking} 
                 >
                     Next
                 </button>
