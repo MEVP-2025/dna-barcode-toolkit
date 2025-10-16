@@ -128,12 +128,3 @@ docker pull uiskskkekekk/mevp-2025:latest
 ## License
 
 This project is licensed under the MIT License (see `backend/package.json` for author/license metadata).
-
----
-
-If you want, I can also:
-
-- generate a shorter `README` (one-page) for GitHub and a separate `DEVELOPER.md` with detailed dev/run/debug steps; or
-- add a `README` section that documents how to build the Docker image locally (Dockerfile + build commands) if the image is private or needs customization.
-
-Tell me which extra option you prefer and I will add it.
