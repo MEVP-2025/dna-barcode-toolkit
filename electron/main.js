@@ -9,6 +9,7 @@ const {
 } = require("electron");
 const path = require("path");
 const fs = require("fs");
+const os = require("os");
 
 const isDev = !app.isPackaged;
 
@@ -227,6 +228,24 @@ function stopBackend() {
   });
 }
 
+function cleanFolderContents(folderPath) {
+  try {
+    if (fs.existsSync(folderPath)) {
+      const items = fs.readdirSync(folderPath);
+
+      for (const item of items) {
+        const itemPath = path.join(folderPath, item);
+        fs.rmSync(itemPath, { recursive: true, force: true });
+        console.log(`Successfully deleted: ${itemPath}`);
+      }
+    } else {
+      console.log(`Folder does not exist: ${folderPath}`);
+    }
+  } catch (error) {
+    console.error(`Failed to clean folder ${folderPath}:`, error);
+  }
+}
+
 // Application ready
 app.whenReady().then(async () => {
   try {
@@ -266,9 +285,30 @@ app.on("before-quit", () => {
     console.log("Terminating backend process...");
     backendProcess.kill("SIGTERM");
   }
+
+  if (!isDev) {
+    const homedir = os.homedir();
+
+    const uploadsPath = path.join(homedir, ".dna-barcode-toolkit", "uploads");
+    const outputsPath = path.join(homedir, ".dna-barcode-toolkit", "outputs");
+
+    // const debugInfo = [
+    //   `basePath: ${homedir}`,
+    //   `uploadsPath: ${uploadsPath}`,
+    //   `outputsPath: ${outputsPath}`,
+    // ].join("\n");
+
+    // dialog.showErrorBox(
+    //   "Application Exiting (Debug Info)", // Title
+    //   debugInfo // Content
+    // );
+
+    cleanFolderContents(uploadsPath);
+    cleanFolderContents(outputsPath);
+  }
 });
 
-ipcMain.handle("reinitalize-backend", async () => {
+ipcMain.handle("reinitialize-backend", async () => {
   try {
     await stopBackend();
     await startBackend();
@@ -277,22 +317,6 @@ ipcMain.handle("reinitalize-backend", async () => {
   } catch (error) {
     return { success: false, error: error.message };
   }
-});
-
-// IPC 處理器 - 檔案對話框
-ipcMain.handle("show-open-dialog", async (event, options) => {
-  const result = await dialog.showOpenDialog(mainWindow, options);
-  return result;
-});
-
-// IPC 處理器 - 顯示資料夾
-ipcMain.handle("show-item-in-folder", async (event, fullPath) => {
-  shell.showItemInFolder(fullPath);
-});
-
-// IPC 處理器 - 開啟外部連結
-ipcMain.handle("open-external", async (event, url) => {
-  await shell.openExternal(url);
 });
 
 // 錯誤處理

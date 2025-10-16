@@ -12,7 +12,7 @@ contextBridge.exposeInMainWorld("electronAPI", {
   // 開啟外部連結
   openExternal: (url) => ipcRenderer.invoke("open-external", url),
 
-  reinitializeBackend: () => ipcRenderer.invoke("reinitalize-backend"),
+  reinitializeBackend: () => ipcRenderer.invoke("reinitialize-backend"),
 
   // 環境資訊
   isElectron: true,
